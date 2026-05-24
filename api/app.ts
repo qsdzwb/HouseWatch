@@ -12,6 +12,9 @@ import path from 'path'
 import dotenv from 'dotenv'
 import { fileURLToPath } from 'url'
 import authRoutes from './routes/auth.js'
+import projectRoutes from './routes/projects.js'
+import sourceRoutes from './routes/sources.js'
+import { migrate } from './db/migrate.js'
 
 // for esm mode
 const __filename = fileURLToPath(import.meta.url)
@@ -19,6 +22,8 @@ const __dirname = path.dirname(__filename)
 
 // load env
 dotenv.config()
+
+migrate()
 
 const app: express.Application = express()
 
@@ -30,6 +35,8 @@ app.use(express.urlencoded({ extended: true, limit: '10mb' }))
  * API Routes
  */
 app.use('/api/auth', authRoutes)
+app.use('/api/projects', projectRoutes)
+app.use('/api/sources', sourceRoutes)
 
 /**
  * health
