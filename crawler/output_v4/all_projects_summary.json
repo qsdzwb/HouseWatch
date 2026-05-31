@@ -1,0 +1,70 @@
+{
+  "金阙华院": {
+    "project": "金阙华院",
+    "projectID": "8205387",
+    "buildingCount": 1,
+    "buildings": [
+      {
+        "name": "5#住宅楼",
+        "buildingId": "577656"
+      }
+    ],
+    "buildingDataCount": 1
+  },
+  "满和苑": {
+    "project": "满和苑",
+    "projectID": "8203797",
+    "buildingCount": 2,
+    "buildings": [
+      {
+        "name": "5#住宅楼",
+        "buildingId": "577224"
+      },
+      {
+        "name": "地下车库",
+        "buildingId": "577199"
+      }
+    ],
+    "buildingDataCount": 2
+  },
+  "铂瑞府": {
+    "project": "铂瑞府",
+    "projectID": "8207359",
+    "buildingCount": 8,
+    "buildings": [
+      {
+        "name": "1516-1#住宅楼",
+        "buildingId": "579104"
+      },
+      {
+        "name": "1516-2#住宅楼",
+        "buildingId": "579103"
+      },
+      {
+        "name": "1516-3#住宅楼",
+        "buildingId": "579102"
+      },
+      {
+        "name": "1516-4#住宅楼",
+        "buildingId": "579101"
+      },
+      {
+        "name": "1516-5#住宅楼",
+        "buildingId": "579077"
+      },
+      {
+        "name": "1516-6#住宅楼",
+        "buildingId": "579076"
+      },
+      {
+        "name": "1516-7#住宅楼",
+        "buildingId": "579075"
+      },
+      {
+        "name": "1516-8#住宅楼",
+        "buildingId": "579074"
+      }
+    ],
+    "buildingDataCount": 8
+  }
+}

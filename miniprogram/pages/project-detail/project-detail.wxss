@@ -1,0 +1,214 @@
+@import "../../app.wxss";
+
+/* 标题区域 */
+.detail-title {
+  font-size: 18px;
+  font-weight: 700;
+  color: #333;
+  flex: 1;
+}
+
+.detail-meta {
+  font-size: 13px;
+  color: #999;
+  margin-top: 8px;
+}
+
+.btn-outline {
+  font-size: 13px;
+  padding: 4px 14px;
+  border-radius: 14px;
+  border: 1px solid #1989FA;
+  color: #1989FA;
+  background: #fff;
+}
+
+/* 统计卡片 */
+.stats-card {
+  padding: 16px;
+}
+
+.stats-row {
+  display: flex;
+  text-align: center;
+}
+
+.stats-item {
+  flex: 1;
+}
+
+.stats-num {
+  font-size: 22px;
+  font-weight: 700;
+  color: #333;
+}
+
+.stats-num.blue {
+  color: #1989FA;
+}
+
+.stats-num.green {
+  color: #27AE60;
+}
+
+.stats-num.red {
+  color: #E74C3C;
+}
+
+.stats-label {
+  font-size: 12px;
+  color: #999;
+  margin-top: 4px;
+}
+
+/* Tab 切换 */
+.tab-bar {
+  display: flex;
+  border-bottom: 1px solid #eee;
+  margin-bottom: 12px;
+  background: #fff;
+  border-radius: 8px 8px 0 0;
+}
+
+.tab-item {
+  flex: 1;
+  text-align: center;
+  padding: 12px;
+  font-size: 14px;
+  color: #666;
+  position: relative;
+}
+
+.tab-active {
+  color: #1989FA;
+  font-weight: 600;
+}
+
+.tab-active::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 30px;
+  height: 2px;
+  background: #1989FA;
+  border-radius: 1px;
+}
+
+/* 楼栋卡片 */
+.building-card {
+  background: #fff;
+  border-radius: 10px;
+  padding: 14px 16px;
+  margin-bottom: 10px;
+  position: relative;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.06);
+}
+
+.building-name {
+  font-size: 15px;
+  font-weight: 500;
+  color: #333;
+}
+
+.building-info {
+  font-size: 12px;
+  color: #999;
+  margin-top: 4px;
+}
+
+.building-arrow {
+  position: absolute;
+  right: 14px;
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 20px;
+  color: #ccc;
+}
+
+/* 状态条 */
+.status-bar {
+  display: flex;
+  height: 6px;
+  border-radius: 3px;
+  overflow: hidden;
+  margin-top: 10px;
+  margin-right: 24px;
+}
+
+.status-segment {
+  height: 100%;
+}
+
+.seg-green {
+  background: #33CC00;
+}
+
+.seg-red {
+  background: #FF3B30;
+}
+
+.seg-orange {
+  background: #FFCC99;
+}
+
+/* 概况信息行 */
+.info-row {
+  display: flex;
+  align-items: center;
+}
+
+.info-label {
+  font-size: 13px;
+  color: #999;
+  width: 80px;
+  flex-shrink: 0;
+}
+
+.info-value {
+  font-size: 14px;
+  color: #333;
+  flex: 1;
+}
+
+.tag-active {
+  background: #E8F5E9;
+  color: #27AE60;
+  font-size: 12px;
+  padding: 2px 8px;
+  border-radius: 10px;
+}
+
+.tag-inactive {
+  background: #f5f5f5;
+  color: #999;
+  font-size: 12px;
+  padding: 2px 8px;
+  border-radius: 10px;
+}
+
+/* 空状态 */
+.empty {
+  text-align: center;
+  padding: 40px 20px;
+  color: #999;
+  font-size: 14px;
+}
+
+/* 均价行 */
+.price-row {
+  text-align: center;
+  font-size: 13px;
+  color: #999;
+  padding-top: 12px;
+  border-top: 1px solid #f0f0f0;
+  margin-top: 12px;
+}
+
+.price-value {
+  font-size: 16px;
+  font-weight: 700;
+  color: #FF6600;
+  margin-left: 4px;
+}

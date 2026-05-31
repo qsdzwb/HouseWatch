@@ -1,0 +1,607 @@
+{
+  "project": "铂瑞府",
+  "projectID": "8207359",
+  "buildings": [
+    {
+      "buildingName": "1516-1#住宅楼",
+      "buildingId": "579104",
+      "unitCount": 54,
+      "units": [
+        {
+          "roomNo": "1单元-901",
+          "status": "可售",
+          "bgColor": "rgb(51, 204, 0)",
+          "hasLink": true,
+          "houseId": "17900504",
+          "detailUrl": "http://bjjs.zjw.beijing.gov.cn/eportal/ui?pageId=373432&houseId=17900504&houseNo=1%E5%8D%95%E5%85%83-901&categoryId=1&salePermitId=8207359&systemId=2",
+          "detail": {
+            "roomNo": "1单元-901",
+            "purpose": "住宅",
+            "layout": "两室两厅",
+            "buildArea": "84.9000 平方米",
+            "innerArea": "67.7500 平方米",
+            "pricePerSqM": "42486 元/平方米",
+            "pricePerSqMInner": "53240.76 元/平方米",
+            "allText": "\t\n\n\t\n视窗\n×\n\n\nloading...\n\n\n\t\n\n\t\n无障碍\n繁體\n手机版\n访问我的专属空间\n搜本网\n一网通查\n首页\n政务公开\n政务服务\n政民互动\n当前位置   首页 > 房屋管理 > 房地产交易管理 > 新建商品房 > 项目信息公示 > 项目详细信息 > 楼盘表页面 > 单元号详情\n网签合同信息查询\n期房网签合同信息查询\n两限房项目公示\n现房网签合同信息查询\n存量房网签合同信息查询\n房屋资料\n房 间 号\t1单元-901\n规划设计用途\t住宅\n户　　型\t两室两厅\n建筑面积\t84.9000 平方米\n套内面积\t67.7500 平方米\n按建筑面积拟售单价\t42486 元/平方米\n按套内面积拟售单价\t53240.76 元/平方米\n说 明：分摊面积=建筑面积-套内面积\n关于我们\n站点地图\n建议意见\n法律声明\n办公地址：北京市通州区达济街9号院\n联系方式：010-55529919\n\n微信公众号\n\n微博\n\n主办：北京市住房和城乡建设委员会 承办：北京市住房和城乡建设委员会办公室、综合事务中心\n备案编号：京ICP备2024078583号政府网站标识码：1100000159\n京公网安备11040102700048号"
+          }
+        },
+        {
+          "roomNo": "1单元-902",
+          "status": "可售",
+          "bgColor": "rgb(51, 204, 0)",
+          "hasLink": true,
+          "houseId": "17900507",
+          "detailUrl": "http://bjjs.zjw.beijing.gov.cn/eportal/ui?pageId=373432&houseId=17900507&houseNo=1%E5%8D%95%E5%85%83-902&categoryId=1&salePermitId=8207359&systemId=2",
+          "detail": {
+            "roomNo": "1单元-902",
+            "purpose": "住宅",
+            "layout": "两室两厅",
+            "buildArea": "89.7900 平方米",
+            "innerArea": "71.6500 平方米",
+            "pricePerSqM": "42786 元/平方米",
+            "pricePerSqMInner": "53618.35 元/平方米",
+            "allText": "\t\n\n\t\n视窗\n×\n\n\nloading...\n\n\n\t\n\n\t\n无障碍\n繁體\n手机版\n访问我的专属空间\n搜本网\n一网通查\n首页\n政务公开\n政务服务\n政民互动\n当前位置   首页 > 房屋管理 > 房地产交易管理 > 新建商品房 > 项目信息公示 > 项目详细信息 > 楼盘表页面 > 单元号详情\n网签合同信息查询\n期房网签合同信息查询\n两限房项目公示\n现房网签合同信息查询\n存量房网签合同信息查询\n房屋资料\n房 间 号\t1单元-902\n规划设计用途\t住宅\n户　　型\t两室两厅\n建筑面积\t89.7900 平方米\n套内面积\t71.6500 平方米\n按建筑面积拟售单价\t42786 元/平方米\n按套内面积拟售单价\t53618.35 元/平方米\n说 明：分摊面积=建筑面积-套内面积\n关于我们\n站点地图\n建议意见\n法律声明\n办公地址：北京市通州区达济街9号院\n联系方式：010-55529919\n\n微信公众号\n\n微博\n\n主办：北京市住房和城乡建设委员会 承办：北京市住房和城乡建设委员会办公室、综合事务中心\n备案编号：京ICP备2024078583号政府网站标识码：1100000159\n京公网安备11040102700048号"
+          }
+        },
+        {
+          "roomNo": "2单元-901",
+          "status": "可售",
+          "bgColor": "rgb(51, 204, 0)",
+          "hasLink": true,
+          "houseId": "17900442",
+          "detailUrl": "http://bjjs.zjw.beijing.gov.cn/eportal/ui?pageId=373432&houseId=17900442&houseNo=2%E5%8D%95%E5%85%83-901&categoryId=1&salePermitId=8207359&systemId=2",
+          "detail": {
+            "roomNo": "2单元-901",
+            "purpose": "住宅",
+            "layout": "两室两厅",
+            "buildArea": "89.7600 平方米",
+            "innerArea": "71.6300 平方米",
+            "pricePerSqM": "42786 元/平方米",
+            "pricePerSqMInner": "53615.40 元/平方米",
+            "allText": "\t\n\n\t\n视窗\n×\n\n\nloading...\n\n\n\t\n\n\t\n无障碍\n繁體\n手机版\n访问我的专属空间\n搜本网\n一网通查\n首页\n政务公开\n政务服务\n政民互动\n当前位置   首页 > 房屋管理 > 房地产交易管理 > 新建商品房 > 项目信息公示 > 项目详细信息 > 楼盘表页面 > 单元号详情\n网签合同信息查询\n期房网签合同信息查询\n两限房项目公示\n现房网签合同信息查询\n存量房网签合同信息查询\n房屋资料\n房 间 号\t2单元-901\n规划设计用途\t住宅\n户　　型\t两室两厅\n建筑面积\t89.7600 平方米\n套内面积\t71.6300 平方米\n按建筑面积拟售单价\t42786 元/平方米\n按套内面积拟售单价\t53615.40 元/平方米\n说 明：分摊面积=建筑面积-套内面积\n关于我们\n站点地图\n建议意见\n法律声明\n办公地址：北京市通州区达济街9号院\n联系方式：010-55529919\n\n微信公众号\n\n微博\n\n主办：北京市住房和城乡建设委员会 承办：北京市住房和城乡建设委员会办公室、综合事务中心\n备案编号：京ICP备2024078583号政府网站标识码：1100000159\n京公网安备11040102700048号"
+          }
+        },
+        {
+          "roomNo": "2单元-902",
+          "status": "可售",
+          "bgColor": "rgb(51, 204, 0)",
+          "hasLink": true,
+          "houseId": "17900449",
+          "detailUrl": "http://bjjs.zjw.beijing.gov.cn/eportal/ui?pageId=373432&houseId=17900449&houseNo=2%E5%8D%95%E5%85%83-902&categoryId=1&salePermitId=8207359&systemId=2",
+          "detail": {
+            "roomNo": "2单元-902",
+            "purpose": "住宅",
+            "layout": "两室两厅",
+            "buildArea": "89.7600 平方米",
+            "innerArea": "71.6300 平方米",
+            "pricePerSqM": "42786 元/平方米",
+            "pricePerSqMInner": "53615.40 元/平方米",
+            "allText": "\t\n\n\t\n视窗\n×\n\n\nloading...\n\n\n\t\n\n\t\n无障碍\n繁體\n手机版\n访问我的专属空间\n搜本网\n一网通查\n首页\n政务公开\n政务服务\n政民互动\n当前位置   首页 > 房屋管理 > 房地产交易管理 > 新建商品房 > 项目信息公示 > 项目详细信息 > 楼盘表页面 > 单元号详情\n网签合同信息查询\n期房网签合同信息查询\n两限房项目公示\n现房网签合同信息查询\n存量房网签合同信息查询\n房屋资料\n房 间 号\t2单元-902\n规划设计用途\t住宅\n户　　型\t两室两厅\n建筑面积\t89.7600 平方米\n套内面积\t71.6300 平方米\n按建筑面积拟售单价\t42786 元/平方米\n按套内面积拟售单价\t53615.40 元/平方米\n说 明：分摊面积=建筑面积-套内面积\n关于我们\n站点地图\n建议意见\n法律声明\n办公地址：北京市通州区达济街9号院\n联系方式：010-55529919\n\n微信公众号\n\n微博\n\n主办：北京市住房和城乡建设委员会 承办：北京市住房和城乡建设委员会办公室、综合事务中心\n备案编号：京ICP备2024078583号政府网站标识码：1100000159\n京公网安备11040102700048号"
+          }
+        },
+        {
+          "roomNo": "3单元-901",
+          "status": "可售",
+          "bgColor": "rgb(51, 204, 0)",
+          "hasLink": true,
+          "houseId": "17900468",
+          "detailUrl": "http://bjjs.zjw.beijing.gov.cn/eportal/ui?pageId=373432&houseId=17900468&houseNo=3%E5%8D%95%E5%85%83-901&categoryId=1&salePermitId=8207359&systemId=2",
+          "detail": {
+            "roomNo": "3单元-901",
+            "purpose": "住宅",
+            "layout": "两室两厅",
+            "buildArea": "89.7900 平方米",
+            "innerArea": "71.6500 平方米",
+            "pricePerSqM": "43186 元/平方米",
+            "pricePerSqMInner": "54119.62 元/平方米",
+            "allText": "\t\n\n\t\n视窗\n×\n\n\nloading...\n\n\n\t\n\n\t\n无障碍\n繁體\n手机版\n访问我的专属空间\n搜本网\n一网通查\n首页\n政务公开\n政务服务\n政民互动\n当前位置   首页 > 房屋管理 > 房地产交易管理 > 新建商品房 > 项目信息公示 > 项目详细信息 > 楼盘表页面 > 单元号详情\n网签合同信息查询\n期房网签合同信息查询\n两限房项目公示\n现房网签合同信息查询\n存量房网签合同信息查询\n房屋资料\n房 间 号\t3单元-901\n规划设计用途\t住宅\n户　　型\t两室两厅\n建筑面积\t89.7900 平方米\n套内面积\t71.6500 平方米\n按建筑面积拟售单价\t43186 元/平方米\n按套内面积拟售单价\t54119.62 元/平方米\n说 明：分摊面积=建筑面积-套内面积\n关于我们\n站点地图\n建议意见\n法律声明\n办公地址：北京市通州区达济街9号院\n联系方式：010-55529919\n\n微信公众号\n\n微博\n\n主办：北京市住房和城乡建设委员会 承办：北京市住房和城乡建设委员会办公室、综合事务中心\n备案编号：京ICP备2024078583号政府网站标识码：1100000159\n京公网安备11040102700048号"
+          }
+        },
+        {
+          "roomNo": "3单元-902",
+          "status": "可售",
+          "bgColor": "rgb(51, 204, 0)",
+          "hasLink": true,
+          "houseId": "17900463",
+          "detailUrl": "http://bjjs.zjw.beijing.gov.cn/eportal/ui?pageId=373432&houseId=17900463&houseNo=3%E5%8D%95%E5%85%83-902&categoryId=1&salePermitId=8207359&systemId=2",
+          "detail": {
+            "roomNo": "3单元-902",
+            "purpose": "住宅",
+            "layout": "两室两厅",
+            "buildArea": "84.9000 平方米",
+            "innerArea": "67.7500 平方米",
+            "pricePerSqM": "42386 元/平方米",
+            "pricePerSqMInner": "53115.45 元/平方米",
+            "allText": "\t\n\n\t\n视窗\n×\n\n\nloading...\n\n\n\t\n\n\t\n无障碍\n繁體\n手机版\n访问我的专属空间\n搜本网\n一网通查\n首页\n政务公开\n政务服务\n政民互动\n当前位置   首页 > 房屋管理 > 房地产交易管理 > 新建商品房 > 项目信息公示 > 项目详细信息 > 楼盘表页面 > 单元号详情\n网签合同信息查询\n期房网签合同信息查询\n两限房项目公示\n现房网签合同信息查询\n存量房网签合同信息查询\n房屋资料\n房 间 号\t3单元-902\n规划设计用途\t住宅\n户　　型\t两室两厅\n建筑面积\t84.9000 平方米\n套内面积\t67.7500 平方米\n按建筑面积拟售单价\t42386 元/平方米\n按套内面积拟售单价\t53115.45 元/平方米\n说 明：分摊面积=建筑面积-套内面积\n关于我们\n站点地图\n建议意见\n法律声明\n办公地址：北京市通州区达济街9号院\n联系方式：010-55529919\n\n微信公众号\n\n微博\n\n主办：北京市住房和城乡建设委员会 承办：北京市住房和城乡建设委员会办公室、综合事务中心\n备案编号：京ICP备2024078583号政府网站标识码：1100000159\n京公网安备11040102700048号"
+          }
+        },
+        {
+          "roomNo": "1单元-801",
+          "status": "可售",
+          "bgColor": "rgb(51, 204, 0)",
+          "hasLink": true,
+          "houseId": "17900509",
+          "detailUrl": "http://bjjs.zjw.beijing.gov.cn/eportal/ui?pageId=373432&houseId=17900509&houseNo=1%E5%8D%95%E5%85%83-801&categoryId=1&salePermitId=8207359&systemId=2",
+          "detail": {
+            "roomNo": "1单元-801",
+            "purpose": "住宅",
+            "layout": "两室两厅",
+            "buildArea": "84.9000 平方米",
+            "innerArea": "67.7500 平方米",
+            "pricePerSqM": "43536 元/平方米",
+            "pricePerSqMInner": "54556.55 元/平方米",
+            "allText": "\t\n\n\t\n视窗\n×\n\n\nloading...\n\n\n\t\n\n\t\n无障碍\n繁體\n手机版\n访问我的专属空间\n搜本网\n一网通查\n首页\n政务公开\n政务服务\n政民互动\n当前位置   首页 > 房屋管理 > 房地产交易管理 > 新建商品房 > 项目信息公示 > 项目详细信息 > 楼盘表页面 > 单元号详情\n网签合同信息查询\n期房网签合同信息查询\n两限房项目公示\n现房网签合同信息查询\n存量房网签合同信息查询\n房屋资料\n房 间 号\t1单元-801\n规划设计用途\t住宅\n户　　型\t两室两厅\n建筑面积\t84.9000 平方米\n套内面积\t67.7500 平方米\n按建筑面积拟售单价\t43536 元/平方米\n按套内面积拟售单价\t54556.55 元/平方米\n说 明：分摊面积=建筑面积-套内面积\n关于我们\n站点地图\n建议意见\n法律声明\n办公地址：北京市通州区达济街9号院\n联系方式：010-55529919\n\n微信公众号\n\n微博\n\n主办：北京市住房和城乡建设委员会 承办：北京市住房和城乡建设委员会办公室、综合事务中心\n备案编号：京ICP备2024078583号政府网站标识码：1100000159\n京公网安备11040102700048号"
+          }
+        },
+        {
+          "roomNo": "1单元-802",
+          "status": "可售",
+          "bgColor": "rgb(51, 204, 0)",
+          "hasLink": true,
+          "houseId": "17900500",
+          "detailUrl": "http://bjjs.zjw.beijing.gov.cn/eportal/ui?pageId=373432&houseId=17900500&houseNo=1%E5%8D%95%E5%85%83-802&categoryId=1&salePermitId=8207359&systemId=2",
+          "detail": {
+            "roomNo": "1单元-802",
+            "purpose": "住宅",
+            "layout": "两室两厅",
+            "buildArea": "89.7900 平方米",
+            "innerArea": "71.6500 平方米",
+            "pricePerSqM": "43836 元/平方米",
+            "pricePerSqMInner": "54934.19 元/平方米",
+            "allText": "\t\n\n\t\n视窗\n×\n\n\nloading...\n\n\n\t\n\n\t\n无障碍\n繁體\n手机版\n访问我的专属空间\n搜本网\n一网通查\n首页\n政务公开\n政务服务\n政民互动\n当前位置   首页 > 房屋管理 > 房地产交易管理 > 新建商品房 > 项目信息公示 > 项目详细信息 > 楼盘表页面 > 单元号详情\n网签合同信息查询\n期房网签合同信息查询\n两限房项目公示\n现房网签合同信息查询\n存量房网签合同信息查询\n房屋资料\n房 间 号\t1单元-802\n规划设计用途\t住宅\n户　　型\t两室两厅\n建筑面积\t89.7900 平方米\n套内面积\t71.6500 平方米\n按建筑面积拟售单价\t43836 元/平方米\n按套内面积拟售单价\t54934.19 元/平方米\n说 明：分摊面积=建筑面积-套内面积\n关于我们\n站点地图\n建议意见\n法律声明\n办公地址：北京市通州区达济街9号院\n联系方式：010-55529919\n\n微信公众号\n\n微博\n\n主办：北京市住房和城乡建设委员会 承办：北京市住房和城乡建设委员会办公室、综合事务中心\n备案编号：京ICP备2024078583号政府网站标识码：1100000159\n京公网安备11040102700048号"
+          }
+        },
+        {
+          "roomNo": "2单元-801",
+          "status": "可售",
+          "bgColor": "rgb(51, 204, 0)",
+          "hasLink": true,
+          "houseId": "17900447",
+          "detailUrl": "http://bjjs.zjw.beijing.gov.cn/eportal/ui?pageId=373432&houseId=17900447&houseNo=2%E5%8D%95%E5%85%83-801&categoryId=1&salePermitId=8207359&systemId=2",
+          "detail": {
+            "roomNo": "2单元-801",
+            "purpose": "住宅",
+            "layout": "两室两厅",
+            "buildArea": "89.7600 平方米",
+            "innerArea": "71.6300 平方米",
+            "pricePerSqM": "43836 元/平方米",
+            "pricePerSqMInner": "54931.17 元/平方米",
+            "allText": "\t\n\n\t\n视窗\n×\n\n\nloading...\n\n\n\t\n\n\t\n无障碍\n繁體\n手机版\n访问我的专属空间\n搜本网\n一网通查\n首页\n政务公开\n政务服务\n政民互动\n当前位置   首页 > 房屋管理 > 房地产交易管理 > 新建商品房 > 项目信息公示 > 项目详细信息 > 楼盘表页面 > 单元号详情\n网签合同信息查询\n期房网签合同信息查询\n两限房项目公示\n现房网签合同信息查询\n存量房网签合同信息查询\n房屋资料\n房 间 号\t2单元-801\n规划设计用途\t住宅\n户　　型\t两室两厅\n建筑面积\t89.7600 平方米\n套内面积\t71.6300 平方米\n按建筑面积拟售单价\t43836 元/平方米\n按套内面积拟售单价\t54931.17 元/平方米\n说 明：分摊面积=建筑面积-套内面积\n关于我们\n站点地图\n建议意见\n法律声明\n办公地址：北京市通州区达济街9号院\n联系方式：010-55529919\n\n微信公众号\n\n微博\n\n主办：北京市住房和城乡建设委员会 承办：北京市住房和城乡建设委员会办公室、综合事务中心\n备案编号：京ICP备2024078583号政府网站标识码：1100000159\n京公网安备11040102700048号"
+          }
+        },
+        {
+          "roomNo": "2单元-802",
+          "status": "可售",
+          "bgColor": "rgb(51, 204, 0)",
+          "hasLink": true,
+          "houseId": "17900452",
+          "detailUrl": "http://bjjs.zjw.beijing.gov.cn/eportal/ui?pageId=373432&houseId=17900452&houseNo=2%E5%8D%95%E5%85%83-802&categoryId=1&salePermitId=8207359&systemId=2",
+          "detail": {
+            "roomNo": "2单元-802",
+            "purpose": "住宅",
+            "layout": "两室两厅",
+            "buildArea": "89.7600 平方米",
+            "innerArea": "71.6300 平方米",
+            "pricePerSqM": "43836 元/平方米",
+            "pricePerSqMInner": "54931.17 元/平方米",
+            "allText": "\t\n\n\t\n视窗\n×\n\n\nloading...\n\n\n\t\n\n\t\n无障碍\n繁體\n手机版\n访问我的专属空间\n搜本网\n一网通查\n首页\n政务公开\n政务服务\n政民互动\n当前位置   首页 > 房屋管理 > 房地产交易管理 > 新建商品房 > 项目信息公示 > 项目详细信息 > 楼盘表页面 > 单元号详情\n网签合同信息查询\n期房网签合同信息查询\n两限房项目公示\n现房网签合同信息查询\n存量房网签合同信息查询\n房屋资料\n房 间 号\t2单元-802\n规划设计用途\t住宅\n户　　型\t两室两厅\n建筑面积\t89.7600 平方米\n套内面积\t71.6300 平方米\n按建筑面积拟售单价\t43836 元/平方米\n按套内面积拟售单价\t54931.17 元/平方米\n说 明：分摊面积=建筑面积-套内面积\n关于我们\n站点地图\n建议意见\n法律声明\n办公地址：北京市通州区达济街9号院\n联系方式：010-55529919\n\n微信公众号\n\n微博\n\n主办：北京市住房和城乡建设委员会 承办：北京市住房和城乡建设委员会办公室、综合事务中心\n备案编号：京ICP备2024078583号政府网站标识码：1100000159\n京公网安备11040102700048号"
+          }
+        },
+        {
+          "roomNo": "3单元-801",
+          "status": "可售",
+          "bgColor": "rgb(51, 204, 0)",
+          "hasLink": true,
+          "houseId": "17900455",
+          "detailUrl": "http://bjjs.zjw.beijing.gov.cn/eportal/ui?pageId=373432&houseId=17900455&houseNo=3%E5%8D%95%E5%85%83-801&categoryId=1&salePermitId=8207359&systemId=2",
+          "detail": {
+            "roomNo": "3单元-801",
+            "purpose": "住宅",
+            "layout": "两室两厅",
+            "buildArea": "89.7900 平方米",
+            "innerArea": "71.6500 平方米",
+            "pricePerSqM": "44236 元/平方米",
+            "pricePerSqMInner": "55435.46 元/平方米",
+            "allText": "\t\n\n\t\n视窗\n×\n\n\nloading...\n\n\n\t\n\n\t\n无障碍\n繁體\n手机版\n访问我的专属空间\n搜本网\n一网通查\n首页\n政务公开\n政务服务\n政民互动\n当前位置   首页 > 房屋管理 > 房地产交易管理 > 新建商品房 > 项目信息公示 > 项目详细信息 > 楼盘表页面 > 单元号详情\n网签合同信息查询\n期房网签合同信息查询\n两限房项目公示\n现房网签合同信息查询\n存量房网签合同信息查询\n房屋资料\n房 间 号\t3单元-801\n规划设计用途\t住宅\n户　　型\t两室两厅\n建筑面积\t89.7900 平方米\n套内面积\t71.6500 平方米\n按建筑面积拟售单价\t44236 元/平方米\n按套内面积拟售单价\t55435.46 元/平方米\n说 明：分摊面积=建筑面积-套内面积\n关于我们\n站点地图\n建议意见\n法律声明\n办公地址：北京市通州区达济街9号院\n联系方式：010-55529919\n\n微信公众号\n\n微博\n\n主办：北京市住房和城乡建设委员会 承办：北京市住房和城乡建设委员会办公室、综合事务中心\n备案编号：京ICP备2024078583号政府网站标识码：1100000159\n京公网安备11040102700048号"
+          }
+        },
+        {
+          "roomNo": "3单元-802",
+          "status": "可售",
+          "bgColor": "rgb(51, 204, 0)",
+          "hasLink": true,
+          "houseId": "17900467",
+          "detailUrl": "http://bjjs.zjw.beijing.gov.cn/eportal/ui?pageId=373432&houseId=17900467&houseNo=3%E5%8D%95%E5%85%83-802&categoryId=1&salePermitId=8207359&systemId=2",
+          "detail": {
+            "roomNo": "3单元-802",
+            "purpose": "住宅",
+            "layout": "两室两厅",
+            "buildArea": "84.9000 平方米",
+            "innerArea": "67.7500 平方米",
+            "pricePerSqM": "43436 元/平方米",
+            "pricePerSqMInner": "54431.24 元/平方米",
+            "allText": "\t\n\n\t\n视窗\n×\n\n\nloading...\n\n\n\t\n\n\t\n无障碍\n繁體\n手机版\n访问我的专属空间\n搜本网\n一网通查\n首页\n政务公开\n政务服务\n政民互动\n当前位置   首页 > 房屋管理 > 房地产交易管理 > 新建商品房 > 项目信息公示 > 项目详细信息 > 楼盘表页面 > 单元号详情\n网签合同信息查询\n期房网签合同信息查询\n两限房项目公示\n现房网签合同信息查询\n存量房网签合同信息查询\n房屋资料\n房 间 号\t3单元-802\n规划设计用途\t住宅\n户　　型\t两室两厅\n建筑面积\t84.9000 平方米\n套内面积\t67.7500 平方米\n按建筑面积拟售单价\t43436 元/平方米\n按套内面积拟售单价\t54431.24 元/平方米\n说 明：分摊面积=建筑面积-套内面积\n关于我们\n站点地图\n建议意见\n法律声明\n办公地址：北京市通州区达济街9号院\n联系方式：010-55529919\n\n微信公众号\n\n微博\n\n主办：北京市住房和城乡建设委员会 承办：北京市住房和城乡建设委员会办公室、综合事务中心\n备案编号：京ICP备2024078583号政府网站标识码：1100000159\n京公网安备11040102700048号"
+          }
+        },
+        {
+          "roomNo": "1单元-701",
+          "status": "可售",
+          "bgColor": "rgb(51, 204, 0)",
+          "hasLink": true,
+          "houseId": "17900513",
+          "detailUrl": "http://bjjs.zjw.beijing.gov.cn/eportal/ui?pageId=373432&houseId=17900513&houseNo=1%E5%8D%95%E5%85%83-701&categoryId=1&salePermitId=8207359&systemId=2",
+          "detail": null
+        },
+        {
+          "roomNo": "1单元-702",
+          "status": "可售",
+          "bgColor": "rgb(51, 204, 0)",
+          "hasLink": true,
+          "houseId": "17900499",
+          "detailUrl": "http://bjjs.zjw.beijing.gov.cn/eportal/ui?pageId=373432&houseId=17900499&houseNo=1%E5%8D%95%E5%85%83-702&categoryId=1&salePermitId=8207359&systemId=2",
+          "detail": null
+        },
+        {
+          "roomNo": "2单元-701",
+          "status": "可售",
+          "bgColor": "rgb(51, 204, 0)",
+          "hasLink": true,
+          "houseId": "17900439",
+          "detailUrl": "http://bjjs.zjw.beijing.gov.cn/eportal/ui?pageId=373432&houseId=17900439&houseNo=2%E5%8D%95%E5%85%83-701&categoryId=1&salePermitId=8207359&systemId=2",
+          "detail": null
+        },
+        {
+          "roomNo": "2单元-702",
+          "status": "可售",
+          "bgColor": "rgb(51, 204, 0)",
+          "hasLink": true,
+          "houseId": "17900436",
+          "detailUrl": "http://bjjs.zjw.beijing.gov.cn/eportal/ui?pageId=373432&houseId=17900436&houseNo=2%E5%8D%95%E5%85%83-702&categoryId=1&salePermitId=8207359&systemId=2",
+          "detail": null
+        },
+        {
+          "roomNo": "3单元-701",
+          "status": "可售",
+          "bgColor": "rgb(51, 204, 0)",
+          "hasLink": true,
+          "houseId": "17900464",
+          "detailUrl": "http://bjjs.zjw.beijing.gov.cn/eportal/ui?pageId=373432&houseId=17900464&houseNo=3%E5%8D%95%E5%85%83-701&categoryId=1&salePermitId=8207359&systemId=2",
+          "detail": null
+        },
+        {
+          "roomNo": "3单元-702",
+          "status": "可售",
+          "bgColor": "rgb(51, 204, 0)",
+          "hasLink": true,
+          "houseId": "17900459",
+          "detailUrl": "http://bjjs.zjw.beijing.gov.cn/eportal/ui?pageId=373432&houseId=17900459&houseNo=3%E5%8D%95%E5%85%83-702&categoryId=1&salePermitId=8207359&systemId=2",
+          "detail": null
+        },
+        {
+          "roomNo": "1单元-601",
+          "status": "可售",
+          "bgColor": "rgb(51, 204, 0)",
+          "hasLink": true,
+          "houseId": "17900496",
+          "detailUrl": "http://bjjs.zjw.beijing.gov.cn/eportal/ui?pageId=373432&houseId=17900496&houseNo=1%E5%8D%95%E5%85%83-601&categoryId=1&salePermitId=8207359&systemId=2",
+          "detail": null
+        },
+        {
+          "roomNo": "1单元-602",
+          "status": "可售",
+          "bgColor": "rgb(51, 204, 0)",
+          "hasLink": true,
+          "houseId": "17900508",
+          "detailUrl": "http://bjjs.zjw.beijing.gov.cn/eportal/ui?pageId=373432&houseId=17900508&houseNo=1%E5%8D%95%E5%85%83-602&categoryId=1&salePermitId=8207359&systemId=2",
+          "detail": null
+        },
+        {
+          "roomNo": "2单元-601",
+          "status": "可售",
+          "bgColor": "rgb(51, 204, 0)",
+          "hasLink": true,
+          "houseId": "17900448",
+          "detailUrl": "http://bjjs.zjw.beijing.gov.cn/eportal/ui?pageId=373432&houseId=17900448&houseNo=2%E5%8D%95%E5%85%83-601&categoryId=1&salePermitId=8207359&systemId=2",
+          "detail": null
+        },
+        {
+          "roomNo": "2单元-602",
+          "status": "可售",
+          "bgColor": "rgb(51, 204, 0)",
+          "hasLink": true,
+          "houseId": "17900444",
+          "detailUrl": "http://bjjs.zjw.beijing.gov.cn/eportal/ui?pageId=373432&houseId=17900444&houseNo=2%E5%8D%95%E5%85%83-602&categoryId=1&salePermitId=8207359&systemId=2",
+          "detail": null
+        },
+        {
+          "roomNo": "3单元-601",
+          "status": "可售",
+          "bgColor": "rgb(51, 204, 0)",
+          "hasLink": true,
+          "houseId": "17900471",
+          "detailUrl": "http://bjjs.zjw.beijing.gov.cn/eportal/ui?pageId=373432&houseId=17900471&houseNo=3%E5%8D%95%E5%85%83-601&categoryId=1&salePermitId=8207359&systemId=2",
+          "detail": null
+        },
+        {
+          "roomNo": "3单元-602",
+          "status": "可售",
+          "bgColor": "rgb(51, 204, 0)",
+          "hasLink": true,
+          "houseId": "17900454",
+          "detailUrl": "http://bjjs.zjw.beijing.gov.cn/eportal/ui?pageId=373432&houseId=17900454&houseNo=3%E5%8D%95%E5%85%83-602&categoryId=1&salePermitId=8207359&systemId=2",
+          "detail": null
+        },
+        {
+          "roomNo": "1单元-501",
+          "status": "可售",
+          "bgColor": "rgb(51, 204, 0)",
+          "hasLink": true,
+          "houseId": "17900511",
+          "detailUrl": "http://bjjs.zjw.beijing.gov.cn/eportal/ui?pageId=373432&houseId=17900511&houseNo=1%E5%8D%95%E5%85%83-501&categoryId=1&salePermitId=8207359&systemId=2",
+          "detail": null
+        },
+        {
+          "roomNo": "1单元-502",
+          "status": "可售",
+          "bgColor": "rgb(51, 204, 0)",
+          "hasLink": true,
+          "houseId": "17900512",
+          "detailUrl": "http://bjjs.zjw.beijing.gov.cn/eportal/ui?pageId=373432&houseId=17900512&houseNo=1%E5%8D%95%E5%85%83-502&categoryId=1&salePermitId=8207359&systemId=2",
+          "detail": null
+        },
+        {
+          "roomNo": "2单元-501",
+          "status": "可售",
+          "bgColor": "rgb(51, 204, 0)",
+          "hasLink": true,
+          "houseId": "17900441",
+          "detailUrl": "http://bjjs.zjw.beijing.gov.cn/eportal/ui?pageId=373432&houseId=17900441&houseNo=2%E5%8D%95%E5%85%83-501&categoryId=1&salePermitId=8207359&systemId=2",
+          "detail": null
+        },
+        {
+          "roomNo": "2单元-502",
+          "status": "可售",
+          "bgColor": "rgb(51, 204, 0)",
+          "hasLink": true,
+          "houseId": "17900445",
+          "detailUrl": "http://bjjs.zjw.beijing.gov.cn/eportal/ui?pageId=373432&houseId=17900445&houseNo=2%E5%8D%95%E5%85%83-502&categoryId=1&salePermitId=8207359&systemId=2",
+          "detail": null
+        },
+        {
+          "roomNo": "3单元-501",
+          "status": "可售",
+          "bgColor": "rgb(51, 204, 0)",
+          "hasLink": true,
+          "houseId": "17900465",
+          "detailUrl": "http://bjjs.zjw.beijing.gov.cn/eportal/ui?pageId=373432&houseId=17900465&houseNo=3%E5%8D%95%E5%85%83-501&categoryId=1&salePermitId=8207359&systemId=2",
+          "detail": null
+        },
+        {
+          "roomNo": "3单元-502",
+          "status": "可售",
+          "bgColor": "rgb(51, 204, 0)",
+          "hasLink": true,
+          "houseId": "17900469",
+          "detailUrl": "http://bjjs.zjw.beijing.gov.cn/eportal/ui?pageId=373432&houseId=17900469&houseNo=3%E5%8D%95%E5%85%83-502&categoryId=1&salePermitId=8207359&systemId=2",
+          "detail": null
+        },
+        {
+          "roomNo": "1单元-401",
+          "status": "可售",
+          "bgColor": "rgb(51, 204, 0)",
+          "hasLink": true,
+          "houseId": "17900503",
+          "detailUrl": "http://bjjs.zjw.beijing.gov.cn/eportal/ui?pageId=373432&houseId=17900503&houseNo=1%E5%8D%95%E5%85%83-401&categoryId=1&salePermitId=8207359&systemId=2",
+          "detail": null
+        },
+        {
+          "roomNo": "1单元-402",
+          "status": "可售",
+          "bgColor": "rgb(51, 204, 0)",
+          "hasLink": true,
+          "houseId": "17900498",
+          "detailUrl": "http://bjjs.zjw.beijing.gov.cn/eportal/ui?pageId=373432&houseId=17900498&houseNo=1%E5%8D%95%E5%85%83-402&categoryId=1&salePermitId=8207359&systemId=2",
+          "detail": null
+        },
+        {
+          "roomNo": "2单元-401",
+          "status": "可售",
+          "bgColor": "rgb(51, 204, 0)",
+          "hasLink": true,
+          "houseId": "17900450",
+          "detailUrl": "http://bjjs.zjw.beijing.gov.cn/eportal/ui?pageId=373432&houseId=17900450&houseNo=2%E5%8D%95%E5%85%83-401&categoryId=1&salePermitId=8207359&systemId=2",
+          "detail": null
+        },
+        {
+          "roomNo": "2单元-402",
+          "status": "可售",
+          "bgColor": "rgb(51, 204, 0)",
+          "hasLink": true,
+          "houseId": "17900446",
+          "detailUrl": "http://bjjs.zjw.beijing.gov.cn/eportal/ui?pageId=373432&houseId=17900446&houseNo=2%E5%8D%95%E5%85%83-402&categoryId=1&salePermitId=8207359&systemId=2",
+          "detail": null
+        },
+        {
+          "roomNo": "3单元-401",
+          "status": "可售",
+          "bgColor": "rgb(51, 204, 0)",
+          "hasLink": true,
+          "houseId": "17900462",
+          "detailUrl": "http://bjjs.zjw.beijing.gov.cn/eportal/ui?pageId=373432&houseId=17900462&houseNo=3%E5%8D%95%E5%85%83-401&categoryId=1&salePermitId=8207359&systemId=2",
+          "detail": null
+        },
+        {
+          "roomNo": "3单元-402",
+          "status": "可售",
+          "bgColor": "rgb(51, 204, 0)",
+          "hasLink": true,
+          "houseId": "17900461",
+          "detailUrl": "http://bjjs.zjw.beijing.gov.cn/eportal/ui?pageId=373432&houseId=17900461&houseNo=3%E5%8D%95%E5%85%83-402&categoryId=1&salePermitId=8207359&systemId=2",
+          "detail": null
+        },
+        {
+          "roomNo": "1单元-301",
+          "status": "可售",
+          "bgColor": "rgb(51, 204, 0)",
+          "hasLink": true,
+          "houseId": "17900505",
+          "detailUrl": "http://bjjs.zjw.beijing.gov.cn/eportal/ui?pageId=373432&houseId=17900505&houseNo=1%E5%8D%95%E5%85%83-301&categoryId=1&salePermitId=8207359&systemId=2",
+          "detail": null
+        },
+        {
+          "roomNo": "1单元-302",
+          "status": "可售",
+          "bgColor": "rgb(51, 204, 0)",
+          "hasLink": true,
+          "houseId": "17900506",
+          "detailUrl": "http://bjjs.zjw.beijing.gov.cn/eportal/ui?pageId=373432&houseId=17900506&houseNo=1%E5%8D%95%E5%85%83-302&categoryId=1&salePermitId=8207359&systemId=2",
+          "detail": null
+        },
+        {
+          "roomNo": "2单元-301",
+          "status": "可售",
+          "bgColor": "rgb(51, 204, 0)",
+          "hasLink": true,
+          "houseId": "17900437",
+          "detailUrl": "http://bjjs.zjw.beijing.gov.cn/eportal/ui?pageId=373432&houseId=17900437&houseNo=2%E5%8D%95%E5%85%83-301&categoryId=1&salePermitId=8207359&systemId=2",
+          "detail": null
+        },
+        {
+          "roomNo": "2单元-302",
+          "status": "可售",
+          "bgColor": "rgb(51, 204, 0)",
+          "hasLink": true,
+          "houseId": "17900438",
+          "detailUrl": "http://bjjs.zjw.beijing.gov.cn/eportal/ui?pageId=373432&houseId=17900438&houseNo=2%E5%8D%95%E5%85%83-302&categoryId=1&salePermitId=8207359&systemId=2",
+          "detail": null
+        },
+        {
+          "roomNo": "3单元-301",
+          "status": "可售",
+          "bgColor": "rgb(51, 204, 0)",
+          "hasLink": true,
+          "houseId": "17900457",
+          "detailUrl": "http://bjjs.zjw.beijing.gov.cn/eportal/ui?pageId=373432&houseId=17900457&houseNo=3%E5%8D%95%E5%85%83-301&categoryId=1&salePermitId=8207359&systemId=2",
+          "detail": null
+        },
+        {
+          "roomNo": "3单元-302",
+          "status": "可售",
+          "bgColor": "rgb(51, 204, 0)",
+          "hasLink": true,
+          "houseId": "17900458",
+          "detailUrl": "http://bjjs.zjw.beijing.gov.cn/eportal/ui?pageId=373432&houseId=17900458&houseNo=3%E5%8D%95%E5%85%83-302&categoryId=1&salePermitId=8207359&systemId=2",
+          "detail": null
+        },
+        {
+          "roomNo": "1单元-201",
+          "status": "可售",
+          "bgColor": "rgb(51, 204, 0)",
+          "hasLink": true,
+          "houseId": "17900497",
+          "detailUrl": "http://bjjs.zjw.beijing.gov.cn/eportal/ui?pageId=373432&houseId=17900497&houseNo=1%E5%8D%95%E5%85%83-201&categoryId=1&salePermitId=8207359&systemId=2",
+          "detail": null
+        },
+        {
+          "roomNo": "1单元-202",
+          "status": "可售",
+          "bgColor": "rgb(51, 204, 0)",
+          "hasLink": true,
+          "houseId": "17900502",
+          "detailUrl": "http://bjjs.zjw.beijing.gov.cn/eportal/ui?pageId=373432&houseId=17900502&houseNo=1%E5%8D%95%E5%85%83-202&categoryId=1&salePermitId=8207359&systemId=2",
+          "detail": null
+        },
+        {
+          "roomNo": "2单元-201",
+          "status": "可售",
+          "bgColor": "rgb(51, 204, 0)",
+          "hasLink": true,
+          "houseId": "17900453",
+          "detailUrl": "http://bjjs.zjw.beijing.gov.cn/eportal/ui?pageId=373432&houseId=17900453&houseNo=2%E5%8D%95%E5%85%83-201&categoryId=1&salePermitId=8207359&systemId=2",
+          "detail": null
+        },
+        {
+          "roomNo": "2单元-202",
+          "status": "可售",
+          "bgColor": "rgb(51, 204, 0)",
+          "hasLink": true,
+          "houseId": "17900443",
+          "detailUrl": "http://bjjs.zjw.beijing.gov.cn/eportal/ui?pageId=373432&houseId=17900443&houseNo=2%E5%8D%95%E5%85%83-202&categoryId=1&salePermitId=8207359&systemId=2",
+          "detail": null
+        },
+        {
+          "roomNo": "3单元-201",
+          "status": "可售",
+          "bgColor": "rgb(51, 204, 0)",
+          "hasLink": true,
+          "houseId": "17900456",
+          "detailUrl": "http://bjjs.zjw.beijing.gov.cn/eportal/ui?pageId=373432&houseId=17900456&houseNo=3%E5%8D%95%E5%85%83-201&categoryId=1&salePermitId=8207359&systemId=2",
+          "detail": null
+        },
+        {
+          "roomNo": "3单元-202",
+          "status": "可售",
+          "bgColor": "rgb(51, 204, 0)",
+          "hasLink": true,
+          "houseId": "17900460",
+          "detailUrl": "http://bjjs.zjw.beijing.gov.cn/eportal/ui?pageId=373432&houseId=17900460&houseNo=3%E5%8D%95%E5%85%83-202&categoryId=1&salePermitId=8207359&systemId=2",
+          "detail": null
+        },
+        {
+          "roomNo": "1单元-101",
+          "status": "可售",
+          "bgColor": "rgb(51, 204, 0)",
+          "hasLink": true,
+          "houseId": "17900501",
+          "detailUrl": "http://bjjs.zjw.beijing.gov.cn/eportal/ui?pageId=373432&houseId=17900501&houseNo=1%E5%8D%95%E5%85%83-101&categoryId=1&salePermitId=8207359&systemId=2",
+          "detail": null
+        },
+        {
+          "roomNo": "1单元-102",
+          "status": "可售",
+          "bgColor": "rgb(51, 204, 0)",
+          "hasLink": true,
+          "houseId": "17900510",
+          "detailUrl": "http://bjjs.zjw.beijing.gov.cn/eportal/ui?pageId=373432&houseId=17900510&houseNo=1%E5%8D%95%E5%85%83-102&categoryId=1&salePermitId=8207359&systemId=2",
+          "detail": null
+        },
+        {
+          "roomNo": "2单元-101",
+          "status": "可售",
+          "bgColor": "rgb(51, 204, 0)",
+          "hasLink": true,
+          "houseId": "17900440",
+          "detailUrl": "http://bjjs.zjw.beijing.gov.cn/eportal/ui?pageId=373432&houseId=17900440&houseNo=2%E5%8D%95%E5%85%83-101&categoryId=1&salePermitId=8207359&systemId=2",
+          "detail": null
+        },
+        {
+          "roomNo": "2单元-102",
+          "status": "可售",
+          "bgColor": "rgb(51, 204, 0)",
+          "hasLink": true,
+          "houseId": "17900451",
+          "detailUrl": "http://bjjs.zjw.beijing.gov.cn/eportal/ui?pageId=373432&houseId=17900451&houseNo=2%E5%8D%95%E5%85%83-102&categoryId=1&salePermitId=8207359&systemId=2",
+          "detail": null
+        },
+        {
+          "roomNo": "3单元-101",
+          "status": "可售",
+          "bgColor": "rgb(51, 204, 0)",
+          "hasLink": true,
+          "houseId": "17900466",
+          "detailUrl": "http://bjjs.zjw.beijing.gov.cn/eportal/ui?pageId=373432&houseId=17900466&houseNo=3%E5%8D%95%E5%85%83-101&categoryId=1&salePermitId=8207359&systemId=2",
+          "detail": null
+        },
+        {
+          "roomNo": "3单元-102",
+          "status": "可售",
+          "bgColor": "rgb(51, 204, 0)",
+          "hasLink": true,
+          "houseId": "17900470",
+          "detailUrl": "http://bjjs.zjw.beijing.gov.cn/eportal/ui?pageId=373432&houseId=17900470&houseNo=3%E5%8D%95%E5%85%83-102&categoryId=1&salePermitId=8207359&systemId=2",
+          "detail": null
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,930 @@
+{
+  "url": "http://bjjs.zjw.beijing.gov.cn/eportal/ui?pageId=307670",
+  "title": "项目信息公示",
+  "iframes": [],
+  "tables": [
+    {
+      "index": 0,
+      "id": "",
+      "className": "ui_border ui_state_visible ui_state_focus",
+      "rowCount": 6,
+      "colCount": 3,
+      "headers": [
+        "",
+        "",
+        ""
+      ],
+      "firstDataRow": [
+        "",
+        "视窗\n×\n\n\nloading...",
+        "视窗\n×",
+        "",
+        "loading...",
+        ""
+      ]
+    },
+    {
+      "index": 1,
+      "id": "",
+      "className": "ui_dialog",
+      "rowCount": 3,
+      "colCount": 1,
+      "headers": [
+        "视窗\n×"
+      ],
+      "firstDataRow": [
+        "",
+        "loading..."
+      ]
+    },
+    {
+      "index": 2,
+      "id": "",
+      "className": "tab",
+      "rowCount": 5,
+      "colCount": 1,
+      "headers": [
+        "新建商品房项目查询"
+      ],
+      "firstDataRow": [
+        "项目名称：\t\t期房 现房\t预售证号：\t\n(  ) \n\n开发单位：\t\t项目地址：",
+        "项目名称：",
+        "",
+        "期房 现房",
+        "预售证号：",
+        "(  )"
+      ]
+    },
+    {
+      "index": 3,
+      "id": "",
+      "className": "",
+      "rowCount": 3,
+      "colCount": 5,
+      "headers": [
+        "项目名称：",
+        "",
+        "期房 现房",
+        "预售证号：",
+        "(  )"
+      ],
+      "firstDataRow": [
+        "开发单位：",
+        "",
+        "项目地址：",
+        "",
+        "",
+        ""
+      ]
+    },
+    {
+      "index": 4,
+      "id": "",
+      "className": "",
+      "rowCount": 1,
+      "colCount": 1,
+      "headers": [
+        ""
+      ],
+      "firstDataRow": []
+    },
+    {
+      "index": 5,
+      "id": "",
+      "className": "tab",
+      "rowCount": 5,
+      "colCount": 1,
+      "headers": [
+        "新建商品房房屋检索"
+      ],
+      "firstDataRow": [
+        "所属区县： \n--请选择--\n北京市\n东城区\n西城区\n朝阳区\n海淀区\n丰台区\n石景山区\n通州区\n房山区\n顺义区\n门头沟区\n大兴区\n怀柔区\n密云区\n昌平区\n延庆区\n平谷区\n开发区\n\t期房 现房\t用 途： \n--请选择--\n普通住宅\n公寓\n别墅\n商业\n写字楼\n工业厂房\n车库\n其它\n综合\n经济适用住房\n两限房\n\n  方 位： \n--请选择--\n东\n西\n南\n北\n东北\n西北\n东南\n西南\n\t区 位： \n--请选择--\n二环内\n二三环之间\n三四环之间\n四五环之间\n五六环之间\n六环外\n\t户 型： \n--请选择--\n一室一厅\n两室一厅\n两室两厅\n三室一厅\n三室两厅\n四室一厅\n四室两厅\n复式房型\n别墅\n其它\n一室\n一室两厅",
+        "所属区县： \n--请选择--\n北京市\n东城区\n西城区\n朝阳区\n海淀区\n丰台区\n石景山区\n通州区\n房山区\n顺义区\n门头沟区\n大兴区\n怀柔区\n密云区\n昌平区\n延庆区\n平谷区\n开发区",
+        "期房 现房",
+        "用 途： \n--请选择--\n普通住宅\n公寓\n别墅\n商业\n写字楼\n工业厂房\n车库\n其它\n综合\n经济适用住房\n两限房",
+        "方 位： \n--请选择--\n东\n西\n南\n北\n东北\n西北\n东南\n西南",
+        "区 位： \n--请选择--\n二环内\n二三环之间\n三四环之间\n四五环之间\n五六环之间\n六环外"
+      ]
+    },
+    {
+      "index": 6,
+      "id": "",
+      "className": "",
+      "rowCount": 3,
+      "colCount": 3,
+      "headers": [
+        "所属区县： \n--请选择--\n北京市\n东城区\n西城区\n朝阳区\n海淀区\n丰台区\n石景山区\n通州区\n房山区\n顺义区\n门头沟区\n大兴区\n怀柔区\n密云区\n昌平区\n延庆区\n平谷区\n开发区",
+        "期房 现房",
+        "用 途： \n--请选择--\n普通住宅\n公寓\n别墅\n商业\n写字楼\n工业厂房\n车库\n其它\n综合\n经济适用住房\n两限房"
+      ],
+      "firstDataRow": [
+        "方 位： \n--请选择--\n东\n西\n南\n北\n东北\n西北\n东南\n西南",
+        "区 位： \n--请选择--\n二环内\n二三环之间\n三四环之间\n四五环之间\n五六环之间\n六环外",
+        "户 型： \n--请选择--\n一室一厅\n两室一厅\n两室两厅\n三室一厅\n三室两厅\n四室一厅\n四室两厅\n复式房型\n别墅\n其它\n一室\n一室两厅",
+        "",
+        ""
+      ]
+    },
+    {
+      "index": 7,
+      "id": "",
+      "className": "",
+      "rowCount": 1,
+      "colCount": 1,
+      "headers": [
+        ""
+      ],
+      "firstDataRow": []
+    },
+    {
+      "index": 8,
+      "id": "",
+      "className": "",
+      "rowCount": 18,
+      "colCount": 1,
+      "headers": [
+        "已办理预售许可项目公示"
+      ],
+      "firstDataRow": [
+        "项目名称\t预售证号\t发证时间\n铂瑞府\t京房售证字(2026)42号\t2026-05-23\n金阙华院\t京房售证字(2026)41号\t2026-05-16\n满和苑\t京房售证字(2026)40号\t2026-05-10\n樾序海苑\t京房售证字(2026)39号\t2026-05-10\n朝棠雅苑（二期）\t京房售证字(2026)38号\t2026-04-25\n朝棠雅苑（一期）\t京房售证字(2026)37号\t2026-04-25\n玉章苑\t京房售证字(2026)36号\t2026-04-24\n璟瑞家园\t京房售证字(2026)35号\t2026-04-23\n熙区嘉园\t京房售证字(2026)34号\t2026-04-20\n润榆园\t京房售证字(2026)33号\t2026-04-17\n瑞宸苑\t京房售证字(2026)32号\t2026-04-16\n瑞玉苑\t京房售证字(2026)31号\t2026-04-16\n瑞璟佳苑\t京房售证字(2026)30号\t2026-04-15\n瑞璟佳苑\t京房售证字(2026)29号\t2026-04-15\n云溪花园小区\t京房售证字(2026)28号\t2026-04-09",
+        "铂瑞府",
+        "京房售证字(2026)42号",
+        "2026-05-23",
+        "金阙华院",
+        "京房售证字(2026)41号"
+      ]
+    },
+    {
+      "index": 9,
+      "id": "",
+      "className": "",
+      "rowCount": 16,
+      "colCount": 3,
+      "headers": [
+        "项目名称",
+        "预售证号",
+        "发证时间"
+      ],
+      "firstDataRow": [
+        "铂瑞府",
+        "京房售证字(2026)42号",
+        "2026-05-23"
+      ]
+    },
+    {
+      "index": 10,
+      "id": "",
+      "className": "page",
+      "rowCount": 1,
+      "colCount": 2,
+      "headers": [
+        "首页  上一页  下一页  尾页",
+        "总记录数:9024, 每页显示15 条记录,跳转至第  页"
+      ],
+      "firstDataRow": []
+    }
+  ],
+  "links": [
+    {
+      "text": "铂瑞府",
+      "href": "http://bjjs.zjw.beijing.gov.cn/eportal/ui?pageId=320794&projectID=8207359&systemID=2&srcId=1",
+      "projectID": "8207359",
+      "pageId": "320794"
+    },
+    {
+      "text": "京房售证字(2026)42号",
+      "href": "http://bjjs.zjw.beijing.gov.cn/eportal/ui?pageId=320794&projectID=8207359&systemID=2&srcId=1",
+      "projectID": "8207359",
+      "pageId": "320794"
+    },
+    {
+      "text": "金阙华院",
+      "href": "http://bjjs.zjw.beijing.gov.cn/eportal/ui?pageId=320794&projectID=8205387&systemID=2&srcId=1",
+      "projectID": "8205387",
+      "pageId": "320794"
+    },
+    {
+      "text": "京房售证字(2026)41号",
+      "href": "http://bjjs.zjw.beijing.gov.cn/eportal/ui?pageId=320794&projectID=8205387&systemID=2&srcId=1",
+      "projectID": "8205387",
+      "pageId": "320794"
+    },
+    {
+      "text": "满和苑",
+      "href": "http://bjjs.zjw.beijing.gov.cn/eportal/ui?pageId=320794&projectID=8203797&systemID=2&srcId=1",
+      "projectID": "8203797",
+      "pageId": "320794"
+    },
+    {
+      "text": "京房售证字(2026)40号",
+      "href": "http://bjjs.zjw.beijing.gov.cn/eportal/ui?pageId=320794&projectID=8203797&systemID=2&srcId=1",
+      "projectID": "8203797",
+      "pageId": "320794"
+    },
+    {
+      "text": "樾序海苑",
+      "href": "http://bjjs.zjw.beijing.gov.cn/eportal/ui?pageId=320794&projectID=8203707&systemID=2&srcId=1",
+      "projectID": "8203707",
+      "pageId": "320794"
+    },
+    {
+      "text": "京房售证字(2026)39号",
+      "href": "http://bjjs.zjw.beijing.gov.cn/eportal/ui?pageId=320794&projectID=8203707&systemID=2&srcId=1",
+      "projectID": "8203707",
+      "pageId": "320794"
+    },
+    {
+      "text": "朝棠雅苑（二期）",
+      "href": "http://bjjs.zjw.beijing.gov.cn/eportal/ui?pageId=320794&projectID=8195953&systemID=2&srcId=1",
+      "projectID": "8195953",
+      "pageId": "320794"
+    },
+    {
+      "text": "京房售证字(2026)38号",
+      "href": "http://bjjs.zjw.beijing.gov.cn/eportal/ui?pageId=320794&projectID=8195953&systemID=2&srcId=1",
+      "projectID": "8195953",
+      "pageId": "320794"
+    },
+    {
+      "text": "朝棠雅苑（一期）",
+      "href": "http://bjjs.zjw.beijing.gov.cn/eportal/ui?pageId=320794&projectID=8195954&systemID=2&srcId=1",
+      "projectID": "8195954",
+      "pageId": "320794"
+    },
+    {
+      "text": "京房售证字(2026)37号",
+      "href": "http://bjjs.zjw.beijing.gov.cn/eportal/ui?pageId=320794&projectID=8195954&systemID=2&srcId=1",
+      "projectID": "8195954",
+      "pageId": "320794"
+    },
+    {
+      "text": "玉章苑",
+      "href": "http://bjjs.zjw.beijing.gov.cn/eportal/ui?pageId=320794&projectID=8195901&systemID=2&srcId=1",
+      "projectID": "8195901",
+      "pageId": "320794"
+    },
+    {
+      "text": "京房售证字(2026)36号",
+      "href": "http://bjjs.zjw.beijing.gov.cn/eportal/ui?pageId=320794&projectID=8195901&systemID=2&srcId=1",
+      "projectID": "8195901",
+      "pageId": "320794"
+    },
+    {
+      "text": "璟瑞家园",
+      "href": "http://bjjs.zjw.beijing.gov.cn/eportal/ui?pageId=320794&projectID=8195341&systemID=2&srcId=1",
+      "projectID": "8195341",
+      "pageId": "320794"
+    },
+    {
+      "text": "京房售证字(2026)35号",
+      "href": "http://bjjs.zjw.beijing.gov.cn/eportal/ui?pageId=320794&projectID=8195341&systemID=2&srcId=1",
+      "projectID": "8195341",
+      "pageId": "320794"
+    },
+    {
+      "text": "熙区嘉园",
+      "href": "http://bjjs.zjw.beijing.gov.cn/eportal/ui?pageId=320794&projectID=8191996&systemID=2&srcId=1",
+      "projectID": "8191996",
+      "pageId": "320794"
+    },
+    {
+      "text": "京房售证字(2026)34号",
+      "href": "http://bjjs.zjw.beijing.gov.cn/eportal/ui?pageId=320794&projectID=8191996&systemID=2&srcId=1",
+      "projectID": "8191996",
+      "pageId": "320794"
+    },
+    {
+      "text": "润榆园",
+      "href": "http://bjjs.zjw.beijing.gov.cn/eportal/ui?pageId=320794&projectID=8192048&systemID=2&srcId=1",
+      "projectID": "8192048",
+      "pageId": "320794"
+    },
+    {
+      "text": "京房售证字(2026)33号",
+      "href": "http://bjjs.zjw.beijing.gov.cn/eportal/ui?pageId=320794&projectID=8192048&systemID=2&srcId=1",
+      "projectID": "8192048",
+      "pageId": "320794"
+    },
+    {
+      "text": "瑞宸苑",
+      "href": "http://bjjs.zjw.beijing.gov.cn/eportal/ui?pageId=320794&projectID=8191695&systemID=2&srcId=1",
+      "projectID": "8191695",
+      "pageId": "320794"
+    },
+    {
+      "text": "京房售证字(2026)32号",
+      "href": "http://bjjs.zjw.beijing.gov.cn/eportal/ui?pageId=320794&projectID=8191695&systemID=2&srcId=1",
+      "projectID": "8191695",
+      "pageId": "320794"
+    },
+    {
+      "text": "瑞玉苑",
+      "href": "http://bjjs.zjw.beijing.gov.cn/eportal/ui?pageId=320794&projectID=8191696&systemID=2&srcId=1",
+      "projectID": "8191696",
+      "pageId": "320794"
+    },
+    {
+      "text": "京房售证字(2026)31号",
+      "href": "http://bjjs.zjw.beijing.gov.cn/eportal/ui?pageId=320794&projectID=8191696&systemID=2&srcId=1",
+      "projectID": "8191696",
+      "pageId": "320794"
+    },
+    {
+      "text": "瑞璟佳苑",
+      "href": "http://bjjs.zjw.beijing.gov.cn/eportal/ui?pageId=320794&projectID=8189721&systemID=2&srcId=1",
+      "projectID": "8189721",
+      "pageId": "320794"
+    },
+    {
+      "text": "京房售证字(2026)30号",
+      "href": "http://bjjs.zjw.beijing.gov.cn/eportal/ui?pageId=320794&projectID=8189721&systemID=2&srcId=1",
+      "projectID": "8189721",
+      "pageId": "320794"
+    },
+    {
+      "text": "瑞璟佳苑",
+      "href": "http://bjjs.zjw.beijing.gov.cn/eportal/ui?pageId=320794&projectID=8189722&systemID=2&srcId=1",
+      "projectID": "8189722",
+      "pageId": "320794"
+    },
+    {
+      "text": "京房售证字(2026)29号",
+      "href": "http://bjjs.zjw.beijing.gov.cn/eportal/ui?pageId=320794&projectID=8189722&systemID=2&srcId=1",
+      "projectID": "8189722",
+      "pageId": "320794"
+    },
+    {
+      "text": "云溪花园小区",
+      "href": "http://bjjs.zjw.beijing.gov.cn/eportal/ui?pageId=320794&projectID=8186681&systemID=2&srcId=1",
+      "projectID": "8186681",
+      "pageId": "320794"
+    },
+    {
+      "text": "京房售证字(2026)28号",
+      "href": "http://bjjs.zjw.beijing.gov.cn/eportal/ui?pageId=320794&projectID=8186681&systemID=2&srcId=1",
+      "projectID": "8186681",
+      "pageId": "320794"
+    }
+  ],
+  "allText": "\t\n\n\t\n视窗\n×\n\n\nloading...\n\n\n\t\n\n\t\n无障碍\n繁體\n手机版\n访问我的专属空间\n搜本网\n一网通查\n首页\n政务公开\n政务服务\n政民互动\n当前位置   首页 > 房屋管理 > 房地产交易管理 > 新建商品房 > 项目信息公示\n新建商品房项目查询\n\n项目名称：\t\t期房 现房\t预售证号：\t\n(  ) \n\n开发单位：\t\t项目地址：\t\t\n新建商品房房屋检索\n\n  所属区县： \n--请选择--\n北京市\n东城区\n西城区\n朝阳区\n海淀区\n丰台区\n石景山区\n通州区\n房山区\n顺义区\n门头沟区\n大兴区\n怀柔区\n密云区\n昌平区\n延庆区\n平谷区\n开发区\n\t期房 现房\t用 途： \n--请选择--\n普通住宅\n公寓\n别墅\n商业\n写字楼\n工业厂房\n车库\n其它\n综合\n经济适用住房\n两限房\n\n  方 位： \n--请选择--\n东\n西\n南\n北\n东北\n西北\n东南\n西南\n\t区 位： \n--请选择--\n二环内\n二三环之间\n三四环之间\n四五环之间\n五六环之间\n六环外\n\t户 型： \n--请选择--\n一室一厅\n两室一厅\n两室两厅\n三室一厅\n三室两厅\n四室一厅\n四室两厅\n复式房型\n别墅\n其它\n一室\n一室两厅\n\t\n已办理预售许可项目公示\n\n项目名称\t预售证号\t发证时间\n铂瑞府\t京房售证字(2026)42号\t2026-05-23\n金阙华院\t京房售证字(2026)41号\t2026-05-16\n满和苑\t京房售证字(2026)40号\t2026-05-10\n樾序海苑\t京房售证字(2026)39号\t2026-05-10\n朝棠雅苑（二期）\t京房售证字(2026)38号\t2026-04-25\n朝棠雅苑（一期）\t京房售证字(2026)37号\t2026-04-25\n玉章苑\t京房售证字(2026)36号\t2026-04-24\n璟瑞家园\t京房售证字(2026)35号\t2026-04-23\n熙区嘉园\t京房售证字(2026)34号\t2026-04-20\n润榆园\t京房售证字(2026)33号\t2026-04-17\n瑞宸苑\t京房售证字(2026)32号\t2026-04-16\n瑞玉苑\t京房售证字(2026)31号\t2026-04-16\n瑞璟佳苑\t京房售证字(2026)30号\t2026-04-15\n瑞璟佳苑\t京房售证字(2026)29号\t2026-04-15\n云溪花园小区\t京房售证字(2026)28号\t2026-04-09\n首页  上一页  下一页  尾页\t 总记录数:9024, 每页显示15 条记录,跳转至第  页 \n关于我们\n站点地图\n建议意见\n法律声明\n办公地址：北京市通州区达济街9号院\n联系方式：010-55529919\n\n微信公众号\n\n微博\n\n主办：北京市住房和城乡建设委员会 承办：北京市住房和城乡建设委员会办公室、综合事务中心\n备案编号：京ICP备2024078583号政府网站标识码：1100000159\n京公网安备11040102700048号",
+  "inputs": [
+    {
+      "tag": "input",
+      "id": "qt",
+      "name": "",
+      "className": "txt-ipt",
+      "type": "text",
+      "value": "",
+      "placeholder": "请输入关键字",
+      "innerText": ""
+    },
+    {
+      "tag": "input",
+      "id": "",
+      "name": "",
+      "className": "ipt-btn btn-search",
+      "type": "submit",
+      "value": " ",
+      "placeholder": "",
+      "innerText": ""
+    },
+    {
+      "tag": "input",
+      "id": "qt",
+      "name": "",
+      "className": "txt-ipt",
+      "type": "text",
+      "value": "",
+      "placeholder": "请输入关键字",
+      "innerText": ""
+    },
+    {
+      "tag": "input",
+      "id": "",
+      "name": "",
+      "className": "ipt-btn btn-search",
+      "type": "submit",
+      "value": " ",
+      "placeholder": "",
+      "innerText": ""
+    },
+    {
+      "tag": "input",
+      "id": "contextPath",
+      "name": "",
+      "className": "",
+      "type": "hidden",
+      "value": "/eportal",
+      "placeholder": "",
+      "innerText": ""
+    },
+    {
+      "tag": "input",
+      "id": "isOnlyUseCkeditorSourceMode",
+      "name": "",
+      "className": "",
+      "type": "hidden",
+      "value": "$isOnlyUseCkeditorSourceMode",
+      "placeholder": "",
+      "innerText": ""
+    },
+    {
+      "tag": "input",
+      "id": "eprotalCurrentPageId",
+      "name": "",
+      "className": "",
+      "type": "hidden",
+      "value": "307670",
+      "placeholder": "",
+      "innerText": ""
+    },
+    {
+      "tag": "input",
+      "id": "eprotalCurrentSiteId",
+      "name": "",
+      "className": "",
+      "type": "hidden",
+      "value": "300529",
+      "placeholder": "",
+      "innerText": ""
+    },
+    {
+      "tag": "input",
+      "id": "eprotalCurrentSiteType",
+      "name": "",
+      "className": "",
+      "type": "hidden",
+      "value": "WEB",
+      "placeholder": "",
+      "innerText": ""
+    },
+    {
+      "tag": "input",
+      "id": "eprotalCurrentSiteHideMaskLayer",
+      "name": "",
+      "className": "",
+      "type": "hidden",
+      "value": "no",
+      "placeholder": "",
+      "innerText": ""
+    },
+    {
+      "tag": "input",
+      "id": "eprotalCurrentArticleKey",
+      "name": "",
+      "className": "",
+      "type": "hidden",
+      "value": "",
+      "placeholder": "",
+      "innerText": ""
+    },
+    {
+      "tag": "input",
+      "id": "eprotalCurrentColumnId",
+      "name": "",
+      "className": "",
+      "type": "hidden",
+      "value": "",
+      "placeholder": "",
+      "innerText": ""
+    },
+    {
+      "tag": "input",
+      "id": "isStaticRequest",
+      "name": "",
+      "className": "",
+      "type": "hidden",
+      "value": "",
+      "placeholder": "",
+      "innerText": ""
+    },
+    {
+      "tag": "input",
+      "id": "isOpenStaticPageList",
+      "name": "",
+      "className": "",
+      "type": "hidden",
+      "value": "yes",
+      "placeholder": "",
+      "innerText": ""
+    },
+    {
+      "tag": "input",
+      "id": "defaultPublishPage",
+      "name": "",
+      "className": "",
+      "type": "hidden",
+      "value": "10",
+      "placeholder": "",
+      "innerText": ""
+    },
+    {
+      "tag": "input",
+      "id": "eportalappPortletId",
+      "name": "",
+      "className": "",
+      "type": "hidden",
+      "value": "3",
+      "placeholder": "",
+      "innerText": ""
+    },
+    {
+      "tag": "input",
+      "id": "epsPortletId",
+      "name": "",
+      "className": "",
+      "type": "hidden",
+      "value": "1",
+      "placeholder": "",
+      "innerText": ""
+    },
+    {
+      "tag": "input",
+      "id": "portaltoolsPortletId",
+      "name": "",
+      "className": "",
+      "type": "hidden",
+      "value": "2",
+      "placeholder": "",
+      "innerText": ""
+    },
+    {
+      "tag": "input",
+      "id": "currentLoginMemberId",
+      "name": "",
+      "className": "",
+      "type": "hidden",
+      "value": "",
+      "placeholder": "",
+      "innerText": ""
+    },
+    {
+      "tag": "input",
+      "id": "currentLoginMemberName",
+      "name": "",
+      "className": "",
+      "type": "hidden",
+      "value": "",
+      "placeholder": "",
+      "innerText": ""
+    },
+    {
+      "tag": "input",
+      "id": "behaviourAnalysisSiteId",
+      "name": "",
+      "className": "",
+      "type": "hidden",
+      "value": "",
+      "placeholder": "",
+      "innerText": ""
+    },
+    {
+      "tag": "input",
+      "id": "portalLastRequestUrl",
+      "name": "",
+      "className": "",
+      "type": "hidden",
+      "value": "",
+      "placeholder": "",
+      "innerText": ""
+    },
+    {
+      "tag": "input",
+      "id": "portalJsessionId",
+      "name": "",
+      "className": "",
+      "type": "hidden",
+      "value": "1317E7F8FA85A0B02DBDA4A38734B999",
+      "placeholder": "",
+      "innerText": ""
+    },
+    {
+      "tag": "input",
+      "id": "rblFWType",
+      "name": "",
+      "className": "",
+      "type": "hidden",
+      "value": "",
+      "placeholder": "",
+      "innerText": ""
+    },
+    {
+      "tag": "input",
+      "id": "projectName",
+      "name": "projectName",
+      "className": "list_search_input0",
+      "type": "text",
+      "value": "项目名称关键字",
+      "placeholder": "",
+      "innerText": ""
+    },
+    {
+      "tag": "input",
+      "id": "rblFWType",
+      "name": "rblFWType",
+      "className": "",
+      "type": "radio",
+      "value": "q",
+      "placeholder": "",
+      "innerText": ""
+    },
+    {
+      "tag": "input",
+      "id": "rblFWType",
+      "name": "rblFWType",
+      "className": "",
+      "type": "radio",
+      "value": "x",
+      "placeholder": "",
+      "innerText": ""
+    },
+    {
+      "tag": "input",
+      "id": "txtYS",
+      "name": "txtYS",
+      "className": "list_search_input2",
+      "type": "text",
+      "value": "",
+      "placeholder": "",
+      "innerText": ""
+    },
+    {
+      "tag": "input",
+      "id": "txtZH",
+      "name": "txtZH",
+      "className": "list_search_input2",
+      "type": "text",
+      "value": "",
+      "placeholder": "",
+      "innerText": ""
+    },
+    {
+      "tag": "input",
+      "id": "txtCQZH",
+      "name": "txtCQZH",
+      "className": "list_search_input0",
+      "type": "text",
+      "value": "证号关键字",
+      "placeholder": "",
+      "innerText": ""
+    },
+    {
+      "tag": "input",
+      "id": "developer",
+      "name": "developer",
+      "className": "list_search_input0",
+      "type": "text",
+      "value": "单位名称关键字",
+      "placeholder": "",
+      "innerText": ""
+    },
+    {
+      "tag": "input",
+      "id": "txtaddress",
+      "name": "txtaddress",
+      "className": "list_search_input1",
+      "type": "text",
+      "value": "地址关键字",
+      "placeholder": "",
+      "innerText": ""
+    },
+    {
+      "tag": "input",
+      "id": "isTrue",
+      "name": "isTrue",
+      "className": "",
+      "type": "hidden",
+      "value": "",
+      "placeholder": "",
+      "innerText": ""
+    },
+    {
+      "tag": "input",
+      "id": "rblFWType1",
+      "name": "rblFWType1",
+      "className": "",
+      "type": "radio",
+      "value": "q",
+      "placeholder": "",
+      "innerText": ""
+    },
+    {
+      "tag": "input",
+      "id": "rblFWType1",
+      "name": "rblFWType1",
+      "className": "",
+      "type": "radio",
+      "value": "x",
+      "placeholder": "",
+      "innerText": ""
+    },
+    {
+      "tag": "input",
+      "id": "eportalapplyModuleId",
+      "name": "",
+      "className": "",
+      "type": "hidden",
+      "value": "ceb4ae7679c84c2bb306bb3901d2eac1",
+      "placeholder": "",
+      "innerText": ""
+    },
+    {
+      "tag": "input",
+      "id": "eportalappModuleId",
+      "name": "",
+      "className": "",
+      "type": "hidden",
+      "value": "3",
+      "placeholder": "",
+      "innerText": ""
+    },
+    {
+      "tag": "input",
+      "id": "eportalloginModuleId",
+      "name": "",
+      "className": "",
+      "type": "hidden",
+      "value": "6bddc020a8ee4ceb8533795b832942ae",
+      "placeholder": "",
+      "innerText": ""
+    },
+    {
+      "tag": "input",
+      "id": "epsModuleId",
+      "name": "",
+      "className": "",
+      "type": "hidden",
+      "value": "1",
+      "placeholder": "",
+      "innerText": ""
+    },
+    {
+      "tag": "input",
+      "id": "portaltoolsModuleId",
+      "name": "",
+      "className": "",
+      "type": "hidden",
+      "value": "2",
+      "placeholder": "",
+      "innerText": ""
+    },
+    {
+      "tag": "input",
+      "id": "currentPage",
+      "name": "currentPage",
+      "className": "",
+      "type": "hidden",
+      "value": "1",
+      "placeholder": "",
+      "innerText": ""
+    },
+    {
+      "tag": "input",
+      "id": "pageSize",
+      "name": "pageSize",
+      "className": "",
+      "type": "hidden",
+      "value": "15",
+      "placeholder": "",
+      "innerText": ""
+    },
+    {
+      "tag": "input",
+      "id": "jumpPageBox",
+      "name": "",
+      "className": "",
+      "type": "text",
+      "value": "1",
+      "placeholder": "",
+      "innerText": ""
+    },
+    {
+      "tag": "input",
+      "id": "",
+      "name": "跳转",
+      "className": "",
+      "type": "button",
+      "value": "跳转",
+      "placeholder": "",
+      "innerText": ""
+    },
+    {
+      "tag": "input",
+      "id": "currentLoginUserLoginName",
+      "name": "",
+      "className": "",
+      "type": "hidden",
+      "value": "",
+      "placeholder": "",
+      "innerText": ""
+    },
+    {
+      "tag": "input",
+      "id": "currentLoginUserLoginId",
+      "name": "",
+      "className": "",
+      "type": "hidden",
+      "value": "",
+      "placeholder": "",
+      "innerText": ""
+    }
+  ],
+  "selects": [
+    {
+      "tag": "select",
+      "id": "serchid",
+      "name": "",
+      "className": "",
+      "type": "select-one",
+      "value": "https://zjw.beijing.gov.cn/so/s?siteCode=1100000159&tab=all&qt=",
+      "placeholder": "",
+      "innerText": "搜本网\n一网通查"
+    },
+    {
+      "tag": "select",
+      "id": "serchid",
+      "name": "",
+      "className": "",
+      "type": "select-one",
+      "value": "http://zjw.beijing.gov.cn/so/s?siteCode=1100000159&qt=",
+      "placeholder": "",
+      "innerText": "搜本网\n                  一网通查"
+    },
+    {
+      "tag": "select",
+      "id": "ddlQX",
+      "name": "ddlQX",
+      "className": "",
+      "type": "select-one",
+      "value": "-1",
+      "placeholder": "",
+      "innerText": "--请选择--\n北京市\n东城区\n西城区\n朝阳区\n海淀区\n丰台区\n石景山区\n通州区"
+    },
+    {
+      "tag": "select",
+      "id": "ddlYT",
+      "name": "ddlYT",
+      "className": "",
+      "type": "select-one",
+      "value": "-1",
+      "placeholder": "",
+      "innerText": "--请选择--\n普通住宅\n公寓\n别墅\n商业\n写字楼\n工业厂房\n车库\n其它\n综合\n"
+    },
+    {
+      "tag": "select",
+      "id": "ddlFW",
+      "name": "ddlFW",
+      "className": "",
+      "type": "select-one",
+      "value": "-1",
+      "placeholder": "",
+      "innerText": "--请选择--\n东\n西\n南\n北\n东北\n西北\n东南\n西南"
+    },
+    {
+      "tag": "select",
+      "id": "ddlQW",
+      "name": "ddlQW",
+      "className": "",
+      "type": "select-one",
+      "value": "-1",
+      "placeholder": "",
+      "innerText": "--请选择--\n二环内\n二三环之间\n三四环之间\n四五环之间\n五六环之间\n六环外"
+    },
+    {
+      "tag": "select",
+      "id": "ddlHX",
+      "name": "ddlHX",
+      "className": "",
+      "type": "select-one",
+      "value": "-1",
+      "placeholder": "",
+      "innerText": "--请选择--\n一室一厅\n两室一厅\n两室两厅\n三室一厅\n三室两厅\n四室一厅\n四室"
+    }
+  ],
+  "buttons": [
+    {
+      "tag": "button",
+      "id": "",
+      "name": "",
+      "className": "wza",
+      "type": "submit",
+      "value": "",
+      "placeholder": "",
+      "innerText": "无障碍"
+    },
+    {
+      "tag": "button",
+      "id": "",
+      "name": "",
+      "className": "wza",
+      "type": "submit",
+      "value": "",
+      "placeholder": "",
+      "innerText": "无障碍"
+    }
+  ],
+  "pagination": {
+    "html": "<table class=\"page\" cellspacing=\"0\" cellpadding=\"0\" border=\"0\" width=\"710\">\n\t<tbody>\n\t\t<tr>\n\t\t\t<td width=\"30%\" valign=\"middle\" nowrap=\"true\" align=\"notset\">\n\t\t\t\t\n\t\t\t\t\t\n\t\t\t\t\t\n\t\t\t\t\t    <a class=\"pagingNormal\" href=\"javascript:void(0)\" title=\"首页\">首页</a>\n\t\t\t\t\t\n\t\t\t\t\n\t\t\t\t<span style=\"width: 5px; display: inline-block;\"></span>\n\t\t\t\t\n\t\t\t\t\t\n\t\t\t\t\t\n\t\t\t\t\t<a class=\"pagingNormal\" href=\"javascript:void(0)\" title=\"上一页\">上一页</a>\n\t\t\t\t\t\n\t\t\t\t\n\t\t\t\t<span style=\"width: 5px; display: inline-block;\"></span>\n\t\t\t\t\n\t\t\t\t\n\t\t\t\t\t\n\t\t\t\t\t<a class=\"pagingNormal\" href=\"javascript:void(0)\" onclick=\"document.getElementById('currentPage').value=2;document.getElementById('currentPage').form.submit();\" title=\"下一页\">下一页</a>\n\t\t\t\t\t\n\t\t\t\t\t\n\t\t\t\t\n\t\t\t\t<span style=\"width: 5px; display: inline-block;\"></span>\n\t\t\t\t\n\t\t\t\t\t\n\t\t\t\t\t<a class=\"pagingNormal\" href=\"javascript:void(0)\" onclick=\"document.getElementById('currentPage').value=602;document.getElementById('currentPage').form.submit();\" title=\"尾页\">尾页</a>\n\t\t\t\t\t\n\t\t\t\t\t\n\t\t\t\t\n\t\t\t\t</td>\n\t\t\t\t<td c",
+    "text": "首页  上一页  下一页  尾页\t 总记录数:9024, 每页显示15 条记录,跳转至第  页"
+  }
+}

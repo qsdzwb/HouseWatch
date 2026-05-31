@@ -1,0 +1,532 @@
+{
+  "title": "楼盘表页面",
+  "canvasCount": 0,
+  "canvasInfo": [],
+  "iframeCount": 0,
+  "iframeSrcs": [],
+  "tableCount": 17,
+  "coloredElements": 122,
+  "roomLinks": [
+    {
+      "tag": "BODY",
+      "class": "",
+      "bg": "rgb(250, 250, 250)",
+      "text": "\t\n\n\t\n视窗\n×\n\n\nloading...\n\n\n\t\n\n\t\n"
+    },
+    {
+      "tag": "TD",
+      "class": "ui_lt",
+      "bg": "rgba(102, 102, 102, 0.3)",
+      "text": ""
+    },
+    {
+      "tag": "TD",
+      "class": "ui_t",
+      "bg": "rgba(102, 102, 102, 0.3)",
+      "text": ""
+    },
+    {
+      "tag": "TD",
+      "class": "ui_rt",
+      "bg": "rgba(102, 102, 102, 0.3)",
+      "text": ""
+    },
+    {
+      "tag": "TD",
+      "class": "ui_l",
+      "bg": "rgba(102, 102, 102, 0.3)",
+      "text": ""
+    },
+    {
+      "tag": "TABLE",
+      "class": "ui_dialog",
+      "bg": "rgb(255, 255, 255)",
+      "text": "视窗\n×\n\n\nloading...\n\n"
+    },
+    {
+      "tag": "B",
+      "class": "ui_res_t",
+      "bg": "rgb(61, 140, 206)",
+      "text": ""
+    },
+    {
+      "tag": "DIV",
+      "class": "ui_buttons",
+      "bg": "rgb(246, 246, 246)",
+      "text": ""
+    },
+    {
+      "tag": "TD",
+      "class": "ui_r",
+      "bg": "rgba(102, 102, 102, 0.3)",
+      "text": ""
+    },
+    {
+      "tag": "TD",
+      "class": "ui_lb",
+      "bg": "rgba(102, 102, 102, 0.3)",
+      "text": ""
+    },
+    {
+      "tag": "TD",
+      "class": "ui_b",
+      "bg": "rgba(102, 102, 102, 0.3)",
+      "text": ""
+    },
+    {
+      "tag": "TD",
+      "class": "ui_rb",
+      "bg": "rgba(102, 102, 102, 0.3)",
+      "text": ""
+    },
+    {
+      "tag": "DIV",
+      "class": "",
+      "bg": "rgb(191, 22, 41)",
+      "text": "无障碍\n繁體\n手机版\n访问我的专属空间\n搜本网\n一网通查\n首"
+    },
+    {
+      "tag": "DIV",
+      "class": "header_top",
+      "bg": "rgb(191, 22, 41)",
+      "text": "无障碍\n繁體\n手机版\n访问我的专属空间\n搜本网\n一网通查\n首"
+    },
+    {
+      "tag": "SELECT",
+      "class": "",
+      "bg": "rgb(255, 255, 255)",
+      "text": "搜本网\n一网通查"
+    },
+    {
+      "tag": "INPUT",
+      "class": "txt-ipt",
+      "bg": "rgb(255, 255, 255)",
+      "text": ""
+    },
+    {
+      "tag": "INPUT",
+      "class": "ipt-btn btn-search",
+      "bg": "rgb(255, 255, 255)",
+      "text": ""
+    },
+    {
+      "tag": "DIV",
+      "class": "voice-draw",
+      "bg": "rgba(0, 0, 0, 0.3)",
+      "text": "\n            \n                "
+    },
+    {
+      "tag": "DIV",
+      "class": "voice-div",
+      "bg": "rgb(255, 255, 255)",
+      "text": "\n                \n            "
+    },
+    {
+      "tag": "DIV",
+      "class": "",
+      "bg": "rgb(191, 22, 41)",
+      "text": "\n           \n            \n    "
+    },
+    {
+      "tag": "DIV",
+      "class": "header_top",
+      "bg": "rgb(191, 22, 41)",
+      "text": "\n            \n              \n\n"
+    },
+    {
+      "tag": "SELECT",
+      "class": "",
+      "bg": "rgb(255, 255, 255)",
+      "text": "\n                  搜本网\n       "
+    },
+    {
+      "tag": "INPUT",
+      "class": "txt-ipt",
+      "bg": "rgb(255, 255, 255)",
+      "text": ""
+    },
+    {
+      "tag": "INPUT",
+      "class": "ipt-btn btn-search",
+      "bg": "rgb(255, 255, 255)",
+      "text": ""
+    },
+    {
+      "tag": "DIV",
+      "class": "voice-draw",
+      "bg": "rgba(0, 0, 0, 0.3)",
+      "text": "\n            \n                "
+    },
+    {
+      "tag": "DIV",
+      "class": "voice-div",
+      "bg": "rgb(255, 255, 255)",
+      "text": "\n                \n            "
+    },
+    {
+      "tag": "DIV",
+      "class": "nav_second",
+      "bg": "rgb(255, 255, 255)",
+      "text": "网签合同信息查询\n期房网签合同信息查询\n两限房项目公示\n现房"
+    },
+    {
+      "tag": "DIV",
+      "class": "nav-name",
+      "bg": "rgb(189, 26, 43)",
+      "text": "网签合同信息查询"
+    },
+    {
+      "tag": "DIV",
+      "class": "fwgl_right fr column",
+      "bg": "rgb(255, 255, 255)",
+      "text": "\n\n\n5#住宅楼 楼盘表 \n建筑面积:3016.7400m2"
+    },
+    {
+      "tag": "TD",
+      "class": "",
+      "bg": "rgb(254, 255, 241)",
+      "text": ""
+    },
+    {
+      "tag": "TD",
+      "class": "",
+      "bg": "rgb(255, 255, 255)",
+      "text": "\n\n5#住宅楼 楼盘表 \n建筑面积:3016.7400m2 "
+    },
+    {
+      "tag": "TABLE",
+      "class": "",
+      "bg": "rgb(198, 198, 87)",
+      "text": "建筑面积:3016.7400m2  地上:8层  地下:1层"
+    },
+    {
+      "tag": "TD",
+      "class": "",
+      "bg": "rgb(249, 244, 232)",
+      "text": "建筑面积:3016.7400m2  地上:8层  地下:1层"
+    },
+    {
+      "tag": "TD",
+      "class": "",
+      "bg": "rgb(249, 244, 232)",
+      "text": "拟售参考均价(由开发企业提供):住宅：50745.01元/平"
+    },
+    {
+      "tag": "TD",
+      "class": "",
+      "bg": "rgb(249, 244, 232)",
+      "text": "测绘机构:北京沐城数智科技有限公司 \n资质证号: \n分摊情况"
+    },
+    {
+      "tag": "TD",
+      "class": "",
+      "bg": "rgb(204, 204, 204)",
+      "text": ""
+    },
+    {
+      "tag": "TD",
+      "class": "",
+      "bg": "rgb(51, 204, 0)",
+      "text": ""
+    },
+    {
+      "tag": "TD",
+      "class": "",
+      "bg": "rgb(255, 204, 153)",
+      "text": ""
+    },
+    {
+      "tag": "TD",
+      "class": "",
+      "bg": "rgb(255, 0, 0)",
+      "text": ""
+    },
+    {
+      "tag": "TD",
+      "class": "",
+      "bg": "rgb(255, 255, 0)",
+      "text": ""
+    },
+    {
+      "tag": "TD",
+      "class": "",
+      "bg": "rgb(210, 105, 30)",
+      "text": ""
+    },
+    {
+      "tag": "TD",
+      "class": "",
+      "bg": "rgb(0, 255, 255)",
+      "text": ""
+    },
+    {
+      "tag": "TR",
+      "class": "",
+      "bg": "rgb(196, 225, 225)",
+      "text": "自然\n楼层\t销售\n楼层\t房 号"
+    },
+    {
+      "tag": "TD",
+      "class": "f12a2",
+      "bg": "rgb(226, 226, 171)",
+      "text": "自然\n楼层"
+    },
+    {
+      "tag": "TD",
+      "class": "f12a2",
+      "bg": "rgb(226, 226, 171)",
+      "text": "销售\n楼层"
+    },
+    {
+      "tag": "TD",
+      "class": "f12a2",
+      "bg": "rgb(226, 226, 171)",
+      "text": "房 号"
+    },
+    {
+      "tag": "DIV",
+      "class": "",
+      "bg": "rgb(51, 204, 0)",
+      "text": "1单元-801"
+    },
+    {
+      "tag": "DIV",
+      "class": "",
+      "bg": "rgb(51, 204, 0)",
+      "text": "1单元-802"
+    },
+    {
+      "tag": "DIV",
+      "class": "",
+      "bg": "rgb(210, 105, 30)",
+      "text": "2单元-801"
+    },
+    {
+      "tag": "DIV",
+      "class": "",
+      "bg": "rgb(210, 105, 30)",
+      "text": "2单元-802"
+    },
+    {
+      "tag": "DIV",
+      "class": "",
+      "bg": "rgb(51, 204, 0)",
+      "text": "1单元-701"
+    },
+    {
+      "tag": "DIV",
+      "class": "",
+      "bg": "rgb(255, 204, 153)",
+      "text": "1单元-702"
+    },
+    {
+      "tag": "DIV",
+      "class": "",
+      "bg": "rgb(255, 0, 0)",
+      "text": "2单元-701"
+    },
+    {
+      "tag": "DIV",
+      "class": "",
+      "bg": "rgb(51, 204, 0)",
+      "text": "2单元-702"
+    },
+    {
+      "tag": "DIV",
+      "class": "",
+      "bg": "rgb(210, 105, 30)",
+      "text": "1单元-601"
+    },
+    {
+      "tag": "DIV",
+      "class": "",
+      "bg": "rgb(255, 0, 0)",
+      "text": "1单元-602"
+    },
+    {
+      "tag": "DIV",
+      "class": "",
+      "bg": "rgb(255, 0, 0)",
+      "text": "2单元-601"
+    },
+    {
+      "tag": "DIV",
+      "class": "",
+      "bg": "rgb(51, 204, 0)",
+      "text": "2单元-602"
+    },
+    {
+      "tag": "DIV",
+      "class": "",
+      "bg": "rgb(51, 204, 0)",
+      "text": "1单元-501"
+    },
+    {
+      "tag": "DIV",
+      "class": "",
+      "bg": "rgb(255, 0, 0)",
+      "text": "1单元-502"
+    },
+    {
+      "tag": "DIV",
+      "class": "",
+      "bg": "rgb(255, 0, 0)",
+      "text": "2单元-501"
+    },
+    {
+      "tag": "DIV",
+      "class": "",
+      "bg": "rgb(210, 105, 30)",
+      "text": "2单元-502"
+    },
+    {
+      "tag": "DIV",
+      "class": "",
+      "bg": "rgb(51, 204, 0)",
+      "text": "1单元-401"
+    },
+    {
+      "tag": "DIV",
+      "class": "",
+      "bg": "rgb(255, 0, 0)",
+      "text": "1单元-402"
+    },
+    {
+      "tag": "DIV",
+      "class": "",
+      "bg": "rgb(210, 105, 30)",
+      "text": "2单元-401"
+    },
+    {
+      "tag": "DIV",
+      "class": "",
+      "bg": "rgb(51, 204, 0)",
+      "text": "2单元-402"
+    },
+    {
+      "tag": "DIV",
+      "class": "",
+      "bg": "rgb(51, 204, 0)",
+      "text": "1单元-301"
+    },
+    {
+      "tag": "DIV",
+      "class": "",
+      "bg": "rgb(210, 105, 30)",
+      "text": "1单元-302"
+    },
+    {
+      "tag": "DIV",
+      "class": "",
+      "bg": "rgb(51, 204, 0)",
+      "text": "2单元-301"
+    },
+    {
+      "tag": "DIV",
+      "class": "",
+      "bg": "rgb(51, 204, 0)",
+      "text": "2单元-302"
+    },
+    {
+      "tag": "DIV",
+      "class": "",
+      "bg": "rgb(255, 0, 0)",
+      "text": "1单元-201"
+    },
+    {
+      "tag": "DIV",
+      "class": "",
+      "bg": "rgb(255, 0, 0)",
+      "text": "1单元-202"
+    },
+    {
+      "tag": "DIV",
+      "class": "",
+      "bg": "rgb(210, 105, 30)",
+      "text": "2单元-201"
+    },
+    {
+      "tag": "DIV",
+      "class": "",
+      "bg": "rgb(51, 204, 0)",
+      "text": "2单元-202"
+    },
+    {
+      "tag": "DIV",
+      "class": "",
+      "bg": "rgb(51, 204, 0)",
+      "text": "1单元-101"
+    },
+    {
+      "tag": "DIV",
+      "class": "",
+      "bg": "rgb(255, 0, 0)",
+      "text": "1单元-102"
+    },
+    {
+      "tag": "DIV",
+      "class": "",
+      "bg": "rgb(51, 204, 0)",
+      "text": "2单元-101"
+    },
+    {
+      "tag": "DIV",
+      "class": "",
+      "bg": "rgb(51, 204, 0)",
+      "text": "2单元-102"
+    },
+    {
+      "tag": "DIV",
+      "class": "footer_top",
+      "bg": "rgb(191, 22, 40)",
+      "text": "关于我们\n站点地图\n建议意见\n法律声明\n办公地址：北京市通州"
+    },
+    {
+      "tag": "DIV",
+      "class": "footer_one",
+      "bg": "rgb(171, 19, 35)",
+      "text": "关于我们\n站点地图\n建议意见\n法律声明"
+    },
+    {
+      "tag": "DIV",
+      "class": "footer_two",
+      "bg": "rgb(171, 19, 35)",
+      "text": "办公地址：北京市通州区达济街9号院\n联系方式：010-555"
+    },
+    {
+      "tag": "DIV",
+      "class": "footer_three",
+      "bg": "rgb(171, 19, 35)",
+      "text": "微信公众号\n\n微博"
+    },
+    {
+      "tag": "DIV",
+      "class": "footer_bottom",
+      "bg": "rgb(219, 188, 129)",
+      "text": "主办：北京市住房和城乡建设委员会 承办：北京市住房和城乡建设"
+    },
+    {
+      "type": "link",
+      "text": "1单元-801",
+      "href": "http://bjjs.zjw.beijing.gov.cn/eportal/ui?pageId=373432&houseId=17822464&houseNo=1%E5%8D%95%E5%85%83-801&categoryId=1&salePermitId=8205387&systemId=2"
+    },
+    {
+      "type": "link",
+      "text": "2单元-801",
+      "href": "http://bjjs.zjw.beijing.gov.cn/eportal/ui?pageId=320833&systemId=2&categoryId=1&salePermitId=8205387&buildingId=577656#"
+    },
+    {
+      "type": "link",
+      "text": "1单元-101",
+      "href": "http://bjjs.zjw.beijing.gov.cn/eportal/ui?pageId=373432&houseId=17822458&houseNo=1%E5%8D%95%E5%85%83-101&categoryId=1&salePermitId=8205387&systemId=2"
+    },
+    {
+      "type": "link",
+      "text": "2单元-101",
+      "href": "http://bjjs.zjw.beijing.gov.cn/eportal/ui?pageId=373432&houseId=17822421&houseNo=2%E5%8D%95%E5%85%83-101&categoryId=1&salePermitId=8205387&systemId=2"
+    }
+  ],
+  "svgCount": 0,
+  "roomDivs": [],
+  "lpbContainers": []
+}

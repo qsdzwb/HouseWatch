@@ -1,0 +1,40 @@
+{
+  "project": "铂瑞府",
+  "projectID": "8207359",
+  "buildingCount": 8,
+  "buildings": [
+    {
+      "name": "1516-1#住宅楼",
+      "buildingId": "579104"
+    },
+    {
+      "name": "1516-2#住宅楼",
+      "buildingId": "579103"
+    },
+    {
+      "name": "1516-3#住宅楼",
+      "buildingId": "579102"
+    },
+    {
+      "name": "1516-4#住宅楼",
+      "buildingId": "579101"
+    },
+    {
+      "name": "1516-5#住宅楼",
+      "buildingId": "579077"
+    },
+    {
+      "name": "1516-6#住宅楼",
+      "buildingId": "579076"
+    },
+    {
+      "name": "1516-7#住宅楼",
+      "buildingId": "579075"
+    },
+    {
+      "name": "1516-8#住宅楼",
+      "buildingId": "579074"
+    }
+  ],
+  "buildingDataCount": 8
+}

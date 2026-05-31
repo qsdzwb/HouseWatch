@@ -1,0 +1,2898 @@
+[
+  {
+    "tableIdx": 4,
+    "rowIdx": 1,
+    "tdIdx": 0,
+    "text": "查看信息",
+    "href": "http://bjjs.zjw.beijing.gov.cn/eportal/ui?pageId=320833&systemId=2&categoryId=1&salePermitId=8207359&buildingId=579104",
+    "onclick": "",
+    "target": "",
+    "className": "",
+    "id": "",
+    "outerHTML": "<a href=\"/eportal/ui?pageId=320833&amp;systemId=2&amp;categoryId=1&amp;salePermitId=8207359&amp;buildingId=579104\" title=\"查看信息\">查看信息</a>",
+    "rowContext": [
+      {
+        "text": "查看信息",
+        "href": "http://bjjs.zjw.beijing.gov.cn/eportal/ui?pageId=320833&systemId=2&categoryId=1&salePermitId=8207359&buildingId=579104",
+        "onclick": "",
+        "outerHTML": "<a href=\"/eportal/ui?pageId=320833&amp;systemId=2&amp;categoryId=1&amp;salePermitId=8207359&amp;buildingId=579104\" title=\"查看信息\">查看信息</a>"
+      },
+      {
+        "text": "查看信息",
+        "href": "http://bjjs.zjw.beijing.gov.cn/eportal/ui?pageId=320833&systemId=2&categoryId=1&salePermitId=8207359&buildingId=579103",
+        "onclick": "",
+        "outerHTML": "<a href=\"/eportal/ui?pageId=320833&amp;systemId=2&amp;categoryId=1&amp;salePermitId=8207359&amp;buildingId=579103\" title=\"查看信息\">查看信息</a>"
+      },
+      {
+        "text": "查看信息",
+        "href": "http://bjjs.zjw.beijing.gov.cn/eportal/ui?pageId=320833&systemId=2&categoryId=1&salePermitId=8207359&buildingId=579102",
+        "onclick": "",
+        "outerHTML": "<a href=\"/eportal/ui?pageId=320833&amp;systemId=2&amp;categoryId=1&amp;salePermitId=8207359&amp;buildingId=579102\" title=\"查看信息\">查看信息</a>"
+      },
+      {
+        "text": "查看信息",
+        "href": "http://bjjs.zjw.beijing.gov.cn/eportal/ui?pageId=320833&systemId=2&categoryId=1&salePermitId=8207359&buildingId=579101",
+        "onclick": "",
+        "outerHTML": "<a href=\"/eportal/ui?pageId=320833&amp;systemId=2&amp;categoryId=1&amp;salePermitId=8207359&amp;buildingId=579101\" title=\"查看信息\">查看信息</a>"
+      },
+      {
+        "text": "查看信息",
+        "href": "http://bjjs.zjw.beijing.gov.cn/eportal/ui?pageId=320833&systemId=2&categoryId=1&salePermitId=8207359&buildingId=579077",
+        "onclick": "",
+        "outerHTML": "<a href=\"/eportal/ui?pageId=320833&amp;systemId=2&amp;categoryId=1&amp;salePermitId=8207359&amp;buildingId=579077\" title=\"查看信息\">查看信息</a>"
+      },
+      {
+        "text": "查看信息",
+        "href": "http://bjjs.zjw.beijing.gov.cn/eportal/ui?pageId=320833&systemId=2&categoryId=1&salePermitId=8207359&buildingId=579076",
+        "onclick": "",
+        "outerHTML": "<a href=\"/eportal/ui?pageId=320833&amp;systemId=2&amp;categoryId=1&amp;salePermitId=8207359&amp;buildingId=579076\" title=\"查看信息\">查看信息</a>"
+      },
+      {
+        "text": "查看信息",
+        "href": "http://bjjs.zjw.beijing.gov.cn/eportal/ui?pageId=320833&systemId=2&categoryId=1&salePermitId=8207359&buildingId=579075",
+        "onclick": "",
+        "outerHTML": "<a href=\"/eportal/ui?pageId=320833&amp;systemId=2&amp;categoryId=1&amp;salePermitId=8207359&amp;buildingId=579075\" title=\"查看信息\">查看信息</a>"
+      },
+      {
+        "text": "查看信息",
+        "href": "http://bjjs.zjw.beijing.gov.cn/eportal/ui?pageId=320833&systemId=2&categoryId=1&salePermitId=8207359&buildingId=579074",
+        "onclick": "",
+        "outerHTML": "<a href=\"/eportal/ui?pageId=320833&amp;systemId=2&amp;categoryId=1&amp;salePermitId=8207359&amp;buildingId=579074\" title=\"查看信息\">查看信息</a>"
+      },
+      "销售楼号",
+      "批准销售\n套　　数",
+      "批准销售\n面积(m2)",
+      "销售状态",
+      "住宅拟售\n价格(元/m2)",
+      "楼盘表",
+      "1516-1#住宅楼",
+      "54",
+      "4700.01",
+      "",
+      "42942.44",
+      {
+        "text": "查看信息",
+        "href": "http://bjjs.zjw.beijing.gov.cn/eportal/ui?pageId=320833&systemId=2&categoryId=1&salePermitId=8207359&buildingId=579104",
+        "onclick": "",
+        "outerHTML": "<a href=\"/eportal/ui?pageId=320833&amp;systemId=2&amp;categoryId=1&amp;salePermitId=8207359&amp;buildingId=579104\" title=\"查看信息\">查看信息</a>"
+      },
+      "1516-2#住宅楼",
+      "54",
+      "5905.45",
+      "",
+      "45235.23",
+      {
+        "text": "查看信息",
+        "href": "http://bjjs.zjw.beijing.gov.cn/eportal/ui?pageId=320833&systemId=2&categoryId=1&salePermitId=8207359&buildingId=579103",
+        "onclick": "",
+        "outerHTML": "<a href=\"/eportal/ui?pageId=320833&amp;systemId=2&amp;categoryId=1&amp;salePermitId=8207359&amp;buildingId=579103\" title=\"查看信息\">查看信息</a>"
+      },
+      "1516-3#住宅楼",
+      "54",
+      "4700.55",
+      "",
+      "44173.01",
+      {
+        "text": "查看信息",
+        "href": "http://bjjs.zjw.beijing.gov.cn/eportal/ui?pageId=320833&systemId=2&categoryId=1&salePermitId=8207359&buildingId=579102",
+        "onclick": "",
+        "outerHTML": "<a href=\"/eportal/ui?pageId=320833&amp;systemId=2&amp;categoryId=1&amp;salePermitId=8207359&amp;buildingId=579102\" title=\"查看信息\">查看信息</a>"
+      },
+      "1516-4#住宅楼",
+      "36",
+      "3185.14",
+      "",
+      "43976.63",
+      {
+        "text": "查看信息",
+        "href": "http://bjjs.zjw.beijing.gov.cn/eportal/ui?pageId=320833&systemId=2&categoryId=1&salePermitId=8207359&buildingId=579101",
+        "onclick": "",
+        "outerHTML": "<a href=\"/eportal/ui?pageId=320833&amp;systemId=2&amp;categoryId=1&amp;salePermitId=8207359&amp;buildingId=579101\" title=\"查看信息\">查看信息</a>"
+      },
+      "1516-5#住宅楼",
+      "57",
+      "7899.10",
+      "",
+      "46836.97",
+      {
+        "text": "查看信息",
+        "href": "http://bjjs.zjw.beijing.gov.cn/eportal/ui?pageId=320833&systemId=2&categoryId=1&salePermitId=8207359&buildingId=579077",
+        "onclick": "",
+        "outerHTML": "<a href=\"/eportal/ui?pageId=320833&amp;systemId=2&amp;categoryId=1&amp;salePermitId=8207359&amp;buildingId=579077\" title=\"查看信息\">查看信息</a>"
+      },
+      "1516-6#住宅楼",
+      "18",
+      "1943.80",
+      "",
+      "45707.41",
+      {
+        "text": "查看信息",
+        "href": "http://bjjs.zjw.beijing.gov.cn/eportal/ui?pageId=320833&systemId=2&categoryId=1&salePermitId=8207359&buildingId=579076",
+        "onclick": "",
+        "outerHTML": "<a href=\"/eportal/ui?pageId=320833&amp;systemId=2&amp;categoryId=1&amp;salePermitId=8207359&amp;buildingId=579076\" title=\"查看信息\">查看信息</a>"
+      },
+      "1516-7#住宅楼",
+      "44",
+      "3835.14",
+      "",
+      "42643.50",
+      {
+        "text": "查看信息",
+        "href": "http://bjjs.zjw.beijing.gov.cn/eportal/ui?pageId=320833&systemId=2&categoryId=1&salePermitId=8207359&buildingId=579075",
+        "onclick": "",
+        "outerHTML": "<a href=\"/eportal/ui?pageId=320833&amp;systemId=2&amp;categoryId=1&amp;salePermitId=8207359&amp;buildingId=579075\" title=\"查看信息\">查看信息</a>"
+      },
+      "1516-8#住宅楼",
+      "66",
+      "7801.66",
+      "",
+      "43825.33",
+      {
+        "text": "查看信息",
+        "href": "http://bjjs.zjw.beijing.gov.cn/eportal/ui?pageId=320833&systemId=2&categoryId=1&salePermitId=8207359&buildingId=579074",
+        "onclick": "",
+        "outerHTML": "<a href=\"/eportal/ui?pageId=320833&amp;systemId=2&amp;categoryId=1&amp;salePermitId=8207359&amp;buildingId=579074\" title=\"查看信息\">查看信息</a>"
+      }
+    ]
+  },
+  {
+    "tableIdx": 4,
+    "rowIdx": 1,
+    "tdIdx": 0,
+    "text": "查看信息",
+    "href": "http://bjjs.zjw.beijing.gov.cn/eportal/ui?pageId=320833&systemId=2&categoryId=1&salePermitId=8207359&buildingId=579103",
+    "onclick": "",
+    "target": "",
+    "className": "",
+    "id": "",
+    "outerHTML": "<a href=\"/eportal/ui?pageId=320833&amp;systemId=2&amp;categoryId=1&amp;salePermitId=8207359&amp;buildingId=579103\" title=\"查看信息\">查看信息</a>",
+    "rowContext": [
+      {
+        "text": "查看信息",
+        "href": "http://bjjs.zjw.beijing.gov.cn/eportal/ui?pageId=320833&systemId=2&categoryId=1&salePermitId=8207359&buildingId=579104",
+        "onclick": "",
+        "outerHTML": "<a href=\"/eportal/ui?pageId=320833&amp;systemId=2&amp;categoryId=1&amp;salePermitId=8207359&amp;buildingId=579104\" title=\"查看信息\">查看信息</a>"
+      },
+      {
+        "text": "查看信息",
+        "href": "http://bjjs.zjw.beijing.gov.cn/eportal/ui?pageId=320833&systemId=2&categoryId=1&salePermitId=8207359&buildingId=579103",
+        "onclick": "",
+        "outerHTML": "<a href=\"/eportal/ui?pageId=320833&amp;systemId=2&amp;categoryId=1&amp;salePermitId=8207359&amp;buildingId=579103\" title=\"查看信息\">查看信息</a>"
+      },
+      {
+        "text": "查看信息",
+        "href": "http://bjjs.zjw.beijing.gov.cn/eportal/ui?pageId=320833&systemId=2&categoryId=1&salePermitId=8207359&buildingId=579102",
+        "onclick": "",
+        "outerHTML": "<a href=\"/eportal/ui?pageId=320833&amp;systemId=2&amp;categoryId=1&amp;salePermitId=8207359&amp;buildingId=579102\" title=\"查看信息\">查看信息</a>"
+      },
+      {
+        "text": "查看信息",
+        "href": "http://bjjs.zjw.beijing.gov.cn/eportal/ui?pageId=320833&systemId=2&categoryId=1&salePermitId=8207359&buildingId=579101",
+        "onclick": "",
+        "outerHTML": "<a href=\"/eportal/ui?pageId=320833&amp;systemId=2&amp;categoryId=1&amp;salePermitId=8207359&amp;buildingId=579101\" title=\"查看信息\">查看信息</a>"
+      },
+      {
+        "text": "查看信息",
+        "href": "http://bjjs.zjw.beijing.gov.cn/eportal/ui?pageId=320833&systemId=2&categoryId=1&salePermitId=8207359&buildingId=579077",
+        "onclick": "",
+        "outerHTML": "<a href=\"/eportal/ui?pageId=320833&amp;systemId=2&amp;categoryId=1&amp;salePermitId=8207359&amp;buildingId=579077\" title=\"查看信息\">查看信息</a>"
+      },
+      {
+        "text": "查看信息",
+        "href": "http://bjjs.zjw.beijing.gov.cn/eportal/ui?pageId=320833&systemId=2&categoryId=1&salePermitId=8207359&buildingId=579076",
+        "onclick": "",
+        "outerHTML": "<a href=\"/eportal/ui?pageId=320833&amp;systemId=2&amp;categoryId=1&amp;salePermitId=8207359&amp;buildingId=579076\" title=\"查看信息\">查看信息</a>"
+      },
+      {
+        "text": "查看信息",
+        "href": "http://bjjs.zjw.beijing.gov.cn/eportal/ui?pageId=320833&systemId=2&categoryId=1&salePermitId=8207359&buildingId=579075",
+        "onclick": "",
+        "outerHTML": "<a href=\"/eportal/ui?pageId=320833&amp;systemId=2&amp;categoryId=1&amp;salePermitId=8207359&amp;buildingId=579075\" title=\"查看信息\">查看信息</a>"
+      },
+      {
+        "text": "查看信息",
+        "href": "http://bjjs.zjw.beijing.gov.cn/eportal/ui?pageId=320833&systemId=2&categoryId=1&salePermitId=8207359&buildingId=579074",
+        "onclick": "",
+        "outerHTML": "<a href=\"/eportal/ui?pageId=320833&amp;systemId=2&amp;categoryId=1&amp;salePermitId=8207359&amp;buildingId=579074\" title=\"查看信息\">查看信息</a>"
+      },
+      "销售楼号",
+      "批准销售\n套　　数",
+      "批准销售\n面积(m2)",
+      "销售状态",
+      "住宅拟售\n价格(元/m2)",
+      "楼盘表",
+      "1516-1#住宅楼",
+      "54",
+      "4700.01",
+      "",
+      "42942.44",
+      {
+        "text": "查看信息",
+        "href": "http://bjjs.zjw.beijing.gov.cn/eportal/ui?pageId=320833&systemId=2&categoryId=1&salePermitId=8207359&buildingId=579104",
+        "onclick": "",
+        "outerHTML": "<a href=\"/eportal/ui?pageId=320833&amp;systemId=2&amp;categoryId=1&amp;salePermitId=8207359&amp;buildingId=579104\" title=\"查看信息\">查看信息</a>"
+      },
+      "1516-2#住宅楼",
+      "54",
+      "5905.45",
+      "",
+      "45235.23",
+      {
+        "text": "查看信息",
+        "href": "http://bjjs.zjw.beijing.gov.cn/eportal/ui?pageId=320833&systemId=2&categoryId=1&salePermitId=8207359&buildingId=579103",
+        "onclick": "",
+        "outerHTML": "<a href=\"/eportal/ui?pageId=320833&amp;systemId=2&amp;categoryId=1&amp;salePermitId=8207359&amp;buildingId=579103\" title=\"查看信息\">查看信息</a>"
+      },
+      "1516-3#住宅楼",
+      "54",
+      "4700.55",
+      "",
+      "44173.01",
+      {
+        "text": "查看信息",
+        "href": "http://bjjs.zjw.beijing.gov.cn/eportal/ui?pageId=320833&systemId=2&categoryId=1&salePermitId=8207359&buildingId=579102",
+        "onclick": "",
+        "outerHTML": "<a href=\"/eportal/ui?pageId=320833&amp;systemId=2&amp;categoryId=1&amp;salePermitId=8207359&amp;buildingId=579102\" title=\"查看信息\">查看信息</a>"
+      },
+      "1516-4#住宅楼",
+      "36",
+      "3185.14",
+      "",
+      "43976.63",
+      {
+        "text": "查看信息",
+        "href": "http://bjjs.zjw.beijing.gov.cn/eportal/ui?pageId=320833&systemId=2&categoryId=1&salePermitId=8207359&buildingId=579101",
+        "onclick": "",
+        "outerHTML": "<a href=\"/eportal/ui?pageId=320833&amp;systemId=2&amp;categoryId=1&amp;salePermitId=8207359&amp;buildingId=579101\" title=\"查看信息\">查看信息</a>"
+      },
+      "1516-5#住宅楼",
+      "57",
+      "7899.10",
+      "",
+      "46836.97",
+      {
+        "text": "查看信息",
+        "href": "http://bjjs.zjw.beijing.gov.cn/eportal/ui?pageId=320833&systemId=2&categoryId=1&salePermitId=8207359&buildingId=579077",
+        "onclick": "",
+        "outerHTML": "<a href=\"/eportal/ui?pageId=320833&amp;systemId=2&amp;categoryId=1&amp;salePermitId=8207359&amp;buildingId=579077\" title=\"查看信息\">查看信息</a>"
+      },
+      "1516-6#住宅楼",
+      "18",
+      "1943.80",
+      "",
+      "45707.41",
+      {
+        "text": "查看信息",
+        "href": "http://bjjs.zjw.beijing.gov.cn/eportal/ui?pageId=320833&systemId=2&categoryId=1&salePermitId=8207359&buildingId=579076",
+        "onclick": "",
+        "outerHTML": "<a href=\"/eportal/ui?pageId=320833&amp;systemId=2&amp;categoryId=1&amp;salePermitId=8207359&amp;buildingId=579076\" title=\"查看信息\">查看信息</a>"
+      },
+      "1516-7#住宅楼",
+      "44",
+      "3835.14",
+      "",
+      "42643.50",
+      {
+        "text": "查看信息",
+        "href": "http://bjjs.zjw.beijing.gov.cn/eportal/ui?pageId=320833&systemId=2&categoryId=1&salePermitId=8207359&buildingId=579075",
+        "onclick": "",
+        "outerHTML": "<a href=\"/eportal/ui?pageId=320833&amp;systemId=2&amp;categoryId=1&amp;salePermitId=8207359&amp;buildingId=579075\" title=\"查看信息\">查看信息</a>"
+      },
+      "1516-8#住宅楼",
+      "66",
+      "7801.66",
+      "",
+      "43825.33",
+      {
+        "text": "查看信息",
+        "href": "http://bjjs.zjw.beijing.gov.cn/eportal/ui?pageId=320833&systemId=2&categoryId=1&salePermitId=8207359&buildingId=579074",
+        "onclick": "",
+        "outerHTML": "<a href=\"/eportal/ui?pageId=320833&amp;systemId=2&amp;categoryId=1&amp;salePermitId=8207359&amp;buildingId=579074\" title=\"查看信息\">查看信息</a>"
+      }
+    ]
+  },
+  {
+    "tableIdx": 4,
+    "rowIdx": 1,
+    "tdIdx": 0,
+    "text": "查看信息",
+    "href": "http://bjjs.zjw.beijing.gov.cn/eportal/ui?pageId=320833&systemId=2&categoryId=1&salePermitId=8207359&buildingId=579102",
+    "onclick": "",
+    "target": "",
+    "className": "",
+    "id": "",
+    "outerHTML": "<a href=\"/eportal/ui?pageId=320833&amp;systemId=2&amp;categoryId=1&amp;salePermitId=8207359&amp;buildingId=579102\" title=\"查看信息\">查看信息</a>",
+    "rowContext": [
+      {
+        "text": "查看信息",
+        "href": "http://bjjs.zjw.beijing.gov.cn/eportal/ui?pageId=320833&systemId=2&categoryId=1&salePermitId=8207359&buildingId=579104",
+        "onclick": "",
+        "outerHTML": "<a href=\"/eportal/ui?pageId=320833&amp;systemId=2&amp;categoryId=1&amp;salePermitId=8207359&amp;buildingId=579104\" title=\"查看信息\">查看信息</a>"
+      },
+      {
+        "text": "查看信息",
+        "href": "http://bjjs.zjw.beijing.gov.cn/eportal/ui?pageId=320833&systemId=2&categoryId=1&salePermitId=8207359&buildingId=579103",
+        "onclick": "",
+        "outerHTML": "<a href=\"/eportal/ui?pageId=320833&amp;systemId=2&amp;categoryId=1&amp;salePermitId=8207359&amp;buildingId=579103\" title=\"查看信息\">查看信息</a>"
+      },
+      {
+        "text": "查看信息",
+        "href": "http://bjjs.zjw.beijing.gov.cn/eportal/ui?pageId=320833&systemId=2&categoryId=1&salePermitId=8207359&buildingId=579102",
+        "onclick": "",
+        "outerHTML": "<a href=\"/eportal/ui?pageId=320833&amp;systemId=2&amp;categoryId=1&amp;salePermitId=8207359&amp;buildingId=579102\" title=\"查看信息\">查看信息</a>"
+      },
+      {
+        "text": "查看信息",
+        "href": "http://bjjs.zjw.beijing.gov.cn/eportal/ui?pageId=320833&systemId=2&categoryId=1&salePermitId=8207359&buildingId=579101",
+        "onclick": "",
+        "outerHTML": "<a href=\"/eportal/ui?pageId=320833&amp;systemId=2&amp;categoryId=1&amp;salePermitId=8207359&amp;buildingId=579101\" title=\"查看信息\">查看信息</a>"
+      },
+      {
+        "text": "查看信息",
+        "href": "http://bjjs.zjw.beijing.gov.cn/eportal/ui?pageId=320833&systemId=2&categoryId=1&salePermitId=8207359&buildingId=579077",
+        "onclick": "",
+        "outerHTML": "<a href=\"/eportal/ui?pageId=320833&amp;systemId=2&amp;categoryId=1&amp;salePermitId=8207359&amp;buildingId=579077\" title=\"查看信息\">查看信息</a>"
+      },
+      {
+        "text": "查看信息",
+        "href": "http://bjjs.zjw.beijing.gov.cn/eportal/ui?pageId=320833&systemId=2&categoryId=1&salePermitId=8207359&buildingId=579076",
+        "onclick": "",
+        "outerHTML": "<a href=\"/eportal/ui?pageId=320833&amp;systemId=2&amp;categoryId=1&amp;salePermitId=8207359&amp;buildingId=579076\" title=\"查看信息\">查看信息</a>"
+      },
+      {
+        "text": "查看信息",
+        "href": "http://bjjs.zjw.beijing.gov.cn/eportal/ui?pageId=320833&systemId=2&categoryId=1&salePermitId=8207359&buildingId=579075",
+        "onclick": "",
+        "outerHTML": "<a href=\"/eportal/ui?pageId=320833&amp;systemId=2&amp;categoryId=1&amp;salePermitId=8207359&amp;buildingId=579075\" title=\"查看信息\">查看信息</a>"
+      },
+      {
+        "text": "查看信息",
+        "href": "http://bjjs.zjw.beijing.gov.cn/eportal/ui?pageId=320833&systemId=2&categoryId=1&salePermitId=8207359&buildingId=579074",
+        "onclick": "",
+        "outerHTML": "<a href=\"/eportal/ui?pageId=320833&amp;systemId=2&amp;categoryId=1&amp;salePermitId=8207359&amp;buildingId=579074\" title=\"查看信息\">查看信息</a>"
+      },
+      "销售楼号",
+      "批准销售\n套　　数",
+      "批准销售\n面积(m2)",
+      "销售状态",
+      "住宅拟售\n价格(元/m2)",
+      "楼盘表",
+      "1516-1#住宅楼",
+      "54",
+      "4700.01",
+      "",
+      "42942.44",
+      {
+        "text": "查看信息",
+        "href": "http://bjjs.zjw.beijing.gov.cn/eportal/ui?pageId=320833&systemId=2&categoryId=1&salePermitId=8207359&buildingId=579104",
+        "onclick": "",
+        "outerHTML": "<a href=\"/eportal/ui?pageId=320833&amp;systemId=2&amp;categoryId=1&amp;salePermitId=8207359&amp;buildingId=579104\" title=\"查看信息\">查看信息</a>"
+      },
+      "1516-2#住宅楼",
+      "54",
+      "5905.45",
+      "",
+      "45235.23",
+      {
+        "text": "查看信息",
+        "href": "http://bjjs.zjw.beijing.gov.cn/eportal/ui?pageId=320833&systemId=2&categoryId=1&salePermitId=8207359&buildingId=579103",
+        "onclick": "",
+        "outerHTML": "<a href=\"/eportal/ui?pageId=320833&amp;systemId=2&amp;categoryId=1&amp;salePermitId=8207359&amp;buildingId=579103\" title=\"查看信息\">查看信息</a>"
+      },
+      "1516-3#住宅楼",
+      "54",
+      "4700.55",
+      "",
+      "44173.01",
+      {
+        "text": "查看信息",
+        "href": "http://bjjs.zjw.beijing.gov.cn/eportal/ui?pageId=320833&systemId=2&categoryId=1&salePermitId=8207359&buildingId=579102",
+        "onclick": "",
+        "outerHTML": "<a href=\"/eportal/ui?pageId=320833&amp;systemId=2&amp;categoryId=1&amp;salePermitId=8207359&amp;buildingId=579102\" title=\"查看信息\">查看信息</a>"
+      },
+      "1516-4#住宅楼",
+      "36",
+      "3185.14",
+      "",
+      "43976.63",
+      {
+        "text": "查看信息",
+        "href": "http://bjjs.zjw.beijing.gov.cn/eportal/ui?pageId=320833&systemId=2&categoryId=1&salePermitId=8207359&buildingId=579101",
+        "onclick": "",
+        "outerHTML": "<a href=\"/eportal/ui?pageId=320833&amp;systemId=2&amp;categoryId=1&amp;salePermitId=8207359&amp;buildingId=579101\" title=\"查看信息\">查看信息</a>"
+      },
+      "1516-5#住宅楼",
+      "57",
+      "7899.10",
+      "",
+      "46836.97",
+      {
+        "text": "查看信息",
+        "href": "http://bjjs.zjw.beijing.gov.cn/eportal/ui?pageId=320833&systemId=2&categoryId=1&salePermitId=8207359&buildingId=579077",
+        "onclick": "",
+        "outerHTML": "<a href=\"/eportal/ui?pageId=320833&amp;systemId=2&amp;categoryId=1&amp;salePermitId=8207359&amp;buildingId=579077\" title=\"查看信息\">查看信息</a>"
+      },
+      "1516-6#住宅楼",
+      "18",
+      "1943.80",
+      "",
+      "45707.41",
+      {
+        "text": "查看信息",
+        "href": "http://bjjs.zjw.beijing.gov.cn/eportal/ui?pageId=320833&systemId=2&categoryId=1&salePermitId=8207359&buildingId=579076",
+        "onclick": "",
+        "outerHTML": "<a href=\"/eportal/ui?pageId=320833&amp;systemId=2&amp;categoryId=1&amp;salePermitId=8207359&amp;buildingId=579076\" title=\"查看信息\">查看信息</a>"
+      },
+      "1516-7#住宅楼",
+      "44",
+      "3835.14",
+      "",
+      "42643.50",
+      {
+        "text": "查看信息",
+        "href": "http://bjjs.zjw.beijing.gov.cn/eportal/ui?pageId=320833&systemId=2&categoryId=1&salePermitId=8207359&buildingId=579075",
+        "onclick": "",
+        "outerHTML": "<a href=\"/eportal/ui?pageId=320833&amp;systemId=2&amp;categoryId=1&amp;salePermitId=8207359&amp;buildingId=579075\" title=\"查看信息\">查看信息</a>"
+      },
+      "1516-8#住宅楼",
+      "66",
+      "7801.66",
+      "",
+      "43825.33",
+      {
+        "text": "查看信息",
+        "href": "http://bjjs.zjw.beijing.gov.cn/eportal/ui?pageId=320833&systemId=2&categoryId=1&salePermitId=8207359&buildingId=579074",
+        "onclick": "",
+        "outerHTML": "<a href=\"/eportal/ui?pageId=320833&amp;systemId=2&amp;categoryId=1&amp;salePermitId=8207359&amp;buildingId=579074\" title=\"查看信息\">查看信息</a>"
+      }
+    ]
+  },
+  {
+    "tableIdx": 4,
+    "rowIdx": 1,
+    "tdIdx": 0,
+    "text": "查看信息",
+    "href": "http://bjjs.zjw.beijing.gov.cn/eportal/ui?pageId=320833&systemId=2&categoryId=1&salePermitId=8207359&buildingId=579101",
+    "onclick": "",
+    "target": "",
+    "className": "",
+    "id": "",
+    "outerHTML": "<a href=\"/eportal/ui?pageId=320833&amp;systemId=2&amp;categoryId=1&amp;salePermitId=8207359&amp;buildingId=579101\" title=\"查看信息\">查看信息</a>",
+    "rowContext": [
+      {
+        "text": "查看信息",
+        "href": "http://bjjs.zjw.beijing.gov.cn/eportal/ui?pageId=320833&systemId=2&categoryId=1&salePermitId=8207359&buildingId=579104",
+        "onclick": "",
+        "outerHTML": "<a href=\"/eportal/ui?pageId=320833&amp;systemId=2&amp;categoryId=1&amp;salePermitId=8207359&amp;buildingId=579104\" title=\"查看信息\">查看信息</a>"
+      },
+      {
+        "text": "查看信息",
+        "href": "http://bjjs.zjw.beijing.gov.cn/eportal/ui?pageId=320833&systemId=2&categoryId=1&salePermitId=8207359&buildingId=579103",
+        "onclick": "",
+        "outerHTML": "<a href=\"/eportal/ui?pageId=320833&amp;systemId=2&amp;categoryId=1&amp;salePermitId=8207359&amp;buildingId=579103\" title=\"查看信息\">查看信息</a>"
+      },
+      {
+        "text": "查看信息",
+        "href": "http://bjjs.zjw.beijing.gov.cn/eportal/ui?pageId=320833&systemId=2&categoryId=1&salePermitId=8207359&buildingId=579102",
+        "onclick": "",
+        "outerHTML": "<a href=\"/eportal/ui?pageId=320833&amp;systemId=2&amp;categoryId=1&amp;salePermitId=8207359&amp;buildingId=579102\" title=\"查看信息\">查看信息</a>"
+      },
+      {
+        "text": "查看信息",
+        "href": "http://bjjs.zjw.beijing.gov.cn/eportal/ui?pageId=320833&systemId=2&categoryId=1&salePermitId=8207359&buildingId=579101",
+        "onclick": "",
+        "outerHTML": "<a href=\"/eportal/ui?pageId=320833&amp;systemId=2&amp;categoryId=1&amp;salePermitId=8207359&amp;buildingId=579101\" title=\"查看信息\">查看信息</a>"
+      },
+      {
+        "text": "查看信息",
+        "href": "http://bjjs.zjw.beijing.gov.cn/eportal/ui?pageId=320833&systemId=2&categoryId=1&salePermitId=8207359&buildingId=579077",
+        "onclick": "",
+        "outerHTML": "<a href=\"/eportal/ui?pageId=320833&amp;systemId=2&amp;categoryId=1&amp;salePermitId=8207359&amp;buildingId=579077\" title=\"查看信息\">查看信息</a>"
+      },
+      {
+        "text": "查看信息",
+        "href": "http://bjjs.zjw.beijing.gov.cn/eportal/ui?pageId=320833&systemId=2&categoryId=1&salePermitId=8207359&buildingId=579076",
+        "onclick": "",
+        "outerHTML": "<a href=\"/eportal/ui?pageId=320833&amp;systemId=2&amp;categoryId=1&amp;salePermitId=8207359&amp;buildingId=579076\" title=\"查看信息\">查看信息</a>"
+      },
+      {
+        "text": "查看信息",
+        "href": "http://bjjs.zjw.beijing.gov.cn/eportal/ui?pageId=320833&systemId=2&categoryId=1&salePermitId=8207359&buildingId=579075",
+        "onclick": "",
+        "outerHTML": "<a href=\"/eportal/ui?pageId=320833&amp;systemId=2&amp;categoryId=1&amp;salePermitId=8207359&amp;buildingId=579075\" title=\"查看信息\">查看信息</a>"
+      },
+      {
+        "text": "查看信息",
+        "href": "http://bjjs.zjw.beijing.gov.cn/eportal/ui?pageId=320833&systemId=2&categoryId=1&salePermitId=8207359&buildingId=579074",
+        "onclick": "",
+        "outerHTML": "<a href=\"/eportal/ui?pageId=320833&amp;systemId=2&amp;categoryId=1&amp;salePermitId=8207359&amp;buildingId=579074\" title=\"查看信息\">查看信息</a>"
+      },
+      "销售楼号",
+      "批准销售\n套　　数",
+      "批准销售\n面积(m2)",
+      "销售状态",
+      "住宅拟售\n价格(元/m2)",
+      "楼盘表",
+      "1516-1#住宅楼",
+      "54",
+      "4700.01",
+      "",
+      "42942.44",
+      {
+        "text": "查看信息",
+        "href": "http://bjjs.zjw.beijing.gov.cn/eportal/ui?pageId=320833&systemId=2&categoryId=1&salePermitId=8207359&buildingId=579104",
+        "onclick": "",
+        "outerHTML": "<a href=\"/eportal/ui?pageId=320833&amp;systemId=2&amp;categoryId=1&amp;salePermitId=8207359&amp;buildingId=579104\" title=\"查看信息\">查看信息</a>"
+      },
+      "1516-2#住宅楼",
+      "54",
+      "5905.45",
+      "",
+      "45235.23",
+      {
+        "text": "查看信息",
+        "href": "http://bjjs.zjw.beijing.gov.cn/eportal/ui?pageId=320833&systemId=2&categoryId=1&salePermitId=8207359&buildingId=579103",
+        "onclick": "",
+        "outerHTML": "<a href=\"/eportal/ui?pageId=320833&amp;systemId=2&amp;categoryId=1&amp;salePermitId=8207359&amp;buildingId=579103\" title=\"查看信息\">查看信息</a>"
+      },
+      "1516-3#住宅楼",
+      "54",
+      "4700.55",
+      "",
+      "44173.01",
+      {
+        "text": "查看信息",
+        "href": "http://bjjs.zjw.beijing.gov.cn/eportal/ui?pageId=320833&systemId=2&categoryId=1&salePermitId=8207359&buildingId=579102",
+        "onclick": "",
+        "outerHTML": "<a href=\"/eportal/ui?pageId=320833&amp;systemId=2&amp;categoryId=1&amp;salePermitId=8207359&amp;buildingId=579102\" title=\"查看信息\">查看信息</a>"
+      },
+      "1516-4#住宅楼",
+      "36",
+      "3185.14",
+      "",
+      "43976.63",
+      {
+        "text": "查看信息",
+        "href": "http://bjjs.zjw.beijing.gov.cn/eportal/ui?pageId=320833&systemId=2&categoryId=1&salePermitId=8207359&buildingId=579101",
+        "onclick": "",
+        "outerHTML": "<a href=\"/eportal/ui?pageId=320833&amp;systemId=2&amp;categoryId=1&amp;salePermitId=8207359&amp;buildingId=579101\" title=\"查看信息\">查看信息</a>"
+      },
+      "1516-5#住宅楼",
+      "57",
+      "7899.10",
+      "",
+      "46836.97",
+      {
+        "text": "查看信息",
+        "href": "http://bjjs.zjw.beijing.gov.cn/eportal/ui?pageId=320833&systemId=2&categoryId=1&salePermitId=8207359&buildingId=579077",
+        "onclick": "",
+        "outerHTML": "<a href=\"/eportal/ui?pageId=320833&amp;systemId=2&amp;categoryId=1&amp;salePermitId=8207359&amp;buildingId=579077\" title=\"查看信息\">查看信息</a>"
+      },
+      "1516-6#住宅楼",
+      "18",
+      "1943.80",
+      "",
+      "45707.41",
+      {
+        "text": "查看信息",
+        "href": "http://bjjs.zjw.beijing.gov.cn/eportal/ui?pageId=320833&systemId=2&categoryId=1&salePermitId=8207359&buildingId=579076",
+        "onclick": "",
+        "outerHTML": "<a href=\"/eportal/ui?pageId=320833&amp;systemId=2&amp;categoryId=1&amp;salePermitId=8207359&amp;buildingId=579076\" title=\"查看信息\">查看信息</a>"
+      },
+      "1516-7#住宅楼",
+      "44",
+      "3835.14",
+      "",
+      "42643.50",
+      {
+        "text": "查看信息",
+        "href": "http://bjjs.zjw.beijing.gov.cn/eportal/ui?pageId=320833&systemId=2&categoryId=1&salePermitId=8207359&buildingId=579075",
+        "onclick": "",
+        "outerHTML": "<a href=\"/eportal/ui?pageId=320833&amp;systemId=2&amp;categoryId=1&amp;salePermitId=8207359&amp;buildingId=579075\" title=\"查看信息\">查看信息</a>"
+      },
+      "1516-8#住宅楼",
+      "66",
+      "7801.66",
+      "",
+      "43825.33",
+      {
+        "text": "查看信息",
+        "href": "http://bjjs.zjw.beijing.gov.cn/eportal/ui?pageId=320833&systemId=2&categoryId=1&salePermitId=8207359&buildingId=579074",
+        "onclick": "",
+        "outerHTML": "<a href=\"/eportal/ui?pageId=320833&amp;systemId=2&amp;categoryId=1&amp;salePermitId=8207359&amp;buildingId=579074\" title=\"查看信息\">查看信息</a>"
+      }
+    ]
+  },
+  {
+    "tableIdx": 4,
+    "rowIdx": 1,
+    "tdIdx": 0,
+    "text": "查看信息",
+    "href": "http://bjjs.zjw.beijing.gov.cn/eportal/ui?pageId=320833&systemId=2&categoryId=1&salePermitId=8207359&buildingId=579077",
+    "onclick": "",
+    "target": "",
+    "className": "",
+    "id": "",
+    "outerHTML": "<a href=\"/eportal/ui?pageId=320833&amp;systemId=2&amp;categoryId=1&amp;salePermitId=8207359&amp;buildingId=579077\" title=\"查看信息\">查看信息</a>",
+    "rowContext": [
+      {
+        "text": "查看信息",
+        "href": "http://bjjs.zjw.beijing.gov.cn/eportal/ui?pageId=320833&systemId=2&categoryId=1&salePermitId=8207359&buildingId=579104",
+        "onclick": "",
+        "outerHTML": "<a href=\"/eportal/ui?pageId=320833&amp;systemId=2&amp;categoryId=1&amp;salePermitId=8207359&amp;buildingId=579104\" title=\"查看信息\">查看信息</a>"
+      },
+      {
+        "text": "查看信息",
+        "href": "http://bjjs.zjw.beijing.gov.cn/eportal/ui?pageId=320833&systemId=2&categoryId=1&salePermitId=8207359&buildingId=579103",
+        "onclick": "",
+        "outerHTML": "<a href=\"/eportal/ui?pageId=320833&amp;systemId=2&amp;categoryId=1&amp;salePermitId=8207359&amp;buildingId=579103\" title=\"查看信息\">查看信息</a>"
+      },
+      {
+        "text": "查看信息",
+        "href": "http://bjjs.zjw.beijing.gov.cn/eportal/ui?pageId=320833&systemId=2&categoryId=1&salePermitId=8207359&buildingId=579102",
+        "onclick": "",
+        "outerHTML": "<a href=\"/eportal/ui?pageId=320833&amp;systemId=2&amp;categoryId=1&amp;salePermitId=8207359&amp;buildingId=579102\" title=\"查看信息\">查看信息</a>"
+      },
+      {
+        "text": "查看信息",
+        "href": "http://bjjs.zjw.beijing.gov.cn/eportal/ui?pageId=320833&systemId=2&categoryId=1&salePermitId=8207359&buildingId=579101",
+        "onclick": "",
+        "outerHTML": "<a href=\"/eportal/ui?pageId=320833&amp;systemId=2&amp;categoryId=1&amp;salePermitId=8207359&amp;buildingId=579101\" title=\"查看信息\">查看信息</a>"
+      },
+      {
+        "text": "查看信息",
+        "href": "http://bjjs.zjw.beijing.gov.cn/eportal/ui?pageId=320833&systemId=2&categoryId=1&salePermitId=8207359&buildingId=579077",
+        "onclick": "",
+        "outerHTML": "<a href=\"/eportal/ui?pageId=320833&amp;systemId=2&amp;categoryId=1&amp;salePermitId=8207359&amp;buildingId=579077\" title=\"查看信息\">查看信息</a>"
+      },
+      {
+        "text": "查看信息",
+        "href": "http://bjjs.zjw.beijing.gov.cn/eportal/ui?pageId=320833&systemId=2&categoryId=1&salePermitId=8207359&buildingId=579076",
+        "onclick": "",
+        "outerHTML": "<a href=\"/eportal/ui?pageId=320833&amp;systemId=2&amp;categoryId=1&amp;salePermitId=8207359&amp;buildingId=579076\" title=\"查看信息\">查看信息</a>"
+      },
+      {
+        "text": "查看信息",
+        "href": "http://bjjs.zjw.beijing.gov.cn/eportal/ui?pageId=320833&systemId=2&categoryId=1&salePermitId=8207359&buildingId=579075",
+        "onclick": "",
+        "outerHTML": "<a href=\"/eportal/ui?pageId=320833&amp;systemId=2&amp;categoryId=1&amp;salePermitId=8207359&amp;buildingId=579075\" title=\"查看信息\">查看信息</a>"
+      },
+      {
+        "text": "查看信息",
+        "href": "http://bjjs.zjw.beijing.gov.cn/eportal/ui?pageId=320833&systemId=2&categoryId=1&salePermitId=8207359&buildingId=579074",
+        "onclick": "",
+        "outerHTML": "<a href=\"/eportal/ui?pageId=320833&amp;systemId=2&amp;categoryId=1&amp;salePermitId=8207359&amp;buildingId=579074\" title=\"查看信息\">查看信息</a>"
+      },
+      "销售楼号",
+      "批准销售\n套　　数",
+      "批准销售\n面积(m2)",
+      "销售状态",
+      "住宅拟售\n价格(元/m2)",
+      "楼盘表",
+      "1516-1#住宅楼",
+      "54",
+      "4700.01",
+      "",
+      "42942.44",
+      {
+        "text": "查看信息",
+        "href": "http://bjjs.zjw.beijing.gov.cn/eportal/ui?pageId=320833&systemId=2&categoryId=1&salePermitId=8207359&buildingId=579104",
+        "onclick": "",
+        "outerHTML": "<a href=\"/eportal/ui?pageId=320833&amp;systemId=2&amp;categoryId=1&amp;salePermitId=8207359&amp;buildingId=579104\" title=\"查看信息\">查看信息</a>"
+      },
+      "1516-2#住宅楼",
+      "54",
+      "5905.45",
+      "",
+      "45235.23",
+      {
+        "text": "查看信息",
+        "href": "http://bjjs.zjw.beijing.gov.cn/eportal/ui?pageId=320833&systemId=2&categoryId=1&salePermitId=8207359&buildingId=579103",
+        "onclick": "",
+        "outerHTML": "<a href=\"/eportal/ui?pageId=320833&amp;systemId=2&amp;categoryId=1&amp;salePermitId=8207359&amp;buildingId=579103\" title=\"查看信息\">查看信息</a>"
+      },
+      "1516-3#住宅楼",
+      "54",
+      "4700.55",
+      "",
+      "44173.01",
+      {
+        "text": "查看信息",
+        "href": "http://bjjs.zjw.beijing.gov.cn/eportal/ui?pageId=320833&systemId=2&categoryId=1&salePermitId=8207359&buildingId=579102",
+        "onclick": "",
+        "outerHTML": "<a href=\"/eportal/ui?pageId=320833&amp;systemId=2&amp;categoryId=1&amp;salePermitId=8207359&amp;buildingId=579102\" title=\"查看信息\">查看信息</a>"
+      },
+      "1516-4#住宅楼",
+      "36",
+      "3185.14",
+      "",
+      "43976.63",
+      {
+        "text": "查看信息",
+        "href": "http://bjjs.zjw.beijing.gov.cn/eportal/ui?pageId=320833&systemId=2&categoryId=1&salePermitId=8207359&buildingId=579101",
+        "onclick": "",
+        "outerHTML": "<a href=\"/eportal/ui?pageId=320833&amp;systemId=2&amp;categoryId=1&amp;salePermitId=8207359&amp;buildingId=579101\" title=\"查看信息\">查看信息</a>"
+      },
+      "1516-5#住宅楼",
+      "57",
+      "7899.10",
+      "",
+      "46836.97",
+      {
+        "text": "查看信息",
+        "href": "http://bjjs.zjw.beijing.gov.cn/eportal/ui?pageId=320833&systemId=2&categoryId=1&salePermitId=8207359&buildingId=579077",
+        "onclick": "",
+        "outerHTML": "<a href=\"/eportal/ui?pageId=320833&amp;systemId=2&amp;categoryId=1&amp;salePermitId=8207359&amp;buildingId=579077\" title=\"查看信息\">查看信息</a>"
+      },
+      "1516-6#住宅楼",
+      "18",
+      "1943.80",
+      "",
+      "45707.41",
+      {
+        "text": "查看信息",
+        "href": "http://bjjs.zjw.beijing.gov.cn/eportal/ui?pageId=320833&systemId=2&categoryId=1&salePermitId=8207359&buildingId=579076",
+        "onclick": "",
+        "outerHTML": "<a href=\"/eportal/ui?pageId=320833&amp;systemId=2&amp;categoryId=1&amp;salePermitId=8207359&amp;buildingId=579076\" title=\"查看信息\">查看信息</a>"
+      },
+      "1516-7#住宅楼",
+      "44",
+      "3835.14",
+      "",
+      "42643.50",
+      {
+        "text": "查看信息",
+        "href": "http://bjjs.zjw.beijing.gov.cn/eportal/ui?pageId=320833&systemId=2&categoryId=1&salePermitId=8207359&buildingId=579075",
+        "onclick": "",
+        "outerHTML": "<a href=\"/eportal/ui?pageId=320833&amp;systemId=2&amp;categoryId=1&amp;salePermitId=8207359&amp;buildingId=579075\" title=\"查看信息\">查看信息</a>"
+      },
+      "1516-8#住宅楼",
+      "66",
+      "7801.66",
+      "",
+      "43825.33",
+      {
+        "text": "查看信息",
+        "href": "http://bjjs.zjw.beijing.gov.cn/eportal/ui?pageId=320833&systemId=2&categoryId=1&salePermitId=8207359&buildingId=579074",
+        "onclick": "",
+        "outerHTML": "<a href=\"/eportal/ui?pageId=320833&amp;systemId=2&amp;categoryId=1&amp;salePermitId=8207359&amp;buildingId=579074\" title=\"查看信息\">查看信息</a>"
+      }
+    ]
+  },
+  {
+    "tableIdx": 4,
+    "rowIdx": 1,
+    "tdIdx": 0,
+    "text": "查看信息",
+    "href": "http://bjjs.zjw.beijing.gov.cn/eportal/ui?pageId=320833&systemId=2&categoryId=1&salePermitId=8207359&buildingId=579076",
+    "onclick": "",
+    "target": "",
+    "className": "",
+    "id": "",
+    "outerHTML": "<a href=\"/eportal/ui?pageId=320833&amp;systemId=2&amp;categoryId=1&amp;salePermitId=8207359&amp;buildingId=579076\" title=\"查看信息\">查看信息</a>",
+    "rowContext": [
+      {
+        "text": "查看信息",
+        "href": "http://bjjs.zjw.beijing.gov.cn/eportal/ui?pageId=320833&systemId=2&categoryId=1&salePermitId=8207359&buildingId=579104",
+        "onclick": "",
+        "outerHTML": "<a href=\"/eportal/ui?pageId=320833&amp;systemId=2&amp;categoryId=1&amp;salePermitId=8207359&amp;buildingId=579104\" title=\"查看信息\">查看信息</a>"
+      },
+      {
+        "text": "查看信息",
+        "href": "http://bjjs.zjw.beijing.gov.cn/eportal/ui?pageId=320833&systemId=2&categoryId=1&salePermitId=8207359&buildingId=579103",
+        "onclick": "",
+        "outerHTML": "<a href=\"/eportal/ui?pageId=320833&amp;systemId=2&amp;categoryId=1&amp;salePermitId=8207359&amp;buildingId=579103\" title=\"查看信息\">查看信息</a>"
+      },
+      {
+        "text": "查看信息",
+        "href": "http://bjjs.zjw.beijing.gov.cn/eportal/ui?pageId=320833&systemId=2&categoryId=1&salePermitId=8207359&buildingId=579102",
+        "onclick": "",
+        "outerHTML": "<a href=\"/eportal/ui?pageId=320833&amp;systemId=2&amp;categoryId=1&amp;salePermitId=8207359&amp;buildingId=579102\" title=\"查看信息\">查看信息</a>"
+      },
+      {
+        "text": "查看信息",
+        "href": "http://bjjs.zjw.beijing.gov.cn/eportal/ui?pageId=320833&systemId=2&categoryId=1&salePermitId=8207359&buildingId=579101",
+        "onclick": "",
+        "outerHTML": "<a href=\"/eportal/ui?pageId=320833&amp;systemId=2&amp;categoryId=1&amp;salePermitId=8207359&amp;buildingId=579101\" title=\"查看信息\">查看信息</a>"
+      },
+      {
+        "text": "查看信息",
+        "href": "http://bjjs.zjw.beijing.gov.cn/eportal/ui?pageId=320833&systemId=2&categoryId=1&salePermitId=8207359&buildingId=579077",
+        "onclick": "",
+        "outerHTML": "<a href=\"/eportal/ui?pageId=320833&amp;systemId=2&amp;categoryId=1&amp;salePermitId=8207359&amp;buildingId=579077\" title=\"查看信息\">查看信息</a>"
+      },
+      {
+        "text": "查看信息",
+        "href": "http://bjjs.zjw.beijing.gov.cn/eportal/ui?pageId=320833&systemId=2&categoryId=1&salePermitId=8207359&buildingId=579076",
+        "onclick": "",
+        "outerHTML": "<a href=\"/eportal/ui?pageId=320833&amp;systemId=2&amp;categoryId=1&amp;salePermitId=8207359&amp;buildingId=579076\" title=\"查看信息\">查看信息</a>"
+      },
+      {
+        "text": "查看信息",
+        "href": "http://bjjs.zjw.beijing.gov.cn/eportal/ui?pageId=320833&systemId=2&categoryId=1&salePermitId=8207359&buildingId=579075",
+        "onclick": "",
+        "outerHTML": "<a href=\"/eportal/ui?pageId=320833&amp;systemId=2&amp;categoryId=1&amp;salePermitId=8207359&amp;buildingId=579075\" title=\"查看信息\">查看信息</a>"
+      },
+      {
+        "text": "查看信息",
+        "href": "http://bjjs.zjw.beijing.gov.cn/eportal/ui?pageId=320833&systemId=2&categoryId=1&salePermitId=8207359&buildingId=579074",
+        "onclick": "",
+        "outerHTML": "<a href=\"/eportal/ui?pageId=320833&amp;systemId=2&amp;categoryId=1&amp;salePermitId=8207359&amp;buildingId=579074\" title=\"查看信息\">查看信息</a>"
+      },
+      "销售楼号",
+      "批准销售\n套　　数",
+      "批准销售\n面积(m2)",
+      "销售状态",
+      "住宅拟售\n价格(元/m2)",
+      "楼盘表",
+      "1516-1#住宅楼",
+      "54",
+      "4700.01",
+      "",
+      "42942.44",
+      {
+        "text": "查看信息",
+        "href": "http://bjjs.zjw.beijing.gov.cn/eportal/ui?pageId=320833&systemId=2&categoryId=1&salePermitId=8207359&buildingId=579104",
+        "onclick": "",
+        "outerHTML": "<a href=\"/eportal/ui?pageId=320833&amp;systemId=2&amp;categoryId=1&amp;salePermitId=8207359&amp;buildingId=579104\" title=\"查看信息\">查看信息</a>"
+      },
+      "1516-2#住宅楼",
+      "54",
+      "5905.45",
+      "",
+      "45235.23",
+      {
+        "text": "查看信息",
+        "href": "http://bjjs.zjw.beijing.gov.cn/eportal/ui?pageId=320833&systemId=2&categoryId=1&salePermitId=8207359&buildingId=579103",
+        "onclick": "",
+        "outerHTML": "<a href=\"/eportal/ui?pageId=320833&amp;systemId=2&amp;categoryId=1&amp;salePermitId=8207359&amp;buildingId=579103\" title=\"查看信息\">查看信息</a>"
+      },
+      "1516-3#住宅楼",
+      "54",
+      "4700.55",
+      "",
+      "44173.01",
+      {
+        "text": "查看信息",
+        "href": "http://bjjs.zjw.beijing.gov.cn/eportal/ui?pageId=320833&systemId=2&categoryId=1&salePermitId=8207359&buildingId=579102",
+        "onclick": "",
+        "outerHTML": "<a href=\"/eportal/ui?pageId=320833&amp;systemId=2&amp;categoryId=1&amp;salePermitId=8207359&amp;buildingId=579102\" title=\"查看信息\">查看信息</a>"
+      },
+      "1516-4#住宅楼",
+      "36",
+      "3185.14",
+      "",
+      "43976.63",
+      {
+        "text": "查看信息",
+        "href": "http://bjjs.zjw.beijing.gov.cn/eportal/ui?pageId=320833&systemId=2&categoryId=1&salePermitId=8207359&buildingId=579101",
+        "onclick": "",
+        "outerHTML": "<a href=\"/eportal/ui?pageId=320833&amp;systemId=2&amp;categoryId=1&amp;salePermitId=8207359&amp;buildingId=579101\" title=\"查看信息\">查看信息</a>"
+      },
+      "1516-5#住宅楼",
+      "57",
+      "7899.10",
+      "",
+      "46836.97",
+      {
+        "text": "查看信息",
+        "href": "http://bjjs.zjw.beijing.gov.cn/eportal/ui?pageId=320833&systemId=2&categoryId=1&salePermitId=8207359&buildingId=579077",
+        "onclick": "",
+        "outerHTML": "<a href=\"/eportal/ui?pageId=320833&amp;systemId=2&amp;categoryId=1&amp;salePermitId=8207359&amp;buildingId=579077\" title=\"查看信息\">查看信息</a>"
+      },
+      "1516-6#住宅楼",
+      "18",
+      "1943.80",
+      "",
+      "45707.41",
+      {
+        "text": "查看信息",
+        "href": "http://bjjs.zjw.beijing.gov.cn/eportal/ui?pageId=320833&systemId=2&categoryId=1&salePermitId=8207359&buildingId=579076",
+        "onclick": "",
+        "outerHTML": "<a href=\"/eportal/ui?pageId=320833&amp;systemId=2&amp;categoryId=1&amp;salePermitId=8207359&amp;buildingId=579076\" title=\"查看信息\">查看信息</a>"
+      },
+      "1516-7#住宅楼",
+      "44",
+      "3835.14",
+      "",
+      "42643.50",
+      {
+        "text": "查看信息",
+        "href": "http://bjjs.zjw.beijing.gov.cn/eportal/ui?pageId=320833&systemId=2&categoryId=1&salePermitId=8207359&buildingId=579075",
+        "onclick": "",
+        "outerHTML": "<a href=\"/eportal/ui?pageId=320833&amp;systemId=2&amp;categoryId=1&amp;salePermitId=8207359&amp;buildingId=579075\" title=\"查看信息\">查看信息</a>"
+      },
+      "1516-8#住宅楼",
+      "66",
+      "7801.66",
+      "",
+      "43825.33",
+      {
+        "text": "查看信息",
+        "href": "http://bjjs.zjw.beijing.gov.cn/eportal/ui?pageId=320833&systemId=2&categoryId=1&salePermitId=8207359&buildingId=579074",
+        "onclick": "",
+        "outerHTML": "<a href=\"/eportal/ui?pageId=320833&amp;systemId=2&amp;categoryId=1&amp;salePermitId=8207359&amp;buildingId=579074\" title=\"查看信息\">查看信息</a>"
+      }
+    ]
+  },
+  {
+    "tableIdx": 4,
+    "rowIdx": 1,
+    "tdIdx": 0,
+    "text": "查看信息",
+    "href": "http://bjjs.zjw.beijing.gov.cn/eportal/ui?pageId=320833&systemId=2&categoryId=1&salePermitId=8207359&buildingId=579075",
+    "onclick": "",
+    "target": "",
+    "className": "",
+    "id": "",
+    "outerHTML": "<a href=\"/eportal/ui?pageId=320833&amp;systemId=2&amp;categoryId=1&amp;salePermitId=8207359&amp;buildingId=579075\" title=\"查看信息\">查看信息</a>",
+    "rowContext": [
+      {
+        "text": "查看信息",
+        "href": "http://bjjs.zjw.beijing.gov.cn/eportal/ui?pageId=320833&systemId=2&categoryId=1&salePermitId=8207359&buildingId=579104",
+        "onclick": "",
+        "outerHTML": "<a href=\"/eportal/ui?pageId=320833&amp;systemId=2&amp;categoryId=1&amp;salePermitId=8207359&amp;buildingId=579104\" title=\"查看信息\">查看信息</a>"
+      },
+      {
+        "text": "查看信息",
+        "href": "http://bjjs.zjw.beijing.gov.cn/eportal/ui?pageId=320833&systemId=2&categoryId=1&salePermitId=8207359&buildingId=579103",
+        "onclick": "",
+        "outerHTML": "<a href=\"/eportal/ui?pageId=320833&amp;systemId=2&amp;categoryId=1&amp;salePermitId=8207359&amp;buildingId=579103\" title=\"查看信息\">查看信息</a>"
+      },
+      {
+        "text": "查看信息",
+        "href": "http://bjjs.zjw.beijing.gov.cn/eportal/ui?pageId=320833&systemId=2&categoryId=1&salePermitId=8207359&buildingId=579102",
+        "onclick": "",
+        "outerHTML": "<a href=\"/eportal/ui?pageId=320833&amp;systemId=2&amp;categoryId=1&amp;salePermitId=8207359&amp;buildingId=579102\" title=\"查看信息\">查看信息</a>"
+      },
+      {
+        "text": "查看信息",
+        "href": "http://bjjs.zjw.beijing.gov.cn/eportal/ui?pageId=320833&systemId=2&categoryId=1&salePermitId=8207359&buildingId=579101",
+        "onclick": "",
+        "outerHTML": "<a href=\"/eportal/ui?pageId=320833&amp;systemId=2&amp;categoryId=1&amp;salePermitId=8207359&amp;buildingId=579101\" title=\"查看信息\">查看信息</a>"
+      },
+      {
+        "text": "查看信息",
+        "href": "http://bjjs.zjw.beijing.gov.cn/eportal/ui?pageId=320833&systemId=2&categoryId=1&salePermitId=8207359&buildingId=579077",
+        "onclick": "",
+        "outerHTML": "<a href=\"/eportal/ui?pageId=320833&amp;systemId=2&amp;categoryId=1&amp;salePermitId=8207359&amp;buildingId=579077\" title=\"查看信息\">查看信息</a>"
+      },
+      {
+        "text": "查看信息",
+        "href": "http://bjjs.zjw.beijing.gov.cn/eportal/ui?pageId=320833&systemId=2&categoryId=1&salePermitId=8207359&buildingId=579076",
+        "onclick": "",
+        "outerHTML": "<a href=\"/eportal/ui?pageId=320833&amp;systemId=2&amp;categoryId=1&amp;salePermitId=8207359&amp;buildingId=579076\" title=\"查看信息\">查看信息</a>"
+      },
+      {
+        "text": "查看信息",
+        "href": "http://bjjs.zjw.beijing.gov.cn/eportal/ui?pageId=320833&systemId=2&categoryId=1&salePermitId=8207359&buildingId=579075",
+        "onclick": "",
+        "outerHTML": "<a href=\"/eportal/ui?pageId=320833&amp;systemId=2&amp;categoryId=1&amp;salePermitId=8207359&amp;buildingId=579075\" title=\"查看信息\">查看信息</a>"
+      },
+      {
+        "text": "查看信息",
+        "href": "http://bjjs.zjw.beijing.gov.cn/eportal/ui?pageId=320833&systemId=2&categoryId=1&salePermitId=8207359&buildingId=579074",
+        "onclick": "",
+        "outerHTML": "<a href=\"/eportal/ui?pageId=320833&amp;systemId=2&amp;categoryId=1&amp;salePermitId=8207359&amp;buildingId=579074\" title=\"查看信息\">查看信息</a>"
+      },
+      "销售楼号",
+      "批准销售\n套　　数",
+      "批准销售\n面积(m2)",
+      "销售状态",
+      "住宅拟售\n价格(元/m2)",
+      "楼盘表",
+      "1516-1#住宅楼",
+      "54",
+      "4700.01",
+      "",
+      "42942.44",
+      {
+        "text": "查看信息",
+        "href": "http://bjjs.zjw.beijing.gov.cn/eportal/ui?pageId=320833&systemId=2&categoryId=1&salePermitId=8207359&buildingId=579104",
+        "onclick": "",
+        "outerHTML": "<a href=\"/eportal/ui?pageId=320833&amp;systemId=2&amp;categoryId=1&amp;salePermitId=8207359&amp;buildingId=579104\" title=\"查看信息\">查看信息</a>"
+      },
+      "1516-2#住宅楼",
+      "54",
+      "5905.45",
+      "",
+      "45235.23",
+      {
+        "text": "查看信息",
+        "href": "http://bjjs.zjw.beijing.gov.cn/eportal/ui?pageId=320833&systemId=2&categoryId=1&salePermitId=8207359&buildingId=579103",
+        "onclick": "",
+        "outerHTML": "<a href=\"/eportal/ui?pageId=320833&amp;systemId=2&amp;categoryId=1&amp;salePermitId=8207359&amp;buildingId=579103\" title=\"查看信息\">查看信息</a>"
+      },
+      "1516-3#住宅楼",
+      "54",
+      "4700.55",
+      "",
+      "44173.01",
+      {
+        "text": "查看信息",
+        "href": "http://bjjs.zjw.beijing.gov.cn/eportal/ui?pageId=320833&systemId=2&categoryId=1&salePermitId=8207359&buildingId=579102",
+        "onclick": "",
+        "outerHTML": "<a href=\"/eportal/ui?pageId=320833&amp;systemId=2&amp;categoryId=1&amp;salePermitId=8207359&amp;buildingId=579102\" title=\"查看信息\">查看信息</a>"
+      },
+      "1516-4#住宅楼",
+      "36",
+      "3185.14",
+      "",
+      "43976.63",
+      {
+        "text": "查看信息",
+        "href": "http://bjjs.zjw.beijing.gov.cn/eportal/ui?pageId=320833&systemId=2&categoryId=1&salePermitId=8207359&buildingId=579101",
+        "onclick": "",
+        "outerHTML": "<a href=\"/eportal/ui?pageId=320833&amp;systemId=2&amp;categoryId=1&amp;salePermitId=8207359&amp;buildingId=579101\" title=\"查看信息\">查看信息</a>"
+      },
+      "1516-5#住宅楼",
+      "57",
+      "7899.10",
+      "",
+      "46836.97",
+      {
+        "text": "查看信息",
+        "href": "http://bjjs.zjw.beijing.gov.cn/eportal/ui?pageId=320833&systemId=2&categoryId=1&salePermitId=8207359&buildingId=579077",
+        "onclick": "",
+        "outerHTML": "<a href=\"/eportal/ui?pageId=320833&amp;systemId=2&amp;categoryId=1&amp;salePermitId=8207359&amp;buildingId=579077\" title=\"查看信息\">查看信息</a>"
+      },
+      "1516-6#住宅楼",
+      "18",
+      "1943.80",
+      "",
+      "45707.41",
+      {
+        "text": "查看信息",
+        "href": "http://bjjs.zjw.beijing.gov.cn/eportal/ui?pageId=320833&systemId=2&categoryId=1&salePermitId=8207359&buildingId=579076",
+        "onclick": "",
+        "outerHTML": "<a href=\"/eportal/ui?pageId=320833&amp;systemId=2&amp;categoryId=1&amp;salePermitId=8207359&amp;buildingId=579076\" title=\"查看信息\">查看信息</a>"
+      },
+      "1516-7#住宅楼",
+      "44",
+      "3835.14",
+      "",
+      "42643.50",
+      {
+        "text": "查看信息",
+        "href": "http://bjjs.zjw.beijing.gov.cn/eportal/ui?pageId=320833&systemId=2&categoryId=1&salePermitId=8207359&buildingId=579075",
+        "onclick": "",
+        "outerHTML": "<a href=\"/eportal/ui?pageId=320833&amp;systemId=2&amp;categoryId=1&amp;salePermitId=8207359&amp;buildingId=579075\" title=\"查看信息\">查看信息</a>"
+      },
+      "1516-8#住宅楼",
+      "66",
+      "7801.66",
+      "",
+      "43825.33",
+      {
+        "text": "查看信息",
+        "href": "http://bjjs.zjw.beijing.gov.cn/eportal/ui?pageId=320833&systemId=2&categoryId=1&salePermitId=8207359&buildingId=579074",
+        "onclick": "",
+        "outerHTML": "<a href=\"/eportal/ui?pageId=320833&amp;systemId=2&amp;categoryId=1&amp;salePermitId=8207359&amp;buildingId=579074\" title=\"查看信息\">查看信息</a>"
+      }
+    ]
+  },
+  {
+    "tableIdx": 4,
+    "rowIdx": 1,
+    "tdIdx": 0,
+    "text": "查看信息",
+    "href": "http://bjjs.zjw.beijing.gov.cn/eportal/ui?pageId=320833&systemId=2&categoryId=1&salePermitId=8207359&buildingId=579074",
+    "onclick": "",
+    "target": "",
+    "className": "",
+    "id": "",
+    "outerHTML": "<a href=\"/eportal/ui?pageId=320833&amp;systemId=2&amp;categoryId=1&amp;salePermitId=8207359&amp;buildingId=579074\" title=\"查看信息\">查看信息</a>",
+    "rowContext": [
+      {
+        "text": "查看信息",
+        "href": "http://bjjs.zjw.beijing.gov.cn/eportal/ui?pageId=320833&systemId=2&categoryId=1&salePermitId=8207359&buildingId=579104",
+        "onclick": "",
+        "outerHTML": "<a href=\"/eportal/ui?pageId=320833&amp;systemId=2&amp;categoryId=1&amp;salePermitId=8207359&amp;buildingId=579104\" title=\"查看信息\">查看信息</a>"
+      },
+      {
+        "text": "查看信息",
+        "href": "http://bjjs.zjw.beijing.gov.cn/eportal/ui?pageId=320833&systemId=2&categoryId=1&salePermitId=8207359&buildingId=579103",
+        "onclick": "",
+        "outerHTML": "<a href=\"/eportal/ui?pageId=320833&amp;systemId=2&amp;categoryId=1&amp;salePermitId=8207359&amp;buildingId=579103\" title=\"查看信息\">查看信息</a>"
+      },
+      {
+        "text": "查看信息",
+        "href": "http://bjjs.zjw.beijing.gov.cn/eportal/ui?pageId=320833&systemId=2&categoryId=1&salePermitId=8207359&buildingId=579102",
+        "onclick": "",
+        "outerHTML": "<a href=\"/eportal/ui?pageId=320833&amp;systemId=2&amp;categoryId=1&amp;salePermitId=8207359&amp;buildingId=579102\" title=\"查看信息\">查看信息</a>"
+      },
+      {
+        "text": "查看信息",
+        "href": "http://bjjs.zjw.beijing.gov.cn/eportal/ui?pageId=320833&systemId=2&categoryId=1&salePermitId=8207359&buildingId=579101",
+        "onclick": "",
+        "outerHTML": "<a href=\"/eportal/ui?pageId=320833&amp;systemId=2&amp;categoryId=1&amp;salePermitId=8207359&amp;buildingId=579101\" title=\"查看信息\">查看信息</a>"
+      },
+      {
+        "text": "查看信息",
+        "href": "http://bjjs.zjw.beijing.gov.cn/eportal/ui?pageId=320833&systemId=2&categoryId=1&salePermitId=8207359&buildingId=579077",
+        "onclick": "",
+        "outerHTML": "<a href=\"/eportal/ui?pageId=320833&amp;systemId=2&amp;categoryId=1&amp;salePermitId=8207359&amp;buildingId=579077\" title=\"查看信息\">查看信息</a>"
+      },
+      {
+        "text": "查看信息",
+        "href": "http://bjjs.zjw.beijing.gov.cn/eportal/ui?pageId=320833&systemId=2&categoryId=1&salePermitId=8207359&buildingId=579076",
+        "onclick": "",
+        "outerHTML": "<a href=\"/eportal/ui?pageId=320833&amp;systemId=2&amp;categoryId=1&amp;salePermitId=8207359&amp;buildingId=579076\" title=\"查看信息\">查看信息</a>"
+      },
+      {
+        "text": "查看信息",
+        "href": "http://bjjs.zjw.beijing.gov.cn/eportal/ui?pageId=320833&systemId=2&categoryId=1&salePermitId=8207359&buildingId=579075",
+        "onclick": "",
+        "outerHTML": "<a href=\"/eportal/ui?pageId=320833&amp;systemId=2&amp;categoryId=1&amp;salePermitId=8207359&amp;buildingId=579075\" title=\"查看信息\">查看信息</a>"
+      },
+      {
+        "text": "查看信息",
+        "href": "http://bjjs.zjw.beijing.gov.cn/eportal/ui?pageId=320833&systemId=2&categoryId=1&salePermitId=8207359&buildingId=579074",
+        "onclick": "",
+        "outerHTML": "<a href=\"/eportal/ui?pageId=320833&amp;systemId=2&amp;categoryId=1&amp;salePermitId=8207359&amp;buildingId=579074\" title=\"查看信息\">查看信息</a>"
+      },
+      "销售楼号",
+      "批准销售\n套　　数",
+      "批准销售\n面积(m2)",
+      "销售状态",
+      "住宅拟售\n价格(元/m2)",
+      "楼盘表",
+      "1516-1#住宅楼",
+      "54",
+      "4700.01",
+      "",
+      "42942.44",
+      {
+        "text": "查看信息",
+        "href": "http://bjjs.zjw.beijing.gov.cn/eportal/ui?pageId=320833&systemId=2&categoryId=1&salePermitId=8207359&buildingId=579104",
+        "onclick": "",
+        "outerHTML": "<a href=\"/eportal/ui?pageId=320833&amp;systemId=2&amp;categoryId=1&amp;salePermitId=8207359&amp;buildingId=579104\" title=\"查看信息\">查看信息</a>"
+      },
+      "1516-2#住宅楼",
+      "54",
+      "5905.45",
+      "",
+      "45235.23",
+      {
+        "text": "查看信息",
+        "href": "http://bjjs.zjw.beijing.gov.cn/eportal/ui?pageId=320833&systemId=2&categoryId=1&salePermitId=8207359&buildingId=579103",
+        "onclick": "",
+        "outerHTML": "<a href=\"/eportal/ui?pageId=320833&amp;systemId=2&amp;categoryId=1&amp;salePermitId=8207359&amp;buildingId=579103\" title=\"查看信息\">查看信息</a>"
+      },
+      "1516-3#住宅楼",
+      "54",
+      "4700.55",
+      "",
+      "44173.01",
+      {
+        "text": "查看信息",
+        "href": "http://bjjs.zjw.beijing.gov.cn/eportal/ui?pageId=320833&systemId=2&categoryId=1&salePermitId=8207359&buildingId=579102",
+        "onclick": "",
+        "outerHTML": "<a href=\"/eportal/ui?pageId=320833&amp;systemId=2&amp;categoryId=1&amp;salePermitId=8207359&amp;buildingId=579102\" title=\"查看信息\">查看信息</a>"
+      },
+      "1516-4#住宅楼",
+      "36",
+      "3185.14",
+      "",
+      "43976.63",
+      {
+        "text": "查看信息",
+        "href": "http://bjjs.zjw.beijing.gov.cn/eportal/ui?pageId=320833&systemId=2&categoryId=1&salePermitId=8207359&buildingId=579101",
+        "onclick": "",
+        "outerHTML": "<a href=\"/eportal/ui?pageId=320833&amp;systemId=2&amp;categoryId=1&amp;salePermitId=8207359&amp;buildingId=579101\" title=\"查看信息\">查看信息</a>"
+      },
+      "1516-5#住宅楼",
+      "57",
+      "7899.10",
+      "",
+      "46836.97",
+      {
+        "text": "查看信息",
+        "href": "http://bjjs.zjw.beijing.gov.cn/eportal/ui?pageId=320833&systemId=2&categoryId=1&salePermitId=8207359&buildingId=579077",
+        "onclick": "",
+        "outerHTML": "<a href=\"/eportal/ui?pageId=320833&amp;systemId=2&amp;categoryId=1&amp;salePermitId=8207359&amp;buildingId=579077\" title=\"查看信息\">查看信息</a>"
+      },
+      "1516-6#住宅楼",
+      "18",
+      "1943.80",
+      "",
+      "45707.41",
+      {
+        "text": "查看信息",
+        "href": "http://bjjs.zjw.beijing.gov.cn/eportal/ui?pageId=320833&systemId=2&categoryId=1&salePermitId=8207359&buildingId=579076",
+        "onclick": "",
+        "outerHTML": "<a href=\"/eportal/ui?pageId=320833&amp;systemId=2&amp;categoryId=1&amp;salePermitId=8207359&amp;buildingId=579076\" title=\"查看信息\">查看信息</a>"
+      },
+      "1516-7#住宅楼",
+      "44",
+      "3835.14",
+      "",
+      "42643.50",
+      {
+        "text": "查看信息",
+        "href": "http://bjjs.zjw.beijing.gov.cn/eportal/ui?pageId=320833&systemId=2&categoryId=1&salePermitId=8207359&buildingId=579075",
+        "onclick": "",
+        "outerHTML": "<a href=\"/eportal/ui?pageId=320833&amp;systemId=2&amp;categoryId=1&amp;salePermitId=8207359&amp;buildingId=579075\" title=\"查看信息\">查看信息</a>"
+      },
+      "1516-8#住宅楼",
+      "66",
+      "7801.66",
+      "",
+      "43825.33",
+      {
+        "text": "查看信息",
+        "href": "http://bjjs.zjw.beijing.gov.cn/eportal/ui?pageId=320833&systemId=2&categoryId=1&salePermitId=8207359&buildingId=579074",
+        "onclick": "",
+        "outerHTML": "<a href=\"/eportal/ui?pageId=320833&amp;systemId=2&amp;categoryId=1&amp;salePermitId=8207359&amp;buildingId=579074\" title=\"查看信息\">查看信息</a>"
+      }
+    ]
+  },
+  {
+    "tableIdx": 4,
+    "rowIdx": 1,
+    "tdIdx": 12,
+    "text": "查看信息",
+    "href": "http://bjjs.zjw.beijing.gov.cn/eportal/ui?pageId=320833&systemId=2&categoryId=1&salePermitId=8207359&buildingId=579104",
+    "onclick": "",
+    "target": "",
+    "className": "",
+    "id": "",
+    "outerHTML": "<a href=\"/eportal/ui?pageId=320833&amp;systemId=2&amp;categoryId=1&amp;salePermitId=8207359&amp;buildingId=579104\" title=\"查看信息\">查看信息</a>",
+    "rowContext": [
+      {
+        "text": "查看信息",
+        "href": "http://bjjs.zjw.beijing.gov.cn/eportal/ui?pageId=320833&systemId=2&categoryId=1&salePermitId=8207359&buildingId=579104",
+        "onclick": "",
+        "outerHTML": "<a href=\"/eportal/ui?pageId=320833&amp;systemId=2&amp;categoryId=1&amp;salePermitId=8207359&amp;buildingId=579104\" title=\"查看信息\">查看信息</a>"
+      },
+      {
+        "text": "查看信息",
+        "href": "http://bjjs.zjw.beijing.gov.cn/eportal/ui?pageId=320833&systemId=2&categoryId=1&salePermitId=8207359&buildingId=579103",
+        "onclick": "",
+        "outerHTML": "<a href=\"/eportal/ui?pageId=320833&amp;systemId=2&amp;categoryId=1&amp;salePermitId=8207359&amp;buildingId=579103\" title=\"查看信息\">查看信息</a>"
+      },
+      {
+        "text": "查看信息",
+        "href": "http://bjjs.zjw.beijing.gov.cn/eportal/ui?pageId=320833&systemId=2&categoryId=1&salePermitId=8207359&buildingId=579102",
+        "onclick": "",
+        "outerHTML": "<a href=\"/eportal/ui?pageId=320833&amp;systemId=2&amp;categoryId=1&amp;salePermitId=8207359&amp;buildingId=579102\" title=\"查看信息\">查看信息</a>"
+      },
+      {
+        "text": "查看信息",
+        "href": "http://bjjs.zjw.beijing.gov.cn/eportal/ui?pageId=320833&systemId=2&categoryId=1&salePermitId=8207359&buildingId=579101",
+        "onclick": "",
+        "outerHTML": "<a href=\"/eportal/ui?pageId=320833&amp;systemId=2&amp;categoryId=1&amp;salePermitId=8207359&amp;buildingId=579101\" title=\"查看信息\">查看信息</a>"
+      },
+      {
+        "text": "查看信息",
+        "href": "http://bjjs.zjw.beijing.gov.cn/eportal/ui?pageId=320833&systemId=2&categoryId=1&salePermitId=8207359&buildingId=579077",
+        "onclick": "",
+        "outerHTML": "<a href=\"/eportal/ui?pageId=320833&amp;systemId=2&amp;categoryId=1&amp;salePermitId=8207359&amp;buildingId=579077\" title=\"查看信息\">查看信息</a>"
+      },
+      {
+        "text": "查看信息",
+        "href": "http://bjjs.zjw.beijing.gov.cn/eportal/ui?pageId=320833&systemId=2&categoryId=1&salePermitId=8207359&buildingId=579076",
+        "onclick": "",
+        "outerHTML": "<a href=\"/eportal/ui?pageId=320833&amp;systemId=2&amp;categoryId=1&amp;salePermitId=8207359&amp;buildingId=579076\" title=\"查看信息\">查看信息</a>"
+      },
+      {
+        "text": "查看信息",
+        "href": "http://bjjs.zjw.beijing.gov.cn/eportal/ui?pageId=320833&systemId=2&categoryId=1&salePermitId=8207359&buildingId=579075",
+        "onclick": "",
+        "outerHTML": "<a href=\"/eportal/ui?pageId=320833&amp;systemId=2&amp;categoryId=1&amp;salePermitId=8207359&amp;buildingId=579075\" title=\"查看信息\">查看信息</a>"
+      },
+      {
+        "text": "查看信息",
+        "href": "http://bjjs.zjw.beijing.gov.cn/eportal/ui?pageId=320833&systemId=2&categoryId=1&salePermitId=8207359&buildingId=579074",
+        "onclick": "",
+        "outerHTML": "<a href=\"/eportal/ui?pageId=320833&amp;systemId=2&amp;categoryId=1&amp;salePermitId=8207359&amp;buildingId=579074\" title=\"查看信息\">查看信息</a>"
+      },
+      "销售楼号",
+      "批准销售\n套　　数",
+      "批准销售\n面积(m2)",
+      "销售状态",
+      "住宅拟售\n价格(元/m2)",
+      "楼盘表",
+      "1516-1#住宅楼",
+      "54",
+      "4700.01",
+      "",
+      "42942.44",
+      {
+        "text": "查看信息",
+        "href": "http://bjjs.zjw.beijing.gov.cn/eportal/ui?pageId=320833&systemId=2&categoryId=1&salePermitId=8207359&buildingId=579104",
+        "onclick": "",
+        "outerHTML": "<a href=\"/eportal/ui?pageId=320833&amp;systemId=2&amp;categoryId=1&amp;salePermitId=8207359&amp;buildingId=579104\" title=\"查看信息\">查看信息</a>"
+      },
+      "1516-2#住宅楼",
+      "54",
+      "5905.45",
+      "",
+      "45235.23",
+      {
+        "text": "查看信息",
+        "href": "http://bjjs.zjw.beijing.gov.cn/eportal/ui?pageId=320833&systemId=2&categoryId=1&salePermitId=8207359&buildingId=579103",
+        "onclick": "",
+        "outerHTML": "<a href=\"/eportal/ui?pageId=320833&amp;systemId=2&amp;categoryId=1&amp;salePermitId=8207359&amp;buildingId=579103\" title=\"查看信息\">查看信息</a>"
+      },
+      "1516-3#住宅楼",
+      "54",
+      "4700.55",
+      "",
+      "44173.01",
+      {
+        "text": "查看信息",
+        "href": "http://bjjs.zjw.beijing.gov.cn/eportal/ui?pageId=320833&systemId=2&categoryId=1&salePermitId=8207359&buildingId=579102",
+        "onclick": "",
+        "outerHTML": "<a href=\"/eportal/ui?pageId=320833&amp;systemId=2&amp;categoryId=1&amp;salePermitId=8207359&amp;buildingId=579102\" title=\"查看信息\">查看信息</a>"
+      },
+      "1516-4#住宅楼",
+      "36",
+      "3185.14",
+      "",
+      "43976.63",
+      {
+        "text": "查看信息",
+        "href": "http://bjjs.zjw.beijing.gov.cn/eportal/ui?pageId=320833&systemId=2&categoryId=1&salePermitId=8207359&buildingId=579101",
+        "onclick": "",
+        "outerHTML": "<a href=\"/eportal/ui?pageId=320833&amp;systemId=2&amp;categoryId=1&amp;salePermitId=8207359&amp;buildingId=579101\" title=\"查看信息\">查看信息</a>"
+      },
+      "1516-5#住宅楼",
+      "57",
+      "7899.10",
+      "",
+      "46836.97",
+      {
+        "text": "查看信息",
+        "href": "http://bjjs.zjw.beijing.gov.cn/eportal/ui?pageId=320833&systemId=2&categoryId=1&salePermitId=8207359&buildingId=579077",
+        "onclick": "",
+        "outerHTML": "<a href=\"/eportal/ui?pageId=320833&amp;systemId=2&amp;categoryId=1&amp;salePermitId=8207359&amp;buildingId=579077\" title=\"查看信息\">查看信息</a>"
+      },
+      "1516-6#住宅楼",
+      "18",
+      "1943.80",
+      "",
+      "45707.41",
+      {
+        "text": "查看信息",
+        "href": "http://bjjs.zjw.beijing.gov.cn/eportal/ui?pageId=320833&systemId=2&categoryId=1&salePermitId=8207359&buildingId=579076",
+        "onclick": "",
+        "outerHTML": "<a href=\"/eportal/ui?pageId=320833&amp;systemId=2&amp;categoryId=1&amp;salePermitId=8207359&amp;buildingId=579076\" title=\"查看信息\">查看信息</a>"
+      },
+      "1516-7#住宅楼",
+      "44",
+      "3835.14",
+      "",
+      "42643.50",
+      {
+        "text": "查看信息",
+        "href": "http://bjjs.zjw.beijing.gov.cn/eportal/ui?pageId=320833&systemId=2&categoryId=1&salePermitId=8207359&buildingId=579075",
+        "onclick": "",
+        "outerHTML": "<a href=\"/eportal/ui?pageId=320833&amp;systemId=2&amp;categoryId=1&amp;salePermitId=8207359&amp;buildingId=579075\" title=\"查看信息\">查看信息</a>"
+      },
+      "1516-8#住宅楼",
+      "66",
+      "7801.66",
+      "",
+      "43825.33",
+      {
+        "text": "查看信息",
+        "href": "http://bjjs.zjw.beijing.gov.cn/eportal/ui?pageId=320833&systemId=2&categoryId=1&salePermitId=8207359&buildingId=579074",
+        "onclick": "",
+        "outerHTML": "<a href=\"/eportal/ui?pageId=320833&amp;systemId=2&amp;categoryId=1&amp;salePermitId=8207359&amp;buildingId=579074\" title=\"查看信息\">查看信息</a>"
+      }
+    ]
+  },
+  {
+    "tableIdx": 4,
+    "rowIdx": 1,
+    "tdIdx": 18,
+    "text": "查看信息",
+    "href": "http://bjjs.zjw.beijing.gov.cn/eportal/ui?pageId=320833&systemId=2&categoryId=1&salePermitId=8207359&buildingId=579103",
+    "onclick": "",
+    "target": "",
+    "className": "",
+    "id": "",
+    "outerHTML": "<a href=\"/eportal/ui?pageId=320833&amp;systemId=2&amp;categoryId=1&amp;salePermitId=8207359&amp;buildingId=579103\" title=\"查看信息\">查看信息</a>",
+    "rowContext": [
+      {
+        "text": "查看信息",
+        "href": "http://bjjs.zjw.beijing.gov.cn/eportal/ui?pageId=320833&systemId=2&categoryId=1&salePermitId=8207359&buildingId=579104",
+        "onclick": "",
+        "outerHTML": "<a href=\"/eportal/ui?pageId=320833&amp;systemId=2&amp;categoryId=1&amp;salePermitId=8207359&amp;buildingId=579104\" title=\"查看信息\">查看信息</a>"
+      },
+      {
+        "text": "查看信息",
+        "href": "http://bjjs.zjw.beijing.gov.cn/eportal/ui?pageId=320833&systemId=2&categoryId=1&salePermitId=8207359&buildingId=579103",
+        "onclick": "",
+        "outerHTML": "<a href=\"/eportal/ui?pageId=320833&amp;systemId=2&amp;categoryId=1&amp;salePermitId=8207359&amp;buildingId=579103\" title=\"查看信息\">查看信息</a>"
+      },
+      {
+        "text": "查看信息",
+        "href": "http://bjjs.zjw.beijing.gov.cn/eportal/ui?pageId=320833&systemId=2&categoryId=1&salePermitId=8207359&buildingId=579102",
+        "onclick": "",
+        "outerHTML": "<a href=\"/eportal/ui?pageId=320833&amp;systemId=2&amp;categoryId=1&amp;salePermitId=8207359&amp;buildingId=579102\" title=\"查看信息\">查看信息</a>"
+      },
+      {
+        "text": "查看信息",
+        "href": "http://bjjs.zjw.beijing.gov.cn/eportal/ui?pageId=320833&systemId=2&categoryId=1&salePermitId=8207359&buildingId=579101",
+        "onclick": "",
+        "outerHTML": "<a href=\"/eportal/ui?pageId=320833&amp;systemId=2&amp;categoryId=1&amp;salePermitId=8207359&amp;buildingId=579101\" title=\"查看信息\">查看信息</a>"
+      },
+      {
+        "text": "查看信息",
+        "href": "http://bjjs.zjw.beijing.gov.cn/eportal/ui?pageId=320833&systemId=2&categoryId=1&salePermitId=8207359&buildingId=579077",
+        "onclick": "",
+        "outerHTML": "<a href=\"/eportal/ui?pageId=320833&amp;systemId=2&amp;categoryId=1&amp;salePermitId=8207359&amp;buildingId=579077\" title=\"查看信息\">查看信息</a>"
+      },
+      {
+        "text": "查看信息",
+        "href": "http://bjjs.zjw.beijing.gov.cn/eportal/ui?pageId=320833&systemId=2&categoryId=1&salePermitId=8207359&buildingId=579076",
+        "onclick": "",
+        "outerHTML": "<a href=\"/eportal/ui?pageId=320833&amp;systemId=2&amp;categoryId=1&amp;salePermitId=8207359&amp;buildingId=579076\" title=\"查看信息\">查看信息</a>"
+      },
+      {
+        "text": "查看信息",
+        "href": "http://bjjs.zjw.beijing.gov.cn/eportal/ui?pageId=320833&systemId=2&categoryId=1&salePermitId=8207359&buildingId=579075",
+        "onclick": "",
+        "outerHTML": "<a href=\"/eportal/ui?pageId=320833&amp;systemId=2&amp;categoryId=1&amp;salePermitId=8207359&amp;buildingId=579075\" title=\"查看信息\">查看信息</a>"
+      },
+      {
+        "text": "查看信息",
+        "href": "http://bjjs.zjw.beijing.gov.cn/eportal/ui?pageId=320833&systemId=2&categoryId=1&salePermitId=8207359&buildingId=579074",
+        "onclick": "",
+        "outerHTML": "<a href=\"/eportal/ui?pageId=320833&amp;systemId=2&amp;categoryId=1&amp;salePermitId=8207359&amp;buildingId=579074\" title=\"查看信息\">查看信息</a>"
+      },
+      "销售楼号",
+      "批准销售\n套　　数",
+      "批准销售\n面积(m2)",
+      "销售状态",
+      "住宅拟售\n价格(元/m2)",
+      "楼盘表",
+      "1516-1#住宅楼",
+      "54",
+      "4700.01",
+      "",
+      "42942.44",
+      {
+        "text": "查看信息",
+        "href": "http://bjjs.zjw.beijing.gov.cn/eportal/ui?pageId=320833&systemId=2&categoryId=1&salePermitId=8207359&buildingId=579104",
+        "onclick": "",
+        "outerHTML": "<a href=\"/eportal/ui?pageId=320833&amp;systemId=2&amp;categoryId=1&amp;salePermitId=8207359&amp;buildingId=579104\" title=\"查看信息\">查看信息</a>"
+      },
+      "1516-2#住宅楼",
+      "54",
+      "5905.45",
+      "",
+      "45235.23",
+      {
+        "text": "查看信息",
+        "href": "http://bjjs.zjw.beijing.gov.cn/eportal/ui?pageId=320833&systemId=2&categoryId=1&salePermitId=8207359&buildingId=579103",
+        "onclick": "",
+        "outerHTML": "<a href=\"/eportal/ui?pageId=320833&amp;systemId=2&amp;categoryId=1&amp;salePermitId=8207359&amp;buildingId=579103\" title=\"查看信息\">查看信息</a>"
+      },
+      "1516-3#住宅楼",
+      "54",
+      "4700.55",
+      "",
+      "44173.01",
+      {
+        "text": "查看信息",
+        "href": "http://bjjs.zjw.beijing.gov.cn/eportal/ui?pageId=320833&systemId=2&categoryId=1&salePermitId=8207359&buildingId=579102",
+        "onclick": "",
+        "outerHTML": "<a href=\"/eportal/ui?pageId=320833&amp;systemId=2&amp;categoryId=1&amp;salePermitId=8207359&amp;buildingId=579102\" title=\"查看信息\">查看信息</a>"
+      },
+      "1516-4#住宅楼",
+      "36",
+      "3185.14",
+      "",
+      "43976.63",
+      {
+        "text": "查看信息",
+        "href": "http://bjjs.zjw.beijing.gov.cn/eportal/ui?pageId=320833&systemId=2&categoryId=1&salePermitId=8207359&buildingId=579101",
+        "onclick": "",
+        "outerHTML": "<a href=\"/eportal/ui?pageId=320833&amp;systemId=2&amp;categoryId=1&amp;salePermitId=8207359&amp;buildingId=579101\" title=\"查看信息\">查看信息</a>"
+      },
+      "1516-5#住宅楼",
+      "57",
+      "7899.10",
+      "",
+      "46836.97",
+      {
+        "text": "查看信息",
+        "href": "http://bjjs.zjw.beijing.gov.cn/eportal/ui?pageId=320833&systemId=2&categoryId=1&salePermitId=8207359&buildingId=579077",
+        "onclick": "",
+        "outerHTML": "<a href=\"/eportal/ui?pageId=320833&amp;systemId=2&amp;categoryId=1&amp;salePermitId=8207359&amp;buildingId=579077\" title=\"查看信息\">查看信息</a>"
+      },
+      "1516-6#住宅楼",
+      "18",
+      "1943.80",
+      "",
+      "45707.41",
+      {
+        "text": "查看信息",
+        "href": "http://bjjs.zjw.beijing.gov.cn/eportal/ui?pageId=320833&systemId=2&categoryId=1&salePermitId=8207359&buildingId=579076",
+        "onclick": "",
+        "outerHTML": "<a href=\"/eportal/ui?pageId=320833&amp;systemId=2&amp;categoryId=1&amp;salePermitId=8207359&amp;buildingId=579076\" title=\"查看信息\">查看信息</a>"
+      },
+      "1516-7#住宅楼",
+      "44",
+      "3835.14",
+      "",
+      "42643.50",
+      {
+        "text": "查看信息",
+        "href": "http://bjjs.zjw.beijing.gov.cn/eportal/ui?pageId=320833&systemId=2&categoryId=1&salePermitId=8207359&buildingId=579075",
+        "onclick": "",
+        "outerHTML": "<a href=\"/eportal/ui?pageId=320833&amp;systemId=2&amp;categoryId=1&amp;salePermitId=8207359&amp;buildingId=579075\" title=\"查看信息\">查看信息</a>"
+      },
+      "1516-8#住宅楼",
+      "66",
+      "7801.66",
+      "",
+      "43825.33",
+      {
+        "text": "查看信息",
+        "href": "http://bjjs.zjw.beijing.gov.cn/eportal/ui?pageId=320833&systemId=2&categoryId=1&salePermitId=8207359&buildingId=579074",
+        "onclick": "",
+        "outerHTML": "<a href=\"/eportal/ui?pageId=320833&amp;systemId=2&amp;categoryId=1&amp;salePermitId=8207359&amp;buildingId=579074\" title=\"查看信息\">查看信息</a>"
+      }
+    ]
+  },
+  {
+    "tableIdx": 4,
+    "rowIdx": 1,
+    "tdIdx": 24,
+    "text": "查看信息",
+    "href": "http://bjjs.zjw.beijing.gov.cn/eportal/ui?pageId=320833&systemId=2&categoryId=1&salePermitId=8207359&buildingId=579102",
+    "onclick": "",
+    "target": "",
+    "className": "",
+    "id": "",
+    "outerHTML": "<a href=\"/eportal/ui?pageId=320833&amp;systemId=2&amp;categoryId=1&amp;salePermitId=8207359&amp;buildingId=579102\" title=\"查看信息\">查看信息</a>",
+    "rowContext": [
+      {
+        "text": "查看信息",
+        "href": "http://bjjs.zjw.beijing.gov.cn/eportal/ui?pageId=320833&systemId=2&categoryId=1&salePermitId=8207359&buildingId=579104",
+        "onclick": "",
+        "outerHTML": "<a href=\"/eportal/ui?pageId=320833&amp;systemId=2&amp;categoryId=1&amp;salePermitId=8207359&amp;buildingId=579104\" title=\"查看信息\">查看信息</a>"
+      },
+      {
+        "text": "查看信息",
+        "href": "http://bjjs.zjw.beijing.gov.cn/eportal/ui?pageId=320833&systemId=2&categoryId=1&salePermitId=8207359&buildingId=579103",
+        "onclick": "",
+        "outerHTML": "<a href=\"/eportal/ui?pageId=320833&amp;systemId=2&amp;categoryId=1&amp;salePermitId=8207359&amp;buildingId=579103\" title=\"查看信息\">查看信息</a>"
+      },
+      {
+        "text": "查看信息",
+        "href": "http://bjjs.zjw.beijing.gov.cn/eportal/ui?pageId=320833&systemId=2&categoryId=1&salePermitId=8207359&buildingId=579102",
+        "onclick": "",
+        "outerHTML": "<a href=\"/eportal/ui?pageId=320833&amp;systemId=2&amp;categoryId=1&amp;salePermitId=8207359&amp;buildingId=579102\" title=\"查看信息\">查看信息</a>"
+      },
+      {
+        "text": "查看信息",
+        "href": "http://bjjs.zjw.beijing.gov.cn/eportal/ui?pageId=320833&systemId=2&categoryId=1&salePermitId=8207359&buildingId=579101",
+        "onclick": "",
+        "outerHTML": "<a href=\"/eportal/ui?pageId=320833&amp;systemId=2&amp;categoryId=1&amp;salePermitId=8207359&amp;buildingId=579101\" title=\"查看信息\">查看信息</a>"
+      },
+      {
+        "text": "查看信息",
+        "href": "http://bjjs.zjw.beijing.gov.cn/eportal/ui?pageId=320833&systemId=2&categoryId=1&salePermitId=8207359&buildingId=579077",
+        "onclick": "",
+        "outerHTML": "<a href=\"/eportal/ui?pageId=320833&amp;systemId=2&amp;categoryId=1&amp;salePermitId=8207359&amp;buildingId=579077\" title=\"查看信息\">查看信息</a>"
+      },
+      {
+        "text": "查看信息",
+        "href": "http://bjjs.zjw.beijing.gov.cn/eportal/ui?pageId=320833&systemId=2&categoryId=1&salePermitId=8207359&buildingId=579076",
+        "onclick": "",
+        "outerHTML": "<a href=\"/eportal/ui?pageId=320833&amp;systemId=2&amp;categoryId=1&amp;salePermitId=8207359&amp;buildingId=579076\" title=\"查看信息\">查看信息</a>"
+      },
+      {
+        "text": "查看信息",
+        "href": "http://bjjs.zjw.beijing.gov.cn/eportal/ui?pageId=320833&systemId=2&categoryId=1&salePermitId=8207359&buildingId=579075",
+        "onclick": "",
+        "outerHTML": "<a href=\"/eportal/ui?pageId=320833&amp;systemId=2&amp;categoryId=1&amp;salePermitId=8207359&amp;buildingId=579075\" title=\"查看信息\">查看信息</a>"
+      },
+      {
+        "text": "查看信息",
+        "href": "http://bjjs.zjw.beijing.gov.cn/eportal/ui?pageId=320833&systemId=2&categoryId=1&salePermitId=8207359&buildingId=579074",
+        "onclick": "",
+        "outerHTML": "<a href=\"/eportal/ui?pageId=320833&amp;systemId=2&amp;categoryId=1&amp;salePermitId=8207359&amp;buildingId=579074\" title=\"查看信息\">查看信息</a>"
+      },
+      "销售楼号",
+      "批准销售\n套　　数",
+      "批准销售\n面积(m2)",
+      "销售状态",
+      "住宅拟售\n价格(元/m2)",
+      "楼盘表",
+      "1516-1#住宅楼",
+      "54",
+      "4700.01",
+      "",
+      "42942.44",
+      {
+        "text": "查看信息",
+        "href": "http://bjjs.zjw.beijing.gov.cn/eportal/ui?pageId=320833&systemId=2&categoryId=1&salePermitId=8207359&buildingId=579104",
+        "onclick": "",
+        "outerHTML": "<a href=\"/eportal/ui?pageId=320833&amp;systemId=2&amp;categoryId=1&amp;salePermitId=8207359&amp;buildingId=579104\" title=\"查看信息\">查看信息</a>"
+      },
+      "1516-2#住宅楼",
+      "54",
+      "5905.45",
+      "",
+      "45235.23",
+      {
+        "text": "查看信息",
+        "href": "http://bjjs.zjw.beijing.gov.cn/eportal/ui?pageId=320833&systemId=2&categoryId=1&salePermitId=8207359&buildingId=579103",
+        "onclick": "",
+        "outerHTML": "<a href=\"/eportal/ui?pageId=320833&amp;systemId=2&amp;categoryId=1&amp;salePermitId=8207359&amp;buildingId=579103\" title=\"查看信息\">查看信息</a>"
+      },
+      "1516-3#住宅楼",
+      "54",
+      "4700.55",
+      "",
+      "44173.01",
+      {
+        "text": "查看信息",
+        "href": "http://bjjs.zjw.beijing.gov.cn/eportal/ui?pageId=320833&systemId=2&categoryId=1&salePermitId=8207359&buildingId=579102",
+        "onclick": "",
+        "outerHTML": "<a href=\"/eportal/ui?pageId=320833&amp;systemId=2&amp;categoryId=1&amp;salePermitId=8207359&amp;buildingId=579102\" title=\"查看信息\">查看信息</a>"
+      },
+      "1516-4#住宅楼",
+      "36",
+      "3185.14",
+      "",
+      "43976.63",
+      {
+        "text": "查看信息",
+        "href": "http://bjjs.zjw.beijing.gov.cn/eportal/ui?pageId=320833&systemId=2&categoryId=1&salePermitId=8207359&buildingId=579101",
+        "onclick": "",
+        "outerHTML": "<a href=\"/eportal/ui?pageId=320833&amp;systemId=2&amp;categoryId=1&amp;salePermitId=8207359&amp;buildingId=579101\" title=\"查看信息\">查看信息</a>"
+      },
+      "1516-5#住宅楼",
+      "57",
+      "7899.10",
+      "",
+      "46836.97",
+      {
+        "text": "查看信息",
+        "href": "http://bjjs.zjw.beijing.gov.cn/eportal/ui?pageId=320833&systemId=2&categoryId=1&salePermitId=8207359&buildingId=579077",
+        "onclick": "",
+        "outerHTML": "<a href=\"/eportal/ui?pageId=320833&amp;systemId=2&amp;categoryId=1&amp;salePermitId=8207359&amp;buildingId=579077\" title=\"查看信息\">查看信息</a>"
+      },
+      "1516-6#住宅楼",
+      "18",
+      "1943.80",
+      "",
+      "45707.41",
+      {
+        "text": "查看信息",
+        "href": "http://bjjs.zjw.beijing.gov.cn/eportal/ui?pageId=320833&systemId=2&categoryId=1&salePermitId=8207359&buildingId=579076",
+        "onclick": "",
+        "outerHTML": "<a href=\"/eportal/ui?pageId=320833&amp;systemId=2&amp;categoryId=1&amp;salePermitId=8207359&amp;buildingId=579076\" title=\"查看信息\">查看信息</a>"
+      },
+      "1516-7#住宅楼",
+      "44",
+      "3835.14",
+      "",
+      "42643.50",
+      {
+        "text": "查看信息",
+        "href": "http://bjjs.zjw.beijing.gov.cn/eportal/ui?pageId=320833&systemId=2&categoryId=1&salePermitId=8207359&buildingId=579075",
+        "onclick": "",
+        "outerHTML": "<a href=\"/eportal/ui?pageId=320833&amp;systemId=2&amp;categoryId=1&amp;salePermitId=8207359&amp;buildingId=579075\" title=\"查看信息\">查看信息</a>"
+      },
+      "1516-8#住宅楼",
+      "66",
+      "7801.66",
+      "",
+      "43825.33",
+      {
+        "text": "查看信息",
+        "href": "http://bjjs.zjw.beijing.gov.cn/eportal/ui?pageId=320833&systemId=2&categoryId=1&salePermitId=8207359&buildingId=579074",
+        "onclick": "",
+        "outerHTML": "<a href=\"/eportal/ui?pageId=320833&amp;systemId=2&amp;categoryId=1&amp;salePermitId=8207359&amp;buildingId=579074\" title=\"查看信息\">查看信息</a>"
+      }
+    ]
+  },
+  {
+    "tableIdx": 4,
+    "rowIdx": 1,
+    "tdIdx": 30,
+    "text": "查看信息",
+    "href": "http://bjjs.zjw.beijing.gov.cn/eportal/ui?pageId=320833&systemId=2&categoryId=1&salePermitId=8207359&buildingId=579101",
+    "onclick": "",
+    "target": "",
+    "className": "",
+    "id": "",
+    "outerHTML": "<a href=\"/eportal/ui?pageId=320833&amp;systemId=2&amp;categoryId=1&amp;salePermitId=8207359&amp;buildingId=579101\" title=\"查看信息\">查看信息</a>",
+    "rowContext": [
+      {
+        "text": "查看信息",
+        "href": "http://bjjs.zjw.beijing.gov.cn/eportal/ui?pageId=320833&systemId=2&categoryId=1&salePermitId=8207359&buildingId=579104",
+        "onclick": "",
+        "outerHTML": "<a href=\"/eportal/ui?pageId=320833&amp;systemId=2&amp;categoryId=1&amp;salePermitId=8207359&amp;buildingId=579104\" title=\"查看信息\">查看信息</a>"
+      },
+      {
+        "text": "查看信息",
+        "href": "http://bjjs.zjw.beijing.gov.cn/eportal/ui?pageId=320833&systemId=2&categoryId=1&salePermitId=8207359&buildingId=579103",
+        "onclick": "",
+        "outerHTML": "<a href=\"/eportal/ui?pageId=320833&amp;systemId=2&amp;categoryId=1&amp;salePermitId=8207359&amp;buildingId=579103\" title=\"查看信息\">查看信息</a>"
+      },
+      {
+        "text": "查看信息",
+        "href": "http://bjjs.zjw.beijing.gov.cn/eportal/ui?pageId=320833&systemId=2&categoryId=1&salePermitId=8207359&buildingId=579102",
+        "onclick": "",
+        "outerHTML": "<a href=\"/eportal/ui?pageId=320833&amp;systemId=2&amp;categoryId=1&amp;salePermitId=8207359&amp;buildingId=579102\" title=\"查看信息\">查看信息</a>"
+      },
+      {
+        "text": "查看信息",
+        "href": "http://bjjs.zjw.beijing.gov.cn/eportal/ui?pageId=320833&systemId=2&categoryId=1&salePermitId=8207359&buildingId=579101",
+        "onclick": "",
+        "outerHTML": "<a href=\"/eportal/ui?pageId=320833&amp;systemId=2&amp;categoryId=1&amp;salePermitId=8207359&amp;buildingId=579101\" title=\"查看信息\">查看信息</a>"
+      },
+      {
+        "text": "查看信息",
+        "href": "http://bjjs.zjw.beijing.gov.cn/eportal/ui?pageId=320833&systemId=2&categoryId=1&salePermitId=8207359&buildingId=579077",
+        "onclick": "",
+        "outerHTML": "<a href=\"/eportal/ui?pageId=320833&amp;systemId=2&amp;categoryId=1&amp;salePermitId=8207359&amp;buildingId=579077\" title=\"查看信息\">查看信息</a>"
+      },
+      {
+        "text": "查看信息",
+        "href": "http://bjjs.zjw.beijing.gov.cn/eportal/ui?pageId=320833&systemId=2&categoryId=1&salePermitId=8207359&buildingId=579076",
+        "onclick": "",
+        "outerHTML": "<a href=\"/eportal/ui?pageId=320833&amp;systemId=2&amp;categoryId=1&amp;salePermitId=8207359&amp;buildingId=579076\" title=\"查看信息\">查看信息</a>"
+      },
+      {
+        "text": "查看信息",
+        "href": "http://bjjs.zjw.beijing.gov.cn/eportal/ui?pageId=320833&systemId=2&categoryId=1&salePermitId=8207359&buildingId=579075",
+        "onclick": "",
+        "outerHTML": "<a href=\"/eportal/ui?pageId=320833&amp;systemId=2&amp;categoryId=1&amp;salePermitId=8207359&amp;buildingId=579075\" title=\"查看信息\">查看信息</a>"
+      },
+      {
+        "text": "查看信息",
+        "href": "http://bjjs.zjw.beijing.gov.cn/eportal/ui?pageId=320833&systemId=2&categoryId=1&salePermitId=8207359&buildingId=579074",
+        "onclick": "",
+        "outerHTML": "<a href=\"/eportal/ui?pageId=320833&amp;systemId=2&amp;categoryId=1&amp;salePermitId=8207359&amp;buildingId=579074\" title=\"查看信息\">查看信息</a>"
+      },
+      "销售楼号",
+      "批准销售\n套　　数",
+      "批准销售\n面积(m2)",
+      "销售状态",
+      "住宅拟售\n价格(元/m2)",
+      "楼盘表",
+      "1516-1#住宅楼",
+      "54",
+      "4700.01",
+      "",
+      "42942.44",
+      {
+        "text": "查看信息",
+        "href": "http://bjjs.zjw.beijing.gov.cn/eportal/ui?pageId=320833&systemId=2&categoryId=1&salePermitId=8207359&buildingId=579104",
+        "onclick": "",
+        "outerHTML": "<a href=\"/eportal/ui?pageId=320833&amp;systemId=2&amp;categoryId=1&amp;salePermitId=8207359&amp;buildingId=579104\" title=\"查看信息\">查看信息</a>"
+      },
+      "1516-2#住宅楼",
+      "54",
+      "5905.45",
+      "",
+      "45235.23",
+      {
+        "text": "查看信息",
+        "href": "http://bjjs.zjw.beijing.gov.cn/eportal/ui?pageId=320833&systemId=2&categoryId=1&salePermitId=8207359&buildingId=579103",
+        "onclick": "",
+        "outerHTML": "<a href=\"/eportal/ui?pageId=320833&amp;systemId=2&amp;categoryId=1&amp;salePermitId=8207359&amp;buildingId=579103\" title=\"查看信息\">查看信息</a>"
+      },
+      "1516-3#住宅楼",
+      "54",
+      "4700.55",
+      "",
+      "44173.01",
+      {
+        "text": "查看信息",
+        "href": "http://bjjs.zjw.beijing.gov.cn/eportal/ui?pageId=320833&systemId=2&categoryId=1&salePermitId=8207359&buildingId=579102",
+        "onclick": "",
+        "outerHTML": "<a href=\"/eportal/ui?pageId=320833&amp;systemId=2&amp;categoryId=1&amp;salePermitId=8207359&amp;buildingId=579102\" title=\"查看信息\">查看信息</a>"
+      },
+      "1516-4#住宅楼",
+      "36",
+      "3185.14",
+      "",
+      "43976.63",
+      {
+        "text": "查看信息",
+        "href": "http://bjjs.zjw.beijing.gov.cn/eportal/ui?pageId=320833&systemId=2&categoryId=1&salePermitId=8207359&buildingId=579101",
+        "onclick": "",
+        "outerHTML": "<a href=\"/eportal/ui?pageId=320833&amp;systemId=2&amp;categoryId=1&amp;salePermitId=8207359&amp;buildingId=579101\" title=\"查看信息\">查看信息</a>"
+      },
+      "1516-5#住宅楼",
+      "57",
+      "7899.10",
+      "",
+      "46836.97",
+      {
+        "text": "查看信息",
+        "href": "http://bjjs.zjw.beijing.gov.cn/eportal/ui?pageId=320833&systemId=2&categoryId=1&salePermitId=8207359&buildingId=579077",
+        "onclick": "",
+        "outerHTML": "<a href=\"/eportal/ui?pageId=320833&amp;systemId=2&amp;categoryId=1&amp;salePermitId=8207359&amp;buildingId=579077\" title=\"查看信息\">查看信息</a>"
+      },
+      "1516-6#住宅楼",
+      "18",
+      "1943.80",
+      "",
+      "45707.41",
+      {
+        "text": "查看信息",
+        "href": "http://bjjs.zjw.beijing.gov.cn/eportal/ui?pageId=320833&systemId=2&categoryId=1&salePermitId=8207359&buildingId=579076",
+        "onclick": "",
+        "outerHTML": "<a href=\"/eportal/ui?pageId=320833&amp;systemId=2&amp;categoryId=1&amp;salePermitId=8207359&amp;buildingId=579076\" title=\"查看信息\">查看信息</a>"
+      },
+      "1516-7#住宅楼",
+      "44",
+      "3835.14",
+      "",
+      "42643.50",
+      {
+        "text": "查看信息",
+        "href": "http://bjjs.zjw.beijing.gov.cn/eportal/ui?pageId=320833&systemId=2&categoryId=1&salePermitId=8207359&buildingId=579075",
+        "onclick": "",
+        "outerHTML": "<a href=\"/eportal/ui?pageId=320833&amp;systemId=2&amp;categoryId=1&amp;salePermitId=8207359&amp;buildingId=579075\" title=\"查看信息\">查看信息</a>"
+      },
+      "1516-8#住宅楼",
+      "66",
+      "7801.66",
+      "",
+      "43825.33",
+      {
+        "text": "查看信息",
+        "href": "http://bjjs.zjw.beijing.gov.cn/eportal/ui?pageId=320833&systemId=2&categoryId=1&salePermitId=8207359&buildingId=579074",
+        "onclick": "",
+        "outerHTML": "<a href=\"/eportal/ui?pageId=320833&amp;systemId=2&amp;categoryId=1&amp;salePermitId=8207359&amp;buildingId=579074\" title=\"查看信息\">查看信息</a>"
+      }
+    ]
+  },
+  {
+    "tableIdx": 4,
+    "rowIdx": 1,
+    "tdIdx": 36,
+    "text": "查看信息",
+    "href": "http://bjjs.zjw.beijing.gov.cn/eportal/ui?pageId=320833&systemId=2&categoryId=1&salePermitId=8207359&buildingId=579077",
+    "onclick": "",
+    "target": "",
+    "className": "",
+    "id": "",
+    "outerHTML": "<a href=\"/eportal/ui?pageId=320833&amp;systemId=2&amp;categoryId=1&amp;salePermitId=8207359&amp;buildingId=579077\" title=\"查看信息\">查看信息</a>",
+    "rowContext": [
+      {
+        "text": "查看信息",
+        "href": "http://bjjs.zjw.beijing.gov.cn/eportal/ui?pageId=320833&systemId=2&categoryId=1&salePermitId=8207359&buildingId=579104",
+        "onclick": "",
+        "outerHTML": "<a href=\"/eportal/ui?pageId=320833&amp;systemId=2&amp;categoryId=1&amp;salePermitId=8207359&amp;buildingId=579104\" title=\"查看信息\">查看信息</a>"
+      },
+      {
+        "text": "查看信息",
+        "href": "http://bjjs.zjw.beijing.gov.cn/eportal/ui?pageId=320833&systemId=2&categoryId=1&salePermitId=8207359&buildingId=579103",
+        "onclick": "",
+        "outerHTML": "<a href=\"/eportal/ui?pageId=320833&amp;systemId=2&amp;categoryId=1&amp;salePermitId=8207359&amp;buildingId=579103\" title=\"查看信息\">查看信息</a>"
+      },
+      {
+        "text": "查看信息",
+        "href": "http://bjjs.zjw.beijing.gov.cn/eportal/ui?pageId=320833&systemId=2&categoryId=1&salePermitId=8207359&buildingId=579102",
+        "onclick": "",
+        "outerHTML": "<a href=\"/eportal/ui?pageId=320833&amp;systemId=2&amp;categoryId=1&amp;salePermitId=8207359&amp;buildingId=579102\" title=\"查看信息\">查看信息</a>"
+      },
+      {
+        "text": "查看信息",
+        "href": "http://bjjs.zjw.beijing.gov.cn/eportal/ui?pageId=320833&systemId=2&categoryId=1&salePermitId=8207359&buildingId=579101",
+        "onclick": "",
+        "outerHTML": "<a href=\"/eportal/ui?pageId=320833&amp;systemId=2&amp;categoryId=1&amp;salePermitId=8207359&amp;buildingId=579101\" title=\"查看信息\">查看信息</a>"
+      },
+      {
+        "text": "查看信息",
+        "href": "http://bjjs.zjw.beijing.gov.cn/eportal/ui?pageId=320833&systemId=2&categoryId=1&salePermitId=8207359&buildingId=579077",
+        "onclick": "",
+        "outerHTML": "<a href=\"/eportal/ui?pageId=320833&amp;systemId=2&amp;categoryId=1&amp;salePermitId=8207359&amp;buildingId=579077\" title=\"查看信息\">查看信息</a>"
+      },
+      {
+        "text": "查看信息",
+        "href": "http://bjjs.zjw.beijing.gov.cn/eportal/ui?pageId=320833&systemId=2&categoryId=1&salePermitId=8207359&buildingId=579076",
+        "onclick": "",
+        "outerHTML": "<a href=\"/eportal/ui?pageId=320833&amp;systemId=2&amp;categoryId=1&amp;salePermitId=8207359&amp;buildingId=579076\" title=\"查看信息\">查看信息</a>"
+      },
+      {
+        "text": "查看信息",
+        "href": "http://bjjs.zjw.beijing.gov.cn/eportal/ui?pageId=320833&systemId=2&categoryId=1&salePermitId=8207359&buildingId=579075",
+        "onclick": "",
+        "outerHTML": "<a href=\"/eportal/ui?pageId=320833&amp;systemId=2&amp;categoryId=1&amp;salePermitId=8207359&amp;buildingId=579075\" title=\"查看信息\">查看信息</a>"
+      },
+      {
+        "text": "查看信息",
+        "href": "http://bjjs.zjw.beijing.gov.cn/eportal/ui?pageId=320833&systemId=2&categoryId=1&salePermitId=8207359&buildingId=579074",
+        "onclick": "",
+        "outerHTML": "<a href=\"/eportal/ui?pageId=320833&amp;systemId=2&amp;categoryId=1&amp;salePermitId=8207359&amp;buildingId=579074\" title=\"查看信息\">查看信息</a>"
+      },
+      "销售楼号",
+      "批准销售\n套　　数",
+      "批准销售\n面积(m2)",
+      "销售状态",
+      "住宅拟售\n价格(元/m2)",
+      "楼盘表",
+      "1516-1#住宅楼",
+      "54",
+      "4700.01",
+      "",
+      "42942.44",
+      {
+        "text": "查看信息",
+        "href": "http://bjjs.zjw.beijing.gov.cn/eportal/ui?pageId=320833&systemId=2&categoryId=1&salePermitId=8207359&buildingId=579104",
+        "onclick": "",
+        "outerHTML": "<a href=\"/eportal/ui?pageId=320833&amp;systemId=2&amp;categoryId=1&amp;salePermitId=8207359&amp;buildingId=579104\" title=\"查看信息\">查看信息</a>"
+      },
+      "1516-2#住宅楼",
+      "54",
+      "5905.45",
+      "",
+      "45235.23",
+      {
+        "text": "查看信息",
+        "href": "http://bjjs.zjw.beijing.gov.cn/eportal/ui?pageId=320833&systemId=2&categoryId=1&salePermitId=8207359&buildingId=579103",
+        "onclick": "",
+        "outerHTML": "<a href=\"/eportal/ui?pageId=320833&amp;systemId=2&amp;categoryId=1&amp;salePermitId=8207359&amp;buildingId=579103\" title=\"查看信息\">查看信息</a>"
+      },
+      "1516-3#住宅楼",
+      "54",
+      "4700.55",
+      "",
+      "44173.01",
+      {
+        "text": "查看信息",
+        "href": "http://bjjs.zjw.beijing.gov.cn/eportal/ui?pageId=320833&systemId=2&categoryId=1&salePermitId=8207359&buildingId=579102",
+        "onclick": "",
+        "outerHTML": "<a href=\"/eportal/ui?pageId=320833&amp;systemId=2&amp;categoryId=1&amp;salePermitId=8207359&amp;buildingId=579102\" title=\"查看信息\">查看信息</a>"
+      },
+      "1516-4#住宅楼",
+      "36",
+      "3185.14",
+      "",
+      "43976.63",
+      {
+        "text": "查看信息",
+        "href": "http://bjjs.zjw.beijing.gov.cn/eportal/ui?pageId=320833&systemId=2&categoryId=1&salePermitId=8207359&buildingId=579101",
+        "onclick": "",
+        "outerHTML": "<a href=\"/eportal/ui?pageId=320833&amp;systemId=2&amp;categoryId=1&amp;salePermitId=8207359&amp;buildingId=579101\" title=\"查看信息\">查看信息</a>"
+      },
+      "1516-5#住宅楼",
+      "57",
+      "7899.10",
+      "",
+      "46836.97",
+      {
+        "text": "查看信息",
+        "href": "http://bjjs.zjw.beijing.gov.cn/eportal/ui?pageId=320833&systemId=2&categoryId=1&salePermitId=8207359&buildingId=579077",
+        "onclick": "",
+        "outerHTML": "<a href=\"/eportal/ui?pageId=320833&amp;systemId=2&amp;categoryId=1&amp;salePermitId=8207359&amp;buildingId=579077\" title=\"查看信息\">查看信息</a>"
+      },
+      "1516-6#住宅楼",
+      "18",
+      "1943.80",
+      "",
+      "45707.41",
+      {
+        "text": "查看信息",
+        "href": "http://bjjs.zjw.beijing.gov.cn/eportal/ui?pageId=320833&systemId=2&categoryId=1&salePermitId=8207359&buildingId=579076",
+        "onclick": "",
+        "outerHTML": "<a href=\"/eportal/ui?pageId=320833&amp;systemId=2&amp;categoryId=1&amp;salePermitId=8207359&amp;buildingId=579076\" title=\"查看信息\">查看信息</a>"
+      },
+      "1516-7#住宅楼",
+      "44",
+      "3835.14",
+      "",
+      "42643.50",
+      {
+        "text": "查看信息",
+        "href": "http://bjjs.zjw.beijing.gov.cn/eportal/ui?pageId=320833&systemId=2&categoryId=1&salePermitId=8207359&buildingId=579075",
+        "onclick": "",
+        "outerHTML": "<a href=\"/eportal/ui?pageId=320833&amp;systemId=2&amp;categoryId=1&amp;salePermitId=8207359&amp;buildingId=579075\" title=\"查看信息\">查看信息</a>"
+      },
+      "1516-8#住宅楼",
+      "66",
+      "7801.66",
+      "",
+      "43825.33",
+      {
+        "text": "查看信息",
+        "href": "http://bjjs.zjw.beijing.gov.cn/eportal/ui?pageId=320833&systemId=2&categoryId=1&salePermitId=8207359&buildingId=579074",
+        "onclick": "",
+        "outerHTML": "<a href=\"/eportal/ui?pageId=320833&amp;systemId=2&amp;categoryId=1&amp;salePermitId=8207359&amp;buildingId=579074\" title=\"查看信息\">查看信息</a>"
+      }
+    ]
+  },
+  {
+    "tableIdx": 4,
+    "rowIdx": 1,
+    "tdIdx": 42,
+    "text": "查看信息",
+    "href": "http://bjjs.zjw.beijing.gov.cn/eportal/ui?pageId=320833&systemId=2&categoryId=1&salePermitId=8207359&buildingId=579076",
+    "onclick": "",
+    "target": "",
+    "className": "",
+    "id": "",
+    "outerHTML": "<a href=\"/eportal/ui?pageId=320833&amp;systemId=2&amp;categoryId=1&amp;salePermitId=8207359&amp;buildingId=579076\" title=\"查看信息\">查看信息</a>",
+    "rowContext": [
+      {
+        "text": "查看信息",
+        "href": "http://bjjs.zjw.beijing.gov.cn/eportal/ui?pageId=320833&systemId=2&categoryId=1&salePermitId=8207359&buildingId=579104",
+        "onclick": "",
+        "outerHTML": "<a href=\"/eportal/ui?pageId=320833&amp;systemId=2&amp;categoryId=1&amp;salePermitId=8207359&amp;buildingId=579104\" title=\"查看信息\">查看信息</a>"
+      },
+      {
+        "text": "查看信息",
+        "href": "http://bjjs.zjw.beijing.gov.cn/eportal/ui?pageId=320833&systemId=2&categoryId=1&salePermitId=8207359&buildingId=579103",
+        "onclick": "",
+        "outerHTML": "<a href=\"/eportal/ui?pageId=320833&amp;systemId=2&amp;categoryId=1&amp;salePermitId=8207359&amp;buildingId=579103\" title=\"查看信息\">查看信息</a>"
+      },
+      {
+        "text": "查看信息",
+        "href": "http://bjjs.zjw.beijing.gov.cn/eportal/ui?pageId=320833&systemId=2&categoryId=1&salePermitId=8207359&buildingId=579102",
+        "onclick": "",
+        "outerHTML": "<a href=\"/eportal/ui?pageId=320833&amp;systemId=2&amp;categoryId=1&amp;salePermitId=8207359&amp;buildingId=579102\" title=\"查看信息\">查看信息</a>"
+      },
+      {
+        "text": "查看信息",
+        "href": "http://bjjs.zjw.beijing.gov.cn/eportal/ui?pageId=320833&systemId=2&categoryId=1&salePermitId=8207359&buildingId=579101",
+        "onclick": "",
+        "outerHTML": "<a href=\"/eportal/ui?pageId=320833&amp;systemId=2&amp;categoryId=1&amp;salePermitId=8207359&amp;buildingId=579101\" title=\"查看信息\">查看信息</a>"
+      },
+      {
+        "text": "查看信息",
+        "href": "http://bjjs.zjw.beijing.gov.cn/eportal/ui?pageId=320833&systemId=2&categoryId=1&salePermitId=8207359&buildingId=579077",
+        "onclick": "",
+        "outerHTML": "<a href=\"/eportal/ui?pageId=320833&amp;systemId=2&amp;categoryId=1&amp;salePermitId=8207359&amp;buildingId=579077\" title=\"查看信息\">查看信息</a>"
+      },
+      {
+        "text": "查看信息",
+        "href": "http://bjjs.zjw.beijing.gov.cn/eportal/ui?pageId=320833&systemId=2&categoryId=1&salePermitId=8207359&buildingId=579076",
+        "onclick": "",
+        "outerHTML": "<a href=\"/eportal/ui?pageId=320833&amp;systemId=2&amp;categoryId=1&amp;salePermitId=8207359&amp;buildingId=579076\" title=\"查看信息\">查看信息</a>"
+      },
+      {
+        "text": "查看信息",
+        "href": "http://bjjs.zjw.beijing.gov.cn/eportal/ui?pageId=320833&systemId=2&categoryId=1&salePermitId=8207359&buildingId=579075",
+        "onclick": "",
+        "outerHTML": "<a href=\"/eportal/ui?pageId=320833&amp;systemId=2&amp;categoryId=1&amp;salePermitId=8207359&amp;buildingId=579075\" title=\"查看信息\">查看信息</a>"
+      },
+      {
+        "text": "查看信息",
+        "href": "http://bjjs.zjw.beijing.gov.cn/eportal/ui?pageId=320833&systemId=2&categoryId=1&salePermitId=8207359&buildingId=579074",
+        "onclick": "",
+        "outerHTML": "<a href=\"/eportal/ui?pageId=320833&amp;systemId=2&amp;categoryId=1&amp;salePermitId=8207359&amp;buildingId=579074\" title=\"查看信息\">查看信息</a>"
+      },
+      "销售楼号",
+      "批准销售\n套　　数",
+      "批准销售\n面积(m2)",
+      "销售状态",
+      "住宅拟售\n价格(元/m2)",
+      "楼盘表",
+      "1516-1#住宅楼",
+      "54",
+      "4700.01",
+      "",
+      "42942.44",
+      {
+        "text": "查看信息",
+        "href": "http://bjjs.zjw.beijing.gov.cn/eportal/ui?pageId=320833&systemId=2&categoryId=1&salePermitId=8207359&buildingId=579104",
+        "onclick": "",
+        "outerHTML": "<a href=\"/eportal/ui?pageId=320833&amp;systemId=2&amp;categoryId=1&amp;salePermitId=8207359&amp;buildingId=579104\" title=\"查看信息\">查看信息</a>"
+      },
+      "1516-2#住宅楼",
+      "54",
+      "5905.45",
+      "",
+      "45235.23",
+      {
+        "text": "查看信息",
+        "href": "http://bjjs.zjw.beijing.gov.cn/eportal/ui?pageId=320833&systemId=2&categoryId=1&salePermitId=8207359&buildingId=579103",
+        "onclick": "",
+        "outerHTML": "<a href=\"/eportal/ui?pageId=320833&amp;systemId=2&amp;categoryId=1&amp;salePermitId=8207359&amp;buildingId=579103\" title=\"查看信息\">查看信息</a>"
+      },
+      "1516-3#住宅楼",
+      "54",
+      "4700.55",
+      "",
+      "44173.01",
+      {
+        "text": "查看信息",
+        "href": "http://bjjs.zjw.beijing.gov.cn/eportal/ui?pageId=320833&systemId=2&categoryId=1&salePermitId=8207359&buildingId=579102",
+        "onclick": "",
+        "outerHTML": "<a href=\"/eportal/ui?pageId=320833&amp;systemId=2&amp;categoryId=1&amp;salePermitId=8207359&amp;buildingId=579102\" title=\"查看信息\">查看信息</a>"
+      },
+      "1516-4#住宅楼",
+      "36",
+      "3185.14",
+      "",
+      "43976.63",
+      {
+        "text": "查看信息",
+        "href": "http://bjjs.zjw.beijing.gov.cn/eportal/ui?pageId=320833&systemId=2&categoryId=1&salePermitId=8207359&buildingId=579101",
+        "onclick": "",
+        "outerHTML": "<a href=\"/eportal/ui?pageId=320833&amp;systemId=2&amp;categoryId=1&amp;salePermitId=8207359&amp;buildingId=579101\" title=\"查看信息\">查看信息</a>"
+      },
+      "1516-5#住宅楼",
+      "57",
+      "7899.10",
+      "",
+      "46836.97",
+      {
+        "text": "查看信息",
+        "href": "http://bjjs.zjw.beijing.gov.cn/eportal/ui?pageId=320833&systemId=2&categoryId=1&salePermitId=8207359&buildingId=579077",
+        "onclick": "",
+        "outerHTML": "<a href=\"/eportal/ui?pageId=320833&amp;systemId=2&amp;categoryId=1&amp;salePermitId=8207359&amp;buildingId=579077\" title=\"查看信息\">查看信息</a>"
+      },
+      "1516-6#住宅楼",
+      "18",
+      "1943.80",
+      "",
+      "45707.41",
+      {
+        "text": "查看信息",
+        "href": "http://bjjs.zjw.beijing.gov.cn/eportal/ui?pageId=320833&systemId=2&categoryId=1&salePermitId=8207359&buildingId=579076",
+        "onclick": "",
+        "outerHTML": "<a href=\"/eportal/ui?pageId=320833&amp;systemId=2&amp;categoryId=1&amp;salePermitId=8207359&amp;buildingId=579076\" title=\"查看信息\">查看信息</a>"
+      },
+      "1516-7#住宅楼",
+      "44",
+      "3835.14",
+      "",
+      "42643.50",
+      {
+        "text": "查看信息",
+        "href": "http://bjjs.zjw.beijing.gov.cn/eportal/ui?pageId=320833&systemId=2&categoryId=1&salePermitId=8207359&buildingId=579075",
+        "onclick": "",
+        "outerHTML": "<a href=\"/eportal/ui?pageId=320833&amp;systemId=2&amp;categoryId=1&amp;salePermitId=8207359&amp;buildingId=579075\" title=\"查看信息\">查看信息</a>"
+      },
+      "1516-8#住宅楼",
+      "66",
+      "7801.66",
+      "",
+      "43825.33",
+      {
+        "text": "查看信息",
+        "href": "http://bjjs.zjw.beijing.gov.cn/eportal/ui?pageId=320833&systemId=2&categoryId=1&salePermitId=8207359&buildingId=579074",
+        "onclick": "",
+        "outerHTML": "<a href=\"/eportal/ui?pageId=320833&amp;systemId=2&amp;categoryId=1&amp;salePermitId=8207359&amp;buildingId=579074\" title=\"查看信息\">查看信息</a>"
+      }
+    ]
+  },
+  {
+    "tableIdx": 4,
+    "rowIdx": 1,
+    "tdIdx": 48,
+    "text": "查看信息",
+    "href": "http://bjjs.zjw.beijing.gov.cn/eportal/ui?pageId=320833&systemId=2&categoryId=1&salePermitId=8207359&buildingId=579075",
+    "onclick": "",
+    "target": "",
+    "className": "",
+    "id": "",
+    "outerHTML": "<a href=\"/eportal/ui?pageId=320833&amp;systemId=2&amp;categoryId=1&amp;salePermitId=8207359&amp;buildingId=579075\" title=\"查看信息\">查看信息</a>",
+    "rowContext": [
+      {
+        "text": "查看信息",
+        "href": "http://bjjs.zjw.beijing.gov.cn/eportal/ui?pageId=320833&systemId=2&categoryId=1&salePermitId=8207359&buildingId=579104",
+        "onclick": "",
+        "outerHTML": "<a href=\"/eportal/ui?pageId=320833&amp;systemId=2&amp;categoryId=1&amp;salePermitId=8207359&amp;buildingId=579104\" title=\"查看信息\">查看信息</a>"
+      },
+      {
+        "text": "查看信息",
+        "href": "http://bjjs.zjw.beijing.gov.cn/eportal/ui?pageId=320833&systemId=2&categoryId=1&salePermitId=8207359&buildingId=579103",
+        "onclick": "",
+        "outerHTML": "<a href=\"/eportal/ui?pageId=320833&amp;systemId=2&amp;categoryId=1&amp;salePermitId=8207359&amp;buildingId=579103\" title=\"查看信息\">查看信息</a>"
+      },
+      {
+        "text": "查看信息",
+        "href": "http://bjjs.zjw.beijing.gov.cn/eportal/ui?pageId=320833&systemId=2&categoryId=1&salePermitId=8207359&buildingId=579102",
+        "onclick": "",
+        "outerHTML": "<a href=\"/eportal/ui?pageId=320833&amp;systemId=2&amp;categoryId=1&amp;salePermitId=8207359&amp;buildingId=579102\" title=\"查看信息\">查看信息</a>"
+      },
+      {
+        "text": "查看信息",
+        "href": "http://bjjs.zjw.beijing.gov.cn/eportal/ui?pageId=320833&systemId=2&categoryId=1&salePermitId=8207359&buildingId=579101",
+        "onclick": "",
+        "outerHTML": "<a href=\"/eportal/ui?pageId=320833&amp;systemId=2&amp;categoryId=1&amp;salePermitId=8207359&amp;buildingId=579101\" title=\"查看信息\">查看信息</a>"
+      },
+      {
+        "text": "查看信息",
+        "href": "http://bjjs.zjw.beijing.gov.cn/eportal/ui?pageId=320833&systemId=2&categoryId=1&salePermitId=8207359&buildingId=579077",
+        "onclick": "",
+        "outerHTML": "<a href=\"/eportal/ui?pageId=320833&amp;systemId=2&amp;categoryId=1&amp;salePermitId=8207359&amp;buildingId=579077\" title=\"查看信息\">查看信息</a>"
+      },
+      {
+        "text": "查看信息",
+        "href": "http://bjjs.zjw.beijing.gov.cn/eportal/ui?pageId=320833&systemId=2&categoryId=1&salePermitId=8207359&buildingId=579076",
+        "onclick": "",
+        "outerHTML": "<a href=\"/eportal/ui?pageId=320833&amp;systemId=2&amp;categoryId=1&amp;salePermitId=8207359&amp;buildingId=579076\" title=\"查看信息\">查看信息</a>"
+      },
+      {
+        "text": "查看信息",
+        "href": "http://bjjs.zjw.beijing.gov.cn/eportal/ui?pageId=320833&systemId=2&categoryId=1&salePermitId=8207359&buildingId=579075",
+        "onclick": "",
+        "outerHTML": "<a href=\"/eportal/ui?pageId=320833&amp;systemId=2&amp;categoryId=1&amp;salePermitId=8207359&amp;buildingId=579075\" title=\"查看信息\">查看信息</a>"
+      },
+      {
+        "text": "查看信息",
+        "href": "http://bjjs.zjw.beijing.gov.cn/eportal/ui?pageId=320833&systemId=2&categoryId=1&salePermitId=8207359&buildingId=579074",
+        "onclick": "",
+        "outerHTML": "<a href=\"/eportal/ui?pageId=320833&amp;systemId=2&amp;categoryId=1&amp;salePermitId=8207359&amp;buildingId=579074\" title=\"查看信息\">查看信息</a>"
+      },
+      "销售楼号",
+      "批准销售\n套　　数",
+      "批准销售\n面积(m2)",
+      "销售状态",
+      "住宅拟售\n价格(元/m2)",
+      "楼盘表",
+      "1516-1#住宅楼",
+      "54",
+      "4700.01",
+      "",
+      "42942.44",
+      {
+        "text": "查看信息",
+        "href": "http://bjjs.zjw.beijing.gov.cn/eportal/ui?pageId=320833&systemId=2&categoryId=1&salePermitId=8207359&buildingId=579104",
+        "onclick": "",
+        "outerHTML": "<a href=\"/eportal/ui?pageId=320833&amp;systemId=2&amp;categoryId=1&amp;salePermitId=8207359&amp;buildingId=579104\" title=\"查看信息\">查看信息</a>"
+      },
+      "1516-2#住宅楼",
+      "54",
+      "5905.45",
+      "",
+      "45235.23",
+      {
+        "text": "查看信息",
+        "href": "http://bjjs.zjw.beijing.gov.cn/eportal/ui?pageId=320833&systemId=2&categoryId=1&salePermitId=8207359&buildingId=579103",
+        "onclick": "",
+        "outerHTML": "<a href=\"/eportal/ui?pageId=320833&amp;systemId=2&amp;categoryId=1&amp;salePermitId=8207359&amp;buildingId=579103\" title=\"查看信息\">查看信息</a>"
+      },
+      "1516-3#住宅楼",
+      "54",
+      "4700.55",
+      "",
+      "44173.01",
+      {
+        "text": "查看信息",
+        "href": "http://bjjs.zjw.beijing.gov.cn/eportal/ui?pageId=320833&systemId=2&categoryId=1&salePermitId=8207359&buildingId=579102",
+        "onclick": "",
+        "outerHTML": "<a href=\"/eportal/ui?pageId=320833&amp;systemId=2&amp;categoryId=1&amp;salePermitId=8207359&amp;buildingId=579102\" title=\"查看信息\">查看信息</a>"
+      },
+      "1516-4#住宅楼",
+      "36",
+      "3185.14",
+      "",
+      "43976.63",
+      {
+        "text": "查看信息",
+        "href": "http://bjjs.zjw.beijing.gov.cn/eportal/ui?pageId=320833&systemId=2&categoryId=1&salePermitId=8207359&buildingId=579101",
+        "onclick": "",
+        "outerHTML": "<a href=\"/eportal/ui?pageId=320833&amp;systemId=2&amp;categoryId=1&amp;salePermitId=8207359&amp;buildingId=579101\" title=\"查看信息\">查看信息</a>"
+      },
+      "1516-5#住宅楼",
+      "57",
+      "7899.10",
+      "",
+      "46836.97",
+      {
+        "text": "查看信息",
+        "href": "http://bjjs.zjw.beijing.gov.cn/eportal/ui?pageId=320833&systemId=2&categoryId=1&salePermitId=8207359&buildingId=579077",
+        "onclick": "",
+        "outerHTML": "<a href=\"/eportal/ui?pageId=320833&amp;systemId=2&amp;categoryId=1&amp;salePermitId=8207359&amp;buildingId=579077\" title=\"查看信息\">查看信息</a>"
+      },
+      "1516-6#住宅楼",
+      "18",
+      "1943.80",
+      "",
+      "45707.41",
+      {
+        "text": "查看信息",
+        "href": "http://bjjs.zjw.beijing.gov.cn/eportal/ui?pageId=320833&systemId=2&categoryId=1&salePermitId=8207359&buildingId=579076",
+        "onclick": "",
+        "outerHTML": "<a href=\"/eportal/ui?pageId=320833&amp;systemId=2&amp;categoryId=1&amp;salePermitId=8207359&amp;buildingId=579076\" title=\"查看信息\">查看信息</a>"
+      },
+      "1516-7#住宅楼",
+      "44",
+      "3835.14",
+      "",
+      "42643.50",
+      {
+        "text": "查看信息",
+        "href": "http://bjjs.zjw.beijing.gov.cn/eportal/ui?pageId=320833&systemId=2&categoryId=1&salePermitId=8207359&buildingId=579075",
+        "onclick": "",
+        "outerHTML": "<a href=\"/eportal/ui?pageId=320833&amp;systemId=2&amp;categoryId=1&amp;salePermitId=8207359&amp;buildingId=579075\" title=\"查看信息\">查看信息</a>"
+      },
+      "1516-8#住宅楼",
+      "66",
+      "7801.66",
+      "",
+      "43825.33",
+      {
+        "text": "查看信息",
+        "href": "http://bjjs.zjw.beijing.gov.cn/eportal/ui?pageId=320833&systemId=2&categoryId=1&salePermitId=8207359&buildingId=579074",
+        "onclick": "",
+        "outerHTML": "<a href=\"/eportal/ui?pageId=320833&amp;systemId=2&amp;categoryId=1&amp;salePermitId=8207359&amp;buildingId=579074\" title=\"查看信息\">查看信息</a>"
+      }
+    ]
+  },
+  {
+    "tableIdx": 4,
+    "rowIdx": 1,
+    "tdIdx": 54,
+    "text": "查看信息",
+    "href": "http://bjjs.zjw.beijing.gov.cn/eportal/ui?pageId=320833&systemId=2&categoryId=1&salePermitId=8207359&buildingId=579074",
+    "onclick": "",
+    "target": "",
+    "className": "",
+    "id": "",
+    "outerHTML": "<a href=\"/eportal/ui?pageId=320833&amp;systemId=2&amp;categoryId=1&amp;salePermitId=8207359&amp;buildingId=579074\" title=\"查看信息\">查看信息</a>",
+    "rowContext": [
+      {
+        "text": "查看信息",
+        "href": "http://bjjs.zjw.beijing.gov.cn/eportal/ui?pageId=320833&systemId=2&categoryId=1&salePermitId=8207359&buildingId=579104",
+        "onclick": "",
+        "outerHTML": "<a href=\"/eportal/ui?pageId=320833&amp;systemId=2&amp;categoryId=1&amp;salePermitId=8207359&amp;buildingId=579104\" title=\"查看信息\">查看信息</a>"
+      },
+      {
+        "text": "查看信息",
+        "href": "http://bjjs.zjw.beijing.gov.cn/eportal/ui?pageId=320833&systemId=2&categoryId=1&salePermitId=8207359&buildingId=579103",
+        "onclick": "",
+        "outerHTML": "<a href=\"/eportal/ui?pageId=320833&amp;systemId=2&amp;categoryId=1&amp;salePermitId=8207359&amp;buildingId=579103\" title=\"查看信息\">查看信息</a>"
+      },
+      {
+        "text": "查看信息",
+        "href": "http://bjjs.zjw.beijing.gov.cn/eportal/ui?pageId=320833&systemId=2&categoryId=1&salePermitId=8207359&buildingId=579102",
+        "onclick": "",
+        "outerHTML": "<a href=\"/eportal/ui?pageId=320833&amp;systemId=2&amp;categoryId=1&amp;salePermitId=8207359&amp;buildingId=579102\" title=\"查看信息\">查看信息</a>"
+      },
+      {
+        "text": "查看信息",
+        "href": "http://bjjs.zjw.beijing.gov.cn/eportal/ui?pageId=320833&systemId=2&categoryId=1&salePermitId=8207359&buildingId=579101",
+        "onclick": "",
+        "outerHTML": "<a href=\"/eportal/ui?pageId=320833&amp;systemId=2&amp;categoryId=1&amp;salePermitId=8207359&amp;buildingId=579101\" title=\"查看信息\">查看信息</a>"
+      },
+      {
+        "text": "查看信息",
+        "href": "http://bjjs.zjw.beijing.gov.cn/eportal/ui?pageId=320833&systemId=2&categoryId=1&salePermitId=8207359&buildingId=579077",
+        "onclick": "",
+        "outerHTML": "<a href=\"/eportal/ui?pageId=320833&amp;systemId=2&amp;categoryId=1&amp;salePermitId=8207359&amp;buildingId=579077\" title=\"查看信息\">查看信息</a>"
+      },
+      {
+        "text": "查看信息",
+        "href": "http://bjjs.zjw.beijing.gov.cn/eportal/ui?pageId=320833&systemId=2&categoryId=1&salePermitId=8207359&buildingId=579076",
+        "onclick": "",
+        "outerHTML": "<a href=\"/eportal/ui?pageId=320833&amp;systemId=2&amp;categoryId=1&amp;salePermitId=8207359&amp;buildingId=579076\" title=\"查看信息\">查看信息</a>"
+      },
+      {
+        "text": "查看信息",
+        "href": "http://bjjs.zjw.beijing.gov.cn/eportal/ui?pageId=320833&systemId=2&categoryId=1&salePermitId=8207359&buildingId=579075",
+        "onclick": "",
+        "outerHTML": "<a href=\"/eportal/ui?pageId=320833&amp;systemId=2&amp;categoryId=1&amp;salePermitId=8207359&amp;buildingId=579075\" title=\"查看信息\">查看信息</a>"
+      },
+      {
+        "text": "查看信息",
+        "href": "http://bjjs.zjw.beijing.gov.cn/eportal/ui?pageId=320833&systemId=2&categoryId=1&salePermitId=8207359&buildingId=579074",
+        "onclick": "",
+        "outerHTML": "<a href=\"/eportal/ui?pageId=320833&amp;systemId=2&amp;categoryId=1&amp;salePermitId=8207359&amp;buildingId=579074\" title=\"查看信息\">查看信息</a>"
+      },
+      "销售楼号",
+      "批准销售\n套　　数",
+      "批准销售\n面积(m2)",
+      "销售状态",
+      "住宅拟售\n价格(元/m2)",
+      "楼盘表",
+      "1516-1#住宅楼",
+      "54",
+      "4700.01",
+      "",
+      "42942.44",
+      {
+        "text": "查看信息",
+        "href": "http://bjjs.zjw.beijing.gov.cn/eportal/ui?pageId=320833&systemId=2&categoryId=1&salePermitId=8207359&buildingId=579104",
+        "onclick": "",
+        "outerHTML": "<a href=\"/eportal/ui?pageId=320833&amp;systemId=2&amp;categoryId=1&amp;salePermitId=8207359&amp;buildingId=579104\" title=\"查看信息\">查看信息</a>"
+      },
+      "1516-2#住宅楼",
+      "54",
+      "5905.45",
+      "",
+      "45235.23",
+      {
+        "text": "查看信息",
+        "href": "http://bjjs.zjw.beijing.gov.cn/eportal/ui?pageId=320833&systemId=2&categoryId=1&salePermitId=8207359&buildingId=579103",
+        "onclick": "",
+        "outerHTML": "<a href=\"/eportal/ui?pageId=320833&amp;systemId=2&amp;categoryId=1&amp;salePermitId=8207359&amp;buildingId=579103\" title=\"查看信息\">查看信息</a>"
+      },
+      "1516-3#住宅楼",
+      "54",
+      "4700.55",
+      "",
+      "44173.01",
+      {
+        "text": "查看信息",
+        "href": "http://bjjs.zjw.beijing.gov.cn/eportal/ui?pageId=320833&systemId=2&categoryId=1&salePermitId=8207359&buildingId=579102",
+        "onclick": "",
+        "outerHTML": "<a href=\"/eportal/ui?pageId=320833&amp;systemId=2&amp;categoryId=1&amp;salePermitId=8207359&amp;buildingId=579102\" title=\"查看信息\">查看信息</a>"
+      },
+      "1516-4#住宅楼",
+      "36",
+      "3185.14",
+      "",
+      "43976.63",
+      {
+        "text": "查看信息",
+        "href": "http://bjjs.zjw.beijing.gov.cn/eportal/ui?pageId=320833&systemId=2&categoryId=1&salePermitId=8207359&buildingId=579101",
+        "onclick": "",
+        "outerHTML": "<a href=\"/eportal/ui?pageId=320833&amp;systemId=2&amp;categoryId=1&amp;salePermitId=8207359&amp;buildingId=579101\" title=\"查看信息\">查看信息</a>"
+      },
+      "1516-5#住宅楼",
+      "57",
+      "7899.10",
+      "",
+      "46836.97",
+      {
+        "text": "查看信息",
+        "href": "http://bjjs.zjw.beijing.gov.cn/eportal/ui?pageId=320833&systemId=2&categoryId=1&salePermitId=8207359&buildingId=579077",
+        "onclick": "",
+        "outerHTML": "<a href=\"/eportal/ui?pageId=320833&amp;systemId=2&amp;categoryId=1&amp;salePermitId=8207359&amp;buildingId=579077\" title=\"查看信息\">查看信息</a>"
+      },
+      "1516-6#住宅楼",
+      "18",
+      "1943.80",
+      "",
+      "45707.41",
+      {
+        "text": "查看信息",
+        "href": "http://bjjs.zjw.beijing.gov.cn/eportal/ui?pageId=320833&systemId=2&categoryId=1&salePermitId=8207359&buildingId=579076",
+        "onclick": "",
+        "outerHTML": "<a href=\"/eportal/ui?pageId=320833&amp;systemId=2&amp;categoryId=1&amp;salePermitId=8207359&amp;buildingId=579076\" title=\"查看信息\">查看信息</a>"
+      },
+      "1516-7#住宅楼",
+      "44",
+      "3835.14",
+      "",
+      "42643.50",
+      {
+        "text": "查看信息",
+        "href": "http://bjjs.zjw.beijing.gov.cn/eportal/ui?pageId=320833&systemId=2&categoryId=1&salePermitId=8207359&buildingId=579075",
+        "onclick": "",
+        "outerHTML": "<a href=\"/eportal/ui?pageId=320833&amp;systemId=2&amp;categoryId=1&amp;salePermitId=8207359&amp;buildingId=579075\" title=\"查看信息\">查看信息</a>"
+      },
+      "1516-8#住宅楼",
+      "66",
+      "7801.66",
+      "",
+      "43825.33",
+      {
+        "text": "查看信息",
+        "href": "http://bjjs.zjw.beijing.gov.cn/eportal/ui?pageId=320833&systemId=2&categoryId=1&salePermitId=8207359&buildingId=579074",
+        "onclick": "",
+        "outerHTML": "<a href=\"/eportal/ui?pageId=320833&amp;systemId=2&amp;categoryId=1&amp;salePermitId=8207359&amp;buildingId=579074\" title=\"查看信息\">查看信息</a>"
+      }
+    ]
+  },
+  {
+    "tableIdx": 4,
+    "rowIdx": 3,
+    "tdIdx": 5,
+    "text": "查看信息",
+    "href": "http://bjjs.zjw.beijing.gov.cn/eportal/ui?pageId=320833&systemId=2&categoryId=1&salePermitId=8207359&buildingId=579104",
+    "onclick": "",
+    "target": "",
+    "className": "",
+    "id": "",
+    "outerHTML": "<a href=\"/eportal/ui?pageId=320833&amp;systemId=2&amp;categoryId=1&amp;salePermitId=8207359&amp;buildingId=579104\" title=\"查看信息\">查看信息</a>",
+    "rowContext": [
+      "1516-1#住宅楼",
+      "54",
+      "4700.01",
+      "",
+      "42942.44",
+      {
+        "text": "查看信息",
+        "href": "http://bjjs.zjw.beijing.gov.cn/eportal/ui?pageId=320833&systemId=2&categoryId=1&salePermitId=8207359&buildingId=579104",
+        "onclick": "",
+        "outerHTML": "<a href=\"/eportal/ui?pageId=320833&amp;systemId=2&amp;categoryId=1&amp;salePermitId=8207359&amp;buildingId=579104\" title=\"查看信息\">查看信息</a>"
+      }
+    ]
+  },
+  {
+    "tableIdx": 4,
+    "rowIdx": 4,
+    "tdIdx": 5,
+    "text": "查看信息",
+    "href": "http://bjjs.zjw.beijing.gov.cn/eportal/ui?pageId=320833&systemId=2&categoryId=1&salePermitId=8207359&buildingId=579103",
+    "onclick": "",
+    "target": "",
+    "className": "",
+    "id": "",
+    "outerHTML": "<a href=\"/eportal/ui?pageId=320833&amp;systemId=2&amp;categoryId=1&amp;salePermitId=8207359&amp;buildingId=579103\" title=\"查看信息\">查看信息</a>",
+    "rowContext": [
+      "1516-2#住宅楼",
+      "54",
+      "5905.45",
+      "",
+      "45235.23",
+      {
+        "text": "查看信息",
+        "href": "http://bjjs.zjw.beijing.gov.cn/eportal/ui?pageId=320833&systemId=2&categoryId=1&salePermitId=8207359&buildingId=579103",
+        "onclick": "",
+        "outerHTML": "<a href=\"/eportal/ui?pageId=320833&amp;systemId=2&amp;categoryId=1&amp;salePermitId=8207359&amp;buildingId=579103\" title=\"查看信息\">查看信息</a>"
+      }
+    ]
+  },
+  {
+    "tableIdx": 4,
+    "rowIdx": 5,
+    "tdIdx": 5,
+    "text": "查看信息",
+    "href": "http://bjjs.zjw.beijing.gov.cn/eportal/ui?pageId=320833&systemId=2&categoryId=1&salePermitId=8207359&buildingId=579102",
+    "onclick": "",
+    "target": "",
+    "className": "",
+    "id": "",
+    "outerHTML": "<a href=\"/eportal/ui?pageId=320833&amp;systemId=2&amp;categoryId=1&amp;salePermitId=8207359&amp;buildingId=579102\" title=\"查看信息\">查看信息</a>",
+    "rowContext": [
+      "1516-3#住宅楼",
+      "54",
+      "4700.55",
+      "",
+      "44173.01",
+      {
+        "text": "查看信息",
+        "href": "http://bjjs.zjw.beijing.gov.cn/eportal/ui?pageId=320833&systemId=2&categoryId=1&salePermitId=8207359&buildingId=579102",
+        "onclick": "",
+        "outerHTML": "<a href=\"/eportal/ui?pageId=320833&amp;systemId=2&amp;categoryId=1&amp;salePermitId=8207359&amp;buildingId=579102\" title=\"查看信息\">查看信息</a>"
+      }
+    ]
+  },
+  {
+    "tableIdx": 4,
+    "rowIdx": 6,
+    "tdIdx": 5,
+    "text": "查看信息",
+    "href": "http://bjjs.zjw.beijing.gov.cn/eportal/ui?pageId=320833&systemId=2&categoryId=1&salePermitId=8207359&buildingId=579101",
+    "onclick": "",
+    "target": "",
+    "className": "",
+    "id": "",
+    "outerHTML": "<a href=\"/eportal/ui?pageId=320833&amp;systemId=2&amp;categoryId=1&amp;salePermitId=8207359&amp;buildingId=579101\" title=\"查看信息\">查看信息</a>",
+    "rowContext": [
+      "1516-4#住宅楼",
+      "36",
+      "3185.14",
+      "",
+      "43976.63",
+      {
+        "text": "查看信息",
+        "href": "http://bjjs.zjw.beijing.gov.cn/eportal/ui?pageId=320833&systemId=2&categoryId=1&salePermitId=8207359&buildingId=579101",
+        "onclick": "",
+        "outerHTML": "<a href=\"/eportal/ui?pageId=320833&amp;systemId=2&amp;categoryId=1&amp;salePermitId=8207359&amp;buildingId=579101\" title=\"查看信息\">查看信息</a>"
+      }
+    ]
+  },
+  {
+    "tableIdx": 4,
+    "rowIdx": 7,
+    "tdIdx": 5,
+    "text": "查看信息",
+    "href": "http://bjjs.zjw.beijing.gov.cn/eportal/ui?pageId=320833&systemId=2&categoryId=1&salePermitId=8207359&buildingId=579077",
+    "onclick": "",
+    "target": "",
+    "className": "",
+    "id": "",
+    "outerHTML": "<a href=\"/eportal/ui?pageId=320833&amp;systemId=2&amp;categoryId=1&amp;salePermitId=8207359&amp;buildingId=579077\" title=\"查看信息\">查看信息</a>",
+    "rowContext": [
+      "1516-5#住宅楼",
+      "57",
+      "7899.10",
+      "",
+      "46836.97",
+      {
+        "text": "查看信息",
+        "href": "http://bjjs.zjw.beijing.gov.cn/eportal/ui?pageId=320833&systemId=2&categoryId=1&salePermitId=8207359&buildingId=579077",
+        "onclick": "",
+        "outerHTML": "<a href=\"/eportal/ui?pageId=320833&amp;systemId=2&amp;categoryId=1&amp;salePermitId=8207359&amp;buildingId=579077\" title=\"查看信息\">查看信息</a>"
+      }
+    ]
+  },
+  {
+    "tableIdx": 4,
+    "rowIdx": 8,
+    "tdIdx": 5,
+    "text": "查看信息",
+    "href": "http://bjjs.zjw.beijing.gov.cn/eportal/ui?pageId=320833&systemId=2&categoryId=1&salePermitId=8207359&buildingId=579076",
+    "onclick": "",
+    "target": "",
+    "className": "",
+    "id": "",
+    "outerHTML": "<a href=\"/eportal/ui?pageId=320833&amp;systemId=2&amp;categoryId=1&amp;salePermitId=8207359&amp;buildingId=579076\" title=\"查看信息\">查看信息</a>",
+    "rowContext": [
+      "1516-6#住宅楼",
+      "18",
+      "1943.80",
+      "",
+      "45707.41",
+      {
+        "text": "查看信息",
+        "href": "http://bjjs.zjw.beijing.gov.cn/eportal/ui?pageId=320833&systemId=2&categoryId=1&salePermitId=8207359&buildingId=579076",
+        "onclick": "",
+        "outerHTML": "<a href=\"/eportal/ui?pageId=320833&amp;systemId=2&amp;categoryId=1&amp;salePermitId=8207359&amp;buildingId=579076\" title=\"查看信息\">查看信息</a>"
+      }
+    ]
+  },
+  {
+    "tableIdx": 4,
+    "rowIdx": 9,
+    "tdIdx": 5,
+    "text": "查看信息",
+    "href": "http://bjjs.zjw.beijing.gov.cn/eportal/ui?pageId=320833&systemId=2&categoryId=1&salePermitId=8207359&buildingId=579075",
+    "onclick": "",
+    "target": "",
+    "className": "",
+    "id": "",
+    "outerHTML": "<a href=\"/eportal/ui?pageId=320833&amp;systemId=2&amp;categoryId=1&amp;salePermitId=8207359&amp;buildingId=579075\" title=\"查看信息\">查看信息</a>",
+    "rowContext": [
+      "1516-7#住宅楼",
+      "44",
+      "3835.14",
+      "",
+      "42643.50",
+      {
+        "text": "查看信息",
+        "href": "http://bjjs.zjw.beijing.gov.cn/eportal/ui?pageId=320833&systemId=2&categoryId=1&salePermitId=8207359&buildingId=579075",
+        "onclick": "",
+        "outerHTML": "<a href=\"/eportal/ui?pageId=320833&amp;systemId=2&amp;categoryId=1&amp;salePermitId=8207359&amp;buildingId=579075\" title=\"查看信息\">查看信息</a>"
+      }
+    ]
+  },
+  {
+    "tableIdx": 4,
+    "rowIdx": 10,
+    "tdIdx": 5,
+    "text": "查看信息",
+    "href": "http://bjjs.zjw.beijing.gov.cn/eportal/ui?pageId=320833&systemId=2&categoryId=1&salePermitId=8207359&buildingId=579074",
+    "onclick": "",
+    "target": "",
+    "className": "",
+    "id": "",
+    "outerHTML": "<a href=\"/eportal/ui?pageId=320833&amp;systemId=2&amp;categoryId=1&amp;salePermitId=8207359&amp;buildingId=579074\" title=\"查看信息\">查看信息</a>",
+    "rowContext": [
+      "1516-8#住宅楼",
+      "66",
+      "7801.66",
+      "",
+      "43825.33",
+      {
+        "text": "查看信息",
+        "href": "http://bjjs.zjw.beijing.gov.cn/eportal/ui?pageId=320833&systemId=2&categoryId=1&salePermitId=8207359&buildingId=579074",
+        "onclick": "",
+        "outerHTML": "<a href=\"/eportal/ui?pageId=320833&amp;systemId=2&amp;categoryId=1&amp;salePermitId=8207359&amp;buildingId=579074\" title=\"查看信息\">查看信息</a>"
+      }
+    ]
+  },
+  {
+    "tableIdx": 5,
+    "rowIdx": 1,
+    "tdIdx": 5,
+    "text": "查看信息",
+    "href": "http://bjjs.zjw.beijing.gov.cn/eportal/ui?pageId=320833&systemId=2&categoryId=1&salePermitId=8207359&buildingId=579104",
+    "onclick": "",
+    "target": "",
+    "className": "",
+    "id": "",
+    "outerHTML": "<a href=\"/eportal/ui?pageId=320833&amp;systemId=2&amp;categoryId=1&amp;salePermitId=8207359&amp;buildingId=579104\" title=\"查看信息\">查看信息</a>",
+    "rowContext": [
+      "1516-1#住宅楼",
+      "54",
+      "4700.01",
+      "",
+      "42942.44",
+      {
+        "text": "查看信息",
+        "href": "http://bjjs.zjw.beijing.gov.cn/eportal/ui?pageId=320833&systemId=2&categoryId=1&salePermitId=8207359&buildingId=579104",
+        "onclick": "",
+        "outerHTML": "<a href=\"/eportal/ui?pageId=320833&amp;systemId=2&amp;categoryId=1&amp;salePermitId=8207359&amp;buildingId=579104\" title=\"查看信息\">查看信息</a>"
+      }
+    ]
+  },
+  {
+    "tableIdx": 5,
+    "rowIdx": 2,
+    "tdIdx": 5,
+    "text": "查看信息",
+    "href": "http://bjjs.zjw.beijing.gov.cn/eportal/ui?pageId=320833&systemId=2&categoryId=1&salePermitId=8207359&buildingId=579103",
+    "onclick": "",
+    "target": "",
+    "className": "",
+    "id": "",
+    "outerHTML": "<a href=\"/eportal/ui?pageId=320833&amp;systemId=2&amp;categoryId=1&amp;salePermitId=8207359&amp;buildingId=579103\" title=\"查看信息\">查看信息</a>",
+    "rowContext": [
+      "1516-2#住宅楼",
+      "54",
+      "5905.45",
+      "",
+      "45235.23",
+      {
+        "text": "查看信息",
+        "href": "http://bjjs.zjw.beijing.gov.cn/eportal/ui?pageId=320833&systemId=2&categoryId=1&salePermitId=8207359&buildingId=579103",
+        "onclick": "",
+        "outerHTML": "<a href=\"/eportal/ui?pageId=320833&amp;systemId=2&amp;categoryId=1&amp;salePermitId=8207359&amp;buildingId=579103\" title=\"查看信息\">查看信息</a>"
+      }
+    ]
+  },
+  {
+    "tableIdx": 5,
+    "rowIdx": 3,
+    "tdIdx": 5,
+    "text": "查看信息",
+    "href": "http://bjjs.zjw.beijing.gov.cn/eportal/ui?pageId=320833&systemId=2&categoryId=1&salePermitId=8207359&buildingId=579102",
+    "onclick": "",
+    "target": "",
+    "className": "",
+    "id": "",
+    "outerHTML": "<a href=\"/eportal/ui?pageId=320833&amp;systemId=2&amp;categoryId=1&amp;salePermitId=8207359&amp;buildingId=579102\" title=\"查看信息\">查看信息</a>",
+    "rowContext": [
+      "1516-3#住宅楼",
+      "54",
+      "4700.55",
+      "",
+      "44173.01",
+      {
+        "text": "查看信息",
+        "href": "http://bjjs.zjw.beijing.gov.cn/eportal/ui?pageId=320833&systemId=2&categoryId=1&salePermitId=8207359&buildingId=579102",
+        "onclick": "",
+        "outerHTML": "<a href=\"/eportal/ui?pageId=320833&amp;systemId=2&amp;categoryId=1&amp;salePermitId=8207359&amp;buildingId=579102\" title=\"查看信息\">查看信息</a>"
+      }
+    ]
+  },
+  {
+    "tableIdx": 5,
+    "rowIdx": 4,
+    "tdIdx": 5,
+    "text": "查看信息",
+    "href": "http://bjjs.zjw.beijing.gov.cn/eportal/ui?pageId=320833&systemId=2&categoryId=1&salePermitId=8207359&buildingId=579101",
+    "onclick": "",
+    "target": "",
+    "className": "",
+    "id": "",
+    "outerHTML": "<a href=\"/eportal/ui?pageId=320833&amp;systemId=2&amp;categoryId=1&amp;salePermitId=8207359&amp;buildingId=579101\" title=\"查看信息\">查看信息</a>",
+    "rowContext": [
+      "1516-4#住宅楼",
+      "36",
+      "3185.14",
+      "",
+      "43976.63",
+      {
+        "text": "查看信息",
+        "href": "http://bjjs.zjw.beijing.gov.cn/eportal/ui?pageId=320833&systemId=2&categoryId=1&salePermitId=8207359&buildingId=579101",
+        "onclick": "",
+        "outerHTML": "<a href=\"/eportal/ui?pageId=320833&amp;systemId=2&amp;categoryId=1&amp;salePermitId=8207359&amp;buildingId=579101\" title=\"查看信息\">查看信息</a>"
+      }
+    ]
+  },
+  {
+    "tableIdx": 5,
+    "rowIdx": 5,
+    "tdIdx": 5,
+    "text": "查看信息",
+    "href": "http://bjjs.zjw.beijing.gov.cn/eportal/ui?pageId=320833&systemId=2&categoryId=1&salePermitId=8207359&buildingId=579077",
+    "onclick": "",
+    "target": "",
+    "className": "",
+    "id": "",
+    "outerHTML": "<a href=\"/eportal/ui?pageId=320833&amp;systemId=2&amp;categoryId=1&amp;salePermitId=8207359&amp;buildingId=579077\" title=\"查看信息\">查看信息</a>",
+    "rowContext": [
+      "1516-5#住宅楼",
+      "57",
+      "7899.10",
+      "",
+      "46836.97",
+      {
+        "text": "查看信息",
+        "href": "http://bjjs.zjw.beijing.gov.cn/eportal/ui?pageId=320833&systemId=2&categoryId=1&salePermitId=8207359&buildingId=579077",
+        "onclick": "",
+        "outerHTML": "<a href=\"/eportal/ui?pageId=320833&amp;systemId=2&amp;categoryId=1&amp;salePermitId=8207359&amp;buildingId=579077\" title=\"查看信息\">查看信息</a>"
+      }
+    ]
+  },
+  {
+    "tableIdx": 5,
+    "rowIdx": 6,
+    "tdIdx": 5,
+    "text": "查看信息",
+    "href": "http://bjjs.zjw.beijing.gov.cn/eportal/ui?pageId=320833&systemId=2&categoryId=1&salePermitId=8207359&buildingId=579076",
+    "onclick": "",
+    "target": "",
+    "className": "",
+    "id": "",
+    "outerHTML": "<a href=\"/eportal/ui?pageId=320833&amp;systemId=2&amp;categoryId=1&amp;salePermitId=8207359&amp;buildingId=579076\" title=\"查看信息\">查看信息</a>",
+    "rowContext": [
+      "1516-6#住宅楼",
+      "18",
+      "1943.80",
+      "",
+      "45707.41",
+      {
+        "text": "查看信息",
+        "href": "http://bjjs.zjw.beijing.gov.cn/eportal/ui?pageId=320833&systemId=2&categoryId=1&salePermitId=8207359&buildingId=579076",
+        "onclick": "",
+        "outerHTML": "<a href=\"/eportal/ui?pageId=320833&amp;systemId=2&amp;categoryId=1&amp;salePermitId=8207359&amp;buildingId=579076\" title=\"查看信息\">查看信息</a>"
+      }
+    ]
+  },
+  {
+    "tableIdx": 5,
+    "rowIdx": 7,
+    "tdIdx": 5,
+    "text": "查看信息",
+    "href": "http://bjjs.zjw.beijing.gov.cn/eportal/ui?pageId=320833&systemId=2&categoryId=1&salePermitId=8207359&buildingId=579075",
+    "onclick": "",
+    "target": "",
+    "className": "",
+    "id": "",
+    "outerHTML": "<a href=\"/eportal/ui?pageId=320833&amp;systemId=2&amp;categoryId=1&amp;salePermitId=8207359&amp;buildingId=579075\" title=\"查看信息\">查看信息</a>",
+    "rowContext": [
+      "1516-7#住宅楼",
+      "44",
+      "3835.14",
+      "",
+      "42643.50",
+      {
+        "text": "查看信息",
+        "href": "http://bjjs.zjw.beijing.gov.cn/eportal/ui?pageId=320833&systemId=2&categoryId=1&salePermitId=8207359&buildingId=579075",
+        "onclick": "",
+        "outerHTML": "<a href=\"/eportal/ui?pageId=320833&amp;systemId=2&amp;categoryId=1&amp;salePermitId=8207359&amp;buildingId=579075\" title=\"查看信息\">查看信息</a>"
+      }
+    ]
+  },
+  {
+    "tableIdx": 5,
+    "rowIdx": 8,
+    "tdIdx": 5,
+    "text": "查看信息",
+    "href": "http://bjjs.zjw.beijing.gov.cn/eportal/ui?pageId=320833&systemId=2&categoryId=1&salePermitId=8207359&buildingId=579074",
+    "onclick": "",
+    "target": "",
+    "className": "",
+    "id": "",
+    "outerHTML": "<a href=\"/eportal/ui?pageId=320833&amp;systemId=2&amp;categoryId=1&amp;salePermitId=8207359&amp;buildingId=579074\" title=\"查看信息\">查看信息</a>",
+    "rowContext": [
+      "1516-8#住宅楼",
+      "66",
+      "7801.66",
+      "",
+      "43825.33",
+      {
+        "text": "查看信息",
+        "href": "http://bjjs.zjw.beijing.gov.cn/eportal/ui?pageId=320833&systemId=2&categoryId=1&salePermitId=8207359&buildingId=579074",
+        "onclick": "",
+        "outerHTML": "<a href=\"/eportal/ui?pageId=320833&amp;systemId=2&amp;categoryId=1&amp;salePermitId=8207359&amp;buildingId=579074\" title=\"查看信息\">查看信息</a>"
+      }
+    ]
+  }
+]

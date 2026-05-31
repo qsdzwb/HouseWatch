@@ -1,0 +1,12 @@
+{
+  "project": "金阙华院",
+  "projectID": "8205387",
+  "buildingCount": 1,
+  "buildings": [
+    {
+      "name": "5#住宅楼",
+      "buildingId": "577656"
+    }
+  ],
+  "buildingDataCount": 1
+}

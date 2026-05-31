@@ -1,0 +1,12 @@
+{
+  "project": "铂瑞府",
+  "projectID": "8207359",
+  "buildingLinks": 32,
+  "unitDataCaptured": true,
+  "unitDataPreview": "{\"popupData\":[],\"source\":\"popup\"}",
+  "files": [
+    "building_links.json",
+    "popup_data.json",
+    "popup_screenshot.png"
+  ]
+}

@@ -1,0 +1,40 @@
+[
+  {
+    "url": "http://bjjs.zjw.beijing.gov.cn/eportal/ui?pageId=307670&isTrue=0",
+    "status": 200,
+    "contentType": "text/html;charset=UTF-8",
+    "bodyLength": 44625,
+    "bodyPreview": "<!DOCTYPE html PUBLIC \"-//W3C//DTD XHTML 1.0 Transitional//EN\" \"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd\"><html>\n <head>\n  <meta http-equiv=\"Content-Type\" content=\"text/html; charset=utf-8\" /><title>项目信息公示</title>\r\n<meta  name=\"createDate\" content=\"2026-05-24 19:28:28\" />\r\n<meta  name=\"cacheclearDate\" content=\"2026-05-24 19:04:00\"/>\r\n<meta  name=\"version\" content=\"7.9.7\"/>\r\n<meta http-equiv=\"X-UA-Compatible\" content=\"IE=edge\">\r\n<meta name=\"keywords\"  content=\"北京市住房和城乡建设委员会,市住房城乡建设委,北京市建设委员会,市建委,北京建设网\" />\r\n<meta name=\"description\"  content=\"初始化频道：项目信息公示 北京市住房和城乡建设委员会门户网站简称北京建设网建于2001年，是北京市住房和城乡建设委员会向公众提供信息和服务的综合平台。\" />\r\n<link rel=\"stylesheet\" type=\"text/css\"  href=\"/eportal/uiFramework/huilan-jquery-ui/css/huilan-jquery-ui.css\" />\r\n<script type=\"text/javascript\" src=\"/eportal/uiFramework/huilan-jquery-ui/js/huilan-jquery-ui.js?self=true&skin=default\"></script>\r\n <meta name=\"viewport\" content=\"width=1200\" /> \n<meta name=\"SiteName\" content=\"北京市住房和城乡建设委员会\">\n<meta name=\"SiteDomain\" content=\"zjw.beijing.gov.cn\">\n<meta name=\"SiteIDCode\" content=\"1100000159\">\n<meta id=\"columnname\" name=\"ColumnName\" content=\"栏目名称\" >\n<meta name=\"ColumnType\"  content=\"工作动态\" >\n<meta id=\"columndescription\" name=\"ColumnDescription\" content=\"栏目名称\">\n<meta id=\"columnkeywords\" name=\"ColumnKeywords\" content=\"北京市住房和城乡建设委员会,市住房城乡建设委,北京市建设委员会,市建委,北京建设网\">\n<script>\n(function(){\nvar t = document.title.match(/[\\u4e00-\\u9fa5]+/g);\ndocument.getElementById(\"columnname\").setAttribute(\"content\",t[t.length-1]);\ndocument.getElementById(\"columndescription\").setAttribute(\"content\",\"初始化频道：\"+t[t.length-1]);\n}());\n</script>   <link rel=\"stylesheet\" type=\"text/css\" href=\"/eportal/fileDir/bjjs/template/bjjs.css\" />\n  <script type=\"text/javascript\" src=\"/eportal/fileDir/bjjs/template/bjjs.js\"></script>\n </head>\n <body>\n  <link rel=\"stylesheet\" type=\"text/css\" href=\"/eportal/fileDir/bjjs/template/page/fwgl_fdcjyxxgs/skin.css\" /><div style=\"display:none\" easysite=\"easysiteHiddenDiv\">\r\n\t<input id=\"contextPath\" "
+  },
+  {
+    "url": "http://zjw.beijing.gov.cn/bjjs/uiFramework/commonResource/js/zjw_header.js?a=12",
+    "status": 307,
+    "contentType": "text/html"
+  },
+  {
+    "url": "http://yhxw.tj.beijing.gov.cn/vas.js",
+    "status": 307,
+    "contentType": "text/html"
+  },
+  {
+    "url": "https://yhxw.tj.beijing.gov.cn/logcount.html?website=10005026&server=s1&datatype=common_start&sendid=1779622299756",
+    "status": 200,
+    "contentType": "text/html",
+    "bodyLength": 0,
+    "bodyPreview": ""
+  },
+  {
+    "url": "https://yhxw.tj.beijing.gov.cn/logcount.html?website=10005026&server=s1&datatype=common_page&sendid=1779622299766",
+    "status": 200,
+    "contentType": "text/html",
+    "bodyLength": 0,
+    "bodyPreview": ""
+  },
+  {
+    "url": "https://yhxw.tj.beijing.gov.cn/logcount.html?website=10005026&server=s1&datatype=simnet_simnet&sendid=1779622299770",
+    "status": 200,
+    "contentType": "text/html",
+    "bodyLength": 0,
+    "bodyPreview": ""
+  }
+]

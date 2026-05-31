@@ -1,0 +1,58 @@
+page { --blue:#1989FA; --red:#E74C3C; --green:#27AE60; --orange:#F39C12; --gray:#999; --bg:#F5F7FA; font-size:14px; color:#333; background:var(--bg); }
+.container { padding:16px; }
+.card { background:#fff; border-radius:12px; padding:16px; margin-bottom:12px; box-shadow:0 1px 3px rgba(0,0,0,.06); }
+.card-title { font-size:15px; font-weight:600; margin-bottom:12px; }
+.text-gray { color:var(--gray); font-size:12px; }
+.text-red { color:var(--red); }
+.text-green { color:var(--green); }
+.empty { text-align:center; padding:48px 0; color:#999; font-size:14px; }
+.flex-row { display:flex; flex-direction:row; align-items:center; }
+.flex-between { display:flex; justify-content:space-between; align-items:center; }
+.tag { display:inline-block; padding:2px 8px; border-radius:4px; font-size:11px; color:#fff; }
+.btn { padding:8px 16px; border-radius:8px; font-size:13px; text-align:center; }
+.btn-primary { background:var(--blue); color:#fff; }
+.btn-danger { background:var(--red); color:#fff; }
+.btn-outline { border:1px solid var(--blue); color:var(--blue); background:#fff; }
+
+/* 统计卡片 */
+.stats-grid { display:flex; justify-content:space-around; }
+.stat-item { text-align:center; }
+.stat-value { font-size:22px; font-weight:700; color:#333; }
+.stat-label { font-size:11px; color:#999; margin-top:4px; }
+
+/* 趋势柱状图 */
+.trend-bar { display:flex; align-items:flex-end; justify-content:space-around; height:80px; gap:4px; }
+.trend-col { flex:1; background:var(--blue); border-radius:4px 4px 0 0; min-height:4px; }
+.trend-label { font-size:10px; color:#999; }
+
+/* 筛选标签 */
+.filter-tag { padding:4px 12px; border-radius:14px; font-size:12px; background:#f0f0f0; color:#666; white-space:nowrap; }
+.filter-tag.active { background:var(--blue); color:#fff; }
+
+/* 楼盘卡片 */
+.project-card { background:#fff; border-radius:10px; padding:14px; margin-bottom:10px; box-shadow:0 1px 2px rgba(0,0,0,.05); }
+.card-top { display:flex; justify-content:space-between; align-items:center; }
+.project-name { font-size:15px; font-weight:600; }
+.project-arrow { font-size:18px; color:#ccc; }
+.project-meta { font-size:12px; color:#999; margin-top:4px; }
+.project-stats { display:flex; gap:12px; margin-top:8px; font-size:13px; }
+.stat-green { color:var(--green); }
+.stat-red { color:var(--red); }
+.stat-rate { color:var(--blue); font-weight:600; }
+
+/* 变化卡片 */
+.change-card { background:#fff; border-radius:10px; padding:14px; margin-bottom:10px; }
+.change-tag { display:inline-block; padding:2px 8px; border-radius:4px; font-size:11px; color:#fff; }
+.change-tag.new-sale { background:var(--green); }
+.change-tag.status-change { background:var(--orange); }
+.change-house { font-size:14px; font-weight:500; margin-top:6px; }
+.change-detail { font-size:12px; color:#666; margin-top:4px; }
+
+/* 加载更多 */
+.load-more { text-align:center; padding:16px; color:#999; font-size:12px; }
+
+/* 搜索栏 */
+.search-bar { display:flex; align-items:center; margin-bottom:12px; background:#fff; border-radius:10px; padding:8px 12px; }
+.search-input { flex:1; font-size:14px; border:none; outline:none; }
+.search-btn { color:var(--blue); font-size:13px; margin-left:8px; }
+.search-clear { color:#ccc; font-size:16px; margin-left:8px; }

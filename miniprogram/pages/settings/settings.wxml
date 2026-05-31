@@ -1,0 +1,14 @@
+<view class="container">
+  <view style="font-size:13px;color:#999;margin-bottom:8px;">后端服务</view>
+  <view class="add-form">
+    <view class="form-item">
+      <label>API 地址</label>
+      <input value="{{apiBase}}" bindinput="onApiBaseInput" placeholder="http://your-server:3000/api" style="border:1px solid #eee;border-radius:8px;padding:8px;" />
+    </view>
+    <view class="btn btn-primary" style="margin-top:12px;" bindtap="saveSettings">保存设置</view>
+  </view>
+  <view style="font-size:13px;color:#999;margin:20px 0 8px;">操作</view>
+  <view class="card" bindtap="checkHealth" style="margin-bottom:8px;">🔍 检查后端连接</view>
+  <view class="card" bindtap="clearCache" style="color:#E74C3C;">🗑 清除缓存</view>
+  <view style="text-align:center;color:#ccc;font-size:12px;margin-top:32px;">北京楼盘数据 v{{version}}</view>
+</view>

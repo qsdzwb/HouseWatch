@@ -1,0 +1,220 @@
+{
+  "title": "单元号详情",
+  "url": "http://bjjs.zjw.beijing.gov.cn/eportal/ui?pageId=373432&houseId=17822464&houseNo=1%E5%8D%95%E5%85%83-801&categoryId=1&salePermitId=8205387&systemId=2",
+  "bodyText": "\t\n\n\t\n视窗\n×\n\n\nloading...\n\n\n\t\n\n\t\n无障碍\n繁體\n手机版\n访问我的专属空间\n搜本网\n一网通查\n首页\n政务公开\n政务服务\n政民互动\n当前位置   首页 > 房屋管理 > 房地产交易管理 > 新建商品房 > 项目信息公示 > 项目详细信息 > 楼盘表页面 > 单元号详情\n网签合同信息查询\n期房网签合同信息查询\n两限房项目公示\n现房网签合同信息查询\n存量房网签合同信息查询\n房屋资料\n房 间 号\t1单元-801\n规划设计用途\t住宅\n户　　型\t一室两厅\n建筑面积\t58.0800 平方米\n套内面积\t46.1000 平方米\n按建筑面积拟售单价\t51713 元/平方米\n按套内面积拟售单价\t65151.65 元/平方米\n说 明：分摊面积=建筑面积-套内面积\n关于我们\n站点地图\n建议意见\n法律声明\n办公地址：北京市通州区达济街9号院\n联系方式：010-55529919\n\n微信公众号\n\n微博\n\n主办：北京市住房和城乡建设委员会 承办：北京市住房和城乡建设委员会办公室、综合事务中心\n备案编号：京ICP备2024078583号政府网站标识码：1100000159\n京公网安备11040102700048号",
+  "tables": [
+    {
+      "index": 0,
+      "rowCount": 6,
+      "rows": [
+        [
+          {
+            "text": "",
+            "html": ""
+          },
+          {
+            "text": "",
+            "html": ""
+          },
+          {
+            "text": "",
+            "html": ""
+          }
+        ],
+        [
+          {
+            "text": "",
+            "html": ""
+          },
+          {
+            "text": "视窗\n×\n\n\nloading...",
+            "html": "<div class=\"ui_inner\"><table class=\"ui_dialog\"><tbody><tr><td colspan=\"2\"><div class=\"ui_title_bar\"><div class=\"ui_title\" unselectable=\"on\" style=\"cursor: move;\">视窗 </div><div class=\"ui_title_buttons\""
+          },
+          {
+            "text": "视窗\n×",
+            "html": "<div class=\"ui_title_bar\"><div class=\"ui_title\" unselectable=\"on\" style=\"cursor: move;\">视窗 </div><div class=\"ui_title_buttons\"><a class=\"ui_min\" href=\"javascript:void(0);\" title=\"最小化\" style=\"display: "
+          },
+          {
+            "text": "",
+            "html": ""
+          },
+          {
+            "text": "loading...",
+            "html": "<div class=\"ui_content\" style=\"padding: 10px;\"><div class=\"ui_loading\"><span>loading...</span></div></div>"
+          },
+          {
+            "text": "",
+            "html": "<div class=\"ui_buttons\" style=\"display: none;\"></div>"
+          },
+          {
+            "text": "",
+            "html": ""
+          }
+        ],
+        [
+          {
+            "text": "视窗\n×",
+            "html": "<div class=\"ui_title_bar\"><div class=\"ui_title\" unselectable=\"on\" style=\"cursor: move;\">视窗 </div><div class=\"ui_title_buttons\"><a class=\"ui_min\" href=\"javascript:void(0);\" title=\"最小化\" style=\"display: "
+          }
+        ],
+        [
+          {
+            "text": "",
+            "html": ""
+          },
+          {
+            "text": "loading...",
+            "html": "<div class=\"ui_content\" style=\"padding: 10px;\"><div class=\"ui_loading\"><span>loading...</span></div></div>"
+          }
+        ],
+        [
+          {
+            "text": "",
+            "html": "<div class=\"ui_buttons\" style=\"display: none;\"></div>"
+          }
+        ],
+        [
+          {
+            "text": "",
+            "html": ""
+          },
+          {
+            "text": "",
+            "html": ""
+          },
+          {
+            "text": "",
+            "html": ""
+          }
+        ]
+      ]
+    },
+    {
+      "index": 1,
+      "rowCount": 3,
+      "rows": [
+        [
+          {
+            "text": "视窗\n×",
+            "html": "<div class=\"ui_title_bar\"><div class=\"ui_title\" unselectable=\"on\" style=\"cursor: move;\">视窗 </div><div class=\"ui_title_buttons\"><a class=\"ui_min\" href=\"javascript:void(0);\" title=\"最小化\" style=\"display: "
+          }
+        ],
+        [
+          {
+            "text": "",
+            "html": ""
+          },
+          {
+            "text": "loading...",
+            "html": "<div class=\"ui_content\" style=\"padding: 10px;\"><div class=\"ui_loading\"><span>loading...</span></div></div>"
+          }
+        ],
+        [
+          {
+            "text": "",
+            "html": "<div class=\"ui_buttons\" style=\"display: none;\"></div>"
+          }
+        ]
+      ]
+    },
+    {
+      "index": 2,
+      "rowCount": 9,
+      "rows": [
+        [
+          {
+            "text": "房屋资料",
+            "html": "\n                                               房屋资料\n            "
+          }
+        ],
+        [
+          {
+            "text": "房 间 号",
+            "html": "房 间 号"
+          },
+          {
+            "text": "1单元-801",
+            "html": "1单元-801  \n\t\t              \n\t\t              \n\t\t            "
+          }
+        ],
+        [
+          {
+            "text": "规划设计用途",
+            "html": "规划设计用途"
+          },
+          {
+            "text": "住宅",
+            "html": "住宅  \n\t\t              \n\t\t              \n\t\t            "
+          }
+        ],
+        [
+          {
+            "text": "户　　型",
+            "html": "户　　型"
+          },
+          {
+            "text": "一室两厅",
+            "html": "一室两厅  \n\t\t              \n\t\t              \n\t\t            "
+          }
+        ],
+        [
+          {
+            "text": "建筑面积",
+            "html": "建筑面积"
+          },
+          {
+            "text": "58.0800 平方米",
+            "html": "58.0800  \n\t\t              \n\t\t              平方米\n\t\t            "
+          }
+        ],
+        [
+          {
+            "text": "套内面积",
+            "html": "套内面积"
+          },
+          {
+            "text": "46.1000 平方米",
+            "html": "46.1000  \n\t\t              \n\t\t              平方米\n\t\t            "
+          }
+        ],
+        [
+          {
+            "text": "按建筑面积拟售单价",
+            "html": "按建筑面积拟售单价"
+          },
+          {
+            "text": "51713 元/平方米",
+            "html": "51713  \n\t\t              元/平方米\n\t\t              \n\t\t            "
+          }
+        ],
+        [
+          {
+            "text": "按套内面积拟售单价",
+            "html": "按套内面积拟售单价"
+          },
+          {
+            "text": "65151.65 元/平方米",
+            "html": "65151.65  \n\t\t              元/平方米\n\t\t              \n\t\t            "
+          }
+        ],
+        [
+          {
+            "text": "说 明：分摊面积=建筑面积-套内面积",
+            "html": "说    明：分摊面积=建筑面积-套内面积"
+          }
+        ]
+      ]
+    }
+  ],
+  "keyInfo": [
+    "当前位置   首页 > 房屋管理 > 房地产交易管理 > 新建商品房 > 项目信息公示 > 项目详细信息 > 楼盘表页面 > 单元号详情\n网签合同信息查询\n期房网签合同信息查询\n两限房项目公示\n现房网",
+    "网签合同信息查询\n期房网签合同信息查询\n两限房项目公示\n现房网签合同信息查询\n存量房网签合同信息查询\n房屋资料\n房 间 号\t1单元-801\n规划设计用途\t住宅\n户　　型\t一室两厅\n建筑面积\t58.08",
+    "房屋资料\n房 间 号\t1单元-801\n规划设计用途\t住宅\n户　　型\t一室两厅\n建筑面积\t58.0800 平方米\n套内面积\t46.1000 平方米\n按建筑面积拟售单价\t51713 元/平方米\n按套内面积",
+    "规划设计用途",
+    "建筑面积",
+    "套内面积",
+    "按建筑面积拟售单价",
+    "按套内面积拟售单价",
+    "说 明：分摊面积=建筑面积-套内面积"
+  ]
+}

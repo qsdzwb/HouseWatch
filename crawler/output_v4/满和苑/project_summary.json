@@ -1,0 +1,16 @@
+{
+  "project": "满和苑",
+  "projectID": "8203797",
+  "buildingCount": 2,
+  "buildings": [
+    {
+      "name": "5#住宅楼",
+      "buildingId": "577224"
+    },
+    {
+      "name": "地下车库",
+      "buildingId": "577199"
+    }
+  ],
+  "buildingDataCount": 2
+}

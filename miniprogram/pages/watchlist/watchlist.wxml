@@ -1,0 +1,69 @@
+<view class="container">
+  <view class="flex-between" style="margin-bottom:12px;">
+    <view style="font-size:16px;font-weight:600;">关注楼盘 ({{list.length}})</view>
+    <view class="btn btn-primary" bindtap="showAdd">+ 添加</view>
+  </view>
+
+  <!-- 关注列表 -->
+  <block wx:for="{{list}}" wx:key="id">
+    <view class="project-card" bindtap="goDetail" data-id="{{item.project_id}}">
+      <view class="card-top">
+        <view class="project-name">{{item.name || '未知楼盘'}}</view>
+        <view class="project-arrow">›</view>
+      </view>
+      <view class="project-meta">{{item.notes || ''}}</view>
+      <view class="project-stats" wx:if="{{item.showStats}}">
+        <text class="stat-green">{{item.total_units}}套</text>
+        <text class="stat-red">已售{{item.sold_units}}套</text>
+        <text class="stat-rate">{{item.rate}}</text>
+      </view>
+    </view>
+  </block>
+
+  <view class="empty" wx:if="{{!list.length}}">
+    <view>暂无关注楼盘</view>
+    <view style="font-size:12px;color:#bbb;margin-top:4px;">点击「+ 添加」搜索并关注楼盘</view>
+  </view>
+
+  <!-- 添加关注弹窗 -->
+  <view wx:if="{{showAdd}}" style="position:fixed;top:0;left:0;right:0;bottom:0;background:rgba(0,0,0,0.5);z-index:999;display:flex;align-items:flex-start;justify-content:center;padding-top:80px;">
+    <view style="background:#fff;width:90%;border-radius:14px;padding:20px;max-height:70vh;overflow-y:auto;">
+      <view style="font-size:16px;font-weight:600;margin-bottom:16px;">
+        {{selectedProject ? '确认添加' : '搜索楼盘'}}
+      </view>
+
+      <view wx:if="{{selectedProject}}" style="background:#E8F5E9;padding:10px 14px;border-radius:8px;margin-bottom:12px;">
+        <view style="font-weight:500;">{{selectedProject.name}}</view>
+        <view style="font-size:12px;color:#666;margin-top:4px;" bindtap="clearSelection">✕ 重新选择</view>
+      </view>
+
+      <view wx:if="{{!selectedProject}}">
+        <input placeholder="输入楼盘名称搜索" value="{{searchKeyword}}" bindinput="onSearchInput"
+          style="padding:10px;border:1px solid #eee;border-radius:8px;font-size:14px;width:100%;box-sizing:border-box;" />
+
+        <view wx:if="{{searching}}" style="text-align:center;padding:20px;color:#999;">搜索中...</view>
+
+        <block wx:if="{{searchResults.length > 0}}">
+          <view wx:for="{{searchResults}}" wx:key="project_id" bindtap="selectProject" data-index="{{index}}"
+            style="padding:10px;border-bottom:1px solid #f5f5f5;">
+            <view style="font-weight:500;">{{item.name}}</view>
+            <view style="font-size:12px;color:#999;">{{item.building_count || 0}}栋 · {{item.total_houses || 0}}套</view>
+          </view>
+        </block>
+
+        <view wx:elif="{{searchKeyword.length >= 2 && !searching}}" style="text-align:center;padding:20px;color:#999;">未找到匹配楼盘</view>
+      </view>
+
+      <view wx:if="{{selectedProject}}" style="margin-top:12px;">
+        <view style="font-size:13px;color:#999;margin-bottom:4px;">备注（可选）</view>
+        <input placeholder="例如：重点关注三居室" value="{{form.note}}" bindinput="onNoteInput"
+          style="padding:8px;border:1px solid #eee;border-radius:8px;width:100%;box-sizing:border-box;" />
+      </view>
+
+      <view style="display:flex;gap:12px;margin-top:16px;">
+        <view class="btn" style="flex:1;background:#eee;color:#333;" bindtap="hideAdd">取消</view>
+        <view class="btn btn-primary" style="flex:1;" bindtap="submitAdd">确定</view>
+      </view>
+    </view>
+  </view>
+</view>

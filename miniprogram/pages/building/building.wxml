@@ -1,0 +1,39 @@
+<view class="container" wx:if="{{building.id}}">
+  <!-- 楼栋汇总 -->
+  <view class="card">
+    <view class="flex-between">
+      <view style="font-size:18px;font-weight:600;">{{building.building_name}}</view>
+      <view style="font-size:12px;color:#999;">{{building.total_houses || houses.length}}套</view>
+    </view>
+    <view style="display:flex;gap:20px;margin-top:12px;font-size:13px;">
+      <view>可售 <text class="text-green" style="font-weight:600;">{{stats.availableCount || 0}}</text></view>
+      <view>已售 <text class="text-red" style="font-weight:600;">{{stats.soldCount || 0}}</text></view>
+      <view wx:if="{{building.avg_price}}">均价 <text style="color:#FF6600;font-weight:600;">{{priceDisplay}}</text></view>
+    </view>
+    <!-- 状态条 -->
+    <view style="display:flex;height:4px;border-radius:2px;overflow:hidden;margin-top:10px;background:#eee;">
+      <view style="background:#33CC00;width:{{flexAvail}}%;"></view>
+      <view style="background:#FF0000;width:{{flexSold}}%;"></view>
+    </view>
+  </view>
+
+  <!-- 状态筛选 -->
+  <view style="display:flex;gap:8px;overflow-x:auto;padding:0 16px 12px;">
+    <view class="filter-tag {{statusFilter === '' ? 'active' : ''}}" bindtap="filterStatus" data-status="">全部</view>
+    <view class="filter-tag {{statusFilter === '可售' ? 'active' : ''}}" bindtap="filterStatus" data-status="可售">可售</view>
+    <view class="filter-tag {{statusFilter === '已签约' ? 'active' : ''}}" bindtap="filterStatus" data-status="已签约">已签约</view>
+    <view class="filter-tag {{statusFilter === '网上联机备案' ? 'active' : ''}}" bindtap="filterStatus" data-status="网上联机备案">备案</view>
+    <view class="filter-tag {{statusFilter === '已预订' ? 'active' : ''}}" bindtap="filterStatus" data-status="已预订">预订</view>
+  </view>
+
+  <!-- 房屋列表 -->
+  <view class="house-grid" wx:if="{{filteredHouses.length}}">
+    <block wx:for="{{filteredHouses}}" wx:key="id">
+      <view class="house-cell status-{{item.statusClass}}">
+        <view class="house-no">{{item.room_no}}</view>
+        <view class="house-status">{{item.status}}</view>
+      </view>
+    </block>
+  </view>
+  <view class="empty" wx:if="{{!filteredHouses.length}}">暂无该状态房屋</view>
+</view>

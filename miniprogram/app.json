@@ -1,0 +1,29 @@
+{
+  "pages": [
+    "pages/index/index",
+    "pages/projects/projects",
+    "pages/project-detail/project-detail",
+    "pages/building/building",
+    "pages/changes/changes",
+    "pages/watchlist/watchlist",
+    "pages/settings/settings"
+  ],
+  "window": {
+    "backgroundTextStyle": "light",
+    "navigationBarBackgroundColor": "#1989FA",
+    "navigationBarTitleText": "北京楼盘数据",
+    "navigationBarTextStyle": "white"
+  },
+  "tabBar": {
+    "color": "#7A7E83",
+    "selectedColor": "#1989FA",
+    "list": [
+      { "pagePath": "pages/index/index", "text": "首页" },
+      { "pagePath": "pages/projects/projects", "text": "楼盘" },
+      { "pagePath": "pages/changes/changes", "text": "变化" },
+      { "pagePath": "pages/watchlist/watchlist", "text": "关注" }
+    ]
+  },
+  "style": "v2",
+  "sitemapLocation": "sitemap.json"
+}

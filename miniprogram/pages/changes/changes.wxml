@@ -1,0 +1,35 @@
+<view class="container">
+  <view class="card">
+    <view class="flex-between">
+      <view class="card-title" style="margin-bottom:0;">成交变化</view>
+      <picker mode="date" value="{{date}}" bindchange="onDateChange">
+        <view style="font-size:13px;color:#1989FA;">{{date || '今日'}} ▼</view>
+      </picker>
+    </view>
+    <view style="display:flex;gap:16px;margin-top:8px;font-size:13px;" wx:if="{{summary}}">
+      <view>成交 <text class="text-red" style="font-weight:600;">{{summary.newSales || 0}}</text> 套</view>
+      <view wx:if="{{summary.avgPriceDisplay}}">均价 <text style="color:#FF6600;font-weight:600;">{{summary.avgPriceDisplay}}</text></view>
+    </view>
+  </view>
+
+  <block wx:for="{{list}}" wx:key="id">
+    <view class="change-card">
+      <view style="display:flex;justify-content:space-between;align-items:center;">
+        <view>
+          <text class="change-tag new-sale" wx:if="{{item.new_status === '已签约'}}">成交</text>
+          <text class="change-tag status-change" wx:else>变更</text>
+        </view>
+        <view class="text-gray" style="font-size:11px;">{{item.change_date || ''}}</view>
+      </view>
+      <view class="change-house">{{item.project_name || ''}} {{item.building_name || ''}} {{item.room_no || ''}}</view>
+      <view class="change-detail">
+        {{item.old_status || ''}} → {{item.new_status || ''}}
+        <text wx:if="{{item.price_display}}" style="color:#FF6600;margin-left:8px;">{{item.price_display}}</text>
+      </view>
+    </view>
+  </block>
+
+  <view class="empty" wx:if="{{!list.length && !loading}}">暂无变化记录</view>
+  <view class="load-more" wx:if="{{loading}}">加载中...</view>
+  <view class="load-more" wx:if="{{noMore && list.length}}">没有更多了</view>
+</view>

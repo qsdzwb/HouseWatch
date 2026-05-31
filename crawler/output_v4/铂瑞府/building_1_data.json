@@ -1,0 +1,1551 @@
+{
+  "buildingName": "1516-1#住宅楼",
+  "buildingId": "579104",
+  "url": "http://bjjs.zjw.beijing.gov.cn/eportal/ui?pageId=320833&systemId=2&categoryId=1&salePermitId=8207359&buildingId=579104",
+  "data": {
+    "title": "楼盘表页面",
+    "url": "http://bjjs.zjw.beijing.gov.cn/eportal/ui?pageId=320833&systemId=2&categoryId=1&salePermitId=8207359&buildingId=579104",
+    "bodyText": "\t\n\n\t\n视窗\n×\n\n\nloading...\n\n\n\t\n\n\t\n无障碍\n繁體\n手机版\n访问我的专属空间\n搜本网\n一网通查\n首页\n政务公开\n政务服务\n政民互动\n当前位置   首页 > 房屋管理 > 房地产交易管理 > 新建商品房 > 项目信息公示 > 项目详细信息 > 楼盘表页面\n网签合同信息查询\n期房网签合同信息查询\n两限房项目公示\n现房网签合同信息查询\n存量房网签合同信息查询\n\n\n\n1516-1#住宅楼 楼盘表 \n建筑面积:5108.8500m2  地上:9层  地下:1层  合同竣工日期:2028-09-17 \n拟售参考均价(由开发企业提供):住宅：42942.44元/平  \n测绘机构:北京京洪基业测绘技术有限公司 \n资质证号: \n分摊情况公示>>>\n\n【说明】 交易网中所有房屋销售状态于每日凌晨进行更新，前一日房屋认购或签约的状态信息将于第二天起自动标识在楼盘表中。\n图例：\t\n\t不可售\t\n\t可售\t\n\t已预订\t\n\t已签约\t\n\t已办理预售项目抵押\t\n\t网上联机备案\t\n\t资格核验中\n（例如：表示现售项目抵押的可售房屋）\n自然\n楼层\t销售\n楼层\t房 号\n9\t9\t\n1单元-901\n1单元-902\n2单元-901\n2单元-902\n3单元-901\n3单元-902\n\n8\t8\t\n1单元-801\n1单元-802\n2单元-801\n2单元-802\n3单元-801\n3单元-802\n\n7\t7\t\n1单元-701\n1单元-702\n2单元-701\n2单元-702\n3单元-701\n3单元-702\n\n6\t6\t\n1单元-601\n1单元-602\n2单元-601\n2单元-602\n3单元-601\n3单元-602\n\n5\t5\t\n1单元-501\n1单元-502\n2单元-501\n2单元-502\n3单元-501\n3单元-502\n\n4\t4\t\n1单元-401\n1单元-402\n2单元-401\n2单元-402\n3单元-401\n3单元-402\n\n3\t3\t\n1单元-301\n1单元-302\n2单元-301\n2单元-302\n3单元-301\n3单元-302\n\n2\t2\t\n1单元-201\n1单元-202\n2单元-201\n2单元-202\n3单元-201\n3单元-202\n\n1\t1\t\n1单元-101\n1单元-102\n2单元-101\n2单元-102\n3单元-101\n3单元-102\n\n0\t地下夹层\t\n-1\t-1\t\n\n【提示】预售项目抵押情况发生变化的,开发企业须在办理抵押登记、变更登记、注销登记之日起三个工作日内办理相关确认手续，确认后公示更新后的内容。\n\n关于我们\n站点地图\n建议意见\n法律声明\n办公地址：北京市通州区达济街9号院\n联系方式：010-55529919\n\n微信公众号\n\n微博\n\n主办：北京市住房和城乡建设委员会 承办：北京市住房和城乡建设委员会办公室、综合事务中心\n备案编号：京ICP备2024078583号政府网站标识码：1100000159\n京公网安备11040102700048号",
+    "tables": [
+      {
+        "index": 0,
+        "rowCount": 6,
+        "rows": [
+          [
+            {
+              "text": "",
+              "html": "",
+              "className": "ui_lt",
+              "bgColor": "",
+              "color": ""
+            },
+            {
+              "text": "",
+              "html": "",
+              "className": "ui_t",
+              "bgColor": "",
+              "color": ""
+            },
+            {
+              "text": "",
+              "html": "",
+              "className": "ui_rt",
+              "bgColor": "",
+              "color": ""
+            }
+          ],
+          [
+            {
+              "text": "",
+              "html": "",
+              "className": "ui_l",
+              "bgColor": "",
+              "color": ""
+            },
+            {
+              "text": "视窗\n×\n\n\nloading...",
+              "html": "<div class=\"ui_inner\"><table class=\"ui_dialog\"><tbody><tr><td colspan=\"2\"><div class=\"ui_title_bar\"><div class=\"ui_title\" unselectable=\"on\" style=\"cursor: move;\">视窗 </div><div class=\"ui_title_buttons\"",
+              "className": "ui_c",
+              "bgColor": "",
+              "color": ""
+            },
+            {
+              "text": "视窗\n×",
+              "html": "<div class=\"ui_title_bar\"><div class=\"ui_title\" unselectable=\"on\" style=\"cursor: move;\">视窗 </div><div class=\"ui_title_buttons\"><a class=\"ui_min\" href=\"javascript:void(0);\" title=\"最小化\" style=\"display: ",
+              "className": "",
+              "bgColor": "",
+              "color": ""
+            },
+            {
+              "text": "",
+              "html": "",
+              "className": "ui_icon",
+              "bgColor": "",
+              "color": ""
+            },
+            {
+              "text": "loading...",
+              "html": "<div class=\"ui_content\" style=\"padding: 10px;\"><div class=\"ui_loading\"><span>loading...</span></div></div>",
+              "className": "ui_main",
+              "bgColor": "",
+              "color": ""
+            },
+            {
+              "text": "",
+              "html": "<div class=\"ui_buttons\" style=\"display: none;\"></div>",
+              "className": "",
+              "bgColor": "",
+              "color": ""
+            },
+            {
+              "text": "",
+              "html": "",
+              "className": "ui_r",
+              "bgColor": "",
+              "color": ""
+            }
+          ],
+          [
+            {
+              "text": "视窗\n×",
+              "html": "<div class=\"ui_title_bar\"><div class=\"ui_title\" unselectable=\"on\" style=\"cursor: move;\">视窗 </div><div class=\"ui_title_buttons\"><a class=\"ui_min\" href=\"javascript:void(0);\" title=\"最小化\" style=\"display: ",
+              "className": "",
+              "bgColor": "",
+              "color": ""
+            }
+          ],
+          [
+            {
+              "text": "",
+              "html": "",
+              "className": "ui_icon",
+              "bgColor": "",
+              "color": ""
+            },
+            {
+              "text": "loading...",
+              "html": "<div class=\"ui_content\" style=\"padding: 10px;\"><div class=\"ui_loading\"><span>loading...</span></div></div>",
+              "className": "ui_main",
+              "bgColor": "",
+              "color": ""
+            }
+          ],
+          [
+            {
+              "text": "",
+              "html": "<div class=\"ui_buttons\" style=\"display: none;\"></div>",
+              "className": "",
+              "bgColor": "",
+              "color": ""
+            }
+          ],
+          [
+            {
+              "text": "",
+              "html": "",
+              "className": "ui_lb",
+              "bgColor": "",
+              "color": ""
+            },
+            {
+              "text": "",
+              "html": "",
+              "className": "ui_b",
+              "bgColor": "",
+              "color": ""
+            },
+            {
+              "text": "",
+              "html": "",
+              "className": "ui_rb",
+              "bgColor": "",
+              "color": ""
+            }
+          ]
+        ]
+      },
+      {
+        "index": 1,
+        "rowCount": 3,
+        "rows": [
+          [
+            {
+              "text": "视窗\n×",
+              "html": "<div class=\"ui_title_bar\"><div class=\"ui_title\" unselectable=\"on\" style=\"cursor: move;\">视窗 </div><div class=\"ui_title_buttons\"><a class=\"ui_min\" href=\"javascript:void(0);\" title=\"最小化\" style=\"display: ",
+              "className": "",
+              "bgColor": "",
+              "color": ""
+            }
+          ],
+          [
+            {
+              "text": "",
+              "html": "",
+              "className": "ui_icon",
+              "bgColor": "",
+              "color": ""
+            },
+            {
+              "text": "loading...",
+              "html": "<div class=\"ui_content\" style=\"padding: 10px;\"><div class=\"ui_loading\"><span>loading...</span></div></div>",
+              "className": "ui_main",
+              "bgColor": "",
+              "color": ""
+            }
+          ],
+          [
+            {
+              "text": "",
+              "html": "<div class=\"ui_buttons\" style=\"display: none;\"></div>",
+              "className": "",
+              "bgColor": "",
+              "color": ""
+            }
+          ]
+        ]
+      },
+      {
+        "index": 2,
+        "rowCount": 19,
+        "rows": [
+          [
+            {
+              "text": "",
+              "html": "",
+              "className": "",
+              "bgColor": "",
+              "color": ""
+            }
+          ],
+          [
+            {
+              "text": "1516-1#住宅楼 楼盘表 \n建筑面积:5108.8500m2  地上:9层  地下:1层  合同竣工日期:2028-09-17 \n拟售参考均价(由开发企业提供):住宅：42942.44元/平  \n测绘机构:北京京洪基业测绘技术有限公司 \n资质证号: \n分摊情况公示>>>\n\n【说明】 交易网中所有房屋销售状态于每日凌晨进行更新，前一日房屋认购或签约的状态信息将于第二天起自动标识在楼盘表中。\n图例：\t\n\t不可售\t\n\t可售\t\n\t已预订\t\n\t已签约\t\n\t已办理预售项目抵押\t\n\t网上联机备案\t\n\t资格核验中\n（例如：表示现售项目抵押的可售房屋）",
+              "html": "<br>\n                <table width=\"98%\" border=\"0\" align=\"center\" cellpadding=\"0\" cellspacing=\"0\">\n                    <tbody><tr>\n                        \n                            \n               ",
+              "className": "",
+              "bgColor": "",
+              "color": ""
+            },
+            {
+              "text": "1516-1#住宅楼 楼盘表",
+              "html": "\n                                    <!--项目名称：-->\n                                    <font color=\"#FF0000\" style=\"font-size: 18px; font-family: 黑体\">\n                                        <span>1516",
+              "className": "",
+              "bgColor": "",
+              "color": ""
+            },
+            {
+              "text": "",
+              "html": "",
+              "className": "",
+              "bgColor": "",
+              "color": ""
+            },
+            {
+              "text": "建筑面积:5108.8500m2  地上:9层  地下:1层  合同竣工日期:2028-09-17",
+              "html": "\n                            <span></span>\n                            \n                                \n                            \n                                \n                                 ",
+              "className": "",
+              "bgColor": "",
+              "color": ""
+            },
+            {
+              "text": "拟售参考均价(由开发企业提供):住宅：42942.44元/平",
+              "html": "\n\n                            \n                                \n                            \n                                \n                            \n                                \n            ",
+              "className": "",
+              "bgColor": "",
+              "color": ""
+            },
+            {
+              "text": "测绘机构:北京京洪基业测绘技术有限公司 \n资质证号: \n分摊情况公示>>>",
+              "html": "\n                            \n                                \n                                \n                            \n                                \n                                \n         ",
+              "className": "",
+              "bgColor": "",
+              "color": ""
+            },
+            {
+              "text": "",
+              "html": "",
+              "className": "",
+              "bgColor": "",
+              "color": ""
+            },
+            {
+              "text": "【说明】 交易网中所有房屋销售状态于每日凌晨进行更新，前一日房屋认购或签约的状态信息将于第二天起自动标识在楼盘表中。",
+              "html": "\n                            \n                                \n                            \n                                \n                            \n                                \n             ",
+              "className": "f12a2",
+              "bgColor": "",
+              "color": ""
+            },
+            {
+              "text": "",
+              "html": "",
+              "className": "",
+              "bgColor": "",
+              "color": ""
+            },
+            {
+              "text": "图例：",
+              "html": "图例：",
+              "className": "",
+              "bgColor": "",
+              "color": ""
+            },
+            {
+              "text": "",
+              "html": "\n                                    <table width=\"20\" height=\"20\" border=\"0\" cellpadding=\"0\" cellspacing=\"0\">\n                                        <tbody>\n                                        <",
+              "className": "",
+              "bgColor": "",
+              "color": ""
+            },
+            {
+              "text": "",
+              "html": "",
+              "className": "",
+              "bgColor": "rgb(204, 204, 204)",
+              "color": ""
+            },
+            {
+              "text": "不可售",
+              "html": "<span>不可售</span>",
+              "className": "",
+              "bgColor": "",
+              "color": ""
+            },
+            {
+              "text": "",
+              "html": "\n                                    <table width=\"20\" height=\"20\" border=\"0\" cellpadding=\"0\" cellspacing=\"0\">\n                                        <tbody>\n                                        <",
+              "className": "",
+              "bgColor": "",
+              "color": ""
+            },
+            {
+              "text": "",
+              "html": "",
+              "className": "",
+              "bgColor": "rgb(51, 204, 0)",
+              "color": ""
+            },
+            {
+              "text": "可售",
+              "html": "<span>可售</span>",
+              "className": "",
+              "bgColor": "",
+              "color": ""
+            },
+            {
+              "text": "",
+              "html": "\n                                    <table width=\"20\" height=\"20\" border=\"0\" cellpadding=\"0\" cellspacing=\"0\">\n                                        <tbody>\n                                        <",
+              "className": "",
+              "bgColor": "",
+              "color": ""
+            },
+            {
+              "text": "",
+              "html": "",
+              "className": "",
+              "bgColor": "rgb(255, 204, 153)",
+              "color": ""
+            },
+            {
+              "text": "已预订",
+              "html": "<span>已预订</span>",
+              "className": "",
+              "bgColor": "",
+              "color": ""
+            },
+            {
+              "text": "",
+              "html": "\n                                    <table width=\"20\" height=\"20\" border=\"0\" cellpadding=\"0\" cellspacing=\"0\">\n                                        <tbody>\n                                        <",
+              "className": "",
+              "bgColor": "",
+              "color": ""
+            },
+            {
+              "text": "",
+              "html": "",
+              "className": "",
+              "bgColor": "rgb(255, 0, 0)",
+              "color": ""
+            },
+            {
+              "text": "已签约",
+              "html": "<span>已签约</span>",
+              "className": "",
+              "bgColor": "",
+              "color": ""
+            },
+            {
+              "text": "",
+              "html": "\n                                    <table width=\"20\" height=\"20\" border=\"0\" cellpadding=\"0\" cellspacing=\"0\">\n                                        <tbody>\n                                        <",
+              "className": "",
+              "bgColor": "",
+              "color": ""
+            },
+            {
+              "text": "",
+              "html": "",
+              "className": "",
+              "bgColor": "rgb(255, 255, 0)",
+              "color": ""
+            },
+            {
+              "text": "已办理预售项目抵押",
+              "html": "<span>已办理预售项目抵押</span>",
+              "className": "",
+              "bgColor": "",
+              "color": ""
+            },
+            {
+              "text": "",
+              "html": "\n                                    <table width=\"20\" height=\"20\" border=\"0\" cellpadding=\"0\" cellspacing=\"0\">\n                                        <tbody>\n                                        <",
+              "className": "",
+              "bgColor": "",
+              "color": ""
+            },
+            {
+              "text": "",
+              "html": "",
+              "className": "",
+              "bgColor": "rgb(210, 105, 30)",
+              "color": ""
+            },
+            {
+              "text": "网上联机备案",
+              "html": "<span>网上联机备案</span>",
+              "className": "",
+              "bgColor": "",
+              "color": ""
+            },
+            {
+              "text": "",
+              "html": "\n                                    <table width=\"20\" height=\"20\" border=\"0\" cellpadding=\"0\" cellspacing=\"0\">\n                                        <tbody>\n                                        <",
+              "className": "",
+              "bgColor": "",
+              "color": ""
+            },
+            {
+              "text": "",
+              "html": "",
+              "className": "",
+              "bgColor": "rgb(0, 255, 255)",
+              "color": ""
+            },
+            {
+              "text": "资格核验中",
+              "html": "<span>资格核验中</span>",
+              "className": "",
+              "bgColor": "",
+              "color": ""
+            },
+            {
+              "text": "（例如：表示现售项目抵押的可售房屋）",
+              "html": "\n                            （例如：<img src=\"/eportalapply/images/fdcjy/ysdyks.gif\" alt=\"用于页面美化的图片\" title=\"用于页面美化的图片\">表示现售项目抵押的可售房屋）\n                        ",
+              "className": "",
+              "bgColor": "",
+              "color": ""
+            }
+          ],
+          [
+            {
+              "text": "1516-1#住宅楼 楼盘表",
+              "html": "\n                                    <!--项目名称：-->\n                                    <font color=\"#FF0000\" style=\"font-size: 18px; font-family: 黑体\">\n                                        <span>1516",
+              "className": "",
+              "bgColor": "",
+              "color": ""
+            }
+          ],
+          [
+            {
+              "text": "",
+              "html": "",
+              "className": "",
+              "bgColor": "",
+              "color": ""
+            }
+          ],
+          [
+            {
+              "text": "建筑面积:5108.8500m2  地上:9层  地下:1层  合同竣工日期:2028-09-17",
+              "html": "\n                            <span></span>\n                            \n                                \n                            \n                                \n                                 ",
+              "className": "",
+              "bgColor": "",
+              "color": ""
+            }
+          ],
+          [
+            {
+              "text": "拟售参考均价(由开发企业提供):住宅：42942.44元/平",
+              "html": "\n\n                            \n                                \n                            \n                                \n                            \n                                \n            ",
+              "className": "",
+              "bgColor": "",
+              "color": ""
+            }
+          ],
+          [
+            {
+              "text": "测绘机构:北京京洪基业测绘技术有限公司 \n资质证号: \n分摊情况公示>>>",
+              "html": "\n                            \n                                \n                                \n                            \n                                \n                                \n         ",
+              "className": "",
+              "bgColor": "",
+              "color": ""
+            }
+          ],
+          [
+            {
+              "text": "",
+              "html": "",
+              "className": "",
+              "bgColor": "",
+              "color": ""
+            }
+          ],
+          [
+            {
+              "text": "【说明】 交易网中所有房屋销售状态于每日凌晨进行更新，前一日房屋认购或签约的状态信息将于第二天起自动标识在楼盘表中。",
+              "html": "\n                            \n                                \n                            \n                                \n                            \n                                \n             ",
+              "className": "f12a2",
+              "bgColor": "",
+              "color": ""
+            }
+          ],
+          [
+            {
+              "text": "",
+              "html": "",
+              "className": "",
+              "bgColor": "",
+              "color": ""
+            }
+          ],
+          [
+            {
+              "text": "图例：",
+              "html": "图例：",
+              "className": "",
+              "bgColor": "",
+              "color": ""
+            },
+            {
+              "text": "",
+              "html": "\n                                    <table width=\"20\" height=\"20\" border=\"0\" cellpadding=\"0\" cellspacing=\"0\">\n                                        <tbody>\n                                        <",
+              "className": "",
+              "bgColor": "",
+              "color": ""
+            },
+            {
+              "text": "",
+              "html": "",
+              "className": "",
+              "bgColor": "rgb(204, 204, 204)",
+              "color": ""
+            },
+            {
+              "text": "不可售",
+              "html": "<span>不可售</span>",
+              "className": "",
+              "bgColor": "",
+              "color": ""
+            },
+            {
+              "text": "",
+              "html": "\n                                    <table width=\"20\" height=\"20\" border=\"0\" cellpadding=\"0\" cellspacing=\"0\">\n                                        <tbody>\n                                        <",
+              "className": "",
+              "bgColor": "",
+              "color": ""
+            },
+            {
+              "text": "",
+              "html": "",
+              "className": "",
+              "bgColor": "rgb(51, 204, 0)",
+              "color": ""
+            },
+            {
+              "text": "可售",
+              "html": "<span>可售</span>",
+              "className": "",
+              "bgColor": "",
+              "color": ""
+            },
+            {
+              "text": "",
+              "html": "\n                                    <table width=\"20\" height=\"20\" border=\"0\" cellpadding=\"0\" cellspacing=\"0\">\n                                        <tbody>\n                                        <",
+              "className": "",
+              "bgColor": "",
+              "color": ""
+            },
+            {
+              "text": "",
+              "html": "",
+              "className": "",
+              "bgColor": "rgb(255, 204, 153)",
+              "color": ""
+            },
+            {
+              "text": "已预订",
+              "html": "<span>已预订</span>",
+              "className": "",
+              "bgColor": "",
+              "color": ""
+            },
+            {
+              "text": "",
+              "html": "\n                                    <table width=\"20\" height=\"20\" border=\"0\" cellpadding=\"0\" cellspacing=\"0\">\n                                        <tbody>\n                                        <",
+              "className": "",
+              "bgColor": "",
+              "color": ""
+            },
+            {
+              "text": "",
+              "html": "",
+              "className": "",
+              "bgColor": "rgb(255, 0, 0)",
+              "color": ""
+            },
+            {
+              "text": "已签约",
+              "html": "<span>已签约</span>",
+              "className": "",
+              "bgColor": "",
+              "color": ""
+            },
+            {
+              "text": "",
+              "html": "\n                                    <table width=\"20\" height=\"20\" border=\"0\" cellpadding=\"0\" cellspacing=\"0\">\n                                        <tbody>\n                                        <",
+              "className": "",
+              "bgColor": "",
+              "color": ""
+            },
+            {
+              "text": "",
+              "html": "",
+              "className": "",
+              "bgColor": "rgb(255, 255, 0)",
+              "color": ""
+            },
+            {
+              "text": "已办理预售项目抵押",
+              "html": "<span>已办理预售项目抵押</span>",
+              "className": "",
+              "bgColor": "",
+              "color": ""
+            },
+            {
+              "text": "",
+              "html": "\n                                    <table width=\"20\" height=\"20\" border=\"0\" cellpadding=\"0\" cellspacing=\"0\">\n                                        <tbody>\n                                        <",
+              "className": "",
+              "bgColor": "",
+              "color": ""
+            },
+            {
+              "text": "",
+              "html": "",
+              "className": "",
+              "bgColor": "rgb(210, 105, 30)",
+              "color": ""
+            },
+            {
+              "text": "网上联机备案",
+              "html": "<span>网上联机备案</span>",
+              "className": "",
+              "bgColor": "",
+              "color": ""
+            },
+            {
+              "text": "",
+              "html": "\n                                    <table width=\"20\" height=\"20\" border=\"0\" cellpadding=\"0\" cellspacing=\"0\">\n                                        <tbody>\n                                        <",
+              "className": "",
+              "bgColor": "",
+              "color": ""
+            },
+            {
+              "text": "",
+              "html": "",
+              "className": "",
+              "bgColor": "rgb(0, 255, 255)",
+              "color": ""
+            },
+            {
+              "text": "资格核验中",
+              "html": "<span>资格核验中</span>",
+              "className": "",
+              "bgColor": "",
+              "color": ""
+            }
+          ],
+          [
+            {
+              "text": "",
+              "html": "",
+              "className": "",
+              "bgColor": "rgb(204, 204, 204)",
+              "color": ""
+            }
+          ],
+          [
+            {
+              "text": "",
+              "html": "",
+              "className": "",
+              "bgColor": "rgb(51, 204, 0)",
+              "color": ""
+            }
+          ],
+          [
+            {
+              "text": "",
+              "html": "",
+              "className": "",
+              "bgColor": "rgb(255, 204, 153)",
+              "color": ""
+            }
+          ],
+          [
+            {
+              "text": "",
+              "html": "",
+              "className": "",
+              "bgColor": "rgb(255, 0, 0)",
+              "color": ""
+            }
+          ],
+          [
+            {
+              "text": "",
+              "html": "",
+              "className": "",
+              "bgColor": "rgb(255, 255, 0)",
+              "color": ""
+            }
+          ],
+          [
+            {
+              "text": "",
+              "html": "",
+              "className": "",
+              "bgColor": "rgb(210, 105, 30)",
+              "color": ""
+            }
+          ],
+          [
+            {
+              "text": "",
+              "html": "",
+              "className": "",
+              "bgColor": "rgb(0, 255, 255)",
+              "color": ""
+            }
+          ],
+          [
+            {
+              "text": "（例如：表示现售项目抵押的可售房屋）",
+              "html": "\n                            （例如：<img src=\"/eportalapply/images/fdcjy/ysdyks.gif\" alt=\"用于页面美化的图片\" title=\"用于页面美化的图片\">表示现售项目抵押的可售房屋）\n                        ",
+              "className": "",
+              "bgColor": "",
+              "color": ""
+            }
+          ]
+        ]
+      },
+      {
+        "index": 3,
+        "rowCount": 1,
+        "rows": [
+          [
+            {
+              "text": "1516-1#住宅楼 楼盘表",
+              "html": "\n                                    <!--项目名称：-->\n                                    <font color=\"#FF0000\" style=\"font-size: 18px; font-family: 黑体\">\n                                        <span>1516",
+              "className": "",
+              "bgColor": "",
+              "color": ""
+            }
+          ]
+        ]
+      },
+      {
+        "index": 4,
+        "rowCount": 1,
+        "rows": [
+          [
+            {
+              "text": "",
+              "html": "",
+              "className": "",
+              "bgColor": "",
+              "color": ""
+            }
+          ]
+        ]
+      },
+      {
+        "index": 5,
+        "rowCount": 3,
+        "rows": [
+          [
+            {
+              "text": "建筑面积:5108.8500m2  地上:9层  地下:1层  合同竣工日期:2028-09-17",
+              "html": "\n                            <span></span>\n                            \n                                \n                            \n                                \n                                 ",
+              "className": "",
+              "bgColor": "",
+              "color": ""
+            }
+          ],
+          [
+            {
+              "text": "拟售参考均价(由开发企业提供):住宅：42942.44元/平",
+              "html": "\n\n                            \n                                \n                            \n                                \n                            \n                                \n            ",
+              "className": "",
+              "bgColor": "",
+              "color": ""
+            }
+          ],
+          [
+            {
+              "text": "测绘机构:北京京洪基业测绘技术有限公司 \n资质证号: \n分摊情况公示>>>",
+              "html": "\n                            \n                                \n                                \n                            \n                                \n                                \n         ",
+              "className": "",
+              "bgColor": "",
+              "color": ""
+            }
+          ]
+        ]
+      },
+      {
+        "index": 6,
+        "rowCount": 2,
+        "rows": [
+          [
+            {
+              "text": "",
+              "html": "",
+              "className": "",
+              "bgColor": "",
+              "color": ""
+            }
+          ],
+          [
+            {
+              "text": "【说明】 交易网中所有房屋销售状态于每日凌晨进行更新，前一日房屋认购或签约的状态信息将于第二天起自动标识在楼盘表中。",
+              "html": "\n                            \n                                \n                            \n                                \n                            \n                                \n             ",
+              "className": "f12a2",
+              "bgColor": "",
+              "color": ""
+            }
+          ]
+        ]
+      },
+      {
+        "index": 7,
+        "rowCount": 1,
+        "rows": [
+          [
+            {
+              "text": "",
+              "html": "",
+              "className": "",
+              "bgColor": "",
+              "color": ""
+            }
+          ]
+        ]
+      },
+      {
+        "index": 8,
+        "rowCount": 9,
+        "rows": [
+          [
+            {
+              "text": "图例：",
+              "html": "图例：",
+              "className": "",
+              "bgColor": "",
+              "color": ""
+            },
+            {
+              "text": "",
+              "html": "\n                                    <table width=\"20\" height=\"20\" border=\"0\" cellpadding=\"0\" cellspacing=\"0\">\n                                        <tbody>\n                                        <",
+              "className": "",
+              "bgColor": "",
+              "color": ""
+            },
+            {
+              "text": "",
+              "html": "",
+              "className": "",
+              "bgColor": "rgb(204, 204, 204)",
+              "color": ""
+            },
+            {
+              "text": "不可售",
+              "html": "<span>不可售</span>",
+              "className": "",
+              "bgColor": "",
+              "color": ""
+            },
+            {
+              "text": "",
+              "html": "\n                                    <table width=\"20\" height=\"20\" border=\"0\" cellpadding=\"0\" cellspacing=\"0\">\n                                        <tbody>\n                                        <",
+              "className": "",
+              "bgColor": "",
+              "color": ""
+            },
+            {
+              "text": "",
+              "html": "",
+              "className": "",
+              "bgColor": "rgb(51, 204, 0)",
+              "color": ""
+            },
+            {
+              "text": "可售",
+              "html": "<span>可售</span>",
+              "className": "",
+              "bgColor": "",
+              "color": ""
+            },
+            {
+              "text": "",
+              "html": "\n                                    <table width=\"20\" height=\"20\" border=\"0\" cellpadding=\"0\" cellspacing=\"0\">\n                                        <tbody>\n                                        <",
+              "className": "",
+              "bgColor": "",
+              "color": ""
+            },
+            {
+              "text": "",
+              "html": "",
+              "className": "",
+              "bgColor": "rgb(255, 204, 153)",
+              "color": ""
+            },
+            {
+              "text": "已预订",
+              "html": "<span>已预订</span>",
+              "className": "",
+              "bgColor": "",
+              "color": ""
+            },
+            {
+              "text": "",
+              "html": "\n                                    <table width=\"20\" height=\"20\" border=\"0\" cellpadding=\"0\" cellspacing=\"0\">\n                                        <tbody>\n                                        <",
+              "className": "",
+              "bgColor": "",
+              "color": ""
+            },
+            {
+              "text": "",
+              "html": "",
+              "className": "",
+              "bgColor": "rgb(255, 0, 0)",
+              "color": ""
+            },
+            {
+              "text": "已签约",
+              "html": "<span>已签约</span>",
+              "className": "",
+              "bgColor": "",
+              "color": ""
+            },
+            {
+              "text": "",
+              "html": "\n                                    <table width=\"20\" height=\"20\" border=\"0\" cellpadding=\"0\" cellspacing=\"0\">\n                                        <tbody>\n                                        <",
+              "className": "",
+              "bgColor": "",
+              "color": ""
+            },
+            {
+              "text": "",
+              "html": "",
+              "className": "",
+              "bgColor": "rgb(255, 255, 0)",
+              "color": ""
+            },
+            {
+              "text": "已办理预售项目抵押",
+              "html": "<span>已办理预售项目抵押</span>",
+              "className": "",
+              "bgColor": "",
+              "color": ""
+            },
+            {
+              "text": "",
+              "html": "\n                                    <table width=\"20\" height=\"20\" border=\"0\" cellpadding=\"0\" cellspacing=\"0\">\n                                        <tbody>\n                                        <",
+              "className": "",
+              "bgColor": "",
+              "color": ""
+            },
+            {
+              "text": "",
+              "html": "",
+              "className": "",
+              "bgColor": "rgb(210, 105, 30)",
+              "color": ""
+            },
+            {
+              "text": "网上联机备案",
+              "html": "<span>网上联机备案</span>",
+              "className": "",
+              "bgColor": "",
+              "color": ""
+            },
+            {
+              "text": "",
+              "html": "\n                                    <table width=\"20\" height=\"20\" border=\"0\" cellpadding=\"0\" cellspacing=\"0\">\n                                        <tbody>\n                                        <",
+              "className": "",
+              "bgColor": "",
+              "color": ""
+            },
+            {
+              "text": "",
+              "html": "",
+              "className": "",
+              "bgColor": "rgb(0, 255, 255)",
+              "color": ""
+            },
+            {
+              "text": "资格核验中",
+              "html": "<span>资格核验中</span>",
+              "className": "",
+              "bgColor": "",
+              "color": ""
+            }
+          ],
+          [
+            {
+              "text": "",
+              "html": "",
+              "className": "",
+              "bgColor": "rgb(204, 204, 204)",
+              "color": ""
+            }
+          ],
+          [
+            {
+              "text": "",
+              "html": "",
+              "className": "",
+              "bgColor": "rgb(51, 204, 0)",
+              "color": ""
+            }
+          ],
+          [
+            {
+              "text": "",
+              "html": "",
+              "className": "",
+              "bgColor": "rgb(255, 204, 153)",
+              "color": ""
+            }
+          ],
+          [
+            {
+              "text": "",
+              "html": "",
+              "className": "",
+              "bgColor": "rgb(255, 0, 0)",
+              "color": ""
+            }
+          ],
+          [
+            {
+              "text": "",
+              "html": "",
+              "className": "",
+              "bgColor": "rgb(255, 255, 0)",
+              "color": ""
+            }
+          ],
+          [
+            {
+              "text": "",
+              "html": "",
+              "className": "",
+              "bgColor": "rgb(210, 105, 30)",
+              "color": ""
+            }
+          ],
+          [
+            {
+              "text": "",
+              "html": "",
+              "className": "",
+              "bgColor": "rgb(0, 255, 255)",
+              "color": ""
+            }
+          ],
+          [
+            {
+              "text": "（例如：表示现售项目抵押的可售房屋）",
+              "html": "\n                            （例如：<img src=\"/eportalapply/images/fdcjy/ysdyks.gif\" alt=\"用于页面美化的图片\" title=\"用于页面美化的图片\">表示现售项目抵押的可售房屋）\n                        ",
+              "className": "",
+              "bgColor": "",
+              "color": ""
+            }
+          ]
+        ]
+      },
+      {
+        "index": 9,
+        "rowCount": 1,
+        "rows": [
+          [
+            {
+              "text": "",
+              "html": "",
+              "className": "",
+              "bgColor": "rgb(204, 204, 204)",
+              "color": ""
+            }
+          ]
+        ]
+      },
+      {
+        "index": 10,
+        "rowCount": 1,
+        "rows": [
+          [
+            {
+              "text": "",
+              "html": "",
+              "className": "",
+              "bgColor": "rgb(51, 204, 0)",
+              "color": ""
+            }
+          ]
+        ]
+      },
+      {
+        "index": 11,
+        "rowCount": 1,
+        "rows": [
+          [
+            {
+              "text": "",
+              "html": "",
+              "className": "",
+              "bgColor": "rgb(255, 204, 153)",
+              "color": ""
+            }
+          ]
+        ]
+      },
+      {
+        "index": 12,
+        "rowCount": 1,
+        "rows": [
+          [
+            {
+              "text": "",
+              "html": "",
+              "className": "",
+              "bgColor": "rgb(255, 0, 0)",
+              "color": ""
+            }
+          ]
+        ]
+      },
+      {
+        "index": 13,
+        "rowCount": 1,
+        "rows": [
+          [
+            {
+              "text": "",
+              "html": "",
+              "className": "",
+              "bgColor": "rgb(255, 255, 0)",
+              "color": ""
+            }
+          ]
+        ]
+      },
+      {
+        "index": 14,
+        "rowCount": 1,
+        "rows": [
+          [
+            {
+              "text": "",
+              "html": "",
+              "className": "",
+              "bgColor": "rgb(210, 105, 30)",
+              "color": ""
+            }
+          ]
+        ]
+      },
+      {
+        "index": 15,
+        "rowCount": 1,
+        "rows": [
+          [
+            {
+              "text": "",
+              "html": "",
+              "className": "",
+              "bgColor": "rgb(0, 255, 255)",
+              "color": ""
+            }
+          ]
+        ]
+      },
+      {
+        "index": 16,
+        "rowCount": 12,
+        "rows": [
+          [
+            {
+              "text": "自然\n楼层",
+              "html": "\n                    <strong>自然<br>楼层</strong>\n                ",
+              "className": "f12a2",
+              "bgColor": "",
+              "color": ""
+            },
+            {
+              "text": "销售\n楼层",
+              "html": "\n                    <strong>销售<br>楼层</strong>\n                ",
+              "className": "f12a2",
+              "bgColor": "",
+              "color": ""
+            },
+            {
+              "text": "房 号",
+              "html": "\n                    <strong>房 号</strong>\n                ",
+              "className": "f12a2",
+              "bgColor": "",
+              "color": ""
+            }
+          ],
+          [
+            {
+              "text": "9",
+              "html": "9",
+              "className": "",
+              "bgColor": "",
+              "color": ""
+            },
+            {
+              "text": "9",
+              "html": "9",
+              "className": "",
+              "bgColor": "",
+              "color": ""
+            },
+            {
+              "text": "1单元-901\n1单元-902\n2单元-901\n2单元-902\n3单元-901\n3单元-902",
+              "html": "\n                        \n                            \n                            <!-- 楼层与楼层房号对应 -->\n                                \n                            \n                            <!-- 楼层与",
+              "className": "",
+              "bgColor": "",
+              "color": ""
+            }
+          ],
+          [
+            {
+              "text": "8",
+              "html": "8",
+              "className": "",
+              "bgColor": "",
+              "color": ""
+            },
+            {
+              "text": "8",
+              "html": "8",
+              "className": "",
+              "bgColor": "",
+              "color": ""
+            },
+            {
+              "text": "1单元-801\n1单元-802\n2单元-801\n2单元-802\n3单元-801\n3单元-802",
+              "html": "\n                        \n                            \n                            <!-- 楼层与楼层房号对应 -->\n                                \n                            \n                            <!-- 楼层与",
+              "className": "",
+              "bgColor": "",
+              "color": ""
+            }
+          ],
+          [
+            {
+              "text": "7",
+              "html": "7",
+              "className": "",
+              "bgColor": "",
+              "color": ""
+            },
+            {
+              "text": "7",
+              "html": "7",
+              "className": "",
+              "bgColor": "",
+              "color": ""
+            },
+            {
+              "text": "1单元-701\n1单元-702\n2单元-701\n2单元-702\n3单元-701\n3单元-702",
+              "html": "\n                        \n                            \n                            <!-- 楼层与楼层房号对应 -->\n                                \n                            \n                            <!-- 楼层与",
+              "className": "",
+              "bgColor": "",
+              "color": ""
+            }
+          ],
+          [
+            {
+              "text": "6",
+              "html": "6",
+              "className": "",
+              "bgColor": "",
+              "color": ""
+            },
+            {
+              "text": "6",
+              "html": "6",
+              "className": "",
+              "bgColor": "",
+              "color": ""
+            },
+            {
+              "text": "1单元-601\n1单元-602\n2单元-601\n2单元-602\n3单元-601\n3单元-602",
+              "html": "\n                        \n                            \n                            <!-- 楼层与楼层房号对应 -->\n                                \n                            \n                            <!-- 楼层与",
+              "className": "",
+              "bgColor": "",
+              "color": ""
+            }
+          ],
+          [
+            {
+              "text": "5",
+              "html": "5",
+              "className": "",
+              "bgColor": "",
+              "color": ""
+            },
+            {
+              "text": "5",
+              "html": "5",
+              "className": "",
+              "bgColor": "",
+              "color": ""
+            },
+            {
+              "text": "1单元-501\n1单元-502\n2单元-501\n2单元-502\n3单元-501\n3单元-502",
+              "html": "\n                        \n                            \n                            <!-- 楼层与楼层房号对应 -->\n                                \n                            \n                            <!-- 楼层与",
+              "className": "",
+              "bgColor": "",
+              "color": ""
+            }
+          ],
+          [
+            {
+              "text": "4",
+              "html": "4",
+              "className": "",
+              "bgColor": "",
+              "color": ""
+            },
+            {
+              "text": "4",
+              "html": "4",
+              "className": "",
+              "bgColor": "",
+              "color": ""
+            },
+            {
+              "text": "1单元-401\n1单元-402\n2单元-401\n2单元-402\n3单元-401\n3单元-402",
+              "html": "\n                        \n                            \n                            <!-- 楼层与楼层房号对应 -->\n                                \n                            \n                            <!-- 楼层与",
+              "className": "",
+              "bgColor": "",
+              "color": ""
+            }
+          ],
+          [
+            {
+              "text": "3",
+              "html": "3",
+              "className": "",
+              "bgColor": "",
+              "color": ""
+            },
+            {
+              "text": "3",
+              "html": "3",
+              "className": "",
+              "bgColor": "",
+              "color": ""
+            },
+            {
+              "text": "1单元-301\n1单元-302\n2单元-301\n2单元-302\n3单元-301\n3单元-302",
+              "html": "\n                        \n                            \n                            <!-- 楼层与楼层房号对应 -->\n                                \n                            \n                            <!-- 楼层与",
+              "className": "",
+              "bgColor": "",
+              "color": ""
+            }
+          ],
+          [
+            {
+              "text": "2",
+              "html": "2",
+              "className": "",
+              "bgColor": "",
+              "color": ""
+            },
+            {
+              "text": "2",
+              "html": "2",
+              "className": "",
+              "bgColor": "",
+              "color": ""
+            },
+            {
+              "text": "1单元-201\n1单元-202\n2单元-201\n2单元-202\n3单元-201\n3单元-202",
+              "html": "\n                        \n                            \n                            <!-- 楼层与楼层房号对应 -->\n                                \n                            \n                            <!-- 楼层与",
+              "className": "",
+              "bgColor": "",
+              "color": ""
+            }
+          ],
+          [
+            {
+              "text": "1",
+              "html": "1",
+              "className": "",
+              "bgColor": "",
+              "color": ""
+            },
+            {
+              "text": "1",
+              "html": "1",
+              "className": "",
+              "bgColor": "",
+              "color": ""
+            },
+            {
+              "text": "1单元-101\n1单元-102\n2单元-101\n2单元-102\n3单元-101\n3单元-102",
+              "html": "\n                        \n                            \n                            <!-- 楼层与楼层房号对应 -->\n                                \n                            \n                            <!-- 楼层与",
+              "className": "",
+              "bgColor": "",
+              "color": ""
+            }
+          ],
+          [
+            {
+              "text": "0",
+              "html": "0",
+              "className": "",
+              "bgColor": "",
+              "color": ""
+            },
+            {
+              "text": "地下夹层",
+              "html": "地下夹层",
+              "className": "",
+              "bgColor": "",
+              "color": ""
+            },
+            {
+              "text": "",
+              "html": "\n                        \n                            \n                            <!-- 楼层与楼层房号对应 -->\n                                \n                            \n                            <!-- 楼层与",
+              "className": "",
+              "bgColor": "",
+              "color": ""
+            }
+          ],
+          [
+            {
+              "text": "-1",
+              "html": "-1",
+              "className": "",
+              "bgColor": "",
+              "color": ""
+            },
+            {
+              "text": "-1",
+              "html": "-1",
+              "className": "",
+              "bgColor": "",
+              "color": ""
+            },
+            {
+              "text": "",
+              "html": "\n                        \n                            \n                            <!-- 楼层与楼层房号对应 -->\n                                \n                            \n                            <!-- 楼层与",
+              "className": "",
+              "bgColor": "",
+              "color": ""
+            }
+          ]
+        ]
+      }
+    ],
+    "unitCells": [
+      {
+        "index": 14,
+        "text": "1516-1#住宅楼 楼盘表 \n建筑面积:5108.8500m2  地上:9层  地下:1层  合同竣工日期:2028-09-17 \n拟售参考均价(由开发企业提供):住宅：42942.44元/平  \n",
+        "className": "",
+        "bgColor": ""
+      },
+      {
+        "index": 15,
+        "text": "1516-1#住宅楼 楼盘表",
+        "className": "",
+        "bgColor": ""
+      },
+      {
+        "index": 17,
+        "text": "建筑面积:5108.8500m2  地上:9层  地下:1层  合同竣工日期:2028-09-17",
+        "className": "",
+        "bgColor": ""
+      },
+      {
+        "index": 18,
+        "text": "拟售参考均价(由开发企业提供):住宅：42942.44元/平",
+        "className": "",
+        "bgColor": ""
+      },
+      {
+        "index": 21,
+        "text": "【说明】 交易网中所有房屋销售状态于每日凌晨进行更新，前一日房屋认购或签约的状态信息将于第二天起自动标识在楼盘表中。",
+        "className": "f12a2",
+        "bgColor": ""
+      },
+      {
+        "index": 45,
+        "text": "（例如：表示现售项目抵押的可售房屋）",
+        "className": "",
+        "bgColor": ""
+      },
+      {
+        "index": 48,
+        "text": "房 号",
+        "className": "f12a2",
+        "bgColor": ""
+      },
+      {
+        "index": 51,
+        "text": "1单元-901\n1单元-902\n2单元-901\n2单元-902\n3单元-901\n3单元-902",
+        "className": "",
+        "bgColor": ""
+      },
+      {
+        "index": 54,
+        "text": "1单元-801\n1单元-802\n2单元-801\n2单元-802\n3单元-801\n3单元-802",
+        "className": "",
+        "bgColor": ""
+      },
+      {
+        "index": 57,
+        "text": "1单元-701\n1单元-702\n2单元-701\n2单元-702\n3单元-701\n3单元-702",
+        "className": "",
+        "bgColor": ""
+      },
+      {
+        "index": 60,
+        "text": "1单元-601\n1单元-602\n2单元-601\n2单元-602\n3单元-601\n3单元-602",
+        "className": "",
+        "bgColor": ""
+      },
+      {
+        "index": 63,
+        "text": "1单元-501\n1单元-502\n2单元-501\n2单元-502\n3单元-501\n3单元-502",
+        "className": "",
+        "bgColor": ""
+      },
+      {
+        "index": 66,
+        "text": "1单元-401\n1单元-402\n2单元-401\n2单元-402\n3单元-401\n3单元-402",
+        "className": "",
+        "bgColor": ""
+      },
+      {
+        "index": 69,
+        "text": "1单元-301\n1单元-302\n2单元-301\n2单元-302\n3单元-301\n3单元-302",
+        "className": "",
+        "bgColor": ""
+      },
+      {
+        "index": 72,
+        "text": "1单元-201\n1单元-202\n2单元-201\n2单元-202\n3单元-201\n3单元-202",
+        "className": "",
+        "bgColor": ""
+      },
+      {
+        "index": 75,
+        "text": "1单元-101\n1单元-102\n2单元-101\n2单元-102\n3单元-101\n3单元-102",
+        "className": "",
+        "bgColor": ""
+      }
+    ]
+  }
+}

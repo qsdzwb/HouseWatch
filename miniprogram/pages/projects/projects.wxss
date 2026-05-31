@@ -1,0 +1,139 @@
+@import "../../app.wxss";
+
+/* 搜索栏 */
+.search-bar {
+  display: flex;
+  align-items: center;
+  background: #fff;
+  border-radius: 8px;
+  padding: 8px 12px;
+  margin-bottom: 12px;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.06);
+}
+
+.search-input {
+  flex: 1;
+  font-size: 14px;
+  padding: 4px 0;
+}
+
+.search-btn {
+  font-size: 13px;
+  color: #1989FA;
+  padding: 4px 10px;
+  margin-left: 8px;
+}
+
+.search-clear {
+  font-size: 16px;
+  color: #999;
+  padding: 4px 8px;
+  margin-left: 4px;
+}
+
+/* 排序标签 */
+.filter-row {
+  display: flex;
+  gap: 8px;
+  margin-bottom: 12px;
+}
+
+.filter-tag {
+  font-size: 12px;
+  padding: 4px 12px;
+  border-radius: 14px;
+  background: #f5f5f5;
+  color: #666;
+}
+
+.filter-tag.active {
+  background: #E8F2FF;
+  color: #1989FA;
+  font-weight: 500;
+}
+
+/* 楼盘卡片 */
+.project-card {
+  background: #fff;
+  border-radius: 10px;
+  padding: 14px 16px;
+  margin-bottom: 10px;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.06);
+}
+
+.card-top {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.project-name {
+  font-size: 16px;
+  font-weight: 600;
+  color: #333;
+  flex: 1;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.project-arrow {
+  font-size: 20px;
+  color: #ccc;
+  margin-left: 8px;
+}
+
+.project-meta {
+  font-size: 12px;
+  color: #999;
+  margin-top: 6px;
+}
+
+.project-dev {
+  color: #bbb;
+}
+
+.project-stats {
+  display: flex;
+  gap: 12px;
+  margin-top: 10px;
+  font-size: 13px;
+}
+
+.stat-item {
+  padding: 2px 0;
+}
+
+.stat-green {
+  color: #27AE60;
+}
+
+.stat-red {
+  color: #E74C3C;
+}
+
+.stat-rate {
+  color: #1989FA;
+  font-weight: 600;
+}
+
+/* 空状态 */
+.empty {
+  text-align: center;
+  padding: 60px 20px;
+  color: #999;
+  font-size: 14px;
+}
+
+.empty-icon {
+  font-size: 40px;
+  margin-bottom: 12px;
+}
+
+/* 加载更多 */
+.load-more {
+  text-align: center;
+  padding: 16px;
+  font-size: 12px;
+  color: #bbb;
+}

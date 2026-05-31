@@ -1,0 +1,12 @@
+{
+  "project": "金阙华院",
+  "projectID": "8205387",
+  "buildingLinks": 4,
+  "unitDataCaptured": true,
+  "unitDataPreview": "{\"popupData\":[],\"source\":\"popup\"}",
+  "files": [
+    "building_links.json",
+    "popup_data.json",
+    "popup_screenshot.png"
+  ]
+}

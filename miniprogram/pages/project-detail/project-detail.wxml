@@ -1,0 +1,62 @@
+<view class="container" wx:if="{{project.project_id}}">
+  <!-- 标题 + 关注 -->
+  <view class="card">
+    <view class="flex-between">
+      <view class="detail-title">{{project.name}}</view>
+      <view class="btn {{isWatched ? 'btn-outline' : 'btn-primary'}}" bindtap="toggleWatch">
+        {{isWatched ? '已关注' : '+ 关注'}}
+      </view>
+    </view>
+  </view>
+
+  <!-- 统计卡片 -->
+  <view class="card">
+    <view class="stats-grid">
+      <view class="stat-item">
+        <view class="stat-value">{{stats.totalUnits || 0}}</view>
+        <view class="stat-label">总房源</view>
+      </view>
+      <view class="stat-item">
+        <view class="stat-value text-green">{{stats.available || 0}}</view>
+        <view class="stat-label">可售</view>
+      </view>
+      <view class="stat-item">
+        <view class="stat-value text-red">{{stats.sold || 0}}</view>
+        <view class="stat-label">已售</view>
+      </view>
+      <view class="stat-item">
+        <view class="stat-value">{{stats.soldRate || '0'}}%</view>
+        <view class="stat-label">去化率</view>
+      </view>
+    </view>
+    <view wx:if="{{stats.avgPrice}}" class="price-row">
+      成交均价 <text class="price-value">{{stats.priceDisplay}}</text>
+    </view>
+  </view>
+
+  <!-- 楼栋列表 -->
+  <view class="card-title" style="padding:0 16px;">楼栋详情</view>
+  <block wx:for="{{buildings}}" wx:key="building_id">
+    <view class="building-card" bindtap="goBuilding" data-id="{{item.building_id}}">
+      <view class="flex-between">
+        <view>
+          <view class="building-name">{{item.building_name}}</view>
+          <view class="building-info">
+            {{item.total_houses || 0}}套 · 已售{{item.sold_count || 0}}套
+            <text wx:if="{{item.price_display}}" style="color:#FF6600;margin-left:4px;">{{item.price_display}}</text>
+          </view>
+        </view>
+        <view class="project-arrow">›</view>
+      </view>
+      <view class="status-bar">
+        <view class="status-segment seg-green" style="flex:{{item.flex_avail}};"></view>
+        <view class="status-segment seg-red" style="flex:{{item.flex_sold}};"></view>
+        <view class="status-segment seg-orange" style="flex:{{item.flex_other}};"></view>
+      </view>
+    </view>
+  </block>
+
+  <view class="empty" wx:if="{{!buildings.length}}">暂无楼栋数据</view>
+</view>
+
+<view class="empty" wx:if="{{!project.project_id}}">加载中...</view>

@@ -1,0 +1,45 @@
+@import "../../app.wxss";
+
+.house-grid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  padding: 0 16px 12px;
+}
+
+.house-cell {
+  width: calc(25% - 6px);
+  padding: 8px 4px;
+  border-radius: 6px;
+  text-align: center;
+  font-size: 12px;
+  background: #f8f8f8;
+}
+
+.house-cell.status-available {
+  background: #E8F5E9;
+}
+
+.house-cell.status-signed {
+  background: #FFEBEE;
+}
+
+.house-cell.status-filed {
+  background: #FFF3E0;
+}
+
+.house-cell.status-reserved {
+  background: #FFF8E1;
+}
+
+.house-no {
+  font-weight: 600;
+  font-size: 14px;
+  color: #333;
+}
+
+.house-status {
+  font-size: 10px;
+  color: #999;
+  margin-top: 2px;
+}

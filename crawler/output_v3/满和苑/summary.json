@@ -1,0 +1,12 @@
+{
+  "project": "满和苑",
+  "projectID": "8203797",
+  "buildingLinks": 8,
+  "unitDataCaptured": true,
+  "unitDataPreview": "{\"popupData\":[],\"source\":\"popup\"}",
+  "files": [
+    "building_links.json",
+    "popup_data.json",
+    "popup_screenshot.png"
+  ]
+}
