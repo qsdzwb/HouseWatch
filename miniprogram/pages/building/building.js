@@ -10,6 +10,7 @@ var STATUS_CLASS = {
 
 Page({
   data: {
+    buildingId: '',
     building: {},
     houses: [],
     filteredHouses: [],
@@ -17,7 +18,8 @@ Page({
     priceDisplay: '',
     flexAvail: 0,
     flexSold: 0,
-    statusFilter: ''
+    statusFilter: '',
+    recentSales: {}   // { room_no: price_display }
   },
   onLoad: function(opt) {
     this.setData({ buildingId: opt.id });
@@ -47,10 +49,43 @@ Page({
         stats: stats,
         priceDisplay: priceDisplay,
         flexAvail: ((stats.availableCount || 0) / total * 100).toFixed(1),
-        flexSold: ((stats.soldCount || 0) / total * 100).toFixed(1)
+        flexSold: (((stats.soldCount || 0)) / total * 100).toFixed(1)
       });
+
+      // 加载该楼栋最近成交记录（用于标注价格）
+      self.loadRecentSales();
     }).catch(function() { wx.showToast({ title: '加载失败', icon: 'none' }); });
   },
+
+  // 加载最近成交：从 changes API 获取该楼栋最近成交
+  loadRecentSales: function() {
+    var self = this;
+    api.getChanges({ 
+      buildingId: this.data.buildingId, 
+      limit: 50 
+    }).then(function(res) {
+      var d = res.data || {};
+      var items = d.items || [];
+      var recent = {};
+      items.forEach(function(item) {
+        // 只标注有价格的成交
+        if (item.price_display && !recent[item.room_no]) {
+          recent[item.room_no] = item.price_display;
+        }
+      });
+      if (Object.keys(recent).length > 0) {
+        // 把价格标注写入 houses
+        var houses = self.data.houses.map(function(h) {
+          if (recent[h.room_no]) {
+            h.salePrice = recent[h.room_no];
+          }
+          return h;
+        });
+        self.setData({ houses: houses, filteredHouses: houses });
+      }
+    }).catch(function() { /* ignore */ });
+  },
+
   filterStatus: function(e) {
     var status = e.currentTarget.dataset.status;
     var houses = this.data.houses;

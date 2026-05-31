@@ -1,1 +1,89 @@
 @import "../../app.wxss";
+
+/* 趋势图 */
+.trend-chart {
+  display: flex;
+  align-items: flex-end;
+  gap: 4rpx;
+  height: 140rpx;
+  padding: 16rpx 0 40rpx 0;
+  border-bottom: 1rpx solid #f0f0f0;
+  margin-bottom: 20rpx;
+}
+
+.trend-bar-group {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  height: 100%;
+  justify-content: flex-end;
+}
+
+.trend-bar {
+  width: 100%;
+  min-height: 4rpx;
+  background: #1989FA;
+  border-radius: 4rpx 4rpx 0 0;
+  position: relative;
+  transition: height 0.3s ease;
+}
+
+.trend-bar-group:active .trend-bar {
+  background: #FF6600;
+}
+
+.trend-value {
+  font-size: 18rpx;
+  color: #333;
+  margin-bottom: 4rpx;
+  font-weight: 600;
+}
+
+.trend-label {
+  font-size: 18rpx;
+  color: #999;
+  margin-top: 4rpx;
+}
+
+/* 变化卡片 */
+.change-card {
+  background: #fff;
+  border-radius: 12rpx;
+  padding: 20rpx 24rpx;
+  margin-bottom: 16rpx;
+  box-shadow: 0 2rpx 8rpx rgba(0,0,0,0.04);
+}
+
+.change-tag {
+  font-size: 22rpx;
+  padding: 4rpx 12rpx;
+  border-radius: 6rpx;
+  font-weight: 600;
+}
+
+.change-tag.new-sale {
+  background: #fff1f0;
+  color: #FF4D4F;
+}
+
+.change-tag.status-change {
+  background: #f0f5ff;
+  color: #1989FA;
+}
+
+.change-house {
+  font-size: 28rpx;
+  font-weight: 600;
+  color: #333;
+  margin: 12rpx 0 8rpx 0;
+}
+
+.change-detail {
+  font-size: 24rpx;
+  color: #666;
+}
+
+.text-gray {
+  color: #999;
+}

@@ -32,6 +32,7 @@
       <view class="house-cell status-{{item.statusClass}}">
         <view class="house-no">{{item.room_no}}</view>
         <view class="house-status">{{item.status}}</view>
+        <view class="house-price" wx:if="{{item.salePrice}}">{{item.salePrice}}</view>
       </view>
     </block>
   </view>

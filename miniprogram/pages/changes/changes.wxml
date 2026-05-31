@@ -1,4 +1,5 @@
 <view class="container">
+  <!-- 顶部统计卡片 -->
   <view class="card">
     <view class="flex-between">
       <view class="card-title" style="margin-bottom:0;">成交变化</view>
@@ -12,11 +13,26 @@
     </view>
   </view>
 
+  <!-- 成交趋势图（最近30天） -->
+  <view class="card" wx:if="{{trend.length > 0}}">
+    <view class="card-title">近期成交趋势</view>
+    <view class="trend-chart">
+      <view class="trend-bar-group" wx:for="{{trend}}" wx:key="date">
+        <view class="trend-bar" style="height:{{item.barHeight}}px;" 
+              bindtap="onBarTap" data-date="{{item.date}}">
+          <text class="trend-value">{{item.count > 0 ? item.count : ''}}</text>
+        </view>
+        <text class="trend-label">{{item.shortDate}}</text>
+      </view>
+    </view>
+  </view>
+
+  <!-- 变化列表 -->
   <block wx:for="{{list}}" wx:key="id">
     <view class="change-card">
       <view style="display:flex;justify-content:space-between;align-items:center;">
         <view>
-          <text class="change-tag new-sale" wx:if="{{item.new_status === '已签约'}}">成交</text>
+          <text class="change-tag new-sale" wx:if="{{item.change_type === 'new_sale'}}">成交</text>
           <text class="change-tag status-change" wx:else>变更</text>
         </view>
         <view class="text-gray" style="font-size:11px;">{{item.change_date || ''}}</view>
