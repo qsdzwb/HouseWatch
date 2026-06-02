@@ -1,6 +1,16 @@
 App({
+  onLaunch() {
+    if (wx.cloud && wx.cloud.init) {
+      wx.cloud.init({
+        env: 'test-d5gosehir1c1bd27e'
+      })
+    }
+  },
+
   globalData: {
     apiBase: 'https://lushi.chat/api',
+    cloudEnv: 'test-d5gosehir1c1bd27e',
+    anyServiceName: 'housewatch',
     statusColors: {
       '可售': '#33CC00',
       '已签约': '#FF0000',
@@ -11,4 +21,4 @@ App({
       '不可售': '#CCCCCC'
     }
   }
-});
+})
