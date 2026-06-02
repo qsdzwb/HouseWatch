@@ -92,7 +92,7 @@ router.get('/by-date', async (req, res) => {
     daysAgo.setDate(daysAgo.getDate() - parseInt(days, 10));
     const startDate = daysAgo.toISOString().split('T')[0];
 
-    let where = 'WHERE dc.change_date >= ? AND dc.change_type = \\'new_sale\\'';
+    let where = "WHERE dc.change_date >= ? AND dc.change_type = 'new_sale'";
     const params = [startDate];
 
     if (projectId) {

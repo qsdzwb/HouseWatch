@@ -11,7 +11,9 @@ let db = null;
 function getDb() {
   if (db) return db;
 
-  const dbPath = path.resolve(config.db.sqlitePath);
+  const dbPath = process.env.DB_SQLITE_PATH
+    ? path.resolve(process.env.DB_SQLITE_PATH)
+    : path.resolve(__dirname, '../../data/bj_realestate.db');
   const dbDir = path.dirname(dbPath);
 
   // 确保目录存在

@@ -8,7 +8,7 @@
     <view style="display:flex;gap:20px;margin-top:12px;font-size:13px;">
       <view>可售 <text class="text-green" style="font-weight:600;">{{stats.availableCount || 0}}</text></view>
       <view>已售 <text class="text-red" style="font-weight:600;">{{stats.soldCount || 0}}</text></view>
-      <view wx:if="{{building.avg_price}}">均价 <text style="color:#FF6600;font-weight:600;">{{priceDisplay}}</text></view>
+      <view wx:if="{{building.avg_price}}">备案价 <text style="color:#FF6600;font-weight:600;">{{priceDisplay}}</text></view>
     </view>
     <!-- 状态条 -->
     <view style="display:flex;height:4px;border-radius:2px;overflow:hidden;margin-top:10px;background:#eee;">

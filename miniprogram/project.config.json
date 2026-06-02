@@ -30,8 +30,8 @@
     }
   },
   "compileType": "miniprogram",
-  "libVersion": "3.6.0",
-  "appid": "wx1acb39178876b61d",
+  "libVersion": "3.16.1",
+  "appid": "wx5c826604445e7252",
   "projectname": "bj-realestate",
   "condition": {},
   "simulatorPluginLibVersion": {},

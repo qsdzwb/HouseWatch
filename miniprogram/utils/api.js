@@ -1,7 +1,10 @@
-const BASE = 'http://118.25.138.63:3000/api';
+function getBase() {
+  var app = getApp();
+  return (app && app.globalData && app.globalData.apiBase) || 'https://lushi.chat/api';
+}
 
 function request(url, method, data) {
-  var fullUrl = BASE + url;
+  var fullUrl = getBase() + url;
   console.log('[API] >>> 请求:', method || 'GET', fullUrl, JSON.stringify(data || {}));
   return new Promise(function(resolve, reject) {
     wx.request({

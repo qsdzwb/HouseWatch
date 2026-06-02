@@ -64,13 +64,13 @@ router.get('/', async (req, res) => {
     );
     const [{ total }] = await db.query(countSQL, params);
 
-    let orderClause = ' ORDER BY p.last_crawl DESC, p.name ASC';
+    let orderClause = ' ORDER BY last_crawl DESC, name ASC';
     const allowedSorts = {
       total_houses: 'total_houses',
       sold_rate: 'sold_rate',
       building_count: 'building_count',
-      name: 'p.name',
-      last_crawl: 'p.last_crawl',
+      name: 'name',
+      last_crawl: 'last_crawl',
     };
     if (sort_by && allowedSorts[sort_by]) {
       const dir = order === 'asc' ? 'ASC' : 'DESC';

@@ -1,6 +1,6 @@
 App({
   globalData: {
-    apiBase: 'http://localhost:3000/api',
+    apiBase: 'https://lushi.chat/api',
     statusColors: {
       '可售': '#33CC00',
       '已签约': '#FF0000',

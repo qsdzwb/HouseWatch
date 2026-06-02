@@ -1,6 +1,6 @@
 var api = require('../../utils/api');
 Page({
-  data: { apiBase: 'http://localhost:3000/api', version: '1.0.0' },
+  data: { apiBase: 'https://lushi.chat/api', version: '1.0.0' },
   onLoad: function() { this.setData({ apiBase: getApp().globalData.apiBase }); },
   onApiBaseInput: function(e) { this.setData({ apiBase: e.detail.value }); },
   saveSettings: function() {
