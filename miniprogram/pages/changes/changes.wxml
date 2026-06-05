@@ -1,10 +1,24 @@
 <view class="container">
+  <!-- 楼盘选择器 -->
+  <view class="card" style="padding:10px 16px;">
+    <picker mode="selector" range="{{projects}}" range-key="name" bindchange="onProjectChange">
+      <view class="flex-between">
+        <view style="font-size:15px;font-weight:600;" class="project-name">{{currentProjectName}}</view>
+        <view style="font-size:13px;color:#1989FA;">切换 ▼</view>
+      </view>
+    </picker>
+  </view>
+
   <!-- 顶部统计卡片 -->
   <view class="card">
     <view class="flex-between">
       <view class="card-title" style="margin-bottom:0;">成交变化</view>
       <picker mode="date" value="{{date}}" bindchange="onDateChange">
-        <view style="font-size:13px;color:#1989FA;">{{date || '今日'}} ▼</view>
+        <view style="font-size:13px;color:#1989FA;">
+          <block wx:if="{{date && date !== 'undefined' && date !== 'null'}}">{{date}}</block>
+          <block wx:else>最新</block>
+          ▼
+        </view>
       </picker>
     </view>
     <view style="display:flex;gap:16px;margin-top:8px;font-size:13px;" wx:if="{{summary}}">
@@ -13,18 +27,20 @@
     </view>
   </view>
 
-  <!-- 成交趋势图（最近30天） -->
+  <!-- 成交数量折线图（可点击） -->
   <view class="card" wx:if="{{trend.length > 0}}">
-    <view class="card-title">近期成交趋势</view>
-    <view class="trend-chart">
-      <view class="trend-bar-group" wx:for="{{trend}}" wx:key="date">
-        <view class="trend-bar" style="height:{{item.barHeight}}px;" 
-              bindtap="onBarTap" data-date="{{item.date}}">
-          <text class="trend-value">{{item.count > 0 ? item.count : ''}}</text>
-        </view>
-        <text class="trend-label">{{item.shortDate}}</text>
-      </view>
-    </view>
+    <view class="card-title">日成交数量</view>
+    <canvas canvas-id="countChart" id="countChart"
+            style="width:100%;height:220px;"
+            bindtap="onChartTap" data-chart="count"></canvas>
+  </view>
+
+  <!-- 成交均价折线图（可点击） -->
+  <view class="card" wx:if="{{priceTrend.length > 0}}">
+    <view class="card-title">日成交均价（万元/㎡）</view>
+    <canvas canvas-id="priceChart" id="priceChart"
+            style="width:100%;height:220px;"
+            bindtap="onChartTap" data-chart="price"></canvas>
   </view>
 
   <!-- 变化列表 -->
@@ -45,7 +61,10 @@
     </view>
   </block>
 
-  <view class="empty" wx:if="{{!list.length && !loading}}">暂无变化记录</view>
+  <view class="empty" wx:if="{{!list.length && !loading}}">
+    <view wx:if="{{loadError}}" style="color:#E74C3C;">{{loadError}}</view>
+    <view wx:else>暂无变化记录</view>
+  </view>
   <view class="load-more" wx:if="{{loading}}">加载中...</view>
   <view class="load-more" wx:if="{{noMore && list.length}}">没有更多了</view>
 </view>
