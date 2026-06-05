@@ -2,13 +2,17 @@ App({
   onLaunch() {
     if (wx.cloud && wx.cloud.init) {
       wx.cloud.init({
-        env: 'test-d5gosehir1c1bd27e'
+        env: 'test-d5gosehir1c1bd27e',
+        traceUser: true
       })
+      console.log('[App] 云开发环境初始化完成:', 'test-d5gosehir1c1bd27e')
+    } else {
+      console.warn('[App] 当前基础库不支持 wx.cloud')
     }
   },
 
   globalData: {
-    apiBase: 'https://lushi.chat/api',
+    apiBase: 'http://118.25.138.63/api',
     cloudEnv: 'test-d5gosehir1c1bd27e',
     anyServiceName: 'housewatch',
     statusColors: {
