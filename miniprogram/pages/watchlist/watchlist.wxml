@@ -39,30 +39,27 @@
       </view>
 
       <view wx:if="{{!selectedProject}}">
-        <!-- 搜索框 -->
-        <view class="search-box">
-          <input placeholder="输入楼盘名称搜索" value="{{searchKeyword}}" bindinput="onSearchInput"
-            class="search-input" />
-          <view wx:if="{{searchKeyword}}" class="search-clear" bindtap="clearSearch">✕</view>
-        </view>
-
-        <!-- 区域筛选标签 -->
-        <view class="district-tags" wx:if="{{districts.length > 0}}">
-          <view class="district-tag {{selectedDistrict === '' ? 'active' : ''}}"
-                bindtap="selectDistrict" data-district="">全部</view>
-          <view wx:for="{{districts}}" wx:key="*this"
-                class="district-tag {{selectedDistrict === item ? 'active' : ''}}"
-                bindtap="selectDistrict" data-district="{{item}}">{{item}}</view>
+        <!-- 区域下拉 + 搜索框 -->
+        <view class="search-row">
+          <picker range="{{districtOptions}}" value="{{selectedDistrictIndex}}" bindchange="onDistrictPickerChange">
+            <view class="district-picker">
+              {{districtOptions[selectedDistrictIndex]}} ▼
+            </view>
+          </picker>
+          <view class="search-box">
+            <input placeholder="输入楼盘名称搜索" value="{{searchKeyword}}" bindinput="onSearchInput"
+              class="search-input" />
+            <view wx:if="{{searchKeyword}}" class="search-clear" bindtap="clearSearch">✕</view>
+          </view>
         </view>
 
         <view wx:if="{{searching}}" style="text-align:center;padding:20px;color:#999;">搜索中...</view>
 
         <block wx:if="{{searchResults.length > 0}}">
-          <view class="search-result-count" wx:if="{{searchResultsRaw.length > 0}}">
-            找到 {{searchResults.length}} 个楼盘
-          </view>
-          <view wx:for="{{searchResults}}" wx:key="project_id" bindtap="selectProject" data-index="{{index}}"
-            class="search-result-item">
+          <view class="search-result-count">找到 {{searchResults.length}} 个楼盘</view>
+          <view wx:for="{{searchResults}}" wx:key="project_id"
+                bindtap="selectProject" data-index="{{index}}"
+                class="search-result-item">
             <view class="result-name">{{item.name}}</view>
             <view class="result-meta">
               <text wx:if="{{item.district}}" class="result-district">{{item.district}}</text>
@@ -72,9 +69,9 @@
           </view>
         </block>
 
-        <view wx:elif="{{searchKeyword.length >= 1 && !searching}}" style="text-align:center;padding:20px;color:#999;">
+        <view wx:elif="{{searchKeyword.length >= 1 && !searching}}"
+              style="text-align:center;padding:20px;color:#999;">
           <view>未找到匹配楼盘</view>
-          <view wx:if="{{searchResultsRaw.length > 0 && searchResults.length === 0}}" style="font-size:12px;margin-top:4px;">当前区域筛选无结果</view>
         </view>
       </view>
 

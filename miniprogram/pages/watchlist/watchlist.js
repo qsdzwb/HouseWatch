@@ -1,5 +1,13 @@
 var api = require('../../utils/api');
 
+// 北京各区（与住建委区域一致）
+var DISTRICT_OPTIONS = [
+  '全部区域', '朝阳区', '海淀区', '丰台区', '昌平区',
+  '大兴区', '通州区', '顺义区', '房山区', '石景山区',
+  '东城区', '西城区', '门头沟区', '平谷区', '怀柔区',
+  '密云区', '延庆区'
+];
+
 Page({
   data: {
     list: [],
@@ -10,9 +18,10 @@ Page({
     searchResultsRaw: [],
     searching: false,
     selectedProject: null,
-    districts: [],
-    selectedDistrict: '',
-    watchedIds: new Set()
+    watchedIds: new Set(),
+    // 区域下拉
+    districtOptions: DISTRICT_OPTIONS,
+    selectedDistrictIndex: 0
   },
 
   searchTimer: null,
@@ -62,8 +71,7 @@ Page({
       searchResults: [],
       searchResultsRaw: [],
       selectedProject: null,
-      districts: [],
-      selectedDistrict: ''
+      selectedDistrictIndex: 0
     });
   },
 
@@ -74,8 +82,7 @@ Page({
       searchResults: [],
       searchResultsRaw: [],
       selectedProject: null,
-      districts: [],
-      selectedDistrict: ''
+      selectedDistrictIndex: 0
     });
     if (this.searchTimer) {
       clearTimeout(this.searchTimer);
@@ -90,14 +97,22 @@ Page({
       searchKeyword: '',
       searchResults: [],
       searchResultsRaw: [],
-      districts: [],
-      selectedDistrict: ''
+      selectedDistrictIndex: 0
     });
+  },
+
+  onDistrictPickerChange: function(e) {
+    var idx = parseInt(e.detail.value);
+    this.setData({ selectedDistrictIndex: idx });
+    // 如果已有搜索关键词，自动按新区筛选
+    if (this.data.searchKeyword.length >= 1) {
+      this.doSearch(this.data.searchKeyword);
+    }
   },
 
   onSearchInput: function(e) {
     var keyword = e.detail.value.trim();
-    this.setData({ searchKeyword: keyword, selectedDistrict: '', searchResults: [] });
+    this.setData({ searchKeyword: keyword, searchResults: [] });
 
     if (this.searchTimer) {
       clearTimeout(this.searchTimer);
@@ -105,7 +120,7 @@ Page({
     }
 
     if (keyword.length < 1) {
-      this.setData({ searchResults: [], searchResultsRaw: [], districts: [], searching: false });
+      this.setData({ searchResults: [], searchResultsRaw: [], searching: false });
       return;
     }
 
@@ -124,8 +139,7 @@ Page({
       searchKeyword: '',
       searchResults: [],
       searchResultsRaw: [],
-      districts: [],
-      selectedDistrict: '',
+      selectedDistrictIndex: 0,
       searching: false
     });
   },
@@ -133,11 +147,19 @@ Page({
   doSearch: function(keyword) {
     var self = this;
     this.setData({ searching: true });
-    api.getProjects({ search: keyword, limit: 50, has_data: '0' }).then(function(res) {
+
+    // 组装查询参数，若选中具体区域则带上
+    var params = { search: keyword, limit: 50, has_data: '0' };
+    var idx = this.data.selectedDistrictIndex;
+    if (idx > 0) {
+      params.district = DISTRICT_OPTIONS[idx];
+    }
+
+    api.getProjects(params).then(function(res) {
       var items = (res.data && res.data.items) ? res.data.items : [];
       var watchedIds = self.data.watchedIds;
 
-      // 过滤掉已关注的楼盘，标记状态
+      // 过滤掉已关注的楼盘
       items = items.map(function(item) {
         item.isWatched = watchedIds.has(item.project_id);
         return item;
@@ -145,33 +167,13 @@ Page({
         return !item.isWatched;
       });
 
-      // 提取区域列表用于筛选
-      var districtMap = {};
-      items.forEach(function(item) {
-        if (item.district) districtMap[item.district] = true;
-      });
-      var districts = Object.keys(districtMap).sort();
-
       self.setData({
         searchResultsRaw: items,
         searchResults: items,
-        districts: districts,
         searching: false
       });
     }).catch(function() {
       self.setData({ searching: false });
-    });
-  },
-
-  selectDistrict: function(e) {
-    var district = e.currentTarget.dataset.district;
-    var raw = this.data.searchResultsRaw;
-    var filtered = district
-      ? raw.filter(function(item) { return item.district === district; })
-      : raw;
-    this.setData({
-      selectedDistrict: district,
-      searchResults: filtered
     });
   },
 
@@ -182,9 +184,7 @@ Page({
       selectedProject: project,
       'form.project_id': project.project_id,
       searchResults: [],
-      searchResultsRaw: [],
-      districts: [],
-      selectedDistrict: ''
+      searchResultsRaw: []
     });
   },
 
