@@ -15,7 +15,7 @@ function getAnyServiceName() {
 
 // 判断是否支持 wx.cloud.callContainer
 function supportsCloudCall() {
-  return !!(wx.cloud && wx.cloud.callContainer);
+  return false; // 禁用云调用，走 IP 直连
 }
 
 function request(url, method, data) {
@@ -26,7 +26,7 @@ function request(url, method, data) {
   if (supportsCloudCall()) {
     return requestViaCloud(url, method, data);
   }
-  // 降级：直接 HTTPS 请求（需要 lushi.chat DNS 正常）
+  // 降级：直接 HTTPS 请求（Cloudflare 代理已生效）
   return requestViaHttp(url, method, data, fullUrl);
 }
 
