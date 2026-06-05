@@ -1,14 +1,7 @@
 App({
   onLaunch() {
-    if (wx.cloud && wx.cloud.init) {
-      wx.cloud.init({
-        env: 'test-d5gosehir1c1bd27e',
-        traceUser: true
-      })
-      console.log('[App] 云开发环境初始化完成:', 'test-d5gosehir1c1bd27e')
-    } else {
-      console.warn('[App] 当前基础库不支持 wx.cloud')
-    }
+    // 云开发已禁用，走 IP 直连
+    console.log('[App] API 地址:', this.globalData.apiBase)
   },
 
   globalData: {

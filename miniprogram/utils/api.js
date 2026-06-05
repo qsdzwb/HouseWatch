@@ -84,7 +84,7 @@ function requestViaHttp(url, method, data, fullUrl) {
       method: method || 'GET',
       data: data || {},
       header: { 'Content-Type': 'application/json' },
-      timeout: 15000,
+      timeout: 30000,
       success: function(res) {
         console.log('[API-HTTP] <<< 响应状态:', res.statusCode, '数据类型:', typeof res.data);
         if (typeof res.data === 'string') {
