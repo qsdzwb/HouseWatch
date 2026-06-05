@@ -12,7 +12,7 @@ App({
   },
 
   globalData: {
-    apiBase: 'http://118.25.138.63/api',
+    apiBase: 'http://118.25.138.63:3000/api',
     cloudEnv: 'test-d5gosehir1c1bd27e',
     anyServiceName: 'housewatch',
     statusColors: {
