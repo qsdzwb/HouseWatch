@@ -40,20 +40,17 @@ router.get('/daily', async (req, res) => {
 
     let changes = await db.query(sql, params);
 
-    // 汇总统计
-    let summary = { newSales: 0, statusChanges: 0, avgDealPrice: null, total: total };
-
-    if (date) {
-      const statResult = await db.queryOne(
-        `SELECT 
-          SUM(CASE WHEN change_type = 'new_sale' THEN 1 ELSE 0 END) as newSales,
-          SUM(CASE WHEN change_type != 'new_sale' THEN 1 ELSE 0 END) as statusChanges,
-          AVG(CASE WHEN change_type = 'new_sale' AND deal_unit_price > 0 THEN deal_unit_price END) as avgDealPrice
-        FROM daily_changes WHERE change_date = ?`,
-        [date]
-      );
-      summary = { ...summary, ...statResult };
-    }
+    // 汇总统计（默认今天）
+    const summaryDate = date || new Date().toISOString().split('T')[0];
+    const statResult = await db.queryOne(
+      `SELECT
+        SUM(CASE WHEN change_type = 'new_sale' THEN 1 ELSE 0 END) as newSales,
+        SUM(CASE WHEN change_type != 'new_sale' THEN 1 ELSE 0 END) as statusChanges,
+        AVG(CASE WHEN change_type = 'new_sale' AND deal_unit_price > 0 THEN deal_unit_price END) as avgDealPrice
+      FROM daily_changes WHERE change_date = ?`,
+      [summaryDate]
+    );
+    let summary = { newSales: 0, statusChanges: 0, avgDealPrice: null, total: total, ...statResult };
 
     // 为每条变化添加 price_display
     changes = changes.map(item => {
