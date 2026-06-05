@@ -328,14 +328,14 @@ router.post('/batch-insert', async (req, res) => {
         var exists = await db.queryOne('SELECT id FROM projects WHERE project_id = ?', [p.project_id]);
         if (exists) {
           await db.insert(
-            "UPDATE projects SET name=?, permit_no=?, issue_date=?, updated_at=datetime('now','localtime') WHERE project_id=?",
-            [p.name, p.permit_no || null, p.issue_date || null, p.project_id]
+            "UPDATE projects SET name=?, permit_no=?, issue_date=?, district=?, updated_at=datetime('now','localtime') WHERE project_id=?",
+            [p.name, p.permit_no || null, p.issue_date || null, p.district || null, p.project_id]
           );
           updated++;
         } else {
           await db.insert(
-            'INSERT INTO projects (project_id,name,permit_no,issue_date,first_seen,status) VALUES (?,?,?,?,?,?)',
-            [p.project_id, p.name, p.permit_no || null, p.issue_date || null, today, 'active']
+            'INSERT INTO projects (project_id,name,permit_no,issue_date,district,first_seen,status) VALUES (?,?,?,?,?,?,?)',
+            [p.project_id, p.name, p.permit_no || null, p.issue_date || null, p.district || null, today, 'active']
           );
           inserted++;
         }
