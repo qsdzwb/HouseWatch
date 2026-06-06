@@ -10,15 +10,12 @@
 - 生成所有活跃项目的快照（daily_snapshots）
 - 对比快照，生成变化记录（daily_changes）
 
-与 crawlWatchlist_v7.py 的区别:
-- 爬取所有活跃项目，不仅限于关注项目
-- 可独立运行，可配置为定时任务
-
-锁机制:
-- 使用 /tmp/house_crawler.lock 文件锁，与 crawlWatchlist_v7.py 互斥
-- 同一时间只允许一个爬虫写入数据库
+使用方式:
+- 由 crawl_all_wrapper.sh 统一调度，不单独运行
+- 速率已在脚本内控制，无需外部限速
 """
-import sqlite3, datetime, urllib.request, urllib.parse, re, time, sys, os, fcntl, random
+
+import sqlite3, datetime, urllib.request, urllib.parse, re, time, sys, os, random, random
 
 DB = '/opt/bj-server/data/bj_realestate.db'
 LOCK_FILE = '/tmp/house_crawler.lock'
@@ -344,14 +341,6 @@ def compare_and_generate_changes(conn, today_str):
 
 # ─── 主流程 ───
 def main():
-    # 文件锁：防止与 crawlWatchlist_v7.py 同时运行
-    lock_fd = open(LOCK_FILE, 'w')
-    try:
-        fcntl.flock(lock_fd, fcntl.LOCK_EX | fcntl.LOCK_NB)
-    except (IOError, OSError):
-        print(f"另一个爬虫正在运行（锁文件: {LOCK_FILE}），退出。")
-        sys.exit(1)
-
     print("=" * 60)
     print("全量活跃楼盘数据更新 v1")
     print(f"时间: {datetime.datetime.now().isoformat()}")

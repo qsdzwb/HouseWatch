@@ -7,10 +7,9 @@
 - 成交价反推逻辑：利用项目级日均价差值，反推每套房成交单价
 - deal_unit_price / is_estimated 字段写入 daily_changes
 """
-import sqlite3, datetime, urllib.request, urllib.parse, re, time, sys, os, fcntl
+import sqlite3, datetime, urllib.request, urllib.parse, re, time, sys, os
 
 DB = '/opt/bj-server/data/bj_realestate.db'
-LOCK_FILE = '/tmp/house_crawler.lock'
 
 # 昌平区 2026 年活跃楼盘
 CHANGPING_2026 = [
@@ -483,14 +482,6 @@ def compare_and_generate_changes(conn, today_str):
 
 # ─── 主流程 ───
 def main():
-    # 文件锁：防止与 crawlAllActive_v1.py 同时运行
-    lock_fd = open(LOCK_FILE, 'w')
-    try:
-        fcntl.flock(lock_fd, fcntl.LOCK_EX | fcntl.LOCK_NB)
-    except (IOError, OSError):
-        print(f"另一个爬虫正在运行（锁文件: {LOCK_FILE}），退出。")
-        sys.exit(1)
-
     print("=" * 60)
     print("关注楼盘优先更新 v7 (成交价反推)")
     print(f"时间: {datetime.datetime.now().isoformat()}")
@@ -626,10 +617,6 @@ def main():
         if row and row[0]:
             print(f"  [{name}] 已签{int(row[0])}套 面积{row[1]:.2f}㎡ 均价¥{row[2]:,.0f}/㎡")
     conn2.close()
-
-    # 释放文件锁
-    fcntl.flock(lock_fd, fcntl.LOCK_UN)
-    lock_fd.close()
 
     print("=" * 60)
 
