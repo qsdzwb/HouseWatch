@@ -22,14 +22,14 @@
 
   <view class="empty" wx:if="{{!list.length}}">
     <view>暂无关注楼盘</view>
-    <view style="font-size:12px;color:#bbb;margin-top:4px;">点击「+ 添加」搜索并关注楼盘</view>
+    <view style="font-size:12px;color:#bbb;margin-top:4px;">点击「+ 添加」关注楼盘</view>
   </view>
 
   <!-- 添加关注弹窗 -->
   <view wx:if="{{showAdd}}" class="modal-overlay">
     <view class="modal-content">
       <view style="font-size:16px;font-weight:600;margin-bottom:16px;">
-        {{selectedProject ? '确认添加' : '搜索楼盘'}}
+        {{selectedProject ? '确认添加' : '添加关注'}}
       </view>
 
       <view wx:if="{{selectedProject}}" style="background:#E8F5E9;padding:10px 14px;border-radius:8px;margin-bottom:12px;">
@@ -39,39 +39,35 @@
       </view>
 
       <view wx:if="{{!selectedProject}}">
-        <!-- 区域下拉 + 搜索框 -->
-        <view class="search-row">
+        <!-- 区域筛选 -->
+        <view class="filter-row">
           <picker range="{{districtOptions}}" value="{{selectedDistrictIndex}}" bindchange="onDistrictPickerChange">
             <view class="district-picker">
               {{districtOptions[selectedDistrictIndex]}} ▼
             </view>
           </picker>
-          <view class="search-box">
-            <input placeholder="输入楼盘名称搜索" value="{{searchKeyword}}" bindinput="onSearchInput"
-              class="search-input" />
-            <view wx:if="{{searchKeyword}}" class="search-clear" bindtap="clearSearch">✕</view>
-          </view>
+          <view class="filter-count" wx:if="{{!loadingProjects}}">共 {{filteredProjects.length}} 个楼盘</view>
         </view>
 
-        <view wx:if="{{searching}}" style="text-align:center;padding:20px;color:#999;">搜索中...</view>
+        <view wx:if="{{loadingProjects}}" style="text-align:center;padding:20px;color:#999;">加载中...</view>
 
-        <block wx:if="{{searchResults.length > 0}}">
-          <view class="search-result-count">找到 {{searchResults.length}} 个楼盘</view>
-          <view wx:for="{{searchResults}}" wx:key="project_id"
-                bindtap="selectProject" data-index="{{index}}"
-                class="search-result-item">
-            <view class="result-name">{{item.name}}</view>
-            <view class="result-meta">
-              <text wx:if="{{item.district}}" class="result-district">{{item.district}}</text>
-              <text>{{item.building_count || 0}}栋 · {{item.total_houses || 0}}套</text>
-              <text wx:if="{{item.sold_rate}}" class="result-rate">去化 {{item.sold_rate}}</text>
+        <block wx:if="{{filteredProjects.length > 0}}">
+          <scroll-view scroll-y class="project-list" enhanced show-scrollbar>
+            <view wx:for="{{filteredProjects}}" wx:key="project_id"
+                  bindtap="selectProject" data-index="{{index}}"
+                  class="project-item">
+              <view class="item-name">{{item.name}}</view>
+              <view class="item-meta">
+                <text wx:if="{{item.district}}" class="item-district">{{item.district}}</text>
+                <text>{{item.building_count || 0}}栋 · {{item.total_houses || 0}}套</text>
+                <text wx:if="{{item.sold_rate}}" class="item-rate">去化 {{item.sold_rate}}</text>
+              </view>
             </view>
-          </view>
+          </scroll-view>
         </block>
 
-        <view wx:elif="{{searchKeyword.length >= 1 && !searching}}"
-              style="text-align:center;padding:20px;color:#999;">
-          <view>未找到匹配楼盘</view>
+        <view wx:elif="{{!loadingProjects}}" style="text-align:center;padding:20px;color:#999;">
+          <view>该区域暂无可添加楼盘</view>
         </view>
       </view>
 

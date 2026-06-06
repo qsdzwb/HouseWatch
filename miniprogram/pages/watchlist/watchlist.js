@@ -13,22 +13,19 @@ Page({
     list: [],
     showAdd: false,
     form: { project_id: '', note: '' },
-    searchKeyword: '',
-    searchResults: [],
-    searching: false,
     selectedProject: null,
     watchedIds: new Set(),
     // 区域下拉
     districtOptions: DISTRICT_OPTIONS,
     selectedDistrictIndex: 0,
-    // 预加载全部楼盘（内存，非 data）
-    allProjectsLoaded: false
+    // 楼盘列表
+    allProjects: [],
+    filteredProjects: [],
+    loadingProjects: false
   },
 
   // 内存中保存全部楼盘，不放在 data 里（避免渲染卡顿）
   _allProjects: [],
-
-  searchTimer: null,
 
   onLoad: function() {
     this.loadWatchlist();
@@ -72,149 +69,72 @@ Page({
     var self = this;
     this.setData({
       showAdd: true,
-      searchKeyword: '',
-      searchResults: [],
       selectedProject: null,
       selectedDistrictIndex: 0,
-      allProjectsLoaded: false
+      filteredProjects: [],
+      loadingProjects: true
     });
-    // 预加载全部楼盘到内存
-    if (!this._allProjects || this._allProjects.length === 0) {
-      this.setData({ searching: true });
-      api.getProjects({ limit: 9999, has_data: '0' }).then(function(res) {
-        var items = (res.data && res.data.items) ? res.data.items : [];
-        self._allProjects = items;
-        self.setData({ searching: false, allProjectsLoaded: true });
-        // 如果有搜索词，立即本地筛选
-        if (self.data.searchKeyword.length >= 1) {
-          self.doLocalSearch(self.data.searchKeyword);
-        }
-      }).catch(function() {
-        self.setData({ searching: false });
-      });
-    }
+    // 加载全部楼盘
+    api.getProjects({ limit: 9999, has_data: '0' }).then(function(res) {
+      var items = (res.data && res.data.items) ? res.data.items : [];
+      self._allProjects = items;
+      // 默认展示全部未关注楼盘
+      self.applyFilter(0);
+      self.setData({ loadingProjects: false });
+    }).catch(function() {
+      self.setData({ loadingProjects: false });
+      wx.showToast({ title: '加载失败', icon: 'none' });
+    });
   },
 
   hideAdd: function() {
     this.setData({
       showAdd: false,
-      searchKeyword: '',
-      searchResults: [],
-      searchResultsRaw: [],
       selectedProject: null,
-      selectedDistrictIndex: 0
+      selectedDistrictIndex: 0,
+      filteredProjects: [],
+      loadingProjects: false
     });
-    if (this.searchTimer) {
-      clearTimeout(this.searchTimer);
-      this.searchTimer = null;
-    }
   },
 
   clearSelection: function() {
     this.setData({
       selectedProject: null,
       'form.project_id': '',
-      searchKeyword: '',
-      searchResults: [],
-      searchResultsRaw: [],
-      selectedDistrictIndex: 0
+      'form.note': ''
     });
+    // 重新展示筛选列表
+    this.applyFilter(this.data.selectedDistrictIndex);
   },
 
   onDistrictPickerChange: function(e) {
     var idx = parseInt(e.detail.value);
     this.setData({ selectedDistrictIndex: idx });
-    // 如果已有搜索关键词，自动按新区筛选
-    if (this.data.searchKeyword.length >= 1) {
-      this.doSearch(this.data.searchKeyword);
-    }
+    this.applyFilter(idx);
   },
 
-  onSearchInput: function(e) {
-    var keyword = e.detail.value.trim();
-    this.setData({ searchKeyword: keyword, searchResults: [] });
-
-    if (this.searchTimer) {
-      clearTimeout(this.searchTimer);
-      this.searchTimer = null;
-    }
-
-    if (keyword.length < 1) {
-      this.setData({ searchResults: [], searchResultsRaw: [], searching: false });
-      return;
-    }
-
+  applyFilter: function(districtIndex) {
     var self = this;
-    this.searchTimer = setTimeout(function() {
-      self.doSearch(keyword);
-    }, 300);
-  },
-
-  clearSearch: function() {
-    if (this.searchTimer) {
-      clearTimeout(this.searchTimer);
-      this.searchTimer = null;
-    }
-    this.setData({
-      searchKeyword: '',
-      searchResults: [],
-      searchResultsRaw: [],
-      selectedDistrictIndex: 0,
-      searching: false
-    });
-  },
-
-  doSearch: function(keyword) {
-    var self = this;
-    if (!self._allProjects || self._allProjects.length === 0) {
-      // 尚未预加载，降级为 API 搜索
-      self._fallbackSearch(keyword);
-      return;
-    }
-    this.setData({ searching: true });
-    var idx = this.data.selectedDistrictIndex;
-    var district = idx > 0 ? DISTRICT_OPTIONS[idx] : null;
+    var district = districtIndex > 0 ? DISTRICT_OPTIONS[districtIndex] : null;
 
     var results = self._allProjects.filter(function(item) {
       // 过滤已关注
       if (self.data.watchedIds.has(item.project_id)) return false;
-      // 关键词过滤
-      if (keyword && item.name && item.name.indexOf(keyword) === -1) return false;
       // 区域过滤
       if (district && item.district !== district) return false;
       return true;
     });
 
-    self.setData({ searchResults: results, searching: false });
-  },
-
-  _fallbackSearch: function(keyword) {
-    var self = this;
-    this.setData({ searching: true });
-    var params = { search: keyword, limit: 50, has_data: '0' };
-    var idx = this.data.selectedDistrictIndex;
-    if (idx > 0) params.district = DISTRICT_OPTIONS[idx];
-    api.getProjects(params).then(function(res) {
-      var items = (res.data && res.data.items) ? res.data.items : [];
-      var watchedIds = self.data.watchedIds;
-      items = items.map(function(item) {
-        item.isWatched = watchedIds.has(item.project_id);
-        return item;
-      }).filter(function(item) { return !item.isWatched; });
-      self.setData({ searchResults: items, searching: false });
-    }).catch(function() {
-      self.setData({ searching: false });
-    });
+    self.setData({ filteredProjects: results });
   },
 
   selectProject: function(e) {
     var idx = e.currentTarget.dataset.index;
-    var project = this.data.searchResults[idx];
+    var project = this.data.filteredProjects[idx];
     this.setData({
       selectedProject: project,
       'form.project_id': project.project_id,
-      searchResults: [],
-      searchResultsRaw: []
+      filteredProjects: []
     });
   },
 
