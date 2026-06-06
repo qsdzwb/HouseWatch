@@ -1,27 +1,24 @@
 #!/usr/bin/env python3
 """
-全量活跃楼盘数据更新 v1
+关注楼盘优先更新 v7 — 成交价反推
 
-功能:
-- 从 projects 表获取所有 status='active' 的项目（约 231 个）
-- 爬取每个项目的详情页：楼栋列表 + 项目汇总数据
-- 爬取每个楼栋的楼盘表：房屋状态
-- 更新 projects / buildings / houses 表
-- 生成所有活跃项目的快照（daily_snapshots）
-- 对比快照，生成变化记录（daily_changes）
-
-与 crawlWatchlist_v7.py 的区别:
-- 爬取所有活跃项目，不仅限于关注项目
-- 可独立运行，可配置为定时任务
-
-锁机制:
-- 使用 /tmp/house_crawler.lock 文件锁，与 crawlWatchlist_v7.py 互斥
-- 同一时间只允许一个爬虫写入数据库
+新增:
+- project_daily_stats 表：存储每天的项目级成交数据
+- 成交价反推逻辑：利用项目级日均价差值，反推每套房成交单价
+- deal_unit_price / is_estimated 字段写入 daily_changes
 """
-import sqlite3, datetime, urllib.request, urllib.parse, re, time, sys, os, fcntl, random
+import sqlite3, datetime, urllib.request, urllib.parse, re, time, sys, os, fcntl
 
 DB = '/opt/bj-server/data/bj_realestate.db'
 LOCK_FILE = '/tmp/house_crawler.lock'
+
+# 昌平区 2026 年活跃楼盘
+CHANGPING_2026 = [
+    ('8203707', '樾序海苑', '昌平区-2026-05-10'),
+    ('8161845', '誉淙家园', '昌平区-2026-02-05'),
+    ('8158008', '星洵家园', '昌平区-2026-01-28'),
+    ('8106368', '星洵家园', '昌平区-2025-09-27'),
+]
 
 HEADERS = {
     'User-Agent': 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36',
@@ -29,17 +26,7 @@ HEADERS = {
     'Accept-Language': 'zh-CN,zh;q=0.9',
 }
 
-# ─── 速率控制 ───
-PROJECT_DELAY = (3, 8)   # 每个项目之间随机延迟 3~8 秒
-BUILDING_DELAY = (1, 3)  # 每栋楼之间随机延迟 1~3 秒
-REQUEST_DELAY = (0.5, 1.5)  # 每次 HTTP 请求之间随机延迟
-
-def random_sleep(low, high):
-    time.sleep(low + (high - low) * random.random())
-
-
 def fetch(url, timeout=45):
-    random_sleep(*REQUEST_DELAY)
     for attempt in range(3):
         try:
             req = urllib.request.Request(url, headers=HEADERS)
@@ -48,12 +35,17 @@ def fetch(url, timeout=45):
         except Exception as e:
             if attempt < 2:
                 time.sleep(5)
-    return ''
-
+    return ""
 
 # ─── 详情页：楼栋列表 + 项目汇总数据 ───
 def parse_detail_page(project_id):
+    """
+    从详情页获取：
+    1. 楼栋列表（building_id, name, sale_permit_id, total_units）
+    2. 项目级汇总数据（signed_count, signed_area, avg_price）
+    """
     url = f"http://bjjs.zjw.beijing.gov.cn/eportal/ui?pageId=320794&projectID={project_id}&systemID=2&srcId=1"
+
     html = ""
     for attempt in range(8):
         html = fetch(url)
@@ -66,6 +58,7 @@ def parse_detail_page(project_id):
         print(f"  详情页获取失败 ({len(html)} chars)")
         return [], None
 
+    # ── 1. 解析楼栋列表 ──
     buildings = []
     for m in re.finditer(r'href="([^"]*buildingId=(\d+)[^"]*)"[^>]*>\s*查看信息\s*</a>', html):
         href = m.group(1)
@@ -76,6 +69,7 @@ def parse_detail_page(project_id):
         if tr_start < 0 or tr_end < 0:
             continue
         row = html[tr_start:tr_end+5]
+
         tds = re.findall(r'<td[^>]*>\s*(.*?)\s*</td>', row, re.DOTALL)
         clean = []
         for td in tds:
@@ -83,15 +77,19 @@ def parse_detail_page(project_id):
             c = re.sub(r'&nbsp;', ' ', c).strip()
             if c:
                 clean.append(c)
+
         if len(clean) < 2:
             continue
+
         building_name = clean[0]
         try:
             total_units = int(clean[1]) if clean[1].isdigit() else 0
         except:
             total_units = 0
+
         sid_match = re.search(r'salePermitId=(\d+)', href)
         sid = sid_match.group(1) if sid_match else ''
+
         buildings.append({
             'building_id': bid,
             'building_name': building_name,
@@ -99,6 +97,7 @@ def parse_detail_page(project_id):
             'total_units': total_units,
         })
 
+    # ── 2. 解析项目级汇总数据 ──
     summary = None
     idx = html.find('已签约套数')
     if idx >= 0:
@@ -113,6 +112,7 @@ def parse_detail_page(project_id):
                 c = re.sub(r'&nbsp;', ' ', c).strip()
                 if c:
                     clean.append(c)
+
             numbers = [x for x in clean if re.match(r'^\d+(\.\d+)?$', x)]
             if len(numbers) >= 3:
                 summary = {
@@ -145,6 +145,7 @@ def expand_hex(h):
 
 def get_unit_table(sale_permit_id, building_id):
     url = f"http://bjjs.zjw.beijing.gov.cn/eportal/ui?pageId=320833&systemId=2&categoryId=1&salePermitId={sale_permit_id}&buildingId={building_id}"
+
     html = ""
     for attempt in range(8):
         html = fetch(url)
@@ -152,6 +153,7 @@ def get_unit_table(sale_permit_id, building_id):
             break
         print(f"    楼盘表重试 {attempt+1}/8 ({len(html)} chars)...")
         time.sleep(5)
+
     if not html:
         return []
 
@@ -160,10 +162,12 @@ def get_unit_table(sale_permit_id, building_id):
         r'<div[^>]*style="[^"]*background:\s*(#[0-9a-fA-F]{3,6})[^"]*"[^>]*>(.*?)</div>',
         re.DOTALL
     )
+
     for div_match in div_pattern.finditer(html):
         hex_color = expand_hex(div_match.group(1))
         status = COLOR_MAP.get(hex_color, '未知')
         div_content = div_match.group(2)
+
         matched_href_links = set()
         for link_match in re.finditer(
             r'href="[^"]*houseId=(\d+)[^"]*houseNo=([^"&]+)[^"]*"[^>]*>([^<]+)</a>',
@@ -177,6 +181,7 @@ def get_unit_table(sale_permit_id, building_id):
                 'room_no': room_no,
                 'status': status
             })
+
         for link_match in re.finditer(
             r'href="#"[^>]*>([^<]+)</a>',
             div_content
@@ -191,22 +196,29 @@ def get_unit_table(sale_permit_id, building_id):
                     'room_no': room_no,
                     'status': status
                 })
+
     return houses
 
 
 # ─── DB 初始化 ───
 def ensure_schema(conn):
     cur = conn.cursor()
+
+    # buildings 字段
     for col, ctype in [('signed_count', 'INTEGER'), ('signed_area', 'REAL'), ('avg_price', 'REAL')]:
         try:
             cur.execute(f"ALTER TABLE buildings ADD COLUMN {col} {ctype} DEFAULT 0")
         except:
             pass
+
+    # projects 新增汇总字段
     for col, ctype in [('signed_count', 'REAL'), ('signed_area', 'REAL'), ('avg_price', 'REAL')]:
         try:
             cur.execute(f"ALTER TABLE projects ADD COLUMN {col} {ctype} DEFAULT 0")
         except:
             pass
+
+    # project_daily_stats 表：存储每天的项目级成交数据
     cur.execute("""
         CREATE TABLE IF NOT EXISTS project_daily_stats (
             id INTEGER PRIMARY KEY AUTOINCREMENT,
@@ -222,6 +234,7 @@ def ensure_schema(conn):
     cur.execute("CREATE INDEX IF NOT EXISTS idx_pds_date ON project_daily_stats(stat_date)")
     cur.execute("CREATE INDEX IF NOT EXISTS idx_pds_project ON project_daily_stats(project_id, stat_date)")
 
+    # 确保快照表存在
     cur.execute("""
         CREATE TABLE IF NOT EXISTS daily_snapshots (
             id INTEGER PRIMARY KEY AUTOINCREMENT,
@@ -236,28 +249,81 @@ def ensure_schema(conn):
     """)
     cur.execute("CREATE INDEX IF NOT EXISTS idx_snapshots_date ON daily_snapshots(snapshot_date)")
     cur.execute("CREATE INDEX IF NOT EXISTS idx_snapshots_house ON daily_snapshots(house_id, snapshot_date)")
+
+    # 确保变更表存在，并新增成交价字段
+    cur.execute("""
+        CREATE TABLE IF NOT EXISTS daily_changes (
+            id INTEGER PRIMARY KEY AUTOINCREMENT,
+            change_date TEXT NOT NULL,
+            project_id TEXT NOT NULL,
+            building_id TEXT NOT NULL,
+            building_name TEXT DEFAULT '',
+            house_id TEXT NOT NULL,
+            room_no TEXT NOT NULL,
+            old_status TEXT NOT NULL,
+            new_status TEXT NOT NULL,
+            building_avg_price REAL DEFAULT NULL,
+            change_type TEXT DEFAULT 'status_change',
+            build_area REAL DEFAULT NULL,
+            deal_unit_price REAL DEFAULT NULL,
+            deal_total_price REAL DEFAULT NULL,
+            is_estimated INTEGER DEFAULT 0,
+            created_at TEXT DEFAULT (datetime('now', 'localtime'))
+        )
+    """)
+    cur.execute("CREATE INDEX IF NOT EXISTS idx_changes_date ON daily_changes(change_date)")
+    # 添加缺失字段（兼容旧表）
+    for col, ctype in [('change_type', 'TEXT DEFAULT \'status_change\''),
+                        ('build_area', 'REAL DEFAULT NULL'),
+                        ('deal_unit_price', 'REAL DEFAULT NULL'),
+                        ('deal_total_price', 'REAL DEFAULT NULL'),
+                        ('is_estimated', 'INTEGER DEFAULT 0')]:
+        try:
+            cur.execute(f"ALTER TABLE daily_changes ADD COLUMN {col} {ctype}")
+        except:
+            pass
+
     conn.commit()
 
 
-# ─── 获取所有活跃项目 ───
-def get_all_active_projects(conn):
+# ─── 关注列表 ───
+def setup_watchlist(conn):
     cur = conn.cursor()
-    cur.execute("SELECT project_id, name FROM projects WHERE status='active' ORDER BY district, name")
-    rows = cur.fetchall()
-    print(f"  活跃项目数: {len(rows)}")
-    return [{'project_id': r[0], 'name': r[1]} for r in rows]
+    now = datetime.datetime.now().strftime('%Y-%m-%d %H:%M:%S')
+
+    for pid, name, notes in CHANGPING_2026:
+        cur.execute(
+            "INSERT OR IGNORE INTO projects (project_id, name, status) VALUES (?, ?, 'active')",
+            (pid, name)
+        )
+        cur.execute(
+            "INSERT OR IGNORE INTO watched_projects (project_id, notes, is_active, added_at) VALUES (?, ?, 1, ?)",
+            (pid, notes, now)
+        )
+    conn.commit()
+
+    cur.execute("SELECT project_id FROM watched_projects WHERE is_active=1")
+    watched = [row[0] for row in cur.fetchall()]
+    print(f"  活跃关注项目数: {len(watched)}")
+    return watched
 
 
 # ─── 快照 ───
 def generate_snapshots(conn, today_str):
     cur = conn.cursor()
-    cur.execute("""
+    cur.execute("SELECT project_id FROM watched_projects WHERE is_active=1")
+    watched = [r[0] for r in cur.fetchall()]
+    if not watched:
+        return
+
+    placeholders = ','.join('?' * len(watched))
+    cur.execute(f"""
         SELECT h.house_id, h.building_id, h.room_no, h.status, b.avg_price
         FROM houses h
         JOIN buildings b ON h.building_id = b.building_id
-        JOIN projects p ON b.project_id = p.project_id
-        WHERE p.status = 'active'
-    """)
+        WHERE b.project_id IN ({placeholders})
+    """, watched)
+
     rows = cur.fetchall()
     print(f"  生成快照: {len(rows)} 套房")
 
@@ -272,7 +338,7 @@ def generate_snapshots(conn, today_str):
     conn.commit()
 
 
-# ─── 变更对比 ───
+# ─── 变更对比 + 成交价反推 ───
 def compare_and_generate_changes(conn, today_str):
     cur = conn.cursor()
     cur.execute("""
@@ -307,6 +373,58 @@ def compare_and_generate_changes(conn, today_str):
     cur.execute("SELECT building_id, project_id, building_name FROM buildings")
     bld_map = {r[0]: (r[1], r[2]) for r in cur.fetchall()}
 
+    # ── 成交价反推逻辑 ──
+    # 1. 收集所有有 new_sale 的项目
+    proj_sale_count = {}  # project_id -> 今日新增成交套数
+    for row in changes:
+        house_id, building_id, room_no, old_status, new_status, avg_price = row
+        proj_id = bld_map.get(building_id, ('', ''))[0]
+        is_new_sale = (new_status in ('已签约', '网上联机备案') and
+                       old_status not in ('已签约', '网上联机备案'))
+        if is_new_sale:
+            proj_sale_count[proj_id] = proj_sale_count.get(proj_id, 0) + 1
+
+    # 2. 为每个有成交的项目，计算边际成交均价
+    #    marginal_avg_price = (今日累计总价 - 昨日累计总价) / (今日累计面积 - 昨日累计面积)
+    proj_price_map = {}  # project_id -> {marginal_avg_price, is_estimated}
+    for proj_id in proj_sale_count:
+        row_today = conn.execute(
+            "SELECT signed_count, signed_area, avg_price FROM project_daily_stats WHERE project_id=? AND stat_date=?",
+            (proj_id, today_str)
+        ).fetchone()
+        row_yesterday = conn.execute(
+            "SELECT signed_count, signed_area, avg_price FROM project_daily_stats WHERE project_id=? AND stat_date=?",
+            (proj_id, yesterday_str)
+        ).fetchone()
+
+        if row_today and row_yesterday:
+            delta_count = row_today[0] - row_yesterday[0]
+            delta_area = row_today[1] - row_yesterday[1]
+
+            marginal_avg_price = 0
+            if delta_area > 0:
+                today_total = (row_today[2] or 0) * (row_today[1] or 0)
+                yesterday_total = (row_yesterday[2] or 0) * (row_yesterday[1] or 0)
+                marginal_total = today_total - yesterday_total
+                if marginal_total > 0 and delta_area > 0:
+                    marginal_avg_price = marginal_total / delta_area
+
+            is_estimated = 1 if delta_count > 1 else 0
+            proj_price_map[proj_id] = {
+                'marginal_avg_price': marginal_avg_price,
+                'is_estimated': is_estimated,
+                'delta_count': delta_count,
+            }
+            print(f"  [{proj_id}] 边际成交均价: ¥{marginal_avg_price:,.0f}/㎡ (delta_count={delta_count}, estimated={is_estimated})")
+        else:
+            # 没有 project_daily_stats 数据，无法反推
+            proj_price_map[proj_id] = {
+                'marginal_avg_price': 0,
+                'is_estimated': 1,
+                'delta_count': proj_sale_count[proj_id],
+            }
+
+    # 3. 写入 daily_changes
     cur.execute("DELETE FROM daily_changes WHERE change_date = ?", (today_str,))
 
     new_sale_count = 0
@@ -317,18 +435,39 @@ def compare_and_generate_changes(conn, today_str):
                        old_status not in ('已签约', '网上联机备案'))
         change_type = 'new_sale' if is_new_sale else 'status_change'
 
+        deal_unit_price = None
+        deal_total_price = None
+        build_area = None
+        is_estimated = 0
+
         if is_new_sale:
             new_sale_count += 1
+            # 获取房屋面积
+            h_row = conn.execute(
+                "SELECT build_area, list_price_per_sqm FROM houses WHERE house_id=?",
+                (house_id,)
+            ).fetchone()
+            if h_row:
+                build_area = h_row[0]
+                # 使用反推的成交单价
+                price_info = proj_price_map.get(proj_id)
+                if price_info and price_info['marginal_avg_price'] > 0:
+                    deal_unit_price = round(price_info['marginal_avg_price'])
+                    is_estimated = price_info['is_estimated']
+                    if build_area:
+                        deal_total_price = round(deal_unit_price * build_area)
 
         cur.execute("""
             INSERT OR IGNORE INTO daily_changes
             (change_date, project_id, building_id, building_name,
              house_id, room_no, old_status, new_status,
-             building_avg_price, change_type)
-            VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+             building_avg_price, change_type, build_area,
+             deal_unit_price, deal_total_price, is_estimated)
+            VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
         """, (today_str, proj_id, building_id, bld_name,
                house_id, room_no, old_status, new_status,
-               avg_price, change_type))
+               avg_price, change_type, build_area,
+               deal_unit_price, deal_total_price, is_estimated))
 
     conn.commit()
     print(f"  发现变化: {len(changes)} 套房 (新增成交: {new_sale_count})")
@@ -344,7 +483,7 @@ def compare_and_generate_changes(conn, today_str):
 
 # ─── 主流程 ───
 def main():
-    # 文件锁：防止与 crawlWatchlist_v7.py 同时运行
+    # 文件锁：防止与 crawlAllActive_v1.py 同时运行
     lock_fd = open(LOCK_FILE, 'w')
     try:
         fcntl.flock(lock_fd, fcntl.LOCK_EX | fcntl.LOCK_NB)
@@ -353,119 +492,145 @@ def main():
         sys.exit(1)
 
     print("=" * 60)
-    print("全量活跃楼盘数据更新 v1")
+    print("关注楼盘优先更新 v7 (成交价反推)")
     print(f"时间: {datetime.datetime.now().isoformat()}")
     print("=" * 60)
 
     conn = sqlite3.connect(DB)
     conn.execute("PRAGMA journal_mode = WAL")
-    conn.execute("PRAGMA busy_timeout = 60000")  # 60秒超时
+    conn.execute("PRAGMA busy_timeout = 60000")
+
     ensure_schema(conn)
 
-    # Step 1: 获取所有活跃项目
-    print("\n[Step 1] 获取所有活跃项目...")
-    projects = get_all_active_projects(conn)
+    # Step 1: 关注列表
+    print("\n[Step 1] 设置关注列表...")
+    watched_ids = setup_watchlist(conn)
+
+    cur = conn.cursor()
+    cur.execute("SELECT project_id, name FROM projects WHERE project_id IN ({})".format(
+        ','.join('?' * len(watched_ids))
+    ), watched_ids)
+    projects = {row[0]: row[1] for row in cur.fetchall()}
 
     today_str = datetime.datetime.now().strftime('%Y-%m-%d')
-    cur = conn.cursor()
 
     # Step 2: 爬取每个楼盘
     total_houses = 0
     total_buildings = 0
-    print(f"\n[Step 2] 爬取 {len(projects)} 个活跃项目...")
 
-    for idx, proj in enumerate(projects):
-        pid = proj['project_id']
-        name = proj['name']
+    for idx, pid in enumerate(watched_ids):
+        name = projects.get(pid, pid)
         print(f"\n{'='*40}")
-        print(f"[{idx+1}/{len(projects)}] {pid} - {name}")
+        print(f"[{idx+1}/{len(watched_ids)}] {pid} - {name}")
 
+        # 从详情页获取楼栋列表 + 项目汇总
         buildings, summary = parse_detail_page(pid)
         print(f"  楼栋: {len(buildings)} 个")
 
+        # 保存项目成交数据到 project_daily_stats
         if summary:
             print(f"  项目汇总: 已签{summary['signed_count']}套, 面积{summary['signed_area']}㎡, 均价¥{summary['avg_price']:,.0f}/㎡")
+            # 更新 projects 表
             cur.execute("""
                 UPDATE projects
                 SET signed_count=?, signed_area=?, avg_price=?, updated_at=datetime('now','localtime')
                 WHERE project_id=?
             """, (summary['signed_count'], summary['signed_area'], summary['avg_price'], pid))
-
+            # 写入 project_daily_stats（UPSERT）
             cur.execute("""
-                INSERT OR REPLACE INTO project_daily_stats (project_id, stat_date, signed_count, signed_area, avg_price)
+                INSERT INTO project_daily_stats (project_id, stat_date, signed_count, signed_area, avg_price)
                 VALUES (?, ?, ?, ?, ?)
+                ON CONFLICT(project_id, stat_date) DO UPDATE SET
+                    signed_count=excluded.signed_count,
+                    signed_area=excluded.signed_area,
+                    avg_price=excluded.avg_price
             """, (pid, today_str, summary['signed_count'], summary['signed_area'], summary['avg_price']))
+            print(f"  ✅ 已保存项目日统计到 project_daily_stats")
 
-        # 处理楼栋和房屋
-        for bidx, bld in enumerate(buildings):
-            bid = bld['building_id']
-            bname = bld['building_name']
-            sid = bld['sale_permit_id']
+        total_buildings += len(buildings)
+
+        for bs in buildings:
+            bid = bs['building_id']
+            bname = bs['building_name']
+            sid = bs['sale_permit_id']
+            total_units = bs['total_units']
 
             cur.execute("""
-                INSERT INTO buildings (building_id, project_id, building_name, sale_permit_id, total_units, updated_at)
+                INSERT OR REPLACE INTO buildings
+                (project_id, building_id, building_name, sale_permit_id,
+                 total_units, updated_at)
                 VALUES (?, ?, ?, ?, ?, datetime('now','localtime'))
-                ON CONFLICT(building_id) DO UPDATE SET
-                    building_name=excluded.building_name,
-                    sale_permit_id=excluded.sale_permit_id,
-                    total_units=excluded.total_units,
-                    updated_at=excluded.updated_at
-            """, (bid, pid, bname, sid, bld['total_units']))
+            """, (pid, bid, bname, sid, total_units))
 
-            if summary:
+            if not sid:
+                print(f"  [{bname}] 无 salePermitId，跳过房屋详情")
+                continue
+
+            # 获取房屋数据
+            houses = get_unit_table(sid, bid)
+            total_houses += len(houses)
+            status_summary = {}
+            for h in houses:
+                status_summary[h['status']] = status_summary.get(h['status'], 0) + 1
+
+            status_str = ', '.join(f"{s}:{c}" for s, c in status_summary.items())
+            print(f"  [{bname}] {len(houses)}套 (批准销售{total_units}套) [{status_str}]")
+
+            for h in houses:
                 cur.execute("""
-                    UPDATE buildings SET signed_count=?, signed_area=?, avg_price=? WHERE building_id=?
-                """, (summary['signed_count'], summary['signed_area'], summary['avg_price'], bid))
+                    INSERT OR REPLACE INTO houses
+                    (building_id, house_id, room_no, status, updated_at)
+                    VALUES (?, ?, ?, ?, datetime('now','localtime'))
+                """, (bid, h['house_id'], h['room_no'], h['status']))
 
-            # 爬取房屋
-            if sid:
-                random_sleep(*BUILDING_DELAY)
-                houses = get_unit_table(sid, bid)
-                if houses:
-                    print(f"    [{bidx+1}/{len(buildings)}] {bname}: {len(houses)} 套房")
-                    total_houses += len(houses)
-                    total_buildings += 1
+            conn.commit()
+            time.sleep(3)
 
-                    for h in houses:
-                        hid = h['house_id']
-                        room_no = h['room_no']
-                        status = h['status']
-                        cur.execute("""
-                            INSERT INTO houses (house_id, building_id, room_no, status, updated_at)
-                            VALUES (?, ?, ?, ?, datetime('now','localtime'))
-                            ON CONFLICT(house_id) DO UPDATE SET
-                                status=excluded.status,
-                                updated_at=excluded.updated_at
-                        """, (hid, bid, room_no, status))
-
+        cur.execute("""
+            UPDATE watched_projects SET updated_at=datetime('now','localtime')
+            WHERE project_id=?
+        """, (pid,))
         conn.commit()
 
-        # 项目之间随机延迟，避免请求过快
-        if idx < len(projects) - 1:
-            delay = PROJECT_DELAY[0] + (PROJECT_DELAY[1] - PROJECT_DELAY[0]) * __import__('random').random()
-            delay = round(delay, 1)
-            print(f"  等待 {delay}s 后继续...")
-            time.sleep(delay)
+        time.sleep(5)
 
-    print(f"\n[完成] 共处理 {total_buildings} 栋楼, {total_houses} 套房")
-
-    # Step 3: 生成快照（所有活跃项目）
-    print(f"\n[Step 3] 生成快照 ({today_str})...")
+    # Step 3: 生成每日快照
+    print(f"\n[Step 3] 生成今日快照 ({today_str})...")
     generate_snapshots(conn, today_str)
 
-    # Step 4: 对比快照，生成变化
-    print(f"\n[Step 4] 对比快照，生成变化记录...")
-    changes = compare_and_generate_changes(conn, today_str)
+    # Step 4: 对比变化（含成交价反推）
+    print(f"\n[Step 4] 对比日变更（含成交价反推）...")
+    change_count = compare_and_generate_changes(conn, today_str)
 
     conn.close()
 
-    # 释放锁
+    # 最终报告
+    print(f"\n{'='*60}")
+    print(f"完成!")
+    print(f"楼盘: {len(watched_ids)} | 楼栋: {total_buildings} | 房屋: {total_houses}")
+    print(f"今日变更: {change_count} 套")
+    print(f"时间: {datetime.datetime.now().isoformat()}")
+
+    # 验证
+    conn2 = sqlite3.connect(DB)
+    b = conn2.execute("SELECT COUNT(*) FROM buildings").fetchone()[0]
+    h = conn2.execute("SELECT COUNT(*) FROM houses").fetchone()[0]
+    s = conn2.execute("SELECT COUNT(*) FROM daily_snapshots WHERE snapshot_date=?", (today_str,)).fetchone()[0]
+    c = conn2.execute("SELECT COUNT(*) FROM daily_changes WHERE change_date=?", (today_str,)).fetchone()[0]
+    # 显示成交价统计
+    dc = conn2.execute("SELECT COUNT(*) FROM daily_changes WHERE change_date=? AND deal_unit_price IS NOT NULL", (today_str,)).fetchone()[0]
+    print(f"[验证] buildings:{b} houses:{h} snapshots:{s} changes:{c} (有成交价:{dc})")
+    # 显示项目汇总
+    for pid, name, _ in CHANGPING_2026:
+        row = conn2.execute("SELECT signed_count, signed_area, avg_price FROM projects WHERE project_id=?", (pid,)).fetchone()
+        if row and row[0]:
+            print(f"  [{name}] 已签{int(row[0])}套 面积{row[1]:.2f}㎡ 均价¥{row[2]:,.0f}/㎡")
+    conn2.close()
+
+    # 释放文件锁
     fcntl.flock(lock_fd, fcntl.LOCK_UN)
     lock_fd.close()
 
-    print(f"\n{'='*60}")
-    print(f"完成! 变化: {changes} 条")
-    print(f"结束时间: {datetime.datetime.now().isoformat()}")
     print("=" * 60)
 
 
