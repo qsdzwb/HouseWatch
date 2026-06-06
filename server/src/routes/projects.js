@@ -98,7 +98,7 @@ router.get('/', async (req, res) => {
     for (const name of pageNames) {
       // 获取该名称对应的所有 project_id
       const projectRows = await db.query(
-        'SELECT project_id, permit_no, issue_date, signed_count, signed_area, avg_price FROM projects WHERE name = ? AND status = ? ORDER BY issue_date ASC',
+        'SELECT project_id, display_name, permit_no, issue_date, signed_count, signed_area, avg_price FROM projects WHERE name = ? AND status = ? ORDER BY issue_date ASC',
         [name, status]
       );
       const projectIds = projectRows.map(r => r.project_id);
@@ -334,7 +334,7 @@ router.get('/:id', async (req, res) => {
     );
     // 获取所有同名 project_id（完整合并）
     const allProjectRows = await db.query(
-      'SELECT project_id, permit_no, avg_price, signed_count, signed_area FROM projects WHERE name = ? AND status = ?',
+      'SELECT project_id, display_name, permit_no, avg_price, signed_count, signed_area FROM projects WHERE name = ? AND status = ?',
       [name, 'active']
     );
     const allPids = allProjectRows.map(r => r.project_id);
