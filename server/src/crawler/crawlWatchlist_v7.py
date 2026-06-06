@@ -109,20 +109,50 @@ def parse_detail_page(project_id):
         table_end = html.find('</table>', idx)
         if table_start >= 0 and table_end >= 0:
             table = html[table_start:table_end+8]
-            tds = re.findall(r'<td[^>]*>\s*(.*?)\s*</td>', table, re.DOTALL)
-            clean = []
-            for td in tds:
-                c = re.sub(r'<[^>]+>', '', td).strip()
-                c = re.sub(r'&nbsp;', ' ', c).strip()
-                if c:
-                    clean.append(c)
+            rows = re.findall(r'<tr[^>]*>(.*?)</tr>', table, re.DOTALL)
 
-            numbers = [x for x in clean if re.match(r'^\d+(\.\d+)?$', x)]
-            if len(numbers) >= 3:
+            total_count = 0
+            total_area = 0.0
+            total_amount = 0.0
+            residential = None
+
+            for row in rows[1:]:  # 跳过表头
+                tds = re.findall(r'<td[^>]*>\s*(.*?)\s*</td>', row, re.DOTALL)
+                clean = []
+                for td in tds:
+                    c = re.sub(r'<[^>]+>', '', td).strip()
+                    c = re.sub(r'&nbsp;', ' ', c).strip()
+                    if c:
+                        clean.append(c)
+                if len(clean) < 4:
+                    continue
+                try:
+                    purpose = clean[0]
+                    signed_count = int(float(clean[1]))
+                    signed_area = float(clean[2])
+                    avg_price = float(clean[3])
+
+                    total_count += signed_count
+                    total_area += signed_area
+                    total_amount += signed_area * avg_price
+
+                    # 优先取住宅数据
+                    if '住宅' in purpose:
+                        residential = {
+                            'signed_count': signed_count,
+                            'signed_area': signed_area,
+                            'avg_price': avg_price,
+                        }
+                except:
+                    pass
+
+            if residential:
+                summary = residential
+            elif total_area > 0:
                 summary = {
-                    'signed_count': int(float(numbers[0])),
-                    'signed_area': float(numbers[1]),
-                    'avg_price': float(numbers[2]),
+                    'signed_count': total_count,
+                    'signed_area': round(total_area, 2),
+                    'avg_price': round(total_amount / total_area, 2),
                 }
 
     return buildings, summary
