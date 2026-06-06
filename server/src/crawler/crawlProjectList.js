@@ -1,123 +1,145 @@
 /**
- * 北京住建委 — 楼盘列表爬虫（curl 版）
- * 
- * 用法：
- *   node src/crawler/crawlProjectList.js              # 全量，输出 data/projects.json
- *   node src/crawler/crawlProjectList.js --pages=5    # 前5页
- *   node src/crawler/crawlProjectList.js --api         # 全量，通过 API 写入 CVM
+ * 北京住建委 — 楼盘列表爬虫（房屋检索接口，按区域爬取）
+ * 只用有房屋信息的项目（isTrue=1），天然带区域信息
  */
 
 const cheerio = require('cheerio');
 const fs = require('fs');
 const path = require('path');
-const { execFileSync } = require('child_process');
+const { execSync } = require('child_process');
 
-const LIST_URL = 'http://bjjs.zjw.beijing.gov.cn/eportal/ui?pageId=307670';
-const CVM_API = 'http://118.25.138.63:3000/api';
+const DB_PATH = path.resolve(__dirname, '../../data/bj_realestate.db');
 
-const PAGE_DELAY = 2000;   // 页间延迟 ms（避免被封）
-const MAX_RETRY = 3;
-
-function sleep(ms) {
-  return new Promise(r => setTimeout(r, ms));
-}
-
-/**
- * 用 curl 爬取单页（最可靠）
- */
-function fetchPageCurl(pageNum) {
-  var args = [
-    '-s',
-    '-X', 'POST',
-    '--max-time', '30',
-    '-H', 'Content-Type: application/x-www-form-urlencoded',
-    '-H', 'User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36',
-    '-H', 'Accept: text/html,application/xhtml+xml',
-    '-H', 'Accept-Language: zh-CN,zh;q=0.9',
-    '-H', 'Referer: ' + LIST_URL,
-    '--retry', '2',
-    '--retry-delay', '3',
-    '-d', 'currentPage=' + pageNum,
-    LIST_URL
-  ];
-
+function sqlite3(sql) {
   try {
-    var stdout = execFileSync('curl', args, { encoding: 'utf8', timeout: 40000, maxBuffer: 10 * 1024 * 1024 });
-    var text = stdout.trim();
-    if (!text.includes('projectID')) {
-      // 可能是编码问题，再试一次
-      throw new Error('返回内容不含项目数据（可能IP被限流）');
-    }
-    return text;
+    return execSync('sqlite3 ' + DB_PATH + ' ' + JSON.stringify(sql), {
+      encoding: 'utf-8',
+      timeout: 10000,
+      stdio: ['pipe', 'pipe', 'pipe']
+    }).trim();
   } catch (e) {
-    throw new Error('第' + pageNum + '页: ' + e.message);
+    if (e.stderr && e.stderr.includes('no such column')) {
+      throw new Error('no such column');
+    }
+    throw e;
   }
 }
 
+const BASE_URL = 'http://bjjs.zjw.beijing.gov.cn';
+// 使用房屋检索接口（isTrue=1），天然带区域筛选
+const LIST_URL = BASE_URL + '/eportal/ui?pageId=307670';
+
+// 区域映射：ddlQX 值 → 区域名称
+const DISTRICT_MAP = {
+  2: '东城区',
+  3: '西城区',
+  6: '朝阳区',
+  7: '海淀区',
+  8: '丰台区',
+  9: '石景山区',
+  10: '通州区',
+  11: '房山区',
+  12: '顺义区',
+  13: '门头沟区',
+  14: '大兴区',
+  15: '怀柔区',
+  16: '密云区',
+  17: '昌平区',
+  18: '延庆区',
+  19: '平谷区',
+};
+
+const HEADERS = {
+  'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36',
+  'Accept': 'text/html,application/xhtml+xml',
+  'Accept-Language': 'zh-CN,zh;q=0.9',
+  'Referer': LIST_URL,
+  'Content-Type': 'application/x-www-form-urlencoded',
+};
+
+const PAGE_TIMEOUT = 30000;
+const MAX_RETRY = 3;
+const WAIT_BETWEEN_PAGES = 5000;
+const WAIT_AFTER_REGION = 2000; // 区域切换后等待
+
+function sleep(ms) { return new Promise(r => setTimeout(r, ms)); }
+
 /**
- * 带重试的 fetchPageCurl
+ * 获取某区域某页的 HTML
+ * 使用房屋检索接口（isTrue=1），ddlQX 筛选区域
  */
-async function fetchPageWithRetry(pageNum) {
+function fetchPage(ddlQX, pageNum) {
+  return new Promise((resolve, reject) => {
+    var done = false;
+    var timer = setTimeout(() => {
+      if (!done) { done = true; reject(new Error('timeout')); }
+    }, PAGE_TIMEOUT);
+
+    var body = 'ddlQX=' + ddlQX + '&isTrue=1&currentPage=' + pageNum;
+    fetch(LIST_URL, {
+      method: 'POST',
+      headers: HEADERS,
+      body: body,
+    }).then(res => {
+      if (done) return;
+      clearTimeout(timer);
+      if (!res.ok) throw new Error('HTTP ' + res.status);
+      return res.text();
+    }).then(text => {
+      if (done) return;
+      clearTimeout(timer);
+      if (!text.includes('projectID')) throw new Error('no projectID');
+      done = true;
+      resolve(text);
+    }).catch(err => {
+      if (!done) { done = true; clearTimeout(timer); reject(err); }
+    });
+  });
+}
+
+async function fetchPageWithRetry(ddlQX, pageNum) {
   var lastErr = null;
   for (var attempt = 1; attempt <= MAX_RETRY; attempt++) {
     try {
-      return await new Promise((resolve, reject) => {
-        try {
-          var html = fetchPageCurl(pageNum);
-          resolve(html);
-        } catch (e) {
-          reject(e);
-        }
-      });
+      return await fetchPage(ddlQX, pageNum);
     } catch (e) {
       lastErr = e;
       if (attempt < MAX_RETRY) {
-        var backoff = Math.min(1000 * Math.pow(2, attempt - 1), 10000);
-        console.log('  [重试] 第' + pageNum + '页 第' + attempt + '次: ' + e.message.slice(0, 40) + '，' + (backoff / 1000) + 's后重试...');
+        var backoff = Math.min(2000 * Math.pow(2, attempt - 1), 15000);
+        console.log('    [重试] 第' + attempt + '次: ' + e.message.slice(0, 50) + ', ' + (backoff / 1000) + 's 后重试');
         await sleep(backoff);
       }
     }
   }
-  throw new Error('第' + pageNum + '页爬取失败（重试' + MAX_RETRY + '次）: ' + lastErr.message);
+  throw new Error('重试' + MAX_RETRY + '次均失败: ' + lastErr.message);
 }
 
-/**
- * 获取总页数
- */
-function getTotalPages(html) {
-  var $ = cheerio.load(html);
-  var m = $('body').text().match(/总记录数[:\s]*(\d+)/);
-  return m ? Math.ceil(parseInt(m[1], 10) / 15) : 1;
-}
-
-/**
- * 解析单页项目列表
- */
 function parsePage(html) {
   var $ = cheerio.load(html);
   var projects = [];
   var seen = {};
 
-  // 第一遍：收集项目名 + 预售证号
+  // 房屋检索结果表格：项目名称、预售证号、发证时间
   $('a').each(function () {
     var href = $(this).attr('href') || '';
     var text = $(this).text().trim();
     var m = href.match(/projectID[=&]?(\d+)/i);
     if (!m || !text) return;
     var pid = m[1];
+    // 跳过预售证号行
     if (/^京房/.test(text)) {
       if (seen[pid]) seen[pid].permit_no = text;
       return;
     }
     if (!seen[pid]) {
-      seen[pid] = { project_id: pid, name: text, permit_no: '', issue_date: '' };
+      seen[pid] = { project_id: pid, name: text, permit_no: '', issue_date: '', district: '' };
     }
   });
 
-  // 第二遍：找发证日期
+  // 提取发证时间
   $('tr').each(function () {
     var tds = $(this).find('td');
-    if (tds.length >= 4) {
+    if (tds.length >= 3) {
       var dateText = $(tds[tds.length - 1]).text().trim();
       if (/^\d{4}-\d{2}-\d{2}/.test(dateText)) {
         $(this).find('a').each(function () {
@@ -133,125 +155,175 @@ function parsePage(html) {
   return projects;
 }
 
-/**
- * 直接写入 CVM 数据库（通过 API）
- */
-async function syncToCvm(projects) {
-  console.log('\n📤 通过 API 同步到 CVM (' + CVM_API + ')...');
+function getTotalPages(html) {
+  var $ = cheerio.load(html);
+  var m = $('body').text().match(/总记录数[:\s]*(\d+)/);
+  return m ? Math.ceil(parseInt(m[1], 10) / 15) : 1;
+}
+
+async function savePageToDb(projects, pageNum, districtName) {
+  var today = new Date().toISOString().split('T')[0];
   var inserted = 0, updated = 0, failed = 0;
 
   for (var i = 0; i < projects.length; i++) {
     var p = projects[i];
     if (!p.project_id || !p.name) { failed++; continue; }
     try {
-      var res = await fetch(CVM_API + '/projects/batch-insert', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ projects: [p] }),
-        signal: AbortSignal.timeout(10000),
-      });
-      if (res.ok) {
-        var data = await res.json();
-        inserted += (data.data && data.data.inserted) || 0;
-        updated += (data.data && data.data.updated) || 0;
+      var pid = p.project_id.replace(/'/g, "''");
+      var name = p.name.replace(/'/g, "''");
+      var pno = (p.permit_no || '').replace(/'/g, "''");
+      var idate = (p.issue_date || '').replace(/'/g, "''");
+      var dist = (districtName || '').replace(/'/g, "''");
+
+      var check = sqlite3("SELECT id FROM projects WHERE project_id='" + pid + "'");
+      if (check) {
+        // 更新时同时更新区域（如果新区域非空）
+        if (dist) {
+          sqlite3("UPDATE projects SET name='" + name + "', permit_no='" + pno + "', issue_date='" + idate + "', district='" + dist + "', updated_at=datetime('now','localtime') WHERE project_id='" + pid + "'");
+        } else {
+          sqlite3("UPDATE projects SET name='" + name + "', permit_no='" + pno + "', issue_date='" + idate + "', updated_at=datetime('now','localtime') WHERE project_id='" + pid + "'");
+        }
+        updated++;
       } else {
-        failed++;
+        sqlite3("INSERT INTO projects (project_id,name,permit_no,issue_date,district,first_seen,status) VALUES ('" + pid + "','" + name + "','" + pno + "','" + idate + "','" + dist + "','" + today + "','active')");
+        inserted++;
       }
     } catch (e) {
+      console.error('    [DB error] ' + p.project_id + ': ' + e.message.slice(0, 60));
       failed++;
     }
-    if ((i + 1) % 50 === 0) {
-      console.log('  进度: ' + (i + 1) + '/' + projects.length + ' (新增:' + inserted + ' 更新:' + updated + ' 失败:' + failed + ')');
-    }
   }
-  console.log('  完成: 新增' + inserted + ' 更新' + updated + ' 失败' + failed);
+
   return { inserted, updated, failed };
 }
 
-/**
- * main
- */
-async function main() {
-  var args = process.argv.slice(2);
-  var apiMode = args.includes('--api');
-  var pagesArg = args.find(a => a.startsWith('--pages='));
-  var maxPages = pagesArg ? parseInt(pagesArg.split('=')[1], 10) : null;
+async function crawlDistrict(ddlQX, districtName) {
+  console.log('\n----------------------------------------');
+  console.log('  区域: ' + districtName + ' (ddlQX=' + ddlQX + ')');
+  console.log('----------------------------------------\n');
 
-  console.log('\n🚀 楼盘列表爬虫启动（curl 版）');
-  console.log('   模式: ' + (apiMode ? '通过 API 写 CVM 数据库' : '输出 JSON 文件'));
-  console.log('   页间延迟: ' + (PAGE_DELAY / 1000) + 's\n');
-
-  // 1. 先爬第1页，获取总页数
-  console.log('📄 爬取第 1 页（获取总页数）...');
+  console.log('  [1/3] 爬取第 1 页...');
   var firstHtml;
   try {
-    firstHtml = await fetchPageWithRetry(1);
+    firstHtml = await fetchPageWithRetry(ddlQX, 1);
   } catch (e) {
-    console.error('❌ 第1页爬取失败: ' + e.message);
-    process.exit(1);
+    console.error('  FAIL 第 1 页失败: ' + e.message);
+    return { inserted: 0, updated: 0, failed: 0, pages: 0 };
   }
 
   var totalPages = getTotalPages(firstHtml);
-  var firstProjects = parsePage(firstHtml);
-  console.log('   总页数: ' + totalPages + '  第1页项目: ' + firstProjects.length + ' 个');
+  var page1Projects = parsePage(firstHtml);
 
-  if (maxPages && maxPages < totalPages) totalPages = maxPages;
-  console.log('   本次爬取: ' + totalPages + ' 页\n');
+  console.log('    总页数: ' + totalPages + ' | 第 1 页: ' + page1Projects.length + ' 个项目\n');
 
-  // 2. 逐页爬取
-  var allProjects = firstProjects.slice();
-  var errorPages = [];
+  console.log('  [2/3] 第 1 页写入数据库...');
+  var r1 = await savePageToDb(page1Projects, 1, districtName);
+  console.log('    OK 新增' + r1.inserted + ' 更新' + r1.updated + ' 失败' + r1.failed + '\n');
 
-  console.log('📡 逐页爬取中（每页间隔 ' + (PAGE_DELAY / 1000) + 's）...');
-  var startTime = Date.now();
+  var totalInserted = r1.inserted;
+  var totalUpdated = r1.updated;
+  var totalFailed = r1.failed;
+  var pageCount = 1;
+  var failPages = [];
 
-  for (var p = 2; p <= totalPages; p++) {
+  console.log('  [3/3] 逐页爬取剩余页面...\n');
+
+  for (var pageNum = 2; pageNum <= totalPages; pageNum++) {
+    process.stdout.write('    第 ' + pageNum + '/' + totalPages + ' 页 ... ');
+
     try {
-      var text = await fetchPageWithRetry(p);
-      var projs = parsePage(text);
-      allProjects = allProjects.concat(projs);
-      process.stdout.write('\r  ✅ 第' + p + '/' + totalPages + '页: ' + projs.length + ' 个项目，累计 ' + allProjects.length + ' 个    ');
+      var html = await fetchPageWithRetry(ddlQX, pageNum);
+      var projects = parsePage(html);
+      var r = await savePageToDb(projects, pageNum, districtName);
+
+      totalInserted += r.inserted;
+      totalUpdated += r.updated;
+      totalFailed += r.failed;
+      pageCount++;
+
+      console.log('OK ' + projects.length + ' 个项目 (新增' + r.inserted + ' 更新' + r.updated + ')');
     } catch (e) {
-      errorPages.push({ page: p, error: e.message });
-      process.stdout.write('\r  ❌ 第' + p + '/' + totalPages + '页失败: ' + e.message.slice(0, 40) + '    ');
+      failPages.push({ page: pageNum, error: e.message });
+      console.log('FAIL: ' + e.message.slice(0, 60));
+
+      if (failPages.length >= 3) {
+        var last2 = failPages[failPages.length - 2];
+        var last3 = failPages[failPages.length - 3];
+        if (last2 && last3 && last2.page === pageNum - 1 && last3.page === pageNum - 2) {
+          console.log('    WARN 连续 3 页失败，跳过该区域');
+          break;
+        }
+      }
     }
 
-    if (p < totalPages) await sleep(PAGE_DELAY);
-  }
-  console.log('\n');
-
-  // 3. 统计
-  var elapsed = ((Date.now() - startTime) / 1000).toFixed(1);
-  console.log('📊 爬取完成: ' + totalPages + '/' + totalPages + ' 页，' + allProjects.length + ' 个项目，耗时 ' + elapsed + 's');
-  if (errorPages.length > 0) {
-    console.log('   失败页数: ' + errorPages.length);
-    errorPages.forEach(function (e) { console.log('     - 第' + e.page + '页: ' + e.error); });
+    if (pageNum < totalPages) {
+      await sleep(WAIT_BETWEEN_PAGES);
+    }
   }
 
-  // 4. 去重
-  var unique = {};
-  allProjects.forEach(function (p) {
-    if (p.project_id && !unique[p.project_id]) unique[p.project_id] = p;
-  });
-  var uniqueList = Object.values(unique);
-  console.log('   去重后: ' + uniqueList.length + ' 个项目\n');
+  console.log('\n  DONE ' + districtName + ': ' + pageCount + '/' + totalPages + ' 页, 新增' + totalInserted + ' 更新' + totalUpdated);
+  return { inserted: totalInserted, updated: totalUpdated, failed: totalFailed, pages: pageCount };
+}
 
-  // 5. 保存
-  if (apiMode) {
-    await syncToCvm(uniqueList);
-  } else {
-    var dataDir = path.resolve(__dirname, '../../data');
-    if (!fs.existsSync(dataDir)) fs.mkdirSync(dataDir, { recursive: true });
-    var outPath = path.join(dataDir, 'projects.json');
-    fs.writeFileSync(outPath, JSON.stringify(uniqueList, null, 2));
-    console.log('💾 已保存到 ' + outPath);
+async function main() {
+  console.log('========================================');
+  console.log('  北京住建委楼盘列表爬虫（房屋检索版）');
+  console.log('  时间: ' + new Date().toISOString());
+  console.log('  区域数: ' + Object.keys(DISTRICT_MAP).length);
+  console.log('  页间等待: ' + (WAIT_BETWEEN_PAGES / 1000) + 's');
+  console.log('  超时: ' + (PAGE_TIMEOUT / 1000) + 's / 重试: ' + MAX_RETRY + '次');
+  console.log('========================================\n');
+
+  var args = process.argv.slice(2);
+  var regionsArg = args.find(a => a.startsWith('--regions='));
+  // 默认爬所有区域，可通过 --regions=17,7,6 指定
+  var targetRegions = regionsArg
+    ? regionsArg.split('=')[1].split(',').map(Number)
+    : Object.keys(DISTRICT_MAP).map(Number);
+
+  var totalInserted = 0, totalUpdated = 0, totalFailed = 0, totalPages = 0;
+  var allFailPages = [];
+
+  for (var i = 0; i < targetRegions.length; i++) {
+    var qx = targetRegions[i];
+    var name = DISTRICT_MAP[qx];
+    if (!name) {
+      console.log('  [跳过] 未知区域 ddlQX=' + qx);
+      continue;
+    }
+
+    var r = await crawlDistrict(qx, name);
+    totalInserted += r.inserted;
+    totalUpdated += r.updated;
+    totalFailed += r.failed;
+    totalPages += r.pages;
+
+    if (i < targetRegions.length - 1) {
+      console.log('  等待 ' + (WAIT_AFTER_REGION / 1000) + 's 后切换区域...\n');
+      await sleep(WAIT_AFTER_REGION);
+    }
   }
 
-  console.log('\n✅ 全部完成\n');
+  var metaDir = path.resolve(__dirname, '../../data');
+  if (!fs.existsSync(metaDir)) fs.mkdirSync(metaDir, { recursive: true });
+  fs.writeFileSync(path.join(metaDir, 'project_list_meta.json'), JSON.stringify({
+    updated_at: new Date().toISOString(),
+    regions: targetRegions.map(qx => DISTRICT_MAP[qx]),
+    total_pages: totalPages,
+    total_inserted: totalInserted,
+    total_updated: totalUpdated,
+    total_failed: totalFailed,
+  }, null, 2), 'utf-8');
+
+  console.log('\n========================================');
+  console.log('  DONE');
+  console.log('  区域: ' + targetRegions.length + ' 个');
+  console.log('  项目: 新增' + totalInserted + ' 更新' + totalUpdated + ' 失败' + totalFailed);
+  console.log('========================================\n');
   process.exit(0);
 }
 
 main().catch(err => {
-  console.error('❌ 异常退出:', err.message);
+  console.error('FATAL: ' + err.message);
   process.exit(1);
 });

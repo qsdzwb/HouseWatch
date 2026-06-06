@@ -20,21 +20,26 @@
   <!-- 状态筛选 -->
   <view style="display:flex;gap:8px;overflow-x:auto;padding:0 16px 12px;">
     <view class="filter-tag {{statusFilter === '' ? 'active' : ''}}" bindtap="filterStatus" data-status="">全部</view>
-    <view class="filter-tag {{statusFilter === '可售' ? 'active' : ''}}" bindtap="filterStatus" data-status="可售">可售</view>
-    <view class="filter-tag {{statusFilter === '已签约' ? 'active' : ''}}" bindtap="filterStatus" data-status="已签约">已签约</view>
-    <view class="filter-tag {{statusFilter === '网上联机备案' ? 'active' : ''}}" bindtap="filterStatus" data-status="网上联机备案">备案</view>
-    <view class="filter-tag {{statusFilter === '已预订' ? 'active' : ''}}" bindtap="filterStatus" data-status="已预订">预订</view>
+    <view class="filter-tag filter-green {{statusFilter === '可售' ? 'active' : ''}}" bindtap="filterStatus" data-status="可售">可售</view>
+    <view class="filter-tag filter-red {{statusFilter === '已签约' ? 'active' : ''}}" bindtap="filterStatus" data-status="已签约">已签约</view>
+    <view class="filter-tag filter-orange {{statusFilter === '网上联机备案' ? 'active' : ''}}" bindtap="filterStatus" data-status="网上联机备案">备案</view>
+    <view class="filter-tag filter-blue {{statusFilter === '已预订' ? 'active' : ''}}" bindtap="filterStatus" data-status="已预订">预订</view>
   </view>
 
-  <!-- 房屋列表 -->
-  <view class="house-grid" wx:if="{{filteredHouses.length}}">
-    <block wx:for="{{filteredHouses}}" wx:key="id">
-      <view class="house-cell status-{{item.statusClass}}">
-        <view class="house-no">{{item.room_no}}</view>
-        <view class="house-status">{{item.status}}</view>
-        <view class="house-price" wx:if="{{item.salePrice}}">{{item.salePrice}}</view>
+  <!-- 房屋列表（按楼层分组） -->
+  <view class="floor-list" wx:if="{{floorGroups.length}}">
+    <block wx:for="{{floorGroups}}" wx:key="floor">
+      <view class="floor-row">
+        <view class="floor-label">{{item.floor}}层</view>
+        <view class="floor-houses">
+          <view wx:for="{{item.houses}}" wx:key="id" class="house-cell status-{{item.statusClass}}">
+            <view class="house-no">{{item.room_display || item.room_no}}</view>
+            <view class="house-price" wx:if="{{item.salePrice}}">{{item.salePrice}}</view>
+            <view class="house-date" wx:if="{{item.saleDateShort}}">{{item.saleDateShort}}</view>
+          </view>
+        </view>
       </view>
     </block>
   </view>
-  <view class="empty" wx:if="{{!filteredHouses.length}}">暂无该状态房屋</view>
+  <view class="empty" wx:if="{{!floorGroups.length}}">暂无该状态房屋</view>
 </view>

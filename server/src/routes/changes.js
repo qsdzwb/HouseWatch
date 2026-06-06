@@ -7,19 +7,23 @@ router.get('/daily', async (req, res) => {
   try {
     const { date, projectId, page = 1, limit = 50 } = req.query;
 
+    // 如果没有指定日期，默认查询最近有变化记录的日期
+    let targetDate = date;
+    if (!targetDate) {
+      const latestRow = await db.queryOne(
+        'SELECT MAX(change_date) as latest FROM daily_changes'
+      );
+      targetDate = latestRow?.latest || new Date().toISOString().split('T')[0];
+    }
+
     let sql = `
       SELECT dc.*, p.name as project_name, b.building_name
       FROM daily_changes dc
       JOIN projects p ON dc.project_id = p.project_id
       JOIN buildings b ON dc.building_id = b.building_id
-      WHERE 1=1
+      WHERE dc.change_date = ?
     `;
-    const params = [];
-
-    if (date) {
-      sql += ' AND dc.change_date = ?';
-      params.push(date);
-    }
+    const params = [targetDate];
 
     if (projectId) {
       sql += ' AND dc.project_id = ?';
@@ -35,20 +39,19 @@ router.get('/daily', async (req, res) => {
 
     // 数据
     const offset = (parseInt(page, 10) - 1) * parseInt(limit, 10);
-    sql += ' ORDER BY dc.change_date DESC, dc.id DESC LIMIT ? OFFSET ?';
+    sql += ' ORDER BY dc.change_type DESC, dc.id ASC LIMIT ? OFFSET ?';
     params.push(parseInt(limit, 10), offset);
 
     let changes = await db.query(sql, params);
 
-    // 汇总统计（默认今天）
-    const summaryDate = date || new Date().toISOString().split('T')[0];
+    // 汇总统计（使用 targetDate）
     const statResult = await db.queryOne(
       `SELECT
         SUM(CASE WHEN change_type = 'new_sale' THEN 1 ELSE 0 END) as newSales,
         SUM(CASE WHEN change_type != 'new_sale' THEN 1 ELSE 0 END) as statusChanges,
         AVG(CASE WHEN change_type = 'new_sale' AND deal_unit_price > 0 THEN deal_unit_price END) as avgDealPrice
       FROM daily_changes WHERE change_date = ?`,
-      [summaryDate]
+      [targetDate]
     );
     let summary = { newSales: 0, statusChanges: 0, avgDealPrice: null, total: total, ...statResult };
 
@@ -73,6 +76,7 @@ router.get('/daily', async (req, res) => {
           totalPages: Math.ceil(total / parseInt(limit, 10)),
         },
         summary,
+        queryDate: targetDate,
       },
     });
   } catch (err) {
@@ -124,15 +128,22 @@ router.get('/by-date', async (req, res) => {
     let latestChanges = [];
     let latestSummary = {};
     if (latestDate) {
+      let detailWhere = 'WHERE dc.change_date = ?';
+      const detailParams = [latestDate];
+      if (projectId) {
+        detailWhere += ' AND dc.project_id = ?';
+        detailParams.push(projectId);
+      }
+
       latestChanges = await db.query(
         `SELECT dc.*, p.name as project_name, b.building_name
          FROM daily_changes dc
          JOIN projects p ON dc.project_id = p.project_id
          JOIN buildings b ON dc.building_id = b.building_id
-         WHERE dc.change_date = ?
+         ${detailWhere}
          ORDER BY dc.change_type DESC, dc.id ASC
          LIMIT 50`,
-        [latestDate]
+        detailParams
       );
 
       latestSummary = await db.queryOne(
@@ -140,8 +151,8 @@ router.get('/by-date', async (req, res) => {
           SUM(CASE WHEN change_type = 'new_sale' THEN 1 ELSE 0 END) as newSales,
           SUM(CASE WHEN change_type != 'new_sale' THEN 1 ELSE 0 END) as statusChanges,
           AVG(CASE WHEN change_type = 'new_sale' AND deal_unit_price > 0 THEN deal_unit_price END) as avgDealPrice
-        FROM daily_changes WHERE change_date = ?`,
-        [latestDate]
+        FROM daily_changes ${detailWhere.replace('dc.', '')}`,
+        detailParams
       ) || {};
 
       latestChanges = latestChanges.map(item => {
@@ -167,7 +178,7 @@ router.get('/by-date', async (req, res) => {
   }
 });
 
-// GET /api/changes/trend — 趋势数据
+// GET /api/changes/trend — 趋势数据（数量 + 均价，支持按楼盘筛选）
 router.get('/trend', async (req, res) => {
   try {
     const { projectId, days = 30 } = req.query;
@@ -176,8 +187,17 @@ router.get('/trend', async (req, res) => {
     daysAgo.setDate(daysAgo.getDate() - parseInt(days, 10));
     const trendStart = daysAgo.toISOString().split('T')[0];
 
-    const dailySales = await db.query(
-      `SELECT 
+    // 查询所有日期（包括无成交的日期也要补零）
+    const dateList = [];
+    for (let i = 0; i < parseInt(days, 10); i++) {
+      const d = new Date();
+      d.setDate(d.getDate() - i);
+      dateList.unshift(d.toISOString().split('T')[0]);
+    }
+
+    // 查询有成交的日期
+    const salesSql = `
+      SELECT 
         change_date as date,
         COUNT(*) as count,
         AVG(CASE WHEN deal_unit_price > 0 THEN deal_unit_price END) as avgPrice
@@ -186,14 +206,28 @@ router.get('/trend', async (req, res) => {
         AND change_date >= ?
         ${projectId ? 'AND project_id = ?' : ''}
       GROUP BY change_date
-      ORDER BY change_date ASC`,
-      projectId ? [trendStart, projectId] : [trendStart]
-    );
+      ORDER BY change_date ASC
+    `;
+    const salesParams = projectId ? [trendStart, projectId] : [trendStart];
+    const salesData = await db.query(salesSql, salesParams);
+
+    // 按日期补零
+    const salesMap = {};
+    salesData.forEach(r => {
+      salesMap[r.date] = { count: r.count || 0, avgPrice: r.avgPrice || 0 };
+    });
+
+    const dailySales = dateList.map(d => ({
+      date: d,
+      count: salesMap[d]?.count || 0,
+      avgPrice: Math.round(salesMap[d]?.avgPrice || 0),
+    }));
 
     res.json({
       success: true,
       data: {
         dailySales,
+        projectId: projectId || null,
       },
     });
   } catch (err) {

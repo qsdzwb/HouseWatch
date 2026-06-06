@@ -1,52 +1,107 @@
 @import "../../app.wxss";
 
-.house-grid {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 8px;
+/* 筛选标签颜色（与房源卡片状态色对应） */
+.filter-tag.filter-green { color: #389E0D; }
+.filter-tag.filter-green.active { background: #389E0D; color: #fff; }
+
+.filter-tag.filter-red { color: #CF1322; }
+.filter-tag.filter-red.active { background: #CF1322; color: #fff; }
+
+.filter-tag.filter-orange { color: #D4380D; }
+.filter-tag.filter-orange.active { background: #D4380D; color: #fff; }
+
+.filter-tag.filter-blue { color: #0958D9; }
+.filter-tag.filter-blue.active { background: #0958D9; color: #fff; }
+
+/* 按楼层展示 */
+.floor-list {
   padding: 0 16px 12px;
 }
 
-.house-cell {
-  width: calc(25% - 6px);
-  padding: 8px 4px;
-  border-radius: 6px;
-  text-align: center;
-  font-size: 12px;
-  background: #f8f8f8;
+.floor-row {
+  display: flex;
+  align-items: flex-start;
+  margin-bottom: 10px;
 }
 
+.floor-label {
+  width: 32px;
+  font-size: 11px;
+  color: #999;
+  text-align: center;
+  padding-top: 10px;
+  flex-shrink: 0;
+}
+
+.floor-houses {
+  display: flex;
+  flex-wrap: nowrap;
+  gap: 4px;
+  flex: 1;
+}
+
+.house-cell {
+  flex: 1;
+  min-width: 0;
+  padding: 3px 1px 2px;
+  border-radius: 4px;
+  text-align: center;
+  font-size: 11px;
+  background: #f8f8f8;
+  line-height: 1.3;
+}
+
+/* 四个状态背景色 + 房号字体色 */
 .house-cell.status-available {
-  background: #E8F5E9;
+  background: #F6FFED;
+  border: 1px solid #B7EB8F;
+}
+
+.house-cell.status-available .house-no {
+  color: #389E0D;
 }
 
 .house-cell.status-signed {
-  background: #FFEBEE;
+  background: #FFF1F0;
+  border: 1px solid #FFA39E;
+}
+
+.house-cell.status-signed .house-no {
+  color: #CF1322;
 }
 
 .house-cell.status-filed {
-  background: #FFF3E0;
+  background: #FFF7E6;
+  border: 1px solid #FFD591;
+}
+
+.house-cell.status-filed .house-no {
+  color: #D4380D;
 }
 
 .house-cell.status-reserved {
-  background: #FFF8E1;
+  background: #E6F7FF;
+  border: 1px solid #91D5FF;
+}
+
+.house-cell.status-reserved .house-no {
+  color: #0958D9;
 }
 
 .house-no {
   font-weight: 600;
-  font-size: 14px;
-  color: #333;
-}
-
-.house-status {
-  font-size: 10px;
-  color: #999;
-  margin-top: 2px;
+  font-size: 13px;
 }
 
 .house-price {
-  font-size: 10px;
+  font-size: 9px;
   color: #FF6600;
   font-weight: 600;
-  margin-top: 2px;
+  margin-top: 1px;
+}
+
+.house-date {
+  font-size: 8px;
+  color: #999;
+  margin-top: 1px;
 }

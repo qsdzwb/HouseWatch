@@ -32,6 +32,40 @@ router.get('/:id/houses', async (req, res) => {
       [req.params.id]
     );
 
+    // 为每套房子查找成交日期和价格
+    for (const h of houses) {
+      // 1. 优先从 daily_changes 找 new_sale 记录（精确成交日期）
+      let saleRecord = await db.queryOne(
+        `SELECT change_date, deal_unit_price, deal_total_price, build_area
+         FROM daily_changes
+         WHERE house_id = ? AND change_type = 'new_sale'
+         ORDER BY change_date ASC LIMIT 1`,
+        [h.house_id]
+      );
+      let isExact = false;
+
+      if (saleRecord) {
+        isExact = true;
+      } else if (h.status !== '可售') {
+        // 2. 从 daily_snapshots 找最早的已售状态日期（仅作参考，不显示"成交"）
+        saleRecord = await db.queryOne(
+          `SELECT snapshot_date as change_date
+           FROM daily_snapshots
+           WHERE house_id = ? AND status IN ('已签约', '网上联机备案')
+           ORDER BY snapshot_date ASC LIMIT 1`,
+          [h.house_id]
+        );
+      }
+
+      if (saleRecord) {
+        h.sale_date = saleRecord.change_date;
+        h.sale_unit_price = saleRecord.deal_unit_price;
+        h.sale_total_price = saleRecord.deal_total_price;
+        h.sale_build_area = saleRecord.build_area;
+        h.sale_date_exact = isExact ? 1 : 0;  // 1=精确成交日期, 0=近似日期
+      }
+    }
+
     const statusStats = {};
     houses.forEach(h => {
       statusStats[h.status] = (statusStats[h.status] || 0) + 1;

@@ -129,6 +129,7 @@ module.exports = {
   getHouseHistory: function(id) { return request('/houses/' + id + '/history'); },
   getChanges: function(p) { return request('/changes/daily', 'GET', p); },
   getTrend: function(p) { return request('/changes/trend', 'GET', p); },
+  getChangeByDate: function(p) { return request('/changes/by-date', 'GET', p); },
   getWatchlist: function(active) { return request('/watchlist?active_only=' + (active ? 1 : 0)); },
   addWatch: function(d) { return request('/watchlist', 'POST', d); },
   removeWatch: function(id) { return request('/watchlist/' + id, 'DELETE'); },

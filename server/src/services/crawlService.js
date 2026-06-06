@@ -28,10 +28,13 @@ async function crawlSingleProject(projectId, projectName) {
   console.log(`项目: ${projectName} (${projectId})`);
   console.log(`${'='.repeat(50)}`);
 
-  // 1. 获取楼栋列表 (Layer 2)
+  // 1. 获取楼栋列表 + 项目成交数据 (Layer 2)
   let buildings;
+  let projectStats = null;
   try {
-    buildings = await crawlDetailPage(projectId);
+    const result = await crawlDetailPage(projectId);
+    buildings = result.buildings;
+    projectStats = result.projectStats;
   } catch (err) {
     console.error(`  详情页爬取失败: ${err.message}`);
     await db.insert(
@@ -39,6 +42,33 @@ async function crawlSingleProject(projectId, projectName) {
       [today, 'detail', projectId, 'fail', err.message]
     );
     return;
+  }
+
+  // 保存项目成交数据到 project_daily_stats
+  if (projectStats && (projectStats.signedCount > 0 || projectStats.avgPrice > 0)) {
+    try {
+      await db.query(
+        `INSERT INTO project_daily_stats 
+          (project_id, stat_date, signed_count, signed_area, avg_price)
+         VALUES (?, ?, ?, ?, ?)
+         ON CONFLICT(project_id, stat_date) DO UPDATE SET
+          signed_count = excluded.signed_count,
+          signed_area = excluded.signed_area,
+          avg_price = excluded.avg_price`,
+        [projectId, today, projectStats.signedCount, projectStats.signedArea, projectStats.avgPrice]
+      );
+      console.log(`  [Layer 2] 已保存项目日统计: ${projectId} ${today}`);
+    } catch (err) {
+      console.error(`  保存项目日统计失败: ${err.message}`);
+    }
+
+    // 同时更新 projects 表的累计数据
+    await db.query(
+      `UPDATE projects SET 
+        signed_count = ?, signed_area = ?, avg_price = ?, last_crawl = ?
+       WHERE project_id = ?`,
+      [projectStats.signedCount, projectStats.signedArea, projectStats.avgPrice, today, projectId]
+    );
   }
 
   if (buildings.length === 0) {

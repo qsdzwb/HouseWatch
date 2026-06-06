@@ -68,6 +68,42 @@ const snapshotService = {
 
     console.log(`  发现 ${changes.length} 条状态变化`);
 
+    // 预加载项目日统计，用于计算成交价
+    const statsToday = await db.query(
+      `SELECT * FROM project_daily_stats WHERE stat_date = ?`,
+      [date]
+    );
+    const statsYesterday = await db.query(
+      `SELECT * FROM project_daily_stats WHERE stat_date = ?`,
+      [yesterday]
+    );
+
+    // 计算每个项目的边际成交价
+    const projectPriceMap = {};
+    statsToday.forEach(s => {
+      const y = statsYesterday.find(ys => ys.project_id === s.project_id) || 
+        { signed_count: 0, signed_area: 0, avg_price: 0 };
+      
+      const deltaCount = s.signed_count - (y.signed_count || 0);
+      const deltaArea = s.signed_area - (y.signed_area || 0);
+      
+      let marginalPrice = 0;
+      if (deltaArea > 0) {
+        const todayValue = (s.avg_price || 0) * (s.signed_area || 0);
+        const yesterdayValue = (y.avg_price || 0) * (y.signed_area || 0);
+        marginalPrice = todayValue - yesterdayValue;
+        if (deltaArea > 0) marginalPrice = marginalPrice / deltaArea;
+      }
+      
+      projectPriceMap[s.project_id] = {
+        marginalPrice,
+        isEstimated: deltaCount > 1 ? 1 : 0,
+        deltaCount
+      };
+    });
+
+    console.log(`  已加载 ${Object.keys(projectPriceMap).length} 个项目的日统计`);
+
     // 分类并写入 daily_changes
     let insertedCount = 0;
 
@@ -76,17 +112,25 @@ const snapshotService = {
 
       if (!changeType) continue; // 忽略无关变化
 
-      const dealPrice = changeType === 'new_sale'
-        ? (change.current_price || change.new_price)
-        : null;
+      // 计算成交价（反推）
+      let dealPrice = null;
+      let isEstimated = 0;
+
+      if (changeType === 'new_sale') {
+        const priceInfo = projectPriceMap[change.project_id];
+        if (priceInfo && priceInfo.marginalPrice > 0) {
+          dealPrice = Math.round(priceInfo.marginalPrice);
+          isEstimated = priceInfo.isEstimated;
+        }
+      }
 
       try {
         await db.insert(
           `INSERT INTO daily_changes 
             (change_date, project_id, building_id, house_id, room_no,
              change_type, old_status, new_status, old_price, new_price,
-             build_area, deal_unit_price)
-           VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)`,
+             build_area, deal_unit_price, is_estimated)
+           VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)`,
           [
             date,
             change.project_id,
@@ -100,6 +144,7 @@ const snapshotService = {
             change.new_price,
             change.build_area,
             dealPrice,
+            isEstimated
           ]
         );
         insertedCount++;
