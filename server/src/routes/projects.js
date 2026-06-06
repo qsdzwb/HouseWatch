@@ -32,7 +32,27 @@ function isCacheFresh(meta, maxAgeHours) {
   return age < maxAge;
 }
 
-// GET /api/projects — 项目列表（分页+搜索+排序+统计）
+// 根据 project_id 查找其同名的其他 project_id（合并展示）
+async function getMergedProjectIds(pid) {
+  const nameRow = await db.queryOne('SELECT name FROM projects WHERE project_id = ?', [pid]);
+  if (!nameRow) return [pid];
+  const rows = await db.query('SELECT project_id FROM projects WHERE name = ? AND status = \'active\'', [nameRow.name]);
+  return rows.map(r => r.project_id);
+}
+
+// 构建合并统计 SQL 片段（多个 project_id 合并）
+function buildMergedStatsCluse(projectIds) {
+  const placeholders = projectIds.map(() => '?').join(',');
+  const buildingIdsSQL = `SELECT building_id FROM buildings WHERE project_id IN (${placeholders})`;
+  return {
+    buildingIdsSQL,
+    projectIds,
+    countHouseSQL: `SELECT COUNT(*) as cnt, 
+      SUM(CASE WHEN status = '可售' THEN 1 ELSE 0 END) as available,
+      SUM(CASE WHEN status IN ('已签约','网上联机备案') THEN 1 ELSE 0 END) as sold
+      FROM houses WHERE building_id IN (${buildingIdsSQL})`,
+  };
+}
 router.get('/', async (req, res) => {
   try {
     const { district, page = 1, limit = 20, status = 'active', search, sort_by, order } = req.query;
@@ -40,59 +60,134 @@ router.get('/', async (req, res) => {
     const limitNum = parseInt(limit, 10);
     const offset = (pageNum - 1) * limitNum;
 
-    const statsSQL = 'SELECT p.*,' +
-      '(SELECT COUNT(*) FROM buildings b WHERE b.project_id = p.project_id) as building_count,' +
-      '(SELECT COUNT(*) FROM houses h WHERE h.building_id IN (SELECT building_id FROM buildings WHERE project_id = p.project_id)) as total_houses,' +
-      '(SELECT COUNT(*) FROM houses h WHERE h.building_id IN (SELECT building_id FROM buildings WHERE project_id = p.project_id) AND h.status = \'可售\') as available_houses,' +
-      '(SELECT COUNT(*) FROM houses h WHERE h.building_id IN (SELECT building_id FROM buildings WHERE project_id = p.project_id) AND h.status IN (\'已签约\',\'网上联机备案\')) as sold_houses' +
-    ' FROM projects p WHERE p.status = ?';
-    const params = [status];
+    // 先按名称分组，获取合并后的名称列表
+    let nameSQL = 'SELECT name FROM projects p WHERE p.status = ?';
+    const nameParams = [status];
 
     if (district) {
-      statsSQL += ' AND p.district = ?';
-      params.push(district);
+      nameSQL += ' AND p.district = ?';
+      nameParams.push(district);
     }
-
     if (search) {
-      statsSQL += ' AND p.name LIKE ?';
-      params.push('%' + search + '%');
+      nameSQL += ' AND p.name LIKE ?';
+      nameParams.push('%' + search + '%');
+    }
+    nameSQL += ' GROUP BY p.name';
+
+    // 获取所有匹配的名称（用于分页）
+    const allNamesResult = await db.query(nameSQL, nameParams);
+    const allNames = allNamesResult.map(r => r.name);
+    const total = allNames.length;
+
+    // 分页截取
+    const pageNames = allNames.slice(offset, offset + limitNum);
+
+    if (pageNames.length === 0) {
+      return res.json({
+        success: true,
+        data: {
+          items: [],
+          pagination: { page: pageNum, limit: limitNum, total, totalPages: Math.ceil(total / limitNum) },
+          cache_status: { data_ready: false, project_count: 0, last_import: null, is_fresh: false, needs_refresh: false, needs_init: total === 0 },
+        },
+      });
     }
 
-    const countSQL = statsSQL.replace(
-      /SELECT p\.\*,[\s\S]*?FROM projects p/,
-      'SELECT COUNT(*) as total FROM projects p'
-    );
-    const [{ total }] = await db.query(countSQL, params);
+    // 对每个名称，查询合并统计数据
+    const items = [];
+    for (const name of pageNames) {
+      // 获取该名称对应的所有 project_id
+      const projectRows = await db.query(
+        'SELECT project_id, permit_no, issue_date, signed_count, signed_area, avg_price FROM projects WHERE name = ? AND status = ? ORDER BY issue_date ASC',
+        [name, status]
+      );
+      const projectIds = projectRows.map(r => r.project_id);
+      const placeholders = projectIds.map(() => '?').join(',');
 
-    let orderClause = ' ORDER BY last_crawl DESC, name ASC';
-    const allowedSorts = {
-      total_houses: 'total_houses',
-      sold_rate: 'sold_rate',
-      building_count: 'building_count',
-      name: 'name',
-      last_crawl: 'last_crawl',
-    };
-    if (sort_by && allowedSorts[sort_by]) {
-      const dir = order === 'asc' ? 'ASC' : 'DESC';
+      // 楼栋数量
+      const buildingCountRow = await db.queryOne(
+        `SELECT COUNT(*) as cnt FROM buildings WHERE project_id IN (${placeholders})`,
+        projectIds
+      );
+
+      // 房源统计
+      const houseStats = await db.queryOne(
+        `SELECT COUNT(*) as total,
+          SUM(CASE WHEN status = '可售' THEN 1 ELSE 0 END) as available,
+          SUM(CASE WHEN status IN ('已签约','网上联机备案') THEN 1 ELSE 0 END) as sold
+         FROM houses
+         WHERE building_id IN (SELECT building_id FROM buildings WHERE project_id IN (${placeholders}))`,
+        projectIds
+      );
+
+      const totalHouses = houseStats ? houseStats.total : 0;
+      const soldHouses = houseStats ? (houseStats.sold || 0) : 0;
+      const availableHouses = houseStats ? (houseStats.available || 0) : 0;
+      const soldRate = totalHouses > 0 ? (soldHouses / totalHouses * 100).toFixed(1) : '0.0';
+
+      // 使用最新的预售证信息作为代表
+      const rep = projectRows[projectRows.length - 1];
+      // 获取推广名（同名的所有项目中任意一个有 display_name 即可）
+      const displayNameRow = await db.queryOne(
+        'SELECT display_name FROM projects WHERE name = ? AND display_name IS NOT NULL AND display_name != \'\' LIMIT 1',
+        [name]
+      );
+      // 各预售证独立均价（不合并加权，避免误导）
+      const permitPrices = projectRows
+        .filter(r => r.avg_price > 0)
+        .map(r => ({
+          project_id: r.project_id,
+          display_name: r.display_name,
+          permit_no: r.permit_no,
+          avg_price: Math.round(r.avg_price),
+          signed_count: r.signed_count || 0,
+          signed_area: r.signed_area || 0,
+        }));
+
+      // 关注状态
+      const watched = await db.queryOne(
+        'SELECT id FROM watched_projects WHERE project_id IN (' + placeholders + ') AND is_active = 1 LIMIT 1',
+        projectIds
+      );
+
+      items.push({
+        name: name,
+        display_name: displayNameRow ? displayNameRow.display_name : null,
+        project_id: projectIds.join(','),  // 逗号分隔多个ID
+        permit_no: projectRows.map(r => r.permit_no).filter(Boolean).join('、') || null,
+        issue_date: projectRows.map(r => r.issue_date).filter(Boolean).sort().reverse()[0] || null,
+        district: (await db.queryOne('SELECT district FROM projects WHERE name = ? LIMIT 1', [name]))?.district || null,
+        building_count: buildingCountRow ? buildingCountRow.cnt : 0,
+        total_houses: totalHouses,
+        available_houses: availableHouses,
+        sold_houses: soldHouses,
+        sold_rate: soldRate + '%',
+        permit_prices: permitPrices,
+        is_watched: watched ? 1 : 0,
+        project_count: projectIds.length,  // 几个预售证
+      });
+    }
+
+    // 排序
+    if (sort_by) {
+      const dir = order === 'asc' ? 1 : -1;
+      const sortMap = {
+        total_houses: 'total_houses',
+        sold_rate: 'sold_rate_num',
+        building_count: 'building_count',
+        name: 'name',
+      };
       if (sort_by === 'sold_rate') {
-        orderClause = ' ORDER BY CASE WHEN total_houses > 0 THEN CAST(sold_houses AS REAL) / total_houses ELSE 0 END ' + dir;
-      } else {
-        orderClause = ' ORDER BY ' + allowedSorts[sort_by] + ' ' + dir;
+        items.forEach(it => { it.sold_rate_num = parseFloat(it.sold_rate) || 0; });
+        items.sort((a, b) => (a.sold_rate_num - b.sold_rate_num) * dir);
+      } else if (sortMap[sort_by]) {
+        items.sort((a, b) => {
+          const va = a[sortMap[sort_by]] || 0;
+          const vb = b[sortMap[sort_by]] || 0;
+          return (va - vb) * dir;
+        });
       }
     }
-
-    const dataSQL = 'SELECT * FROM (' + statsSQL + ') AS sub' + orderClause + ' LIMIT ? OFFSET ?';
-    params.push(limitNum, offset);
-
-    const projects = await db.query(dataSQL, params);
-
-    const items = projects.map(function(p) {
-      var rate = p.total_houses > 0 ? (p.sold_houses / p.total_houses * 100).toFixed(1) : '0.0';
-      var obj = {};
-      for (var k in p) { obj[k] = p[k]; }
-      obj.sold_rate = rate + '%';
-      return obj;
-    });
 
     res.json({
       success: true,
@@ -211,23 +306,41 @@ router.get('/cache-status', async (req, res) => {
   }
 });
 
-// GET /api/projects/:id — 项目详情 + 楼栋汇总（含每栋统计 + 关注状态）
+// GET /api/projects/:id — 项目详情（支持合并：多个ID逗号分隔）
 router.get('/:id', async (req, res) => {
   try {
-    var pid = req.params.id;
-    const project = await db.queryOne(
-      'SELECT * FROM projects WHERE project_id = ? AND status = ?',
-      [pid, 'active']
+    // 支持逗号分隔的多个 project_id
+    const rawIds = req.params.id.split(',').filter(Boolean);
+    if (rawIds.length === 0) {
+      return res.status(400).json({ success: false, message: '请提供项目ID' });
+    }
+
+    // 查询所有匹配的项目
+    const placeholders = rawIds.map(() => '?').join(',');
+    const projects = await db.query(
+      `SELECT * FROM projects WHERE project_id IN (${placeholders}) AND status = ?`,
+      [...rawIds, 'active']
     );
 
-    if (!project) {
+    if (projects.length === 0) {
       return res.status(404).json({ success: false, message: '项目不存在或已下架' });
     }
 
-    // 楼栋列表：
-    //   sold_count: 从 houses 表实时统计（爬虫逐户抓取，部分楼栋不完整）
-    //   avg_price: 来自 buildings 表（详情页爬取，住建委官方成交均价）
-    //   详情页 signed_count 字段不可靠（爬虫疑似把总套数当已签数），仅作参考
+    const name = projects[0].name;
+    // 获取推广名
+    const displayNameRow = await db.queryOne(
+      'SELECT display_name FROM projects WHERE name = ? AND display_name IS NOT NULL AND display_name != \'\' LIMIT 1',
+      [name]
+    );
+    // 获取所有同名 project_id（完整合并）
+    const allProjectRows = await db.query(
+      'SELECT project_id, permit_no, avg_price, signed_count, signed_area FROM projects WHERE name = ? AND status = ?',
+      [name, 'active']
+    );
+    const allPids = allProjectRows.map(r => r.project_id);
+    const allPlaceholders = allPids.map(() => '?').join(',');
+
+    // 楼栋列表：合并所有预售证
     const buildings = await db.query(
       'SELECT b.*, ' +
       '(SELECT COUNT(*) FROM houses h WHERE h.building_id = b.building_id) as total_houses, ' +
@@ -235,11 +348,11 @@ router.get('/:id', async (req, res) => {
       '(SELECT COUNT(*) FROM houses h WHERE h.building_id = b.building_id AND h.status IN (\'已签约\',\'网上联机备案\')) as sold_count, ' +
       '(SELECT COUNT(*) FROM houses h WHERE h.building_id = b.building_id AND h.status = \'已签约\') as signed_count_realtime, ' +
       '(SELECT COUNT(*) FROM houses h WHERE h.building_id = b.building_id AND h.status = \'已预订\') as reserved_count ' +
-      'FROM buildings b WHERE b.project_id = ? ORDER BY b.building_name',
-      [pid]
+      `FROM buildings b WHERE b.project_id IN (${allPlaceholders}) ORDER BY b.building_name`,
+      allPids
     );
 
-    // 项目整体统计：全部从 houses 表实时计算
+    // 项目整体统计：合并所有房源
     const stats = await db.queryOne(
       'SELECT ' +
       'COUNT(*) as total_units, ' +
@@ -248,54 +361,58 @@ router.get('/:id', async (req, res) => {
       'SUM(CASE WHEN status = \'网上联机备案\' THEN 1 ELSE 0 END) as filed, ' +
       'SUM(CASE WHEN status = \'已预订\' THEN 1 ELSE 0 END) as reserved ' +
       'FROM houses ' +
-      'WHERE building_id IN (SELECT building_id FROM buildings WHERE project_id = ?)',
-      [pid]
+      `WHERE building_id IN (SELECT building_id FROM buildings WHERE project_id IN (${allPlaceholders}))`,
+      allPids
     );
 
-    // 项目成交均价：优先使用 projects 表的官方汇总数据（v6爬虫从详情页底部汇总表格抓取）
-    //  fallback: 从 buildings 表计算加权平均（旧数据兼容）
-    var avgPrice = null;
-    if (project.avg_price && project.avg_price > 0) {
-      avgPrice = Math.round(project.avg_price);
-    } else {
-      const priceStats = await db.queryOne(
-        'SELECT SUM(signed_area) as total_signed_area, ' +
-        'SUM(signed_area * avg_price) as weighted_price_sum ' +
-        'FROM buildings WHERE project_id = ? AND signed_area > 0 AND avg_price > 0',
-        [pid]
-      );
-      if (priceStats && priceStats.total_signed_area > 0) {
-        avgPrice = Math.round(priceStats.weighted_price_sum / priceStats.total_signed_area);
-      }
-    }
+    // 各预售证独立均价（不合并加权，避免误导）
+    const permitPrices = allProjectRows
+      .filter(r => r.avg_price > 0)
+      .map(r => ({
+        project_id: r.project_id,
+        display_name: r.display_name,
+        permit_no: r.permit_no,
+        avg_price: Math.round(r.avg_price),
+        signed_count: r.signed_count || 0,
+        signed_area: r.signed_area || 0,
+      }));
 
-    // 关注状态
-    var watched = null;
+    // 关注状态（任意一个预售证被关注即视为已关注）
+    let watched = null;
     try {
       watched = await db.queryOne(
-        'SELECT id, is_active, notes FROM watched_projects WHERE project_id = ?',
-        [pid]
+        `SELECT id, is_active, notes FROM watched_projects WHERE project_id IN (${placeholders}) AND is_active = 1 LIMIT 1`,
+        rawIds
       );
-    } catch (e) {
-      // watched_projects 表可能不存在
-    }
+    } catch (e) { /* ignore */ }
+
+    const soldTotal = (stats ? stats.signed : 0) + (stats ? stats.filed : 0);
+
+    // 返回合并后的项目信息
+    const repProject = projects[projects.length - 1];  // 用最新的预售证信息作为代表
+    repProject.name = name;
+    repProject.display_name = displayNameRow ? displayNameRow.display_name : null;
+    repProject.project_id = allPids.join(',');  // 逗号分隔所有ID
+    repProject.permit_no = projects.map(p => p.permit_no).filter(Boolean).join('、') || null;
+    repProject.issue_date = projects.map(p => p.issue_date).filter(Boolean).sort().reverse()[0] || null;
+    repProject.project_count = allPids.length;
 
     res.json({
       success: true,
       data: {
-        project: project,
+        project: repProject,
         buildings: buildings,
         stats: {
           totalUnits: stats ? stats.total_units : 0,
           available: stats ? stats.available : 0,
-          sold: (stats ? stats.signed : 0) + (stats ? stats.filed : 0),
+          sold: soldTotal,
           signed: stats ? stats.signed : 0,
           filed: stats ? stats.filed : 0,
           reserved: stats ? stats.reserved : 0,
           soldRate: (stats && stats.total_units)
             ? (((stats.signed || 0) + (stats.filed || 0)) / stats.total_units * 100).toFixed(1)
             : '0.0',
-          avgPrice: avgPrice,
+          permit_prices: permitPrices,
         },
         watch: watched ? {
           id: watched.id,
@@ -348,6 +465,47 @@ router.post('/batch-insert', async (req, res) => {
     res.json({ success: true, data: { inserted, updated, failed, total: projects.length } });
   } catch (err) {
     res.status(500).json({ success: false, message: err.message });
+  }
+});
+
+// PUT /api/projects/:id — 更新项目信息（如推广名 display_name）
+router.put('/:id', async (req, res) => {
+  try {
+    const rawIds = req.params.id.split(',').filter(Boolean);
+    if (rawIds.length === 0) {
+      return res.status(400).json({ success: false, message: '请提供项目ID' });
+    }
+
+    const { display_name } = req.body;
+    if (display_name === undefined) {
+      return res.status(400).json({ success: false, message: '请提供 display_name 参数' });
+    }
+
+    // 查询这些 ID 对应的项目名称
+    const placeholders = rawIds.map(() => '?').join(',');
+    const rows = await db.query(
+      `SELECT name FROM projects WHERE project_id IN (${placeholders})`,
+      rawIds
+    );
+    if (rows.length === 0) {
+      return res.status(404).json({ success: false, message: '项目不存在' });
+    }
+
+    // 同名项目全部更新 display_name（确保合并展示时一致）
+    const name = rows[0].name;
+    await db.insert(
+      "UPDATE projects SET display_name = ?, updated_at = datetime('now','localtime') WHERE name = ?",
+      [display_name || null, name]
+    );
+
+    res.json({
+      success: true,
+      message: '已更新推广名',
+      data: { name, display_name: display_name || null },
+    });
+  } catch (err) {
+    console.error('更新项目信息失败:', err.message);
+    res.status(500).json({ success: false, message: '更新失败: ' + err.message });
   }
 });
 
