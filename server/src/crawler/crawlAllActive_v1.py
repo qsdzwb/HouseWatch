@@ -35,16 +35,20 @@ def random_sleep(low, high):
     time.sleep(low + (high - low) * random.random())
 
 
-def fetch(url, timeout=45):
-    random_sleep(*REQUEST_DELAY)
-    for attempt in range(3):
+def fetch(url, timeout=45, max_retry=5):
+    """"带指数退避的 HTTP 请求，最多重试 max_retry 次"""
+    for attempt in range(max_retry):
         try:
             req = urllib.request.Request(url, headers=HEADERS)
             resp = urllib.request.urlopen(req, timeout=timeout)
             return resp.read().decode('utf-8', errors='replace')
         except Exception as e:
-            if attempt < 2:
-                time.sleep(5)
+            if attempt < max_retry - 1:
+                wait = min(2 ** (attempt + 1), 60)
+                print(f"  HTTP 失败({attempt+1}/{max_retry})，{wait}s 后重试... ({str(e)[:50]})")
+                time.sleep(wait)
+            else:
+                print(f"  HTTP 失败，已重试{max_retry}次，放弃: {str(e)[:80]}")
     return ''
 
 
