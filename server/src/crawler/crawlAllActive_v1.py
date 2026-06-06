@@ -145,12 +145,7 @@ def parse_detail_page(project_id):
 
             if residential:
                 summary = residential
-            elif total_area > 0:
-                summary = {
-                    'signed_count': total_count,
-                    'signed_area': round(total_area, 2),
-                    'avg_price': round(total_amount / total_area, 2),
-                }
+            # 只保留住宅数据，无住宅时 summary 为 None
 
     return buildings, summary
 
@@ -222,6 +217,15 @@ def get_unit_table(sale_permit_id, building_id):
                     'room_no': room_no,
                     'status': status
                 })
+    # 过滤非住宅楼栋：房间号不含3位以上连续数字（非公寓号）视为非住宅
+    has_residential = False
+    for h in houses:
+        if re.search(r"\d{3}", h["room_no"]):
+            has_residential = True
+            break
+    if not has_residential:
+        return []
+
     return houses
 
 
@@ -419,49 +423,30 @@ def main():
                 VALUES (?, ?, ?, ?, ?)
             """, (pid, today_str, summary['signed_count'], summary['signed_area'], summary['avg_price']))
 
-        # 处理楼栋和房屋
-        for bidx, bld in enumerate(buildings):
-            bid = bld['building_id']
-            bname = bld['building_name']
-            sid = bld['sale_permit_id']
+    # 无住宅数据时，均价设为 0（前端不显示）
+    if not summary:
+        cur.execute("UPDATE projects SET avg_price=0, updated_at=datetime('now','localtime') WHERE project_id=?", (pid,))
+        print(f"  ⚠️ 无住宅数据，均价设为 0")
 
-            cur.execute("""
-                INSERT INTO buildings (building_id, project_id, building_name, sale_permit_id, total_units, updated_at)
-                VALUES (?, ?, ?, ?, ?, datetime('now','localtime'))
-                ON CONFLICT(building_id) DO UPDATE SET
-                    building_name=excluded.building_name,
-                    sale_permit_id=excluded.sale_permit_id,
-                    total_units=excluded.total_units,
-                    updated_at=excluded.updated_at
-            """, (bid, pid, bname, sid, bld['total_units']))
+    # 处理楼栋和房屋（先调 get_unit_table，过滤非住宅）
+    for bidx, bld in enumerate(buildings):
+        bid = bld['building_id']
+        bname = bld['building_name']
+        sid = bld['sale_permit_id']
 
-            if summary:
-                cur.execute("""
-                    UPDATE buildings SET signed_count=?, signed_area=?, avg_price=? WHERE building_id=?
-                """, (summary['signed_count'], summary['signed_area'], summary['avg_price'], bid))
+        if not sid:
+            print(f"  [{bname}] 无 salePermitId，跳过")
+            continue
 
-            # 爬取房屋
-            if sid:
-                random_sleep(*BUILDING_DELAY)
-                houses = get_unit_table(sid, bid)
-                if houses:
-                    print(f"    [{bidx+1}/{len(buildings)}] {bname}: {len(houses)} 套房")
-                    total_houses += len(houses)
-                    total_buildings += 1
+        # 先获取房屋数据，判断是否住宅楼栋
+        houses = get_unit_table(sid, bid)
 
-                    for h in houses:
-                        hid = h['house_id']
-                        room_no = h['room_no']
-                        status = h['status']
-                        cur.execute("""
-                            INSERT INTO houses (house_id, building_id, room_no, status, updated_at)
-                            VALUES (?, ?, ?, ?, datetime('now','localtime'))
-                            ON CONFLICT(house_id) DO UPDATE SET
-                                status=excluded.status,
-                                updated_at=excluded.updated_at
-                        """, (hid, bid, room_no, status))
+        if not houses:
+            print(f"  [{bname}] 非住宅楼栋，跳过")
+            continue
 
-        conn.commit()
+        # 是住宅楼栋，保存楼栋和房屋信息
+        cur.execute("""INSERT INTO buildings...
 
         # 项目之间随机延迟，避免请求过快
         if idx < len(projects) - 1:

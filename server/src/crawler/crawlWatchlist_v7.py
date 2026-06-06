@@ -148,12 +148,7 @@ def parse_detail_page(project_id):
 
             if residential:
                 summary = residential
-            elif total_area > 0:
-                summary = {
-                    'signed_count': total_count,
-                    'signed_area': round(total_area, 2),
-                    'avg_price': round(total_amount / total_area, 2),
-                }
+            # 只保留住宅数据，无住宅时 summary 为 None
 
     return buildings, summary
 
@@ -230,6 +225,15 @@ def get_unit_table(sale_permit_id, building_id):
                     'room_no': room_no,
                     'status': status
                 })
+
+    # 过滤非住宅楼栋：房间号不含3位以上连续数字（非公寓号）视为非住宅
+    has_residential = False
+    for h in houses:
+        if re.search(r'\d{3}', h['room_no']):
+            has_residential = True
+            break
+    if not has_residential:
+        return []
 
     return houses
 
@@ -573,7 +577,10 @@ def main():
             """, (pid, today_str, summary['signed_count'], summary['signed_area'], summary['avg_price']))
             print(f"  ✅ 已保存项目日统计到 project_daily_stats")
 
-        total_buildings += len(buildings)
+        # 无住宅数据时，均价设为 0（前端不显示）
+        if not summary:
+            cur.execute("UPDATE projects SET avg_price=0, updated_at=datetime('now','localtime') WHERE project_id=?", (pid,))
+            print(f"  ⚠️ 无住宅数据，均价设为 0")
 
         for bs in buildings:
             bid = bs['building_id']
@@ -581,6 +588,18 @@ def main():
             sid = bs['sale_permit_id']
             total_units = bs['total_units']
 
+            if not sid:
+                print(f"  [{bname}] 无 salePermitId，跳过")
+                continue
+
+            # 先获取房屋数据，判断是否住宅楼栋
+            houses = get_unit_table(sid, bid)
+
+            if not houses:
+                print(f"  [{bname}] 非住宅楼栋，跳过")
+                continue
+
+            # 是住宅楼栋，保存楼栋信息
             cur.execute("""
                 INSERT OR REPLACE INTO buildings
                 (project_id, building_id, building_name, sale_permit_id,
@@ -588,12 +607,7 @@ def main():
                 VALUES (?, ?, ?, ?, ?, datetime('now','localtime'))
             """, (pid, bid, bname, sid, total_units))
 
-            if not sid:
-                print(f"  [{bname}] 无 salePermitId，跳过房屋详情")
-                continue
-
-            # 获取房屋数据
-            houses = get_unit_table(sid, bid)
+            total_buildings += 1
             total_houses += len(houses)
             status_summary = {}
             for h in houses:
@@ -612,10 +626,7 @@ def main():
             conn.commit()
             time.sleep(3)
 
-        cur.execute("""
-            UPDATE watched_projects SET updated_at=datetime('now','localtime')
-            WHERE project_id=?
-        """, (pid,))
+        cur.execute("UPDATE watched_projects SET updated_at=datetime('now','localtime') WHERE project_id=?", (pid,))
         conn.commit()
 
         time.sleep(5)
