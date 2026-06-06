@@ -100,3 +100,10 @@
 .item-rate {
   color: #FF6600;
 }
+
+/* 均价标签 */
+.stat-price {
+  color: #FF6B35;
+  font-weight: 600;
+  margin-left: auto;
+}

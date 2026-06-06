@@ -16,6 +16,7 @@
         <text class="stat-green">{{item.total_units}}套</text>
         <text class="stat-red">已售{{item.sold_units}}套</text>
         <text class="stat-rate">{{item.rate}}</text>
+        <text class="stat-price" wx:if="{{item.avgPriceText}}">{{item.avgPriceText}}</text>
       </view>
     </view>
   </block>

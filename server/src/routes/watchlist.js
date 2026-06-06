@@ -52,7 +52,7 @@ router.get('/', async (req, res) => {
       SELECT 
         w.id, w.project_id, w.notes, w.is_active, w.added_at,
         p.name, p.district, p.address, p.developer,
-        p.last_crawl, p.status as project_status,
+        p.last_crawl, p.status as project_status, p.avg_price,
         (SELECT COUNT(*) FROM buildings WHERE project_id = w.project_id) as building_count,
         (SELECT COUNT(*) FROM houses h 
          JOIN buildings b ON h.building_id = b.building_id 

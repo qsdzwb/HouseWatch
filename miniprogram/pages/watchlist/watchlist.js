@@ -51,6 +51,14 @@ Page({
             ? (item.sold_units / item.total_units * 100).toFixed(1) + '%'
             : '0%';
         }
+        // 均价格式化：元/㎡ → 万元/㎡
+        if (item.avg_price && item.avg_price > 1000) {
+          item.avgPriceText = (item.avg_price / 10000).toFixed(2) + '万/㎡';
+        } else if (item.avg_price && item.avg_price > 0) {
+          item.avgPriceText = Math.round(item.avg_price) + '元/㎡';
+        } else {
+          item.avgPriceText = '';
+        }
         if (item.project_id) watchedIds.add(item.project_id);
         return item;
       });
