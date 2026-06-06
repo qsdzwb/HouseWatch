@@ -9,7 +9,7 @@
 """
 import sqlite3, datetime, urllib.request, urllib.parse, re, time, sys, os
 
-DB = '/opt/bj-server/data/bj_realestate.db'
+DB = '/user/local/service/house/data/bj_realestate.db'
 
 # 昌平区 2026 年活跃楼盘
 CHANGPING_2026 = [
@@ -48,11 +48,13 @@ def parse_detail_page(project_id):
     1. 楼栋列表（building_id, name, sale_permit_id, total_units）
     2. 项目级汇总数据（signed_count, signed_area, avg_price）
     """
-    url = f"http://bjjs.zjw.beijing.gov.cn/eportal/ui?pageId=320794&projectID={project_id}&systemID=2&srcId=1"
-
+    base_url = f"http://bjjs.zjw.beijing.gov.cn/eportal/ui?pageId=320794&projectID={project_id}&systemID=2&srcId=1"
+    all_html = ""
+    
+    # 第一页
     html = ""
     for attempt in range(8):
-        html = fetch(url)
+        html = fetch(base_url)
         if html and len(html) >= 10000 and '查看信息' in html:
             break
         print(f"  详情页重试 {attempt+1}/8 ({len(html)} chars)...")
@@ -62,8 +64,80 @@ def parse_detail_page(project_id):
         print(f"  详情页获取失败 ({len(html)} chars)")
         return [], None
 
-    # ── 1. 解析楼栋列表 ──
-    buildings = []
+    all_html += html
+
+    # 处理"查看更多"分页：查找下一页链接，循环抓取
+    visited_urls = set()
+    current_url = base_url
+    for pg in range(2, 21):  # 最多追 20 页
+        # 查找"下一页"或页码链接（常见分页模式）
+        next_match = re.search(r'<a[^>]+href="([^"]*)"[^>]*>\s*下一页\s*</a>', all_html)
+        if not next_match:
+            # 尝试查找页码链接，如 >2< 或 pageNo=2
+            next_match = re.search(r'href="([^"]*pageNo[=:](\d+)[^"]*)"', all_html)
+        if not next_match:
+            break
+        next_href = next_match.group(1)
+        # 构造绝对 URL
+        if next_href.startswith('http'):
+            next_url = next_href
+        elif next_href.startswith('/'):
+            next_url = 'http://bjjs.zjw.beijing.gov.cn' + next_href
+        else:
+            next_url = base_url.rsplit('?', 1)[0] + '?' + next_href if '?' in next_href else base_url + '&' + next_href
+        next_url = re.sub(r'&amp;', '&', next_url)
+        if next_url in visited_urls:
+            break
+        visited_urls.add(next_url)
+        print(f"  抓取楼栋分页 pg{pg}: {next_url[-60:]}")
+        more_html = fetch(next_url)
+        if not more_html or len(more_html) < 1000:
+            break
+        all_html += "\n" + more_html
+
+    html = all_html  # 后续解析用合并后的 html
+
+    # ── 1a. 检查"查看更多"链接，抓取完整楼栋列表 ──
+    more_match = re.search(r'href="([^"]*pageId=411612[^"]*)"[^>]*>\s*查看更多', html)
+    more_buildings = []
+    if more_match:
+        more_href = more_match.group(1)
+        if more_href.startswith('/'):
+            more_url = 'http://bjjs.zjw.beijing.gov.cn' + more_href
+        else:
+            more_url = more_href
+        more_url = re.sub(r'&amp;', '&', more_url)
+        print(f"  发现查看更多页面: {more_url[-80:]}")
+        more_html = fetch(more_url)
+        if more_html and len(more_html) > 5000:
+            # 解析查看更多页面的楼栋列表
+            for row_match in re.finditer(r'<tr[^>]*>(.*?)</tr>', more_html, re.DOTALL):
+                row = row_match.group(1)
+                b_match = re.search(r'buildingId=(\d+)', row)
+                if not b_match:
+                    continue
+                bid = b_match.group(1)
+                tds = re.findall(r'<td[^>]*>(.*?)</td>', row, re.DOTALL)
+                clean = []
+                for td in tds:
+                    c = re.sub(r'<[^>]+>', '', td).strip()
+                    c = re.sub(r'&nbsp;', ' ', c).strip()
+                    if c:
+                        clean.append(c)
+                if len(clean) >= 2 and '住宅' in clean[0]:
+                    try:
+                        total_units = int(clean[1]) if clean[1].isdigit() else 0
+                    except:
+                        total_units = 0
+                    more_buildings.append({
+                        'building_id': bid,
+                        'building_name': clean[0],
+                        'total_units': total_units,
+                    })
+            print(f"  查看更多页面获取 {len(more_buildings)} 个楼栋")
+
+    # ── 1b. 解析详情页楼栋列表（获取 sale_permit_id） ──
+    detail_buildings = []
     for m in re.finditer(r'href="([^"]*buildingId=(\d+)[^"]*)"[^>]*>\s*查看信息\s*</a>', html):
         href = m.group(1)
         bid = m.group(2)
@@ -94,12 +168,39 @@ def parse_detail_page(project_id):
         sid_match = re.search(r'salePermitId=(\d+)', href)
         sid = sid_match.group(1) if sid_match else ''
 
-        buildings.append({
+        detail_buildings.append({
             'building_id': bid,
             'building_name': building_name,
             'sale_permit_id': sid,
             'total_units': total_units,
         })
+
+    # ── 1c. 合并楼栋列表：优先使用查看更多页面的完整列表，补充 sale_permit_id ──
+    buildings = []
+    sid_map = {b['building_id']: b['sale_permit_id'] for b in detail_buildings}
+    # 找一个有效的 sale_permit_id 作为默认值
+    default_sid = ''
+    for b in detail_buildings:
+        if b['sale_permit_id']:
+            default_sid = b['sale_permit_id']
+            break
+
+    if more_buildings:
+        # 使用查看更多页面的完整列表
+        for mb in more_buildings:
+            bid = mb['building_id']
+            sid = sid_map.get(bid, default_sid)
+            buildings.append({
+                'building_id': bid,
+                'building_name': mb['building_name'],
+                'sale_permit_id': sid,
+                'total_units': mb['total_units'],
+            })
+        print(f"  合并后共 {len(buildings)} 个楼栋（查看更多页面）")
+    else:
+        # 没有查看更多页面，使用详情页的列表
+        buildings = detail_buildings
+        print(f"  共 {len(buildings)} 个楼栋（详情页面）")
 
     # ── 2. 解析项目级汇总数据 ──
     summary = None
@@ -172,73 +273,100 @@ def expand_hex(h):
     return h
 
 
-def get_unit_table(sale_permit_id, building_id):
-    url = f"http://bjjs.zjw.beijing.gov.cn/eportal/ui?pageId=320833&systemId=2&categoryId=1&salePermitId={sale_permit_id}&buildingId={building_id}"
+def get_unit_table(project_id, building_id):
+    """获取单元表，支持分页（尝试 pageNo 参数）"""
+    base_url = f"http://bjjs.zjw.beijing.gov.cn/eportal/ui?pageId=320833&systemId=2&categoryId=1&salePermitId={project_id}&buildingId={building_id}"
 
-    html = ""
-    for attempt in range(8):
-        html = fetch(url)
-        if html and len(html) >= 8000 and ('houseId=' in html or '单元-' in html):
-            break
-        print(f"    楼盘表重试 {attempt+1}/8 ({len(html)} chars)...")
-        time.sleep(5)
-
-    if not html:
-        return []
-
-    houses = []
+    all_houses = []
     div_pattern = re.compile(
         r'<div[^>]*style="[^"]*background:\s*(#[0-9a-fA-F]{3,6})[^"]*"[^>]*>(.*?)</div>',
         re.DOTALL
     )
 
-    for div_match in div_pattern.finditer(html):
-        hex_color = expand_hex(div_match.group(1))
-        status = COLOR_MAP.get(hex_color, '未知')
-        div_content = div_match.group(2)
+    for page in range(1, 21):  # 最多 20 页
+        if page == 1:
+            url = base_url
+        else:
+            sep = '&' if '?' in base_url else '?'
+            url = f"{base_url}{sep}pageNo={page}"
 
-        matched_href_links = set()
-        for link_match in re.finditer(
-            r'href="[^"]*houseId=(\d+)[^"]*houseNo=([^"&]+)[^"]*"[^>]*>([^<]+)</a>',
-            div_content
-        ):
-            house_id = link_match.group(1)
-            room_no = urllib.parse.unquote(link_match.group(2))
-            matched_href_links.add(link_match.group(0))
-            houses.append({
-                'house_id': house_id,
-                'room_no': room_no,
-                'status': status
-            })
+        html = ""
+        for attempt in range(8):
+            html = fetch(url)
+            if html and len(html) >= 8000 and ('houseId=' in html or '单元-' in html):
+                break
+            print(f"    单元表重试 {attempt+1}/8 ({len(html)} chars)...")
+            time.sleep(5)
 
-        for link_match in re.finditer(
-            r'href="#"[^>]*>([^<]+)</a>',
-            div_content
-        ):
-            if link_match.group(0) in matched_href_links:
-                continue
-            room_no = link_match.group(1).strip()
-            if room_no and not room_no.startswith('#'):
-                pseudo_id = f"{building_id}_{room_no}"
-                houses.append({
-                    'house_id': pseudo_id,
+        if not html:
+            if page == 1:
+                return []
+            else:
+                break
+
+        page_houses = []
+        for div_match in div_pattern.finditer(html):
+            hex_color = expand_hex(div_match.group(1))
+            status = COLOR_MAP.get(hex_color, '未知')
+            div_content = div_match.group(2)
+
+            matched_href_links = set()
+            for link_match in re.finditer(
+                r'href="[^"]*houseId=(\d+)[^"]*houseNo=([^"&]+)[^"]*"[^>]*>([^<]+)</a>',
+                div_content
+            ):
+                house_id = link_match.group(1)
+                room_no = urllib.parse.unquote(link_match.group(2))
+                matched_href_links.add(link_match.group(0))
+                page_houses.append({
+                    'house_id': house_id,
                     'room_no': room_no,
                     'status': status
                 })
 
-    # 过滤非住宅楼栋：房间号不含3位以上连续数字（非公寓号）视为非住宅
-    has_residential = False
-    for h in houses:
-        if re.search(r'\d{3}', h['room_no']):
-            has_residential = True
+            for link_match in re.finditer(
+                r'href="#"[^>]*>([^<]+)</a>',
+                div_content
+            ):
+                if link_match.group(0) in matched_href_links:
+                    continue
+                room_no = link_match.group(1).strip()
+                if room_no and not room_no.startswith('#'):
+                    pseudo_id = f"{building_id}_{room_no}"
+                    page_houses.append({
+                        'house_id': pseudo_id,
+                        'room_no': room_no,
+                        'status': status
+                    })
+
+        if not page_houses:
             break
-    if not has_residential:
+
+        all_houses.extend(page_houses)
+        print(f"    第{page}页：获取 {len(page_houses)} 套")
+
+        # 检查是否有下一页链接
+        if '下一页' not in html:
+            # 尝试查找页码链接
+            if f'>{page+1}<' not in html and f'pageNo={page+1}' not in html:
+                break
+
+    if not all_houses:
         return []
 
-    return houses
+    # 过滤非住宅楼栋：房间号第一位为1-9（楼层号）视为住宅
+    filtered = []
+    for h in all_houses:
+        digits = re.sub(r'\D', '', h['room_no'])
+        if len(digits) >= 3 and digits[0] != '0':
+            filtered.append(h)
+    
+    if not filtered:
+        return []
 
+    print(f"  共获取 {len(all_houses)} 套，过滤后 {len(filtered)} 套住宅")
+    return filtered
 
-# ─── DB 初始化 ───
 def ensure_schema(conn):
     cur = conn.cursor()
 
@@ -588,12 +716,18 @@ def main():
             sid = bs['sale_permit_id']
             total_units = bs['total_units']
 
+            # 按楼栋名称过滤非住宅（地下车库、车位、库房等）
+            if re.search(r'(地下车库|车库|车位|库房|戊类|储藏)', bname):
+                print(f'  [{bname}] 非住宅楼栋，跳过')
+                continue
+
+
             if not sid:
                 print(f"  [{bname}] 无 salePermitId，跳过")
                 continue
 
             # 先获取房屋数据，判断是否住宅楼栋
-            houses = get_unit_table(sid, bid)
+            houses = get_unit_table(pid, bid)
 
             if not houses:
                 print(f"  [{bname}] 非住宅楼栋，跳过")
