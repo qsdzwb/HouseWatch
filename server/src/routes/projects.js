@@ -121,7 +121,8 @@ router.get('/', async (req, res) => {
       );
 
       const totalHouses = houseStats ? houseStats.total : 0;
-      const soldHouses = houseStats ? (houseStats.sold || 0) : 0;
+      const officialSold = projectRows.reduce((sum, r) => sum + (r.signed_count || 0), 0);
+      const soldHouses = officialSold > 0 ? officialSold : (houseStats ? (houseStats.sold || 0) : 0);
       const availableHouses = houseStats ? (houseStats.available || 0) : 0;
       const soldRate = totalHouses > 0 ? (soldHouses / totalHouses * 100).toFixed(1) : '0.0';
 
@@ -386,7 +387,13 @@ router.get('/:id', async (req, res) => {
       );
     } catch (e) { /* ignore */ }
 
+    // 住建委官方已售套数（优先使用，比爬虫逐户统计更可靠）
+    const officialSold = allProjectRows.reduce((sum, r) => sum + (r.signed_count || 0), 0);
     const soldTotal = (stats ? stats.signed : 0) + (stats ? stats.filed : 0);
+    const displaySold = officialSold > 0 ? officialSold : soldTotal;
+    const displaySoldRate = (stats && stats.total_units)
+      ? (displaySold / stats.total_units * 100).toFixed(1)
+      : '0.0';
 
     // 返回合并后的项目信息
     const repProject = projects[projects.length - 1];  // 用最新的预售证信息作为代表
@@ -405,13 +412,11 @@ router.get('/:id', async (req, res) => {
         stats: {
           totalUnits: stats ? stats.total_units : 0,
           available: stats ? stats.available : 0,
-          sold: soldTotal,
+          sold: displaySold,
           signed: stats ? stats.signed : 0,
           filed: stats ? stats.filed : 0,
           reserved: stats ? stats.reserved : 0,
-          soldRate: (stats && stats.total_units)
-            ? (((stats.signed || 0) + (stats.filed || 0)) / stats.total_units * 100).toFixed(1)
-            : '0.0',
+          soldRate: displaySoldRate,
           permit_prices: permitPrices,
         },
         watch: watched ? {
