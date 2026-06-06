@@ -216,12 +216,12 @@ router.get('/:id', async (req, res) => {
   try {
     var pid = req.params.id;
     const project = await db.queryOne(
-      'SELECT * FROM projects WHERE project_id = ?',
-      [pid]
+      'SELECT * FROM projects WHERE project_id = ? AND status = ?',
+      [pid, 'active']
     );
 
     if (!project) {
-      return res.status(404).json({ success: false, message: '项目不存在' });
+      return res.status(404).json({ success: false, message: '项目不存在或已下架' });
     }
 
     // 楼栋列表：
@@ -334,8 +334,8 @@ router.post('/batch-insert', async (req, res) => {
           updated++;
         } else {
           await db.insert(
-            'INSERT INTO projects (project_id,name,permit_no,issue_date,district,first_seen,status) VALUES (?,?,?,?,?,?,?)',
-            [p.project_id, p.name, p.permit_no || null, p.issue_date || null, p.district || null, today, 'active']
+            'INSERT INTO projects (project_id,name,permit_no,issue_date,first_seen,status) VALUES (?,?,?,?,?,?)',
+            [p.project_id, p.name, p.permit_no || null, p.issue_date || null, today, 'active']
           );
           inserted++;
         }
