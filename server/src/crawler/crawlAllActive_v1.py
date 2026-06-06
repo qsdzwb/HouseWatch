@@ -100,8 +100,7 @@ def parse_detail_page(project_id):
         more_html = fetch(next_url)
         if not more_html or len(more_html) < 1000:
             break
-        all_html += "
-" + more_html
+        all_html += "\n" + more_html
 
     html = all_html  # 后续解析用合并后的 html
 
@@ -405,6 +404,12 @@ def ensure_schema(conn):
     """)
     cur.execute("CREATE INDEX IF NOT EXISTS idx_snapshots_date ON daily_snapshots(snapshot_date)")
     cur.execute("CREATE INDEX IF NOT EXISTS idx_snapshots_house ON daily_snapshots(house_id, snapshot_date)")
+    # daily_snapshots 缺失字段（兼容旧表）
+    for col, ctype in [('building_id', 'TEXT'), ('building_avg_price', 'REAL')]:
+        try:
+            cur.execute(f"ALTER TABLE daily_snapshots ADD COLUMN {col} {ctype}")
+        except:
+            pass
     conn.commit()
 
 
