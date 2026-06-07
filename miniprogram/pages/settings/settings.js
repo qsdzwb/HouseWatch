@@ -7,6 +7,8 @@ Page({
     // 管理员状态
     isAdmin: false,
     openId: '',
+    loginLoading: false,
+    loginError: '',
     // 推广名编辑
     projectList: [],
     projectIndex: -1,
@@ -28,26 +30,32 @@ Page({
     var cachedIsAdmin = wx.getStorageSync('is_admin');
 
     if (cachedOpenId && cachedIsAdmin) {
-      // 缓存有效，直接设为管理员
       that.setData({ isAdmin: true, openId: cachedOpenId });
       that.loadProjects();
       return;
     }
 
-    // 无缓存，发起登录流程
-    that.tryAdminLogin();
+    // 无缓存，自动尝试登录一次
+    that.tryAdminLogin(true);
   },
 
   // 调用 wx.login 获取 code，换 open_id 并鉴权
-  tryAdminLogin: function () {
+  // isAuto: true 表示是页面加载时的自动尝试（失败不弹 toast）
+  tryAdminLogin: function (isAuto) {
     var that = this;
+    that.setData({ loginLoading: true, loginError: '' });
+
     wx.login({
       success: function (loginRes) {
         if (!loginRes.code) {
-          console.error('[Admin] wx.login 失败', loginRes.errMsg);
+          that.setData({ loginLoading: false, loginError: 'wx.login 未返回 code' });
+          if (!isAuto) wx.showToast({ title: '登录失败：未获取 code', icon: 'none' });
           return;
         }
+        console.log('[Admin] wx.login code:', loginRes.code.substring(0, 10) + '...');
+
         api.adminLogin(loginRes.code).then(function (res) {
+          that.setData({ loginLoading: false });
           if (res.success && res.data) {
             var openId = res.data.open_id;
             var isAdmin = res.data.is_admin;
@@ -57,16 +65,37 @@ Page({
             if (isAdmin) {
               that.loadProjects();
               wx.showToast({ title: '管理员已登录', icon: 'success' });
+            } else {
+              // 不是管理员，但已拿到 open_id，提示用户
+              if (!isAuto) {
+                wx.showModal({
+                  title: '登录成功',
+                  content: '您的 open_id 为：' + openId + '\n请联系管理员将此 ID 加入白名单。',
+                  showCancel: false,
+                });
+              }
             }
+          } else {
+            that.setData({ loginError: res.message || '登录失败' });
+            if (!isAuto) wx.showToast({ title: res.message || '登录失败', icon: 'none' });
           }
         }).catch(function (err) {
+          that.setData({ loginLoading: false, loginError: err.message || '请求失败' });
+          if (!isAuto) wx.showToast({ title: err.message || '登录请求失败', icon: 'none' });
           console.error('[Admin] 登录请求失败', err);
         });
       },
-      fail: function () {
-        console.error('[Admin] wx.login 调用失败');
-      }
+      fail: function (err) {
+        that.setData({ loginLoading: false, loginError: err.errMsg || 'wx.login 调用失败' });
+        if (!isAuto) wx.showToast({ title: err.errMsg || 'wx.login 失败', icon: 'none' });
+        console.error('[Admin] wx.login 调用失败', err);
+      },
     });
+  },
+
+  // 手动触发登录（按钮点击）
+  onLoginTap: function () {
+    this.tryAdminLogin(false);
   },
 
   // 加载所有活跃楼盘（用于推广名编辑表单）
@@ -134,16 +163,14 @@ Page({
       that.setData({ saving: false });
       if (res.success) {
         wx.showToast({ title: '保存成功', icon: 'success' });
-        // 刷新列表（更新 display_name 显示）
         that.loadProjects();
-        // 重置表单
         that.setData({ projectIndex: -1, selectedProjectId: '', displayName: '' });
       } else {
         wx.showToast({ title: res.message || '保存失败', icon: 'none' });
       }
     }).catch(function (err) {
       that.setData({ saving: false });
-      wx.showToast({ title: '保存失败', icon: 'none' });
+      wx.showToast({ title: err.message || '保存失败', icon: 'none' });
       console.error('[Admin] 保存推广名失败', err);
     });
   },
@@ -163,7 +190,7 @@ Page({
       success: function (r) {
         if (r.confirm) {
           wx.clearStorageSync();
-          that.setData({ isAdmin: false, openId: '' });
+          that.setData({ isAdmin: false, openId: '', loginError: '' });
           wx.showToast({ title: '已清除', icon: 'success' });
         }
       }

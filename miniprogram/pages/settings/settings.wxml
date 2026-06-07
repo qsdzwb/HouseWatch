@@ -1,10 +1,10 @@
 <view class="container">
 
-  <!-- 管理员功能区（仅管理员可见） -->
-  <block wx:if="{{isAdmin}}">
-    <view style="font-size:13px;color:#999;margin-bottom:8px;">管理员功能</view>
+  <!-- 管理员功能区 -->
+  <view style="font-size:13px;color:#999;margin-bottom:8px;">管理员功能</view>
 
-    <!-- 推广名编辑 -->
+  <block wx:if="{{isAdmin}}">
+    <!-- 推广名编辑表单 -->
     <view class="add-form">
       <view style="font-size:15px;font-weight:600;margin-bottom:12px;">编辑楼盘推广名</view>
       <view class="form-item">
@@ -25,10 +25,19 @@
     </view>
   </block>
 
-  <!-- 非管理员提示 -->
-  <block wx:if="{{!isAdmin}}">
-    <view style="text-align:center;color:#ccc;font-size:13px;margin:32px 0 16px;">
-      管理员未登录 · 部分功能不可见
+  <block wx:else>
+    <!-- 未登录/非管理员：显示登录按钮 -->
+    <view class="add-form" style="text-align:center;">
+      <view style="font-size:14px;color:#666;margin-bottom:12px;">管理员功能需要登录验证</view>
+      <view class="btn btn-primary" bindtap="onLoginTap" style="display:inline-block;min-width:120px;">
+        {{loginLoading ? '登录中...' : '管理员登录'}}
+      </view>
+      <view wx:if="{{loginError}}" style="color:#E74C3C;font-size:12px;margin-top:8px;">
+        {{loginError}}
+      </view>
+      <view style="color:#999;font-size:11px;margin-top:8px;">
+        若提示超时，请使用「真机调试」后重试
+      </view>
     </view>
   </block>
 
