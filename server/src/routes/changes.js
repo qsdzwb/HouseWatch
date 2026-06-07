@@ -88,6 +88,38 @@ router.get('/daily', async (req, res) => {
     const statResult = await db.queryOne(statSql, statParams);
     let summary = { newSales: 0, statusChanges: 0, avgDealPrice: null, total: total, ...statResult };
 
+    // fallback：daily_changes 为空时，从 project_daily_stats 计算日增量
+    if (total === 0) {
+      const prevDate = new Date(targetDate);
+      prevDate.setDate(prevDate.getDate() - 1);
+      const prevDateStr = prevDate.toISOString().split('T')[0];
+
+      let fallbackSql = `
+        SELECT stat_date, SUM(signed_count) as signed_count,
+               CASE WHEN SUM(signed_count) > 0 THEN SUM(signed_count * avg_price) / SUM(signed_count) ELSE 0 END as avg_price
+        FROM project_daily_stats
+        WHERE stat_date IN (?, ?)
+      `;
+      const fallbackParams = [prevDateStr, targetDate];
+      if (projectId) {
+        const ids = parseProjectIds(projectId);
+        fallbackSql += ` AND project_id IN (${ids.map(() => '?').join(',')})`;
+        fallbackParams.push(...ids);
+      }
+      fallbackSql += ` GROUP BY stat_date ORDER BY stat_date ASC`;
+
+      const fbRows = await db.query(fallbackSql, fallbackParams);
+      if (fbRows.length >= 2) {
+        const prev = fbRows[0].signed_count || 0;
+        const curr = fbRows[1].signed_count || 0;
+        summary.newSales = Math.max(0, curr - prev);
+        summary.avgDealPrice = fbRows[1].avg_price;
+      } else if (fbRows.length === 1 && fbRows[0].stat_date === targetDate) {
+        summary.newSales = 0; // 第一天无增量
+        summary.avgDealPrice = fbRows[0].avg_price;
+      }
+    }
+
     // 为每条变化添加 price_display
     changes = changes.map(item => {
       if (item.deal_unit_price && item.deal_unit_price > 0) {
