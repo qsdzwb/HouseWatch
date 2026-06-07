@@ -24,20 +24,37 @@ Page({
     this.checkAdmin();
   },
 
-  // 检查管理员身份（优先用缓存的 open_id）
+  // 检查管理员身份：优先调用后端 checkAdmin('')，白名单为空时自动放行
   checkAdmin: function () {
     var that = this;
+    // 先检查缓存
     var cachedOpenId = wx.getStorageSync('admin_open_id');
     var cachedIsAdmin = wx.getStorageSync('is_admin');
-
     if (cachedOpenId && cachedIsAdmin) {
       that.setData({ isAdmin: true, openId: cachedOpenId, notAdmin: false });
       that.loadProjects();
       return;
     }
 
-    // 无缓存，自动尝试登录一次
-    that.tryAdminLogin(true);
+    // 先尝试调用 checkAdmin('')：白名单为空时后端自动放行
+    api.checkAdmin('').then(function (res) {
+      if (res.success && res.data && res.data.is_admin) {
+        var openId = res.data.open_id || '';
+        that.setData({ isAdmin: true, openId: openId, notAdmin: false });
+        wx.setStorageSync('admin_open_id', openId);
+        wx.setStorageSync('is_admin', true);
+        that.loadProjects();
+        // 如果是开发模式放行，给个提示
+        if (res.data.reason) {
+          wx.showToast({ title: '开发模式：已放行', icon: 'none' });
+        }
+        return;
+      }
+      // 白名单不为空，走正常登录流程
+      that.tryAdminLogin(true);
+    }).catch(function () {
+      that.tryAdminLogin(true);
+    });
   },
 
   // 调用 wx.login 获取 code，换 open_id 并鉴权

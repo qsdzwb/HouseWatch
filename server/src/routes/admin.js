@@ -69,10 +69,17 @@ router.post('/login', async (req, res) => {
 // GET /api/admin/check — 检查指定 open_id 是否为管理员（用于已缓存 open_id 的情况）
 router.get('/check', (req, res) => {
   const { open_id } = req.query;
+  const adminIds = getAdminOpenIds();
+  // 白名单为空时自动放行（首次配置阶段）
+  if (adminIds.length === 0) {
+    return res.json({
+      success: true,
+      data: { open_id: open_id || '', is_admin: true, reason: '白名单为空，开发模式放行' },
+    });
+  }
   if (!open_id) {
     return res.status(400).json({ success: false, message: '缺少 open_id 参数' });
   }
-  const adminIds = getAdminOpenIds();
   const isAdmin = adminIds.includes(open_id);
   res.json({
     success: true,

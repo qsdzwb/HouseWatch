@@ -481,12 +481,16 @@ function getAdminOpenIds() {
 
 // 检查是否为管理员（从 query 或 body 中取 open_id）
 function requireAdmin(req, res) {
+  const adminIds = getAdminOpenIds();
+  // 白名单为空时自动放行（首次配置阶段）
+  if (adminIds.length === 0) {
+    return true;
+  }
   const openId = (req.query && req.query.open_id) || (req.body && req.body.open_id);
   if (!openId) {
     res.status(401).json({ success: false, message: '需要管理员身份（缺少 open_id）' });
     return false;
   }
-  const adminIds = getAdminOpenIds();
   if (!adminIds.includes(openId)) {
     res.status(403).json({ success: false, message: '无权限（非管理员）' });
     return false;
