@@ -3,43 +3,39 @@
   <!-- 管理员功能区 -->
   <view style="font-size:13px;color:#999;margin-bottom:8px;">管理员功能</view>
 
-  <block wx:if="{{isAdmin}}">
-    <!-- 推广名编辑表单 -->
-    <view class="add-form">
-      <view style="font-size:15px;font-weight:600;margin-bottom:12px;">编辑楼盘推广名</view>
-      <view class="form-item">
-        <label>选择楼盘</label>
-        <picker mode="selector" range="{{projectList}}" range-key="name" value="{{projectIndex}}" bindchange="onProjectChange">
-          <view class="picker-text">
-            {{selectedProjectName || '请选择楼盘'}}
-          </view>
-        </picker>
-      </view>
-      <view class="form-item">
-        <label>推广名（留空则清除）</label>
-        <input value="{{displayName}}" bindinput="onDisplayNameInput" placeholder="如：星洵家园新" style="border:1px solid #eee;border-radius:8px;padding:8px;" />
-      </view>
-      <view class="btn btn-primary" style="margin-top:12px;" bindtap="saveDisplayName">
-        {{saving ? '保存中...' : '保存推广名'}}
-      </view>
+  <!-- 已登录：推广名编辑表单 -->
+  <view wx:if="{{isAdmin}}" class="add-form">
+    <view style="font-size:15px;font-weight:600;margin-bottom:12px;">编辑楼盘推广名</view>
+    <view class="form-item">
+      <label>选择楼盘</label>
+      <picker mode="selector" range="{{projectList}}" range-key="name" value="{{projectIndex}}" bindchange="onProjectChange">
+        <view class="picker-text">
+          {{selectedProjectName || '请选择楼盘'}}
+        </view>
+      </picker>
     </view>
-  </block>
+    <view class="form-item">
+      <label>推广名（留空则清除）</label>
+      <input value="{{displayName}}" bindinput="onDisplayNameInput" placeholder="如：星洵家园新" style="border:1px solid #eee;border-radius:8px;padding:8px;" />
+    </view>
+    <view class="btn btn-primary" style="margin-top:12px;" bindtap="saveDisplayName">
+      {{saving ? '保存中...' : '保存推广名'}}
+    </view>
+  </view>
 
-  <block wx:else>
-    <!-- 未登录/非管理员：显示登录按钮 -->
-    <view class="add-form" style="text-align:center;">
-      <view style="font-size:14px;color:#666;margin-bottom:12px;">管理员功能需要登录验证</view>
-      <view class="btn btn-primary" bindtap="onLoginTap" style="display:inline-block;min-width:120px;">
-        {{loginLoading ? '登录中...' : '管理员登录'}}
-      </view>
-      <view wx:if="{{loginError}}" style="color:#E74C3C;font-size:12px;margin-top:8px;">
-        {{loginError}}
-      </view>
-      <view style="color:#999;font-size:11px;margin-top:8px;">
-        若提示超时，请使用「真机调试」后重试
-      </view>
+  <!-- 未登录：显示登录按钮 -->
+  <view wx:if="{{notAdmin}}" class="add-form" style="text-align:center;">
+    <view style="font-size:14px;color:#666;margin-bottom:12px;">管理员功能需要登录验证</view>
+    <view class="btn btn-primary" bindtap="onLoginTap" style="display:inline-block;min-width:120px;">
+      {{loginLoading ? '登录中...' : '管理员登录'}}
     </view>
-  </block>
+    <view wx:if="{{loginError}}" style="color:#E74C3C;font-size:12px;margin-top:8px;">
+      {{loginError}}
+    </view>
+    <view style="color:#999;font-size:11px;margin-top:8px;">
+      若提示超时，请使用「真机调试」后重试
+    </view>
+  </view>
 
   <!-- 原有设置区 -->
   <view style="font-size:13px;color:#999;margin:20px 0 8px;">后端服务</view>

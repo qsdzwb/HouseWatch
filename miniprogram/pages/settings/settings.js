@@ -6,6 +6,7 @@ Page({
     version: '1.0.0',
     // 管理员状态
     isAdmin: false,
+    notAdmin: true,   // wx:if 兼容性：用独立变量
     openId: '',
     loginLoading: false,
     loginError: '',
@@ -30,7 +31,7 @@ Page({
     var cachedIsAdmin = wx.getStorageSync('is_admin');
 
     if (cachedOpenId && cachedIsAdmin) {
-      that.setData({ isAdmin: true, openId: cachedOpenId });
+      that.setData({ isAdmin: true, openId: cachedOpenId, notAdmin: false });
       that.loadProjects();
       return;
     }
@@ -56,12 +57,12 @@ Page({
 
         api.adminLogin(loginRes.code).then(function (res) {
           that.setData({ loginLoading: false });
-          if (res.success && res.data) {
-            var openId = res.data.open_id;
-            var isAdmin = res.data.is_admin;
-            wx.setStorageSync('admin_open_id', openId);
-            wx.setStorageSync('is_admin', isAdmin);
-            that.setData({ isAdmin: isAdmin, openId: openId });
+        if (res.success && res.data) {
+          var openId = res.data.open_id;
+          var isAdmin = res.data.is_admin;
+          wx.setStorageSync('admin_open_id', openId);
+          wx.setStorageSync('is_admin', isAdmin);
+          that.setData({ isAdmin: isAdmin, openId: openId, notAdmin: !isAdmin });
             if (isAdmin) {
               that.loadProjects();
               wx.showToast({ title: '管理员已登录', icon: 'success' });
@@ -190,7 +191,7 @@ Page({
       success: function (r) {
         if (r.confirm) {
           wx.clearStorageSync();
-          that.setData({ isAdmin: false, openId: '', loginError: '' });
+          that.setData({ isAdmin: false, openId: '', loginError: '', notAdmin: true });
           wx.showToast({ title: '已清除', icon: 'success' });
         }
       }
