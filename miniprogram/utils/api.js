@@ -129,10 +129,29 @@ module.exports = {
   getHouseHistory: function(id) { return request('/houses/' + id + '/history'); },
   getChanges: function(p) { return request('/changes/daily', 'GET', p); },
   getTrend: function(p) { return request('/changes/trend', 'GET', p); },
+  getProjectPriceExtremes: function(p) { return request('/changes/project-price-extremes', 'GET', p); },
   getChangeByDate: function(p) { return request('/changes/by-date', 'GET', p); },
   getWatchlist: function(active) { return request('/watchlist?active_only=' + (active ? 1 : 0)); },
-  addWatch: function(d) { return request('/watchlist', 'POST', d); },
-  removeWatch: function(id) { return request('/watchlist/' + id, 'DELETE'); },
+  addWatch: function(d) {
+    // 支持 project_id 为逗号分隔的多ID，取第一个作为关注ID
+    var pid = (d.project_id || '').split(',')[0];
+    return request('/watchlist', 'POST', Object.assign({}, d, { project_id: pid }));
+  },
+  removeWatch: function(id) {
+    // 支持 id 为逗号分隔的多ID，取第一个
+    var pid = (id || '').split(',')[0];
+    return request('/watchlist/' + pid, 'DELETE');
+  },
   updateWatch: function(id, d) { return request('/watchlist/' + id, 'PATCH', d); },
-  health: function() { return request('/health'); }
+  health: function() { return request('/health'); },
+  // 管理员登录（wx.login code → open_id 鉴权）
+  adminLogin: function(code) { return request('/admin/login', 'POST', { code: code }); },
+  // 检查是否为管理员（使用已缓存的 open_id）
+  checkAdmin: function(openId) { return request('/admin/check?open_id=' + encodeURIComponent(openId)); },
+  // 更新楼盘推广名（需管理员权限）
+  updateDisplayName: function(projectId, displayName, openId) {
+    return request('/projects/' + projectId + '?open_id=' + encodeURIComponent(openId), 'PUT', { display_name: displayName });
+  },
+  // 获取所有活跃楼盘（用于推广名编辑表单）
+  getActiveProjects: function() { return request('/projects', 'GET', { status: 'active', limit: 1000 }); },
 };

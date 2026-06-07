@@ -1,5 +1,39 @@
 <view class="container">
-  <view style="font-size:13px;color:#999;margin-bottom:8px;">后端服务</view>
+
+  <!-- 管理员功能区（仅管理员可见） -->
+  <block wx:if="{{isAdmin}}">
+    <view style="font-size:13px;color:#999;margin-bottom:8px;">管理员功能</view>
+
+    <!-- 推广名编辑 -->
+    <view class="add-form">
+      <view style="font-size:15px;font-weight:600;margin-bottom:12px;">编辑楼盘推广名</view>
+      <view class="form-item">
+        <label>选择楼盘</label>
+        <picker mode="selector" range="{{projectList}}" range-key="name" value="{{projectIndex}}" bindchange="onProjectChange">
+          <view class="picker-text">
+            {{selectedProjectName || '请选择楼盘'}}
+          </view>
+        </picker>
+      </view>
+      <view class="form-item">
+        <label>推广名（留空则清除）</label>
+        <input value="{{displayName}}" bindinput="onDisplayNameInput" placeholder="如：星洵家园新" style="border:1px solid #eee;border-radius:8px;padding:8px;" />
+      </view>
+      <view class="btn btn-primary" style="margin-top:12px;" bindtap="saveDisplayName">
+        {{saving ? '保存中...' : '保存推广名'}}
+      </view>
+    </view>
+  </block>
+
+  <!-- 非管理员提示 -->
+  <block wx:if="{{!isAdmin}}">
+    <view style="text-align:center;color:#ccc;font-size:13px;margin:32px 0 16px;">
+      管理员未登录 · 部分功能不可见
+    </view>
+  </block>
+
+  <!-- 原有设置区 -->
+  <view style="font-size:13px;color:#999;margin:20px 0 8px;">后端服务</view>
   <view class="add-form">
     <view class="form-item">
       <label>API 地址</label>
@@ -7,8 +41,10 @@
     </view>
     <view class="btn btn-primary" style="margin-top:12px;" bindtap="saveSettings">保存设置</view>
   </view>
+
   <view style="font-size:13px;color:#999;margin:20px 0 8px;">操作</view>
   <view class="card" bindtap="checkHealth" style="margin-bottom:8px;">🔍 检查后端连接</view>
   <view class="card" bindtap="clearCache" style="color:#E74C3C;">🗑 清除缓存</view>
+
   <view style="text-align:center;color:#ccc;font-size:12px;margin-top:32px;">北京楼盘数据 v{{version}}</view>
 </view>

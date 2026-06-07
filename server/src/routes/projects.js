@@ -473,8 +473,30 @@ router.post('/batch-insert', async (req, res) => {
   }
 });
 
-// PUT /api/projects/:id — 更新项目信息（如推广名 display_name）
+// 从环境变量读取管理员 open_id 白名单（逗号分隔）
+function getAdminOpenIds() {
+  const raw = process.env.ADMIN_OPEN_IDS || '';
+  return raw.split(',').map(id => id.trim()).filter(Boolean);
+}
+
+// 检查是否为管理员（从 query 或 body 中取 open_id）
+function requireAdmin(req, res) {
+  const openId = (req.query && req.query.open_id) || (req.body && req.body.open_id);
+  if (!openId) {
+    res.status(401).json({ success: false, message: '需要管理员身份（缺少 open_id）' });
+    return false;
+  }
+  const adminIds = getAdminOpenIds();
+  if (!adminIds.includes(openId)) {
+    res.status(403).json({ success: false, message: '无权限（非管理员）' });
+    return false;
+  }
+  return true;
+}
+
+// PUT /api/projects/:id — 更新项目信息（如推广名 display_name）需管理员权限
 router.put('/:id', async (req, res) => {
+  if (!requireAdmin(req, res)) return;
   try {
     const rawIds = req.params.id.split(',').filter(Boolean);
     if (rawIds.length === 0) {

@@ -30,6 +30,7 @@ app.use('/api/changes', require('./routes/changes'));
 app.use('/api/stats', require('./routes/stats'));
 app.use('/api/watchlist', require('./routes/watchlist'));
 app.use('/api/crawl', require('./routes/crawl'));
+app.use('/api/admin', require('./routes/admin'));
 
 // 健康检查
 app.get('/api/health', async (req, res) => {
