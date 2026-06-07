@@ -363,6 +363,11 @@ router.get('/trend', async (req, res) => {
       }));
     }
 
+    // 去掉开头 count=0 的日期（如第一天无对比基数的数据）
+    while (dailySales.length > 0 && dailySales[0].count === 0) {
+      dailySales.shift();
+    }
+
     res.json({
       success: true,
       data: {
