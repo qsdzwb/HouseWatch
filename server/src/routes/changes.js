@@ -280,11 +280,15 @@ router.get('/trend', async (req, res) => {
 
       // 按日期排序，计算相邻两天的差值（日新增成交）
       const sortedDates = Object.keys(dateMap).sort();
-      let prevCount = 0;
+      let prevCount = null; // null 表示还没有前一天数据
 
       for (const date of sortedDates) {
         const count = dateMap[date].signed_count;
-        const dailyNew = count - prevCount;
+        let dailyNew = 0;
+        // 只有有前一天数据时才计算差值（第一天设为0，避免累计值冲击趋势图）
+        if (prevCount !== null) {
+          dailyNew = count - prevCount;
+        }
         const avgPrice = dateMap[date].avgPriceWeight > 0
           ? dateMap[date].avgPriceSum / dateMap[date].avgPriceWeight
           : 0;
