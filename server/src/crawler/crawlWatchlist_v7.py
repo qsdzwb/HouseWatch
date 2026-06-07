@@ -416,7 +416,7 @@ def ensure_schema(conn):
     cur.execute("CREATE INDEX IF NOT EXISTS idx_snapshots_date ON daily_snapshots(snapshot_date)")
     cur.execute("CREATE INDEX IF NOT EXISTS idx_snapshots_house ON daily_snapshots(house_id, snapshot_date)")
     # daily_snapshots 缺失字段（兼容旧表）
-    for col, ctype in [('building_id', 'TEXT'), ('building_avg_price', 'REAL')]:
+    for col, ctype in [('room_no', 'TEXT'), ('building_id', 'TEXT'), ('building_avg_price', 'REAL')]:
         try:
             cur.execute(f"ALTER TABLE daily_snapshots ADD COLUMN {col} {ctype}")
         except:
