@@ -18,7 +18,6 @@
 import sqlite3, datetime, urllib.request, urllib.parse, re, time, sys, os, random, random
 
 DB = '/user/local/service/house/data/bj_realestate.db'
-LOCK_FILE = '/tmp/house_crawler.lock'
 
 HEADERS = {
     'User-Agent': 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36',
@@ -640,10 +639,6 @@ def main():
     changes = compare_and_generate_changes(conn, today_str)
 
     conn.close()
-
-    # 释放锁
-    fcntl.flock(lock_fd, fcntl.LOCK_UN)
-    lock_fd.close()
 
     print(f"\n{'='*60}")
     print(f"完成! 变化: {changes} 条")
