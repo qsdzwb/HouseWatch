@@ -409,6 +409,43 @@ def ensure_schema(conn):
             cur.execute(f"ALTER TABLE daily_snapshots ADD COLUMN {col} {ctype}")
         except:
             pass
+
+    # 确保 daily_changes 表存在（与 crawlWatchlist_v7.py 保持一致）
+    cur.execute("""
+        CREATE TABLE IF NOT EXISTS daily_changes (
+            id INTEGER PRIMARY KEY AUTOINCREMENT,
+            change_date TEXT NOT NULL,
+            project_id TEXT NOT NULL,
+            building_id TEXT NOT NULL,
+            building_name TEXT DEFAULT '',
+            house_id TEXT NOT NULL,
+            room_no TEXT NOT NULL,
+            old_status TEXT DEFAULT NULL,
+            new_status TEXT NOT NULL,
+            building_avg_price REAL DEFAULT NULL,
+            change_type TEXT DEFAULT 'status_change',
+            build_area REAL DEFAULT NULL,
+            deal_unit_price REAL DEFAULT NULL,
+            deal_total_price REAL DEFAULT NULL,
+            is_estimated INTEGER DEFAULT 0,
+            created_at TEXT DEFAULT (datetime('now', 'localtime'))
+        )
+    """)
+    cur.execute("CREATE INDEX IF NOT EXISTS idx_changes_date ON daily_changes(change_date)")
+    cur.execute("CREATE INDEX IF NOT EXISTS idx_changes_project_date ON daily_changes(project_id, change_date)")
+    cur.execute("CREATE INDEX IF NOT EXISTS idx_changes_type ON daily_changes(change_type)")
+    # daily_changes 缺失字段（兼容旧表）
+    for col, ctype in [('building_name', 'TEXT DEFAULT \'\''),
+                        ('building_avg_price', 'REAL DEFAULT NULL'),
+                        ('change_type', 'TEXT DEFAULT \'status_change\''),
+                        ('build_area', 'REAL DEFAULT NULL'),
+                        ('deal_unit_price', 'REAL DEFAULT NULL'),
+                        ('deal_total_price', 'REAL DEFAULT NULL'),
+                        ('is_estimated', 'INTEGER DEFAULT 0')]:
+        try:
+            cur.execute(f"ALTER TABLE daily_changes ADD COLUMN {col} {ctype}")
+        except:
+            pass
     conn.commit()
 
 
