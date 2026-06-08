@@ -540,8 +540,8 @@ def compare_and_generate_changes(conn, today_str, calc_price=False):
         for row in changes:
             house_id, building_id, room_no, old_status, new_status, avg_price = row
             proj_id = bld_map.get(building_id, ('', ''))[0]
-            is_new_sale = (new_status in ('\xe5\xb7\xb2\xe7\xad\xbe\xe7\xba\xa6', '\xe7\xbd\x91\xe4\xb8\x8a\xe8\x81\x94\xe6\x9c\xba\xe5\xa4\x87\xe6\xa1\x88')
-                               and old_status not in ('\xe5\xb7\xb2\xe7\xad\xbe\xe7\xba\xa6', '\xe7\xbd\x91\xe4\xb8\x8a\xe8\x81\x94\xe6\x9c\xba\xe5\xa4\x87\xe6\xa1\x88')
+            is_new_sale = (new_status in ('\u5df2\u7b7e\u7ea6', '\u7f51\u4e0a\u8054\u673a\u5907\u6848')
+                               and old_status not in ('\u5df2\u7b7e\u7ea6', '\u7f51\u4e0a\u8054\u673a\u5907\u6848'))
             if is_new_sale:
                 proj_sale_count[proj_id] = proj_sale_count.get(proj_id, 0) + 1
 
@@ -589,8 +589,8 @@ def compare_and_generate_changes(conn, today_str, calc_price=False):
     for row in changes:
         house_id, building_id, room_no, old_status, new_status, avg_price = row
         proj_id, bld_name = bld_map.get(building_id, ('', building_id))
-        is_new_sale = (new_status in ('\xe5\xb7\xb2\xe7\xad\xbe\xe7\xba\xa6', '\xe7\xbd\x91\xe4\xb8\x8a\xe8\x81\x94\xe6\x9c\xba\xe5\xa4\x87\xe6\xa1\x88')
-                       and old_status not in ('\xe5\xb7\xb2\xe7\xad\xbe\xe7\xba\xa6', '\xe7\xbd\x91\xe4\xb8\x8a\xe8\x81\x94\xe6\x9c\xba\xe5\xa4\x87\xe6\xa1\x88'))
+        is_new_sale = (new_status in ('已签约', '网上联机备案')
+                       and old_status not in ('已签约', '网上联机备案'))
         change_type = 'new_sale' if is_new_sale else 'status_change'
 
         deal_unit_price = None
@@ -632,7 +632,7 @@ def compare_and_generate_changes(conn, today_str, calc_price=False):
     for row in changes[:10]:
         house_id, building_id, room_no, old_status, new_status, avg_price = row
         proj_id, bld_name = bld_map.get(building_id, ('', building_id))
-        price_str = "?.{0:,.0f}/m?".format(avg_price) if avg_price else "\xe6\x97\xa0\xe5\x9d\x87\xe4\xbb\xb7"
+        price_str = "?.{0:,.0f}/m?".format(avg_price) if avg_price else "æ åä»·"
         print("    [{0}] {1}: {2} -> {3} ({4})".format(bld_name, room_no, old_status, new_status, price_str))
 
     return len(changes)
