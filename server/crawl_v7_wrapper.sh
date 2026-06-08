@@ -1,11 +1,11 @@
 #!/bin/bash
-# crawl_v7_wrapper.sh — v7 爬虫包装脚本
-# 功能：运行 v7，失败时每 30 分钟重试，最多重试 4 次（共 2 小时）
+# crawl_v7_wrapper.sh — v8 爬虫包装脚本（重试版）
+# 功能：运行 v8，失败时每 30 分钟重试，最多重试 4 次（共 2 小时）
 
-LOCK_FILE="/tmp/crawl_v7.lock"
-LOG_DIR="/opt/bj-server/logs"
-LOG_FILE="$LOG_DIR/crawl_v7_$(date +%Y%m%d).log"
-SCRIPT_PATH="/opt/bj-server/src/crawler/crawlWatchlist_v7.py"
+LOCK_FILE="/tmp/crawl_v8.lock"
+LOG_DIR="/user/local/service/house/logs"
+LOG_FILE="$LOG_DIR/crawl_v8_$(date +%Y%m%d).log"
+SCRIPT_PATH="/user/local/service/house/server/src/crawler/crawlWatchlist_v8.py"
 MAX_RETRIES=4
 RETRY_DELAY=1800  # 30 分钟 = 1800 秒
 
@@ -22,7 +22,7 @@ log() {
     echo "[$(date '+%Y-%m-%d %H:%M:%S')] $1" | tee -a "$LOG_FILE"
 }
 
-log "🚀 开始运行 v7 (最多重试 $MAX_RETRIES 次，间隔 30 分钟)"
+log "🚀 开始运行 v8 (最多重试 $MAX_RETRIES 次，间隔 30 分钟)"
 
 for i in $(seq 0 $MAX_RETRIES); do
     if [ $i -gt 0 ]; then
@@ -30,16 +30,16 @@ for i in $(seq 0 $MAX_RETRIES); do
         sleep $RETRY_DELAY
     fi
 
-    log "▶️  第 $((i+1)) 次尝试运行 v7..."
-    
+    log "▶️  第 $((i+1)) 次尝试运行 v8..."
+
     /usr/bin/python3 -u "$SCRIPT_PATH" >> "$LOG_FILE" 2>&1
     EXIT_CODE=$?
 
     if [ $EXIT_CODE -eq 0 ]; then
-        log "✅ v7 运行成功（尝试 $((i+1)) 次）"
+        log "✅ v8 运行成功（尝试 $((i+1)) 次）"
         exit 0
     else
-        log "❌ v7 运行失败（退出码 $EXIT_CODE，尝试 $((i+1))/$((MAX_RETRIES+1))）"
+        log "❌ v8 运行失败（退出码 $EXIT_CODE，尝试 $((i+1))/$((MAX_RETRIES+1))）"
     fi
 done
 
