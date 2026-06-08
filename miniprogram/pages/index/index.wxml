@@ -22,6 +22,36 @@
     </view>
   </view>
 
+  <!-- 价格趋势简报 -->
+  <view class="card" wx:if="{{priceBrief}}">
+    <view class="card-title">价格趋势简报</view>
+    <view class="brief-header">
+      <view class="brief-trend brief-trend-{{priceBrief.trend}}">{{priceBrief.trendText}}</view>
+    </view>
+    <view class="brief-stats" wx:if="{{priceBrief.avgPrice7d}}">
+      <view class="brief-stat">
+        <view class="brief-stat-label">近7天均价</view>
+        <view class="brief-stat-value">{{priceBrief.avgPrice7dDisplay}}</view>
+      </view>
+      <view class="brief-stat" wx:if="{{priceBrief.avgPrice30d}}">
+        <view class="brief-stat-label">近30天均价</view>
+        <view class="brief-stat-value">{{priceBrief.avgPrice30dDisplay}}</view>
+      </view>
+    </view>
+    <view class="brief-hot" wx:if="{{priceBrief.hotProjects.length}}">
+      <view class="brief-hot-title">近期成交活跃楼盘</view>
+      <view class="brief-hot-list">
+        <view class="brief-hot-item" wx:for="{{priceBrief.hotProjects}}" wx:key="project_id">
+          <text class="brief-hot-rank">{{index + 1}}</text>
+          <text class="brief-hot-name">{{item.project_name}}</text>
+          <text class="brief-hot-count">{{item.salesCount}}套</text>
+          <text class="brief-hot-price">{{item.avgPriceDisplay}}</text>
+        </view>
+      </view>
+    </view>
+    <view class="brief-summary">{{priceBrief.summary}}</view>
+  </view>
+
   <!-- 房源概况 -->
   <view class="card">
     <view class="card-title">房源概况</view>

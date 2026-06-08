@@ -11,12 +11,16 @@ var STATUS_CLASS = {
 // 中文数字转阿拉伯数字
 var CHINESE_NUM = { '一': '1', '二': '2', '三': '3', '四': '4', '五': '5', '六': '6', '七': '7', '八': '8', '九': '9', '十': '10' };
 
-// 从房号提取简化显示（如"一单元-1801" → "1-1801"）
+// 从房号提取简化显示（如"一单元-1801" → "1-1801"，"1单元-1001" → "1-1001"）
 function extractSimpleRoomNo(roomNo) {
   if (!roomNo) return '';
-  return roomNo.replace(/([一二三四五六七八九十])单元-/, function(m, p1) {
+  // 中文数字：一单元- → 1-
+  var result = roomNo.replace(/([一二三四五六七八九十])单元-/, function(m, p1) {
     return CHINESE_NUM[p1] + '-';
   });
+  // 阿拉伯数字：1单元- → 1-
+  result = result.replace(/(\d+)单元-/, '$1-');
+  return result;
 }
 
 // 从房号提取楼层（如 101->1, 1201->12）

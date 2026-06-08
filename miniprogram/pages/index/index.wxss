@@ -1,1 +1,67 @@
 @import "../../app.wxss";
+
+/* 价格趋势简报 */
+.brief-header { margin-bottom: 12px; }
+.brief-trend {
+  display: inline-block;
+  font-size: 15px;
+  font-weight: 600;
+  padding: 4px 12px;
+  border-radius: 4px;
+}
+.brief-trend-up {
+  color: #E74C3C;
+  background: #FDECEA;
+}
+.brief-trend-down {
+  color: #27AE60;
+  background: #EAFBF0;
+}
+.brief-trend-flat {
+  color: #888;
+  background: #F5F5F5;
+}
+
+.brief-stats {
+  display: flex;
+  justify-content: space-around;
+  margin-bottom: 12px;
+}
+.brief-stat { text-align: center; }
+.brief-stat-label { font-size: 11px; color: #999; }
+.brief-stat-value { font-size: 15px; font-weight: 600; color: #333; margin-top: 2px; }
+
+.brief-hot { margin-bottom: 12px; }
+.brief-hot-title { font-size: 12px; color: #999; margin-bottom: 6px; }
+.brief-hot-list { }
+.brief-hot-item {
+  display: flex;
+  align-items: center;
+  padding: 6px 0;
+  border-bottom: 1px solid #f5f5f5;
+  font-size: 13px;
+}
+.brief-hot-item:last-child { border-bottom: none; }
+.brief-hot-rank {
+  display: inline-block;
+  width: 18px; height: 18px;
+  line-height: 18px;
+  text-align: center;
+  border-radius: 50%;
+  background: #F39C12;
+  color: #fff;
+  font-size: 11px;
+  margin-right: 8px;
+}
+.brief-hot-name { flex: 1; color: #333; }
+.brief-hot-count { color: #F39C12; margin-right: 8px; }
+.brief-hot-price { color: #999; font-size: 12px; }
+
+.brief-summary {
+  background: #F8F9FA;
+  border-radius: 4px;
+  padding: 8px 10px;
+  font-size: 12px;
+  color: #666;
+  line-height: 1.6;
+}

@@ -27,6 +27,19 @@
     </view>
   </view>
 
+  <!-- 筛选栏 -->
+  <view class="filter-bar">
+    <view class="filter-tab {{filterType === 'all' ? 'active' : ''}}"
+          bindtap="onFilterChange" data-type="all">全部</view>
+    <view class="filter-tab {{filterType === 'new_sale' ? 'active' : ''}}"
+          bindtap="onFilterChange" data-type="new_sale">成交</view>
+    <view class="filter-tab {{filterType === 'status_change' ? 'active' : ''}}"
+          bindtap="onFilterChange" data-type="status_change">状态变更</view>
+    <view class="sort-btn" bindtap="onSortChange">
+      {{sortBtnText}}
+    </view>
+  </view>
+
   <!-- 成交数量折线图（可点击） -->
   <view class="card" wx:if="{{trend.length > 0}}">
     <view class="card-title">日成交数量</view>

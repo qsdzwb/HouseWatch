@@ -31,11 +31,28 @@
   margin-left: 4px;
 }
 
-/* 排序标签 */
-.filter-row {
+/* 筛选栏 */
+.filter-bar {
   display: flex;
+  align-items: center;
   gap: 8px;
   margin-bottom: 12px;
+}
+
+.district-picker {
+  font-size: 12px;
+  padding: 5px 12px;
+  border-radius: 14px;
+  background: #f5f5f5;
+  color: #666;
+  white-space: nowrap;
+}
+
+.filter-tags {
+  display: flex;
+  gap: 8px;
+  flex: 1;
+  overflow-x: auto;
 }
 
 .filter-tag {
@@ -44,6 +61,7 @@
   border-radius: 14px;
   background: #f5f5f5;
   color: #666;
+  white-space: nowrap;
 }
 
 .filter-tag.active {
@@ -59,6 +77,11 @@
   padding: 14px 16px;
   margin-bottom: 10px;
   box-shadow: 0 1px 3px rgba(0,0,0,0.06);
+}
+
+.card-main {
+  padding-bottom: 10px;
+  border-bottom: 1px solid #f0f0f0;
 }
 
 .card-top {
@@ -81,6 +104,23 @@
   font-size: 20px;
   color: #ccc;
   margin-left: 8px;
+}
+
+/* 关注按钮 */
+.watch-btn {
+  margin-top: 10px;
+  text-align: center;
+  padding: 8px 0;
+  border-radius: 6px;
+  font-size: 13px;
+  color: #1989FA;
+  background: #E8F2FF;
+  font-weight: 500;
+}
+
+.watch-btn.watched {
+  color: #27AE60;
+  background: #E8F5E9;
 }
 
 .project-meta {

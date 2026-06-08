@@ -196,14 +196,55 @@
   font-size: 14px;
 }
 
-/* 均价行 */
-.price-row {
-  text-align: center;
+/* 洞察盒子 */
+.insight-box {
   font-size: 13px;
-  color: #999;
+  padding: 8px 12px;
+  border-radius: 8px;
+  margin-bottom: 12px;
+  line-height: 1.5;
+}
+
+.insight-good {
+  background: #E8F5E9;
+  color: #27AE60;
+}
+
+.insight-warn {
+  background: #FDECEA;
+  color: #E74C3C;
+}
+
+.insight-info {
+  background: #EBF5FB;
+  color: #2E86C1;
+}
+
+/* 各预售证均价容器 */
+.price-rows {
+  margin-top: 12px;
   padding-top: 12px;
   border-top: 1px solid #f0f0f0;
-  margin-top: 12px;
+}
+
+/* 单条预售证均价行 */
+.price-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 13px;
+  color: #666;
+  padding: 4px 0;
+}
+.price-label {
+  color: #999;
+  font-size: 12px;
+}
+.price-value {
+  font-size: 14px;
+  font-weight: 600;
+  color: #FF6600;
+  margin-left: 8px;
 }
 
 .price-value {
@@ -211,4 +252,28 @@
   font-weight: 700;
   color: #FF6600;
   margin-left: 4px;
+}
+
+/* 历史成交低价提示 */
+.price-tip {
+  font-size: 12px;
+  padding: 8px 10px;
+  border-radius: 6px;
+  margin-bottom: 10px;
+  line-height: 1.5;
+}
+.price-tip-low {
+  background: #E8F5E9;
+  color: #27AE60;
+  border-left: 3px solid #27AE60;
+}
+.price-tip-high {
+  background: #FDECEA;
+  color: #E74C3C;
+  border-left: 3px solid #E74C3C;
+}
+.price-tip-mid {
+  background: #F5F5F5;
+  color: #888;
+  border-left: 3px solid #CCC;
 }

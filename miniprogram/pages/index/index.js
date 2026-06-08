@@ -5,7 +5,8 @@ Page({
     overview: {},
     weeklyTrend: {},
     latestChanges: [],
-    lastCrawl: null
+    lastCrawl: null,
+    priceBrief: null
   },
   onLoad: function() { this.loadData(); },
   onPullDownRefresh: function() { this.loadData().then(function() { wx.stopPullDownRefresh(); }); },
@@ -36,12 +37,30 @@ Page({
         return c;
       });
 
+      // 价格趋势简报
+      var brief = d.priceBrief || null;
+      if (brief) {
+        if (brief.avgPrice7d) {
+          brief.avgPrice7dDisplay = (brief.avgPrice7d / 10000).toFixed(1) + '万/㎡';
+        }
+        if (brief.avgPrice30d) {
+          brief.avgPrice30dDisplay = (brief.avgPrice30d / 10000).toFixed(1) + '万/㎡';
+        }
+        if (brief.hotProjects) {
+          brief.hotProjects = brief.hotProjects.map(function(p) {
+            p.avgPriceDisplay = p.avgPrice ? (p.avgPrice / 10000).toFixed(1) + '万/㎡' : '-';
+            return p;
+          });
+        }
+      }
+
       self.setData({
         today: today,
         overview: d.overview || {},
         weeklyTrend: t,
         latestChanges: changes,
-        lastCrawl: d.lastCrawl
+        lastCrawl: d.lastCrawl,
+        priceBrief: brief
       });
     }).catch(function() {
       wx.showToast({ title: '加载失败', icon: 'none' });

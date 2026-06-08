@@ -35,20 +35,20 @@
 
 .floor-houses {
   display: flex;
-  flex-wrap: nowrap;
+  flex-wrap: wrap;
   gap: 4px;
   flex: 1;
 }
 
 .house-cell {
-  flex: 1;
-  min-width: 0;
+  width: calc(25% - 3px);
   padding: 3px 1px 2px;
   border-radius: 4px;
   text-align: center;
   font-size: 11px;
   background: #f8f8f8;
   line-height: 1.3;
+  box-sizing: border-box;
 }
 
 /* 四个状态背景色 + 房号字体色 */
@@ -90,7 +90,7 @@
 
 .house-no {
   font-weight: 600;
-  font-size: 13px;
+  font-size: 12px;
 }
 
 .house-price {

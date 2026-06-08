@@ -14,7 +14,12 @@ Page({
     noMore: false,
     date: '',
     summary: {},
-    loadError: ''
+    loadError: '',
+    // 筛选和排序
+    filterType: 'all',   // all | new_sale | status_change
+    sortBy: 'date',      // date | price
+    sortOrder: 'desc',     // desc | asc
+    sortBtnText: '按价格↓'
   },
 
   onLoad: function() {
@@ -194,6 +199,10 @@ Page({
     if (this.data.selectedProjectId) {
       params.projectId = this.data.selectedProjectId;
     }
+    // 筛选类型
+    if (this.data.filterType !== 'all') {
+      params.change_type = this.data.filterType;
+    }
     return api.getChanges(params).then(function(res) {
       var body = res || {};
       var d = body.data || {};
@@ -216,6 +225,15 @@ Page({
         }
         return item;
       });
+
+      // 按价格排序
+      if (self.data.sortBy === 'price') {
+        rows.sort(function(a, b) {
+          var pa = a.deal_unit_price || a.building_avg_price || 0;
+          var pb = b.deal_unit_price || b.building_avg_price || 0;
+          return self.data.sortOrder === 'desc' ? pb - pa : pa - pb;
+        });
+      }
 
       if (summary.avgDealPrice && summary.avgDealPrice > 0) {
         summary.avgPriceDisplay = Math.round(summary.avgDealPrice) + '元/㎡';
@@ -244,6 +262,50 @@ Page({
       val = '';
     }
     this.setData({ date: val, list: [], page: 1, noMore: false });
+    this.loadChanges();
+  },
+
+  onFilterChange: function(e) {
+    var type = e.currentTarget.dataset.type;
+    this.setData({
+      filterType: type,
+      list: [],
+      page: 1,
+      noMore: false
+    });
+    this.loadChanges();
+  },
+
+  onSortChange: function() {
+    var curBy = this.data.sortBy;
+    var curOrder = this.data.sortOrder;
+    var nextBy, nextOrder, btnText;
+
+    if (curBy !== 'price') {
+      // 当前不是价格排序 → 切换到价格降序
+      nextBy = 'price';
+      nextOrder = 'desc';
+      btnText = '价格↓';
+    } else if (curOrder === 'desc') {
+      // 当前是价格降序 → 切换到价格升序
+      nextBy = 'price';
+      nextOrder = 'asc';
+      btnText = '价格↑';
+    } else {
+      // 当前是价格升序 → 恢复日期排序
+      nextBy = 'date';
+      nextOrder = 'desc';
+      btnText = '按价格↓';
+    }
+
+    this.setData({
+      sortBy: nextBy,
+      sortOrder: nextOrder,
+      sortBtnText: btnText,
+      list: [],
+      page: 1,
+      noMore: false
+    });
     this.loadChanges();
   }
 });

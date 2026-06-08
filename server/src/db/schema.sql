@@ -10,6 +10,7 @@ CREATE TABLE IF NOT EXISTS projects (
     permit_no TEXT DEFAULT NULL,
     issue_date TEXT DEFAULT NULL,
     district TEXT DEFAULT NULL,
+    display_name TEXT DEFAULT NULL,
     address TEXT DEFAULT NULL,
     developer TEXT DEFAULT NULL,
     first_seen TEXT DEFAULT NULL,

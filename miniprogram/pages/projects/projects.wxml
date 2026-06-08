@@ -6,35 +6,54 @@
     <view class="search-clear" bindtap="onClearSearch" wx:if="{{keyword}}">✕</view>
   </view>
 
-  <!-- 排序标签 -->
-  <view class="filter-row">
-    <view class="filter-tag {{sortBy === 'total_houses' ? 'active' : ''}}" bindtap="onSort" data-field="total_houses">
-      房源数 {{sortBy === 'total_houses' ? (sortOrder === 'desc' ? '↓' : '↑') : ''}}
-    </view>
-    <view class="filter-tag {{sortBy === 'sold_rate' ? 'active' : ''}}" bindtap="onSort" data-field="sold_rate">
-      去化率 {{sortBy === 'sold_rate' ? (sortOrder === 'desc' ? '↓' : '↑') : ''}}
-    </view>
-    <view class="filter-tag {{sortBy === 'building_count' ? 'active' : ''}}" bindtap="onSort" data-field="building_count">
-      楼栋数 {{sortBy === 'building_count' ? (sortOrder === 'desc' ? '↓' : '↑') : ''}}
+  <!-- 筛选栏：区域 + 排序 -->
+  <view class="filter-bar">
+    <picker range="{{districtOptions}}" value="{{selectedDistrictIndex}}" bindchange="onDistrictPickerChange">
+      <view class="district-picker">
+        {{districtOptions[selectedDistrictIndex]}} ▼
+      </view>
+    </picker>
+    <view class="filter-tags">
+      <view class="filter-tag {{sortBy === 'total_houses' ? 'active' : ''}}" bindtap="onSort" data-field="total_houses">
+        房源数 {{sortBy === 'total_houses' ? (sortOrder === 'desc' ? '↓' : '↑') : ''}}
+      </view>
+      <view class="filter-tag {{sortBy === 'sold_rate' ? 'active' : ''}}" bindtap="onSort" data-field="sold_rate">
+        去化率 {{sortBy === 'sold_rate' ? (sortOrder === 'desc' ? '↓' : '↑') : ''}}
+      </view>
+      <view class="filter-tag {{sortBy === 'building_count' ? 'active' : ''}}" bindtap="onSort" data-field="building_count">
+        楼栋数 {{sortBy === 'building_count' ? (sortOrder === 'desc' ? '↓' : '↑') : ''}}
+      </view>
     </view>
   </view>
 
   <!-- 楼盘列表 -->
   <block wx:for="{{list}}" wx:key="project_id">
-    <view class="project-card" bindtap="goDetail" data-id="{{item.project_id}}">
-      <view class="card-top">
-        <view class="project-name">{{item.name}}</view>
-        <view class="project-arrow">›</view>
+    <view class="project-card">
+      <view class="card-main" bindtap="goDetail" data-id="{{item.project_id}}">
+        <view class="card-top">
+          <view class="project-name">{{item.display_name ? item.display_name + '(' + item.name + ')' : item.name}}</view>
+          <view class="project-arrow">›</view>
+        </view>
+        <view class="project-meta">
+          <text wx:if="{{item.district}}">{{item.district}} · </text>
+          <text wx:if="{{item.building_count > 0 || item.total_houses > 0}}">{{item.building_count || 0}}栋 · {{item.total_houses || 0}}套</text>
+          <text wx:else class="text-gray">数据待更新</text>
+          <text wx:if="{{item.developer}}" class="project-dev"> · {{item.developer}}</text>
+        </view>
+        <view class="project-stats" wx:if="{{item.building_count > 0 || item.total_houses > 0}}">
+          <text class="stat-item stat-green">可售 {{item.available_houses || 0}}</text>
+          <text class="stat-item stat-red">已售 {{item.sold_houses || 0}}</text>
+          <text class="stat-item stat-rate">{{item.sold_rate || '0.0%'}}</text>
+        </view>
       </view>
-      <view class="project-meta">
-        <text wx:if="{{item.district}}">{{item.district}} · </text>
-        <text>{{item.building_count || 0}}栋 · {{item.total_houses || 0}}套</text>
-        <text wx:if="{{item.developer}}" class="project-dev"> · {{item.developer}}</text>
-      </view>
-      <view class="project-stats">
-        <text class="stat-item stat-green">可售 {{item.available_houses || 0}}</text>
-        <text class="stat-item stat-red">已售 {{item.sold_houses || 0}}</text>
-        <text class="stat-item stat-rate">{{item.sold_rate || '0.0%'}}</text>
+      <!-- 关注按钮 -->
+      <view class="watch-btn {{item.is_watched ? 'watched' : ''}}"
+            bindtap="toggleWatch"
+            data-id="{{item.project_id}}"
+            data-name="{{item.name}}"
+            data-watched="{{item.is_watched}}"
+            data-index="{{index}}">
+        {{item.is_watched ? '✓ 已关注' : '+ 关注'}}
       </view>
     </view>
   </block>
@@ -43,7 +62,7 @@
   <view class="empty" wx:if="{{!list.length && !loading}}">
     <view class="empty-icon">{{error ? '⚠️' : '📋'}}</view>
     <view>{{error || '暂无楼盘数据'}}</view>
-    <view class="text-gray" style="font-size:12px;margin-top:4px;" wx:if="{{!error}}">请先添加关注项目</view>
+    <view class="text-gray" style="font-size:12px;margin-top:4px;" wx:if="{{!error}}">该区域暂无可售楼盘</view>
     <view class="retry-btn" bindtap="onPullDownRefresh" wx:if="{{error}}" style="margin-top:12px;color:#1989FA;">点击重试</view>
   </view>
 

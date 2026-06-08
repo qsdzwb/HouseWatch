@@ -42,29 +42,107 @@ router.post('/seed', async (req, res) => {
   }
 });
 
-// GET /api/watchlist — 获取关注列表
+// GET /api/watchlist — 获取关注列表（按名称合并展示）
 router.get('/', async (req, res) => {
   try {
     const { active_only = '1' } = req.query;
     const activeFilter = active_only === '1' ? 'WHERE w.is_active = 1' : '';
 
-    const items = await db.query(`
-      SELECT 
-        w.id, w.project_id, w.notes, w.is_active, w.added_at,
-        p.name, p.district, p.address, p.developer,
-        p.last_crawl, p.status as project_status, p.avg_price,
-        (SELECT COUNT(*) FROM buildings WHERE project_id = w.project_id) as building_count,
-        (SELECT COUNT(*) FROM houses h 
-         JOIN buildings b ON h.building_id = b.building_id 
-         WHERE b.project_id = w.project_id) as total_units,
-        (SELECT COUNT(*) FROM houses h 
-         JOIN buildings b ON h.building_id = b.building_id 
-         WHERE b.project_id = w.project_id AND h.status IN ('已签约','网上联机备案','已办理预售项目抵押')) as sold_units
+    // 第一步：获取所有被关注的 project_id 列表（用于找出同名项目）
+    const watchedRows = await db.query(`
+      SELECT w.project_id, p.name
       FROM watched_projects w
       JOIN projects p ON w.project_id = p.project_id
       ${activeFilter}
-      ORDER BY w.added_at DESC, p.name ASC
     `);
+
+    // 按名称分组，获取每个名称对应的所有 project_id
+    const nameToIds = {};
+    watchedRows.forEach(row => {
+      if (!nameToIds[row.name]) nameToIds[row.name] = new Set();
+      nameToIds[row.name].add(row.project_id);
+    });
+
+    // 第二步：对每个名称查询合并统计数据
+    const items = [];
+    for (const [name, idSet] of Object.entries(nameToIds)) {
+      const projectIds = Array.from(idSet);
+      const placeholders = projectIds.map(() => '?').join(',');
+
+      // 楼栋数
+      const bRow = await db.queryOne(
+        `SELECT COUNT(*) as cnt FROM buildings WHERE project_id IN (${placeholders})`,
+        projectIds
+      );
+
+      // 房源总数 + 已售数
+      const hRow = await db.queryOne(
+        `SELECT COUNT(*) as total_units,
+          SUM(CASE WHEN status IN ('已签约','网上联机备案','已办理预售项目抵押') THEN 1 ELSE 0 END) as sold_units
+         FROM houses
+         WHERE building_id IN (SELECT building_id FROM buildings WHERE project_id IN (${placeholders}))`,
+        projectIds
+      );
+
+      // 各预售证独立均价（不合并，避免误导）
+      const permitPrices = [];
+      for (const pid of projectIds) {
+        const row = await db.queryOne(
+          'SELECT avg_price, signed_count, signed_area, permit_no FROM projects WHERE project_id = ?',
+          [pid]
+        );
+        if (row && row.avg_price > 0) {
+          permitPrices.push({
+            project_id: pid,
+            permit_no: row.permit_no,
+            avg_price: Math.round(row.avg_price),
+            signed_count: row.signed_count || 0,
+            signed_area: row.signed_area || 0,
+          });
+        }
+      }
+
+      // 获取代表信息（最新关注的记录）
+      const repWatched = await db.queryOne(
+        `SELECT w.id, w.notes, w.is_active, w.added_at
+         FROM watched_projects w
+         WHERE w.project_id IN (${placeholders})
+         ORDER BY w.added_at DESC LIMIT 1`,
+        projectIds
+      );
+
+      // 获取代表项目信息（最新预售证）
+      const repProject = await db.queryOne(
+        `SELECT district, last_crawl, status as project_status,
+          (SELECT display_name FROM projects WHERE name = ? AND display_name IS NOT NULL AND display_name != '' LIMIT 1) as display_name
+         FROM projects WHERE name = ? ORDER BY issue_date DESC LIMIT 1`,
+        [name, name]
+      );
+
+      items.push({
+        id: repWatched ? repWatched.id : null,
+        project_id: projectIds.join(','),  // 逗号分隔多ID
+        name: name,
+        display_name: repProject ? repProject.display_name : null,
+        notes: repWatched ? repWatched.notes : null,
+        is_active: repWatched ? repWatched.is_active : 1,
+        added_at: repWatched ? repWatched.added_at : null,
+        district: repProject ? repProject.district : null,
+        project_status: repProject ? repProject.project_status : 'active',
+        last_crawl: repProject ? repProject.last_crawl : null,
+        building_count: bRow ? bRow.cnt : 0,
+        total_units: hRow ? hRow.total_units : 0,
+        sold_units: hRow ? hRow.sold_units : 0,
+        permit_prices: permitPrices,
+        project_count: projectIds.length,
+      });
+    }
+
+    // 按添加时间倒序排列
+    items.sort((a, b) => {
+      if (a.added_at && b.added_at) return b.added_at.localeCompare(a.added_at);
+      return (b.added_at ? 1 : 0) - (a.added_at ? 1 : 0);
+    });
 
     res.json({
       success: true,

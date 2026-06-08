@@ -1,4 +1,5 @@
 var api = require('../../utils/api');
+var lineChart = require('../../utils/line-chart.js');
 
 Page({
   data: {
@@ -7,12 +8,20 @@ Page({
     stats: {},
     activeTab: 'buildings',
     isWatched: false,
-    watchId: null
+    watchId: null,
+    // 价格走势
+    trend: [],
+    priceInsight: '',
+    hasTrend: false,
+    // 历史成交低价提示
+    priceTip: '',
+    priceTipType: ''
   },
 
   onLoad: function(opt) {
     this.setData({ projectId: opt.id });
     this.loadDetail();
+    this.loadTrend();
   },
 
   onPullDownRefresh: function() {
@@ -44,11 +53,6 @@ Page({
         }
         return b;
       });
-
-      var stats = d.stats || {};
-      if (stats.avgPrice) {
-        stats.priceDisplay = (stats.avgPrice / 10000).toFixed(1) + '万/㎡';
-      }
 
       var stats = d.stats || {};
       var watch = d.watch;
@@ -101,5 +105,101 @@ Page({
         wx.showToast({ title: '操作失败', icon: 'none' });
       });
     }
+  },
+
+  loadTrend: function() {
+    var self = this;
+    // projectId 可能是逗号分隔的多ID，取第一个传给趋势接口
+    var pid = (this.data.projectId || '').split(',')[0];
+    var params = { projectId: pid, days: 30 };
+    api.getTrend(params).then(function(res) {
+      var d = (res && res.data) || {};
+      var dailySales = d.dailySales || [];
+
+      // 过滤有成交价的日期
+      var priceData = dailySales.filter(function(item) {
+        return item.avgPrice > 0;
+      }).map(function(item) {
+        var wan = (item.avgPrice / 10000).toFixed(1);
+        return {
+          date: item.date || '',
+          label: item.date ? item.date.substring(5) : '',
+          value: item.avgPrice / 10000,
+          valueStr: wan
+        };
+      });
+
+      // 计算价格洞察
+      var insight = '';
+      if (priceData.length >= 3) {
+        var prices = priceData.map(function(d) { return d.value; });
+        var current = prices[prices.length - 1];
+        var min = Math.min.apply(null, prices);
+        var max = Math.max.apply(null, prices);
+        var avg = prices.reduce(function(a, b) { return a + b; }, 0) / prices.length;
+        var range = max - min;
+        if (range === 0) {
+          insight = '价格走势平稳';
+        } else if (current <= min + range * 0.2) {
+          insight = '📉 当前均价处于近30天低位，可能是入手时机';
+        } else if (current >= max - range * 0.2) {
+          insight = '📈 当前均价处于近30天高位，建议观望';
+        } else if (current < avg) {
+          insight = '➡️ 当前均价低于近30天均值，值得关注';
+        } else {
+          insight = '➡️ 当前均价高于近30天均值';
+        }
+      }
+
+      self.setData({
+        trend: priceData,
+        priceInsight: insight,
+        hasTrend: priceData.length > 0
+      });
+
+      // 等 canvas 渲染后绘图
+      if (priceData.length > 0) {
+        setTimeout(function() {
+          self.drawPriceChart();
+        }, 300);
+      }
+
+      // 查询历史成交极值
+      self.loadPriceTip();
+    }).catch(function() {
+      // 趋势加载失败不影响页面
+    });
+  },
+
+  loadPriceTip: function() {
+    var self = this;
+    // projectId 可能是逗号分隔的多ID，取第一个
+    var pid = (this.data.projectId || '').split(',')[0];
+    api.getProjectPriceExtremes({ projectId: pid }).then(function(res) {
+      var d = (res && res.data) || {};
+      if (!d.hasData) return;
+      var tip = d.tip || '';
+      self.setData({
+        priceTip: tip,
+        priceTipType: d.position || 'mid'
+      });
+    }).catch(function() {
+      // 不影响页面
+    });
+  },
+
+  drawPriceChart: function() {
+    var data = this.data.trend;
+    if (!data || !data.length) return;
+    var sysInfo = wx.getSystemInfoSync();
+    var canvasW = sysInfo.windowWidth - 32;
+    lineChart.drawLineChart('priceChart', data, {
+      width: canvasW,
+      height: 180,
+      color: '#FF6600',
+      fillColor: 'rgba(255,102,0,0.08)',
+      showDots: true,
+      showLabels: data.length <= 14
+    }, this);
   }
 });
