@@ -5,12 +5,14 @@
 
 使用 crawler_common 公共模块。
 功能:
-- 从 projects 表获取所有 status='active' 的项目
-- 爬取每个项目的详情页：楼栋列表 + 项目汇总数据
-- 爬取每个楼栋的楼盘表：房屋状态
-- 更新 projects / buildings / houses 表
-- 生成所有活跃项目的快照（daily_snapshots）
-- 对比快照，生成变化记录（daily_changes），含成交价反推
+- [Step 0] 动态更新 projects.status（有可售房源=active，无=inactive）
+- [Step 1] 从 projects 表获取所有 status='active' 的项目
+- [Step 2] 爬取每个项目的详情页：楼栋列表 + 项目汇总数据
+- [Step 3] 爬取每个楼栋的楼盘表：房屋状态
+- [Step 4] 生成所有活跃项目的快照（daily_snapshots）
+- [Step 5] 对比快照，生成变化记录（daily_changes），含成交价反推
+
+活跃定义：有可售房源的项目（动态更新，无需手动维护）
 """
 
 import sys, os, re, time, random, datetime, sqlite3
@@ -22,6 +24,52 @@ import crawler_common as common
 DB = '/user/local/service/house/data/bj_realestate.db'
 PROJECT_DELAY = common.PROJECT_DELAY
 BUILDING_DELAY = common.BUILDING_DELAY
+
+
+# ─── 动态更新项目活跃状态 ───
+
+def update_project_status(conn):
+    """
+    根据是否有可售房源，动态更新 projects.status 字段。
+    有可售房源 -> active，没有 -> inactive。
+    同时保留首次爬取的新项目（houses 表无记录时，保留原 status）。
+    """
+    cur = conn.cursor()
+
+    # 1. 将所有有可售房源的项目设为 active
+    #    houses 表需要通过 buildings 表关联 project_id
+    cur.execute("""
+        UPDATE projects
+        SET status='active', updated_at=datetime('now','localtime')
+        WHERE project_id IN (
+            SELECT DISTINCT b.project_id
+            FROM houses h
+            JOIN buildings b ON h.building_id = b.building_id
+            WHERE h.status='可售'
+        )
+    """)
+    activated = cur.rowcount
+
+    # 2. 将没有可售房源的项目设为 inactive
+    cur.execute("""
+        UPDATE projects
+        SET status='inactive', updated_at=datetime('now','localtime')
+        WHERE project_id NOT IN (
+            SELECT DISTINCT b.project_id
+            FROM houses h
+            JOIN buildings b ON h.building_id = b.building_id
+            WHERE h.status='可售'
+        )
+        AND project_id IN (
+            SELECT DISTINCT b.project_id
+            FROM houses h
+            JOIN buildings b ON h.building_id = b.building_id
+        )
+    """)
+    deactivated = cur.rowcount
+
+    conn.commit()
+    print("  激活 {0} 个项目，停用 {1} 个项目".format(activated, deactivated))
 
 
 # ─── 获取所有活跃项目 ───
@@ -48,6 +96,10 @@ def main():
 
     # 建表 + 补字段
     common.ensure_schema(conn, include_daily_changes=True)
+
+    # Step 0: 动态更新项目活跃状态（基于上次爬取的数据）
+    print("\n[Step 0] 动态更新项目活跃状态...")
+    update_project_status(conn)
 
     # Step 1: 获取所有活跃项目
     print("\n[Step 1] 获取所有活跃项目...")
