@@ -5,7 +5,7 @@
 LOCK_FILE="/tmp/crawl_watchlist.lock"
 LOG_DIR="/user/local/service/house/logs"
 LOG_FILE="$LOG_DIR/crawl_watchlist_$(date +%Y%m%d).log"
-SCRIPT_PATH="/user/local/service/house/server/src/crawler/crawlWatchlist.py"
+SCRIPT_PATH="/user/local/service/house/src/crawler/crawlWatchlist.py"
 MAX_RETRIES=4
 RETRY_DELAY=1800  # 30 分钟 = 1800 秒
 

@@ -13,7 +13,7 @@
 - 对比快照，生成变化记录（daily_changes），含成交价反推
 """
 
-import sys, os, time, random, datetime, sqlite3
+import sys, os, re, time, random, datetime, sqlite3
 
 # 添加当前目录到 sys.path，以便 import crawler_common
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
@@ -71,7 +71,7 @@ def main():
         print("  楼栋: {0} 个".format(len(buildings)))
 
         if summary:
-            print("  项目汇总: 已签{0}套, 面积{1}?, 均价?.{2:,.0f}/?".format(
+            print("  项目汇总: 已签{0}套, 面积{1}\u33a1, 均价\u00a5{2:,.0f}/\u33a1".format(
                 summary['signed_count'], summary['signed_area'], summary['avg_price']))
             cur.execute("""
                 UPDATE projects
@@ -86,7 +86,7 @@ def main():
 
         else:
             cur.execute("UPDATE projects SET avg_price=0, updated_at=datetime('now','localtime') WHERE project_id=?", (pid,))
-            print("  ? ? ? ? ? 无住宅数据，均价设为 0")
+            print("  \u26a0 无住宅数据，均价设为 0")
 
         # 处理楼栋和房屋
         for bidx, bld in enumerate(buildings):

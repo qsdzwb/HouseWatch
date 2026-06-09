@@ -22,7 +22,7 @@ if ! flock -n 9; then
 fi
 echo "获取文件锁成功" | tee -a "$LOG"
 
-SCRIPT_DIR="/user/local/service/house/server/src/crawler"
+SCRIPT_DIR="/user/local/service/house/src/crawler"
 
 # ─── Step 1: 关注楼盘更新 ───
 echo "" | tee -a "$LOG"
