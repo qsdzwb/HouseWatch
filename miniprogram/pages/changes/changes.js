@@ -4,10 +4,15 @@ var lineChart = require('../../utils/line-chart.js');
 Page({
   data: {
     list: [],
+    displayList: [],      // 过滤后的列表（用于展示）
     trend: [],
     priceTrend: [],
     projects: [],
+    filteredProjects: [{ project_id: '', name: '全部楼盘' }],
+    districts: [{ name: '全部区域', project_ids: '' }],
+    selectedDistrictIds: '',
     selectedProjectId: '',
+    currentDistrictName: '',
     currentProjectName: '全部楼盘',
     page: 1,
     loading: false,
@@ -19,7 +24,11 @@ Page({
     filterType: 'all',   // all | new_sale | status_change
     sortBy: 'date',      // date | price
     sortOrder: 'desc',     // desc | asc
-    sortBtnText: '按价格↓'
+    sortBtnText: '按价格↓',
+    // 按项目筛选
+    projectFilterList: [{ name: '全部项目', project_id: '' }],
+    projectFilterName: '全部项目',
+    projectFilterId: ''
   },
 
   onLoad: function() {
@@ -33,16 +42,37 @@ Page({
     api.getProjects().then(function(res) {
       var d = (res && res.data) || {};
       var list = d.data || d.items || d || [];
-      list.unshift({ project_id: '', name: '全部楼盘' });
-      self.setData({ projects: list, currentProjectName: '全部楼盘' });
+
+      // 按区分组，生成区列表
+      var districtMap = {};
+      var districtList = [{ name: '全部区域', project_ids: '' }];
+      list.forEach(function(p) {
+        var d = p.district || '其他';
+        if (!districtMap[d]) {
+          districtMap[d] = { name: d, project_ids: [] };
+          districtList.push(districtMap[d]);
+        }
+        districtMap[d].project_ids.push(p.project_id);
+      });
+
+      self.setData({
+        projects: list,
+        filteredProjects: [{ project_id: '', name: '全部楼盘' }].concat(list),
+        districts: districtList,
+        currentDistrictName: '',
+        currentProjectName: '全部楼盘'
+      });
     }).catch(function() { /* ignore */ });
   },
 
   loadTrend: function() {
     var self = this;
     var params = { days: 14 };
+    // 优先使用 selectedProjectId（具体楼盘），其次使用区筛选
     if (this.data.selectedProjectId) {
       params.projectId = this.data.selectedProjectId;
+    } else if (this.data.currentDistrictName && this.data.currentDistrictName !== '全部区域') {
+      params.district = this.data.currentDistrictName;  // 直接传区名，后端按区过滤
     }
     api.getTrend(params).then(function(res) {
       var d = (res && res.data) || {};
@@ -157,9 +187,43 @@ Page({
     }).exec();
   },
 
+  // 区选择变化
+  onDistrictChange: function(e) {
+    var idx = parseInt(e.detail.value, 10);
+    var d = this.data.districts[idx] || {};
+    var projectIds = d.project_ids || [];
+
+    // 过滤楼盘列表
+    var filtered = [{ project_id: '', name: '全部楼盘' }];
+    if (projectIds.length > 0 && projectIds[0] !== '') {
+      this.data.projects.forEach(function(p) {
+        if (projectIds.indexOf(p.project_id) >= 0) {
+          filtered.push(p);
+        }
+      });
+    } else {
+      filtered = filtered.concat(this.data.projects);
+    }
+
+    this.setData({
+      selectedDistrictIds: projectIds.join(','),
+      currentDistrictName: d.name || '',
+      filteredProjects: filtered,
+      selectedProjectId: '',
+      currentProjectName: '全部楼盘',
+      list: [],
+      page: 1,
+      noMore: false,
+      date: ''
+    });
+    this.loadTrend();
+    this.loadChanges();
+  },
+
+  // 楼盘选择变化（受区过滤）
   onProjectChange: function(e) {
     var idx = parseInt(e.detail.value, 10);
-    var project = this.data.projects[idx] || {};
+    var project = this.data.filteredProjects[idx] || {};
     this.setData({
       selectedProjectId: project.project_id || '',
       currentProjectName: project.name || '全部楼盘',
@@ -198,6 +262,8 @@ Page({
     }
     if (this.data.selectedProjectId) {
       params.projectId = this.data.selectedProjectId;
+    } else if (this.data.currentDistrictName && this.data.currentDistrictName !== '全部区域') {
+      params.district = this.data.currentDistrictName;  // 直接传区名
     }
     // 筛选类型
     if (this.data.filterType !== 'all') {
@@ -239,8 +305,36 @@ Page({
         summary.avgPriceDisplay = Math.round(summary.avgDealPrice) + '元/㎡';
       }
 
+      // 构建项目筛选列表（去重）
+      var projectMap = {};
+      var projectFilterList = [{ name: '全部项目', project_id: '' }];
+      rows.forEach(function(item) {
+        if (item.project_id && !projectMap[item.project_id]) {
+          projectMap[item.project_id] = true;
+          projectFilterList.push({
+            name: item.project_name || item.project_id,
+            project_id: item.project_id
+          });
+        }
+      });
+
+      // 如果已按区筛选，只保留该区内的项目
+      var filteredFilterList = [projectFilterList[0]];
+      if (self.data.selectedDistrictIds) {
+        var districtIds = self.data.selectedDistrictIds.split(',');
+        projectFilterList.forEach(function(item) {
+          if (item.project_id && districtIds.indexOf(item.project_id) >= 0) {
+            filteredFilterList.push(item);
+          }
+        });
+      } else {
+        filteredFilterList = projectFilterList;
+      }
+
       self.setData({
         list: self.data.page === 1 ? rows : self.data.list.concat(rows),
+        projectFilterList: filteredFilterList,
+        displayList: self.data.page === 1 ? rows : self.data.displayList.concat(rows),
         noMore: rows.length < 20 || (pagination.page >= pagination.totalPages),
         loading: false,
         summary: summary,
@@ -307,5 +401,33 @@ Page({
       noMore: false
     });
     this.loadChanges();
+  },
+
+  // ===== 按项目筛选变化列表（前端，因为数据是分次加载的）=====
+  applyFilter: function() {
+    var list = this.data.list;
+    var projectFilterId = this.data.projectFilterId;
+
+    if (!projectFilterId) {
+      this.setData({ displayList: list });
+      return;
+    }
+
+    var filtered = list.filter(function(item) {
+      return item.project_id === projectFilterId;
+    });
+
+    this.setData({ displayList: filtered });
+  },
+
+  // 按项目筛选变化列表
+  onProjectFilterChange: function(e) {
+    var idx = parseInt(e.detail.value, 10);
+    var project = this.data.projectFilterList[idx] || {};
+    this.setData({
+      projectFilterName: project.name || '全部项目',
+      projectFilterId: project.project_id || ''
+    });
+    this.applyFilter();
   }
 });

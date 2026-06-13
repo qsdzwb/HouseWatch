@@ -29,11 +29,7 @@ module.exports = {
   logLevel: process.env.LOG_LEVEL || 'info',
 
   // 样本项目列表（仅 test 模式使用，正常模式从 watched_projects 表读取）
-  sampleProjects: [
-    { name: '金阙华院', projectID: '8205387' },
-    { name: '满和苑', projectID: '8203797' },
-    { name: '铂瑞府', projectID: '8207359' },
-  ],
+  sampleProjects: [],
 
   // 状态颜色映射
   statusColors: {

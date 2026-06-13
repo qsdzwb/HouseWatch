@@ -1,1 +1,1 @@
-{ "navigationBarTitleText": "关注管理" }
+{ "navigationBarTitleText": "关注管理", "enablePullDownRefresh": true }

@@ -18,8 +18,24 @@ function buildInClause(ids) {
 // GET /api/changes/daily — 日变化列表
 router.get('/daily', async (req, res) => {
   try {
+    const { date, projectId, district, change_type, page = 1, limit = 50 } = req.query;
+
+    // 如果传了 district，先查该区下所有楼盘 ID
+    let effectiveProjectId = projectId;
+    if (district) {
+      const projRows = await db.query('SELECT project_id FROM projects WHERE district = ?', [district]);
+      if (projRows.length > 0) {
+        effectiveProjectId = projRows.map(r => r.project_id).join(',');
+      } else {
+        // 该区没有楼盘，返回空数据
+        return res.json({
+          success: true,
+          data: { items: [], queryDate: date, summary: { newSales: 0, statusChanges: 0, avgDealPrice: null, total: 0 }, pagination: { total: 0, page: 1, limit: 20, totalPages: 0 } }
+        });
+      }
+    }
+
     console.log('[changes/daily] query:', JSON.stringify(req.query));
-    const { date, projectId, change_type, page = 1, limit = 50 } = req.query;
     console.log('[changes/daily] change_type param:', change_type);
 
     // 如果没有指定日期，默认查询最近有变化记录的日期
@@ -40,8 +56,8 @@ router.get('/daily', async (req, res) => {
     `;
     const params = [targetDate];
 
-    if (projectId) {
-      const ids = parseProjectIds(projectId);
+    if (effectiveProjectId) {
+      const ids = parseProjectIds(effectiveProjectId);
       if (ids.length === 1) {
         sql += ' AND dc.project_id = ?';
         params.push(ids[0]);
@@ -55,6 +71,9 @@ router.get('/daily', async (req, res) => {
       sql += ' AND dc.change_type = ?';
       params.push(change_type);
     }
+
+    // 永久屏蔽"已签约 → 联机备案"的流程性变化（非真实成交）
+    sql += ` AND NOT (dc.old_status LIKE '%签约%' AND dc.new_status LIKE '%备案%')`;
 
     // 查询总数
     const countSql = sql.replace(
@@ -72,18 +91,25 @@ router.get('/daily', async (req, res) => {
     console.log('[changes/daily] Params:', params);
     let changes = await db.query(sql, params);
 
-    // 汇总统计（使用 targetDate）
+    // 汇总统计（使用 targetDate，同步过滤"已签约→备案"）
     let statSql = `
       SELECT
         SUM(CASE WHEN change_type = 'new_sale' THEN 1 ELSE 0 END) as newSales,
         SUM(CASE WHEN change_type != 'new_sale' THEN 1 ELSE 0 END) as statusChanges,
         AVG(CASE WHEN change_type = 'new_sale' AND deal_unit_price > 0 THEN deal_unit_price END) as avgDealPrice
-      FROM daily_changes WHERE change_date = ?
+      FROM daily_changes
+      WHERE change_date = ?
+        AND NOT (old_status LIKE '%签约%' AND new_status LIKE '%备案%')
     `;
     const statParams = [targetDate];
     if (change_type) {
       statSql = statSql.replace('WHERE change_date = ?', 'WHERE change_date = ? AND change_type = ?');
       statParams.push(change_type);
+    }
+    if (effectiveProjectId) {
+      const ids = parseProjectIds(effectiveProjectId);
+      statSql += ` AND project_id IN (${ids.map(() => '?').join(',')})`;
+      statParams.push(...ids);
     }
     const statResult = await db.queryOne(statSql, statParams);
     let summary = { newSales: 0, statusChanges: 0, avgDealPrice: null, total: total, ...statResult };
@@ -101,8 +127,8 @@ router.get('/daily', async (req, res) => {
         WHERE stat_date IN (?, ?)
       `;
       const fallbackParams = [prevDateStr, targetDate];
-      if (projectId) {
-        const ids = parseProjectIds(projectId);
+      if (effectiveProjectId) {
+        const ids = parseProjectIds(effectiveProjectId);
         fallbackSql += ` AND project_id IN (${ids.map(() => '?').join(',')})`;
         fallbackParams.push(...ids);
       }
@@ -200,7 +226,8 @@ router.get('/by-date', async (req, res) => {
     let latestChanges = [];
     let latestSummary = {};
     if (latestDate) {
-      let detailWhere = 'WHERE dc.change_date = ?';
+      let detailWhere = `WHERE dc.change_date = ?
+        AND NOT (dc.old_status LIKE '%签约%' AND dc.new_status LIKE '%备案%')`;
       const detailParams = [latestDate];
       if (projectId) {
         const ids = parseProjectIds(projectId);
@@ -257,11 +284,26 @@ router.get('/by-date', async (req, res) => {
   }
 });
 
-// GET /api/changes/trend — 趋势数据（数量 + 均价，支持按楼盘筛选）
+// GET /api/changes/trend — 趋势数据（数量 + 均价，支持按楼盘/区筛选）
 // 优先从 project_daily_stats 表获取（每日已售累计值 → 计算日新增）
 router.get('/trend', async (req, res) => {
   try {
-    const { projectId, days = 30 } = req.query;
+    const { projectId, district, days = 30 } = req.query;
+
+    // 如果传了 district，先查该区下所有楼盘 ID
+    let effectiveProjectId = projectId;
+    if (district) {
+      const projRows = await db.query('SELECT project_id FROM projects WHERE district = ?', [district]);
+      if (projRows.length > 0) {
+        effectiveProjectId = projRows.map(r => r.project_id).join(',');
+      } else {
+        // 该区没有楼盘，返回空数据
+        return res.json({
+          success: true,
+          data: { dailySales: [], projectId: null, district }
+        });
+      }
+    }
 
     const daysAgo = new Date();
     daysAgo.setDate(daysAgo.getDate() - parseInt(days, 10));
@@ -277,13 +319,13 @@ router.get('/trend', async (req, res) => {
 
     // 先从 project_daily_stats 获取每日累计已售数据
     let statsSql = `
-      SELECT stat_date as date, signed_count, avg_price as avgPrice
+      SELECT project_id, stat_date as date, signed_count, avg_price as avgPrice
       FROM project_daily_stats
       WHERE stat_date >= ?
     `;
     const statsParams = [trendStart];
-    if (projectId) {
-      const ids = parseProjectIds(projectId);
+    if (effectiveProjectId) {
+      const ids = parseProjectIds(effectiveProjectId);
       statsSql += ` AND project_id IN (${ids.map(() => '?').join(',')})`;
       statsParams.push(...ids);
     }
@@ -294,43 +336,57 @@ router.get('/trend', async (req, res) => {
     let dailySales = [];
 
     if (statsRows.length > 0) {
-      // 按日期汇总（多项目时累加 signed_count，加权平均 avg_price）
-      const dateMap = {};
+      // ===== 修复：按项目分别计算日新增，再汇总 =====
+      // 问题：简单按日期汇总后算差值，会导致新加入项目的累计值被错误算作日新增
+      // 正确做法：每个项目只在连续两天都有数据时才计算差值
+
+      // 1. 按项目分组
+      const projectMap = {};
       statsRows.forEach(r => {
-        if (!dateMap[r.date]) {
-          dateMap[r.date] = { signed_count: 0, avgPriceSum: 0, avgPriceWeight: 0 };
-        }
-        dateMap[r.date].signed_count += r.signed_count || 0;
-        if (r.avgPrice && r.avgPrice > 0) {
-          // 按已售面积加权（signed_area * avg_price / signed_area = avg_price）
-          // 简单处理：按已售套数加权
-          const weight = r.signed_count || 1;
-          dateMap[r.date].avgPriceSum += r.avgPrice * weight;
-          dateMap[r.date].avgPriceWeight += weight;
-        }
+        if (!projectMap[r.project_id]) projectMap[r.project_id] = [];
+        projectMap[r.project_id].push({
+          date: r.date,
+          signed_count: r.signed_count || 0,
+          avg_price: r.avgPrice || 0
+        });
       });
 
-      // 按日期排序，计算相邻两天的差值（日新增成交）
-      const sortedDates = Object.keys(dateMap).sort();
-      let prevCount = null; // null 表示还没有前一天数据
+      // 2. 对每个项目，按日期排序，计算连续两天的差值
+      const dailyNewMap = {}; // date -> { totalNew: 0, totalArea: 0, totalPrice: 0 }
 
-      for (const date of sortedDates) {
-        const count = dateMap[date].signed_count;
-        let dailyNew = 0;
-        // 只有有前一天数据时才计算差值（第一天设为0，避免累计值冲击趋势图）
-        if (prevCount !== null) {
-          dailyNew = count - prevCount;
+      Object.values(projectMap).forEach(rows => {
+        rows.sort((a, b) => a.date.localeCompare(b.date));
+        for (let i = 1; i < rows.length; i++) {
+          const prev = rows[i - 1];
+          const curr = rows[i];
+          const newCount = curr.signed_count - prev.signed_count;
+          if (newCount > 0) {
+            if (!dailyNewMap[curr.date]) {
+              dailyNewMap[curr.date] = { totalNew: 0, totalPriceWeight: 0, totalCount: 0 };
+            }
+            dailyNewMap[curr.date].totalNew += newCount;
+            // 按已售套数加权均价
+            if (curr.avg_price > 0) {
+              dailyNewMap[curr.date].totalPriceWeight += curr.avg_price * newCount;
+              dailyNewMap[curr.date].totalCount += newCount;
+            }
+          }
         }
-        const avgPrice = dateMap[date].avgPriceWeight > 0
-          ? dateMap[date].avgPriceSum / dateMap[date].avgPriceWeight
-          : 0;
+        // 新项目的首日不设为0（因为它没有前一天对比基数），
+        // 这样新加入的项目不会制造虚假的日新增 spike
+      });
 
+      // 3. 按日期排序输出
+      const sortedDates = Object.keys(dailyNewMap).sort();
+      for (const date of sortedDates) {
+        const d = dailyNewMap[date];
         dailySales.push({
           date,
-          count: Math.max(0, dailyNew),
-          avgPrice: Math.round(avgPrice),
+          count: d.totalNew,
+          avgPrice: d.totalCount > 0
+            ? Math.round(d.totalPriceWeight / d.totalCount)
+            : 0,
         });
-        prevCount = count;
       }
     }
 
@@ -344,11 +400,11 @@ router.get('/trend', async (req, res) => {
         FROM daily_changes
         WHERE change_type = 'new_sale'
           AND change_date >= ?
-          ${projectId ? 'AND project_id IN (' + parseProjectIds(projectId).map(() => '?').join(',') + ')' : ''}
+          ${effectiveProjectId ? 'AND project_id IN (' + parseProjectIds(effectiveProjectId).map(() => '?').join(',') + ')' : ''}
         GROUP BY change_date
         ORDER BY change_date ASC
       `;
-      const salesParams = projectId ? [trendStart, ...parseProjectIds(projectId)] : [trendStart];
+      const salesParams = effectiveProjectId ? [trendStart, ...parseProjectIds(effectiveProjectId)] : [trendStart];
       const salesData = await db.query(salesSql, salesParams);
 
       const salesMap = {};
@@ -373,6 +429,7 @@ router.get('/trend', async (req, res) => {
       data: {
         dailySales,
         projectId: projectId || null,
+        district: district || null
       },
     });
   } catch (err) {

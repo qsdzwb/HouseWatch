@@ -1,12 +1,22 @@
 <view class="container">
-  <!-- 楼盘选择器 -->
+  <!-- 区 + 楼盘 两级选择器 -->
   <view class="card" style="padding:10px 16px;">
-    <picker mode="selector" range="{{projects}}" range-key="name" bindchange="onProjectChange">
-      <view class="flex-between">
-        <view style="font-size:15px;font-weight:600;" class="project-name">{{currentProjectName}}</view>
-        <view style="font-size:13px;color:#1989FA;">切换 ▼</view>
-      </view>
-    </picker>
+    <view style="display:flex;gap:12px;">
+      <!-- 区选择器 -->
+      <picker mode="selector" range="{{districts}}" range-key="name" bindchange="onDistrictChange">
+        <view class="flex-between" style="flex:1;padding:6px 10px;background:#f8f8f8;border-radius:6px;">
+          <view style="font-size:14px;">{{currentDistrictName || '全部区域'}}</view>
+          <view style="font-size:12px;color:#1989FA;">▾</view>
+        </view>
+      </picker>
+      <!-- 楼盘选择器（受区过滤） -->
+      <picker mode="selector" range="{{filteredProjects}}" range-key="name" bindchange="onProjectChange">
+        <view class="flex-between" style="flex:1;padding:6px 10px;background:#f8f8f8;border-radius:6px;">
+          <view style="font-size:14px;">{{currentProjectName || '全部楼盘'}}</view>
+          <view style="font-size:12px;color:#1989FA;">▾</view>
+        </view>
+      </picker>
+    </view>
   </view>
 
   <!-- 顶部统计卡片 -->
@@ -40,7 +50,7 @@
     </view>
   </view>
 
-  <!-- 成交数量折线图（可点击） -->
+  <!-- 成交数量折线图 -->
   <view class="card" wx:if="{{trend.length > 0}}">
     <view class="card-title">日成交数量</view>
     <canvas canvas-id="countChart" id="countChart"
@@ -48,7 +58,7 @@
             bindtap="onChartTap" data-chart="count"></canvas>
   </view>
 
-  <!-- 成交均价折线图（可点击） -->
+  <!-- 成交均价折线图 -->
   <view class="card" wx:if="{{priceTrend.length > 0}}">
     <view class="card-title">日成交均价（万元/㎡）</view>
     <canvas canvas-id="priceChart" id="priceChart"
@@ -57,7 +67,7 @@
   </view>
 
   <!-- 变化列表 -->
-  <block wx:for="{{list}}" wx:key="id">
+  <block wx:for="{{displayList}}" wx:key="id">
     <view class="change-card">
       <view style="display:flex;justify-content:space-between;align-items:center;">
         <view>
@@ -74,7 +84,7 @@
     </view>
   </block>
 
-  <view class="empty" wx:if="{{!list.length && !loading}}">
+  <view class="empty" wx:if="{{!displayList.length && !loading}}">
     <view wx:if="{{loadError}}" style="color:#E74C3C;">{{loadError}}</view>
     <view wx:else>暂无变化记录</view>
   </view>

@@ -78,26 +78,6 @@
     </view>
   </view>
 
-  <!-- 最新变化 -->
-  <view class="card" wx:if="{{latestChanges.length}}">
-    <view class="card-title">最新变化</view>
-    <block wx:for="{{latestChanges}}" wx:key="id">
-      <view class="flex-between" style="padding:8px 0;border-bottom:1px solid #f5f5f5;">
-        <view>
-          <text class="tag" style="background:{{item.change_type === 'new_sale' ? '#27AE60' : '#F39C12'}};color:#fff;padding:1px 6px;border-radius:3px;font-size:11px;">{{item.change_type === 'new_sale' ? '成交' : '变更'}}</text>
-          <text style="margin-left:8px;font-size:13px;">{{item.project_name || ''}} {{item.room_no || ''}}</text>
-        </view>
-        <view class="text-gray" style="font-size:12px;">{{item.old_status || ''}} → {{item.new_status || ''}}</view>
-      </view>
-    </block>
-  </view>
-
-  <!-- 无变化 -->
-  <view class="card" wx:if="{{!latestChanges.length}}">
-    <view class="card-title">最新变化</view>
-    <view class="text-gray" style="text-align:center;padding:16px;">暂无成交变化，等待下次数据更新</view>
-  </view>
-
   <!-- 最后更新 -->
   <view class="text-gray" style="text-align:center;padding:16px;font-size:12px;" wx:if="{{lastCrawl}}">
     最后更新: {{lastCrawl.crawl_date || ''}}

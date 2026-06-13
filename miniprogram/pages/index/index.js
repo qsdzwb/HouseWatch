@@ -4,7 +4,6 @@ Page({
     today: {},
     overview: {},
     weeklyTrend: {},
-    latestChanges: [],
     lastCrawl: null,
     priceBrief: null
   },
@@ -31,12 +30,6 @@ Page({
         t.max = mx || 1;
       }
 
-      // 最新变化
-      var changes = (d.latestChanges || []).map(function(c) {
-        c.change_type = (c.new_status === '已签约' && c.old_status !== '已签约') ? 'new_sale' : 'status_change';
-        return c;
-      });
-
       // 价格趋势简报
       var brief = d.priceBrief || null;
       if (brief) {
@@ -58,7 +51,6 @@ Page({
         today: today,
         overview: d.overview || {},
         weeklyTrend: t,
-        latestChanges: changes,
         lastCrawl: d.lastCrawl,
         priceBrief: brief
       });

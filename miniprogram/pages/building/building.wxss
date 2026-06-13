@@ -7,8 +7,8 @@
 .filter-tag.filter-red { color: #CF1322; }
 .filter-tag.filter-red.active { background: #CF1322; color: #fff; }
 
-.filter-tag.filter-orange { color: #D4380D; }
-.filter-tag.filter-orange.active { background: #D4380D; color: #fff; }
+.filter-tag.filter-orange { color: #531DAB; }
+.filter-tag.filter-orange.active { background: #531DAB; color: #fff; }
 
 .filter-tag.filter-blue { color: #0958D9; }
 .filter-tag.filter-blue.active { background: #0958D9; color: #fff; }
@@ -42,7 +42,7 @@
 
 .house-cell {
   width: calc(25% - 3px);
-  padding: 3px 1px 2px;
+  padding: 3px 1px 2px 1px;
   border-radius: 4px;
   text-align: center;
   font-size: 11px;
@@ -71,12 +71,12 @@
 }
 
 .house-cell.status-filed {
-  background: #FFF7E6;
-  border: 1px solid #FFD591;
+  background: #F9F0FF;
+  border: 1px solid #D3ADF7;
 }
 
 .house-cell.status-filed .house-no {
-  color: #D4380D;
+  color: #531DAB;
 }
 
 .house-cell.status-reserved {

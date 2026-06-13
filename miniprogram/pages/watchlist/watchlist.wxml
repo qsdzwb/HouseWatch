@@ -5,20 +5,34 @@
 
   <!-- 关注列表 -->
   <block wx:for="{{list}}" wx:key="id">
-    <view class="project-card" bindtap="goDetail" data-id="{{item.project_id}}">
-      <view class="card-top">
-        <view class="project-name">{{item.display_name ? item.display_name + '(' + item.name + ')' : (item.name || '未知楼盘')}}</view>
-        <view class="project-arrow">›</view>
+    <view class="card-container">
+      <!-- 取消关注按钮（隐藏在右侧，用 catchtap 阻止冒泡） -->
+      <view class="delete-btn" catchtap="onUnfollow" data-id="{{item.project_id}}" data-name="{{item.display_name || item.name}}">
+        取消关注
       </view>
-      <view class="project-meta">{{item.notes || ''}}</view>
-      <view class="project-stats" wx:if="{{item.showStats}}">
-        <text class="stat-green">{{item.total_units}}套</text>
-        <text class="stat-red">已售{{item.sold_units}}套</text>
-        <text class="stat-rate">{{item.rate}}</text>
-        <!-- 各预售证均价分别展示 -->
-        <text wx:for="{{item.permit_prices}}" wx:key="project_id" class="stat-price">
-          {{item.avg_price}}元/㎡
-        </text>
+
+      <!-- 卡片内容（可左滑） -->
+      <view class="card-content {{item.animating ? 'animating' : ''}}"
+            style="transform: translateX({{item.slideX || 0}}px);"
+            bindtouchstart="onTouchStart"
+            bindtouchmove="onTouchMove"
+            bindtouchend="onTouchEnd"
+            bindtap="onCardTap"
+            data-index="{{index}}"
+            data-id="{{item.project_id}}">
+        <view class="project-card">
+          <view class="card-top">
+            <view class="project-name">{{item.display_name ? item.display_name + '(' + item.name + ')' : (item.name || '未知楼盘')}}</view>
+            <view class="project-arrow">›</view>
+          </view>
+          <view class="project-meta">{{item.notes || ''}}</view>
+          <view class="project-stats" wx:if="{{item.showStats}}">
+            <text class="stat-green">{{item.total_units}}套</text>
+            <text class="stat-red">已售{{item.sold_units}}套</text>
+            <text class="stat-rate">{{item.rate}}</text>
+            <text class="stat-price">{{item.avgPriceText}}</text>
+          </view>
+        </view>
       </view>
     </view>
   </block>
