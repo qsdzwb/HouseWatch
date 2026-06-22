@@ -62,7 +62,10 @@ Page({
     flexAvail: 0,
     flexSold: 0,
     statusFilter: '',
-    recentSales: {}   // { room_no: price_display }
+    recentSales: {},   // { room_no: price_display }
+    // 房源详情弹窗
+    showHouseModal: false,
+    houseDetail: {}
   },
   onLoad: function(opt) {
     this.setData({ buildingId: opt.id });
@@ -112,10 +115,71 @@ Page({
     var status = e.currentTarget.dataset.status;
     var houses = this.data.houses;
     var filtered = status ? houses.filter(function(h) { return h.status === status; }) : houses;
-    this.setData({ 
-      statusFilter: status, 
+    this.setData({
+      statusFilter: status,
       filteredHouses: filtered,
       floorGroups: groupByFloor(filtered)
     });
-  }
+  },
+
+  // ===== 房源详情弹窗 =====
+  showHouseDetail: function(e) {
+    var houseId = e.currentTarget.dataset.houseId;
+    var self = this;
+
+    self.setData({ showHouseModal: true, houseDetail: { room_no: e.currentTarget.dataset.roomNo } });
+
+    api.getHouseDetail(houseId).then(function(res) {
+      var d = (res && res.data) || {};
+      var house = d; // /detail 直接返回 house 对象
+
+      // 计算得房率
+      var areaRate = '-';
+      if (house.inner_area > 0 && house.build_area > 0) {
+        areaRate = (house.inner_area / house.build_area * 100).toFixed(1) + '%';
+      }
+
+      // 格式化建筑面积
+      var buildAreaDisplay = house.build_area ? house.build_area.toFixed(2) + '平方米' : '-';
+
+      // 格式化总价
+      var totalPriceDisplay = '-';
+      if (house.list_total_price && house.list_total_price > 0) {
+        totalPriceDisplay = Math.round(house.list_total_price).toLocaleString() + '元';
+      }
+
+      // 按建筑面积拟售单价
+      var pricePerBuildArea = '-';
+      if (house.list_price_per_sqm && house.list_price_per_sqm > 0) {
+        pricePerBuildArea = Math.round(house.list_price_per_sqm).toLocaleString() + '元/平方米';
+      }
+
+      // 按套内面积拟售单价
+      var pricePerInnerArea = '-';
+      if (house.inner_area > 0 && house.list_total_price && house.list_total_price > 0) {
+        pricePerInnerArea = Math.round(house.list_total_price / house.inner_area).toLocaleString() + '元/平方米';
+      }
+
+      self.setData({
+        houseDetail: {
+          room_no: house.room_no,
+          purpose: house.purpose,
+          layout: house.layout,
+          buildAreaDisplay: buildAreaDisplay,
+          totalPriceDisplay: totalPriceDisplay,
+          pricePerBuildArea: pricePerBuildArea,
+          pricePerInnerArea: pricePerInnerArea,
+          areaRate: areaRate
+        }
+      });
+    }).catch(function(err) {
+      console.log('房源详情加载失败:', err);
+    });
+  },
+
+  hideHouseDetail: function() {
+    this.setData({ showHouseModal: false, houseDetail: {} });
+  },
+
+  stopPropagation: function() {}
 });

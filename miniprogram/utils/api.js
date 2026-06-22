@@ -127,6 +127,7 @@ module.exports = {
   getBuildings: function(id) { return request('/buildings?project_id=' + id); },
   getBuildingHouses: function(id) { return request('/buildings/' + id + '/houses'); },
   getHouseHistory: function(id) { return request('/houses/' + id + '/history'); },
+  getHouseDetail: function(id) { return request('/houses/' + id + '/detail'); },
   getChanges: function(p) { return request('/changes/daily', 'GET', p); },
   getTrend: function(p) { return request('/changes/trend', 'GET', p); },
   getProjectPriceExtremes: function(p) { return request('/changes/project-price-extremes', 'GET', p); },
@@ -153,5 +154,5 @@ module.exports = {
     return request('/projects/' + projectId + '?open_id=' + encodeURIComponent(openId), 'PUT', { display_name: displayName });
   },
   // 获取所有活跃楼盘（用于推广名编辑表单）
-  getActiveProjects: function() { return request('/projects', 'GET', { status: 'active', limit: 1000 }); },
+  getActiveProjects: function() { return request('/projects', 'GET', { status: 'active', limit: 0 }); },
 };

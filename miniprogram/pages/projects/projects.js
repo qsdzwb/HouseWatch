@@ -167,5 +167,39 @@ Page({
   goDetail: function(e) {
     var projectId = e.currentTarget.dataset.id;
     wx.navigateTo({ url: '/pages/project-detail/project-detail?id=' + projectId });
+  },
+
+  // 编辑楼盘备注（营销推广名）
+  editAlias: function(e) {
+    var self = this;
+    var projectId = e.currentTarget.dataset.id;
+    var projectName = e.currentTarget.dataset.name;
+    var currentAlias = e.currentTarget.dataset.displayName || '';
+    var index = e.currentTarget.dataset.index;
+
+    wx.showModal({
+      title: '设置推广名',
+      content: '当前: ' + (currentAlias || '无'),
+      editable: true,
+      placeholderText: '输入营销推广名（留空则清除）',
+      success: function(res) {
+        if (res.confirm) {
+          var newAlias = (res.content || '').trim();
+          // 调用 API 更新
+          api.updateDisplayName(projectId, newAlias, '').then(function() {
+            wx.showToast({ title: newAlias ? '已设置' : '已清除', icon: 'success' });
+            // 更新本地数据
+            var list = self.data.list;
+            if (list[index]) {
+              list[index].display_name = newAlias || null;
+              self.setData({ list: list });
+            }
+          }).catch(function(err) {
+            console.error('更新推广名失败:', err);
+            wx.showToast({ title: '保存失败', icon: 'none' });
+          });
+        }
+      }
+    });
   }
 });

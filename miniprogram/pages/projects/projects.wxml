@@ -32,7 +32,10 @@
       <view class="card-main" bindtap="goDetail" data-id="{{item.project_id}}">
         <view class="card-top">
           <view class="project-name">{{item.display_name ? item.display_name + '(' + item.name + ')' : item.name}}</view>
-          <view class="project-arrow">›</view>
+          <view style="display:flex;align-items:center;">
+            <view class="alias-edit-btn" catchtap="editAlias" data-id="{{item.project_id}}" data-name="{{item.name}}" data-display-name="{{item.display_name || ''}}" data-index="{{index}}">✏</view>
+            <view class="project-arrow">›</view>
+          </view>
         </view>
         <view class="project-meta">
           <text wx:if="{{item.district}}">{{item.district}} · </text>

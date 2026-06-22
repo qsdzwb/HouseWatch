@@ -57,8 +57,11 @@ router.get('/', async (req, res) => {
   try {
     const { district, page = 1, limit = 20, status = 'active', search, sort_by, order } = req.query;
     const pageNum = parseInt(page, 10);
-    const limitNum = parseInt(limit, 10);
-    const offset = (pageNum - 1) * limitNum;
+    // limit=0 表示不限制（返回全部），正常分页场景默认 20
+    const limitRaw = parseInt(limit, 10);
+    const noLimit = (limitRaw === 0);
+    const limitNum = noLimit ? 99999 : limitRaw;
+    const offset = noLimit ? 0 : (pageNum - 1) * limitNum;
 
     // 先按名称分组，获取合并后的名称列表
     let nameSQL = 'SELECT name FROM projects p WHERE p.status = ?';

@@ -28,7 +28,10 @@ Page({
     // 按项目筛选
     projectFilterList: [{ name: '全部项目', project_id: '' }],
     projectFilterName: '全部项目',
-    projectFilterId: ''
+    projectFilterId: '',
+    // 房源详情弹窗
+    showHouseModal: false,
+    houseDetail: {}
   },
 
   onLoad: function() {
@@ -39,7 +42,7 @@ Page({
 
   loadProjects: function() {
     var self = this;
-    api.getProjects().then(function(res) {
+    api.getProjects({ limit: 0 }).then(function(res) {
       var d = (res && res.data) || {};
       var list = d.data || d.items || d || [];
 
@@ -282,11 +285,23 @@ Page({
       }
 
       var rows = items.map(function(item) {
+        // 汇总条目（无具体房号的成交汇总）
+        if (!item.room_no && !item.building_name) {
+          item.room_no = item.summary_count ? '共' + item.summary_count + '套成交(明细缺失)' : '汇总成交';
+        }
         if (!item.price_display) {
           if (item.deal_unit_price && item.deal_unit_price > 0) {
             item.price_display = Math.round(item.deal_unit_price) + '元/㎡';
           } else if (item.building_avg_price && item.building_avg_price > 0) {
             item.price_display = Math.round(item.building_avg_price) + '元/㎡(楼栋均价)';
+          }
+        }
+        // 统一楼盘名格式：推广名(备案名) — 后端已处理，兜底
+        if (!item.project_display_name) {
+          if (item.display_name) {
+            item.project_display_name = item.display_name + '(' + item.project_name + ')';
+          } else {
+            item.project_display_name = item.project_name;
           }
         }
         return item;
@@ -429,5 +444,80 @@ Page({
       projectFilterId: project.project_id || ''
     });
     this.applyFilter();
+  },
+
+  // ===== 房源详情弹窗 =====
+  showHouseDetail: function(e) {
+    var houseId = e.currentTarget.dataset.houseId;
+    var self = this;
+
+    self.setData({ showHouseModal: true, houseDetail: { room_no: e.currentTarget.dataset.roomNo } });
+
+    api.getHouseDetail(houseId).then(function(res) {
+      var d = (res && res.data) || {};
+      var house = d; // /detail 直接返回 house 对象
+
+      // 计算得房率
+      var areaRate = '-';
+      if (house.inner_area > 0 && house.build_area > 0) {
+        areaRate = (house.inner_area / house.build_area * 100).toFixed(1) + '%';
+      }
+
+      // 格式化建筑面积
+      var buildAreaDisplay = house.build_area ? house.build_area.toFixed(2) + '平方米' : '-';
+
+      // 格式化总价
+      var totalPriceDisplay = '-';
+      if (house.list_total_price && house.list_total_price > 0) {
+        totalPriceDisplay = Math.round(house.list_total_price).toLocaleString() + '元';
+      }
+
+      // 按建筑面积拟售单价
+      var pricePerBuildArea = '-';
+      if (house.list_price_per_sqm && house.list_price_per_sqm > 0) {
+        pricePerBuildArea = Math.round(house.list_price_per_sqm).toLocaleString() + '元/平方米';
+      }
+
+      // 按套内面积拟售单价
+      var pricePerInnerArea = '-';
+      if (house.inner_area > 0 && house.list_total_price && house.list_total_price > 0) {
+        pricePerInnerArea = Math.round(house.list_total_price / house.inner_area).toLocaleString() + '元/平方米';
+      }
+
+      self.setData({
+        houseDetail: {
+          room_no: house.room_no,
+          purpose: house.purpose,
+          layout: house.layout,
+          buildAreaDisplay: buildAreaDisplay,
+          totalPriceDisplay: totalPriceDisplay,
+          pricePerBuildArea: pricePerBuildArea,
+          pricePerInnerArea: pricePerInnerArea,
+          areaRate: areaRate
+        }
+      });
+    }).catch(function(err) {
+      console.log('房源详情加载失败:', err);
+      self.setData({
+        houseDetail: {
+          room_no: e.currentTarget.dataset.roomNo,
+          purpose: '-',
+          layout: '-',
+          buildAreaDisplay: '-',
+          totalPriceDisplay: '-',
+          pricePerBuildArea: '-',
+          pricePerInnerArea: '-',
+          areaRate: '-'
+        }
+      });
+    });
+  },
+
+  hideHouseDetail: function() {
+    this.setData({ showHouseModal: false, houseDetail: {} });
+  },
+
+  stopPropagation: function() {
+    // 阻止事件冒泡，避免点击弹窗内容时关闭
   }
 });

@@ -76,7 +76,10 @@
         </view>
         <view class="text-gray" style="font-size:11px;">{{item.change_date || ''}}</view>
       </view>
-      <view class="change-house">{{item.project_name || ''}} {{item.building_name || ''}} {{item.room_no || ''}}</view>
+      <view class="change-house">
+        {{item.project_display_name || item.project_name || ''}} {{item.building_name || ''}}
+        <text class="room-no-link" wx:if="{{item.room_no}}" catchtap="showHouseDetail" data-house-id="{{item.house_id}}" data-room-no="{{item.room_no}}">{{item.room_no}}</text>
+      </view>
       <view class="change-detail">
         {{item.old_status || ''}} → {{item.new_status || ''}}
         <text wx:if="{{item.price_display}}" style="color:#FF6600;margin-left:8px;">{{item.price_display}}</text>
@@ -90,4 +93,24 @@
   </view>
   <view class="load-more" wx:if="{{loading}}">加载中...</view>
   <view class="load-more" wx:if="{{noMore && list.length}}">没有更多了</view>
+
+  <!-- 房源详情弹窗 -->
+  <view class="house-modal-mask" wx:if="{{showHouseModal}}" bindtap="hideHouseDetail">
+    <view class="house-modal" catchtap="stopPropagation">
+      <view class="house-modal-header">
+        <text class="house-modal-title">房源资料</text>
+        <text class="house-modal-close" catchtap="hideHouseDetail">✕</text>
+      </view>
+      <view class="house-modal-body">
+        <view class="info-row"><text class="info-label">房源编号</text><text class="info-value">{{houseDetail.room_no || '-'}}</text></view>
+        <view class="info-row"><text class="info-label">用途</text><text class="info-value">{{houseDetail.purpose || '-'}}</text></view>
+        <view class="info-row"><text class="info-label">户型</text><text class="info-value">{{houseDetail.layout || '-'}}</text></view>
+        <view class="info-row"><text class="info-label">建筑面积</text><text class="info-value">{{houseDetail.buildAreaDisplay || '-'}}</text></view>
+        <view class="info-row"><text class="info-label">房屋总价</text><text class="info-value price-red">{{houseDetail.totalPriceDisplay || '-'}}</text></view>
+        <view class="info-row"><text class="info-label">按建筑面积拟售单价</text><text class="info-value price-orange">{{houseDetail.pricePerBuildArea || '-'}}</text></view>
+        <view class="info-row"><text class="info-label">按套内面积拟售单价</text><text class="info-value price-orange">{{houseDetail.pricePerInnerArea || '-'}}</text></view>
+        <view class="info-row"><text class="info-label">得房率</text><text class="info-value rate-highlight">{{houseDetail.areaRate || '-'}}</text></view>
+      </view>
+    </view>
+  </view>
 </view>

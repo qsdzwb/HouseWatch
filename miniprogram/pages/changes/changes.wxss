@@ -88,3 +88,83 @@
     background: #fff;
     border-bottom: 1px solid #f0f0f0;
   }
+
+/* 房源编号可点击样式 */
+.room-no-link {
+  color: #1989FA;
+  font-weight: 600;
+}
+
+/* 房源详情弹窗 */
+.house-modal-mask {
+  position: fixed;
+  top: 0; left: 0; right: 0; bottom: 0;
+  background: rgba(0,0,0,0.5);
+  z-index: 999;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.house-modal {
+  width: 85%;
+  max-width: 600rpx;
+  background: #fff;
+  border-radius: 20rpx;
+  overflow: hidden;
+}
+
+.house-modal-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 28rpx 32rpx;
+  border-bottom: 1rpx solid #f0f0f0;
+}
+
+.house-modal-title {
+  font-size: 34rpx;
+  font-weight: 700;
+  color: #333;
+}
+
+.house-modal-close {
+  font-size: 36rpx;
+  color: #999;
+  padding: 8rpx 12rpx;
+}
+
+.house-modal-body {
+  padding: 16rpx 32rpx 28rpx;
+}
+
+.info-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 16rpx 0;
+  border-bottom: 1rpx solid #f5f5f5;
+}
+
+.info-row:last-child {
+  border-bottom: none;
+}
+
+.info-label {
+  font-size: 26rpx;
+  color: #888;
+  flex-shrink: 0;
+  margin-right: 16rpx;
+}
+
+.info-value {
+  font-size: 28rpx;
+  color: #333;
+  font-weight: 500;
+  text-align: right;
+  word-break: break-all;
+}
+
+.price-red { color: #E74C3C !important; }
+.price-orange { color: #FF6600 !important; }
+.rate-highlight { color: #1989FA !important; font-weight: 700 !important; }

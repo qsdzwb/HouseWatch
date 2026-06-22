@@ -76,6 +76,18 @@ function insert(sql, params = []) {
   }
 }
 
+function run(sql, params = []) {
+  const dbInstance = getDb();
+  try {
+    const stmt = dbInstance.prepare(sql);
+    const info = stmt.run(params);
+    return { affectedRows: info.changes };
+  } catch (err) {
+    console.error('SQL 执行错误:', sql.substring(0, 100), err.message);
+    throw err;
+  }
+}
+
 function upsert(table, data, uniqueKey) {
   const dbInstance = getDb();
   const keys = Object.keys(data);
@@ -155,6 +167,7 @@ module.exports = {
   query,
   queryOne,
   insert,
+  run,
   upsert,
   batchInsert,
   healthCheck,

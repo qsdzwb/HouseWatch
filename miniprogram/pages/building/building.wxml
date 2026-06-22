@@ -32,7 +32,7 @@
       <view class="floor-row">
         <view class="floor-label">{{item.floor}}层</view>
         <view class="floor-houses">
-          <view wx:for="{{item.houses}}" wx:key="id" class="house-cell status-{{item.statusClass}}">
+          <view wx:for="{{item.houses}}" wx:key="id" class="house-cell status-{{item.statusClass}}" catchtap="showHouseDetail" data-house-id="{{item.house_id}}" data-room-no="{{item.room_display || item.room_no}}">
             <view class="house-no">{{item.room_display || item.room_no}}</view>
             <view class="house-price" wx:if="{{item.salePrice}}">{{item.salePrice}}</view>
             <view class="house-date" wx:if="{{item.saleDateShort}}">{{item.saleDateShort}}</view>
@@ -42,4 +42,24 @@
     </block>
   </view>
   <view class="empty" wx:if="{{!floorGroups.length}}">暂无该状态房屋</view>
+
+  <!-- 房源详情弹窗 -->
+  <view class="house-modal-mask" wx:if="{{showHouseModal}}" bindtap="hideHouseDetail">
+    <view class="house-modal" catchtap="stopPropagation">
+      <view class="house-modal-header">
+        <text class="house-modal-title">房源资料</text>
+        <text class="house-modal-close" catchtap="hideHouseDetail">✕</text>
+      </view>
+      <view class="house-modal-body">
+        <view class="info-row"><text class="info-label">房源编号</text><text class="info-value">{{houseDetail.room_no || '-'}}</text></view>
+        <view class="info-row"><text class="info-label">用途</text><text class="info-value">{{houseDetail.purpose || '-'}}</text></view>
+        <view class="info-row"><text class="info-label">户型</text><text class="info-value">{{houseDetail.layout || '-'}}</text></view>
+        <view class="info-row"><text class="info-label">建筑面积</text><text class="info-value">{{houseDetail.buildAreaDisplay || '-'}}</text></view>
+        <view class="info-row"><text class="info-label">房屋总价</text><text class="info-value price-red">{{houseDetail.totalPriceDisplay || '-'}}</text></view>
+        <view class="info-row"><text class="info-label">按建筑面积拟售单价</text><text class="info-value price-orange">{{houseDetail.pricePerBuildArea || '-'}}</text></view>
+        <view class="info-row"><text class="info-label">按套内面积拟售单价</text><text class="info-value price-orange">{{houseDetail.pricePerInnerArea || '-'}}</text></view>
+        <view class="info-row"><text class="info-label">得房率</text><text class="info-value rate-highlight">{{houseDetail.areaRate || '-'}}</text></view>
+      </view>
+    </view>
+  </view>
 </view>
