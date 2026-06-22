@@ -189,7 +189,7 @@ router.get('/dashboard', async (req, res) => {
        JOIN projects p ON t.project_id = p.project_id
        WHERE y.house_id IS NULL
           OR (y.status != '已签约' AND y.status != '网上联机备案')
-       ORDER BY t.project_name, t.building_name, t.room_no
+       ORDER BY project_name, t.building_name, t.room_no
        LIMIT 10`,
       [today, yesterdayStr]
     );
