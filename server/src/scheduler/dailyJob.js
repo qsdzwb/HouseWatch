@@ -215,19 +215,13 @@ async function main() {
   // 4. 输出汇总
   const elapsed = ((Date.now() - startTime) / 1000 / 60).toFixed(1);
 
-  var todaySnapshots = 0, todayChanges = 0;
+  var todaySnapshots = 0;
   try {
     var snapResult = await db.queryOne(
       'SELECT COUNT(*) as count FROM daily_snapshots WHERE snapshot_date = ?',
       [today]
     );
     todaySnapshots = snapResult ? snapResult.count : 0;
-
-    var changeResult = await db.queryOne(
-      'SELECT COUNT(*) as count FROM daily_changes WHERE change_date = ?',
-      [today]
-    );
-    todayChanges = changeResult ? changeResult.count : 0;
   } catch (e) {
     console.error('统计查询失败:', e.message);
   }
@@ -237,7 +231,6 @@ async function main() {
   console.log(`${'='.repeat(50)}`);
   console.log(`  成功: ${successCount}  失败: ${failCount}  跳过: ${skipCount}`);
   console.log(`  快照数: ${todaySnapshots}`);
-  console.log(`  变化数: ${todayChanges}`);
   console.log(`  耗时: ${elapsed} 分钟`);
   if (failedProjects.length > 0) {
     console.log(`  失败项目: ${failedProjects.map(function(p) { return p.project_id; }).join(', ')}`);

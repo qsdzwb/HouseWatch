@@ -7,8 +7,10 @@ const config = require('../config');
  * 核心逻辑：
  * 1. 读取昨日快照 (yesterday)
  * 2. 读取今日快照 (today)
- * 3. 逐套对比：状态变化 → new_sale / status_change
- * 4. 写入 daily_changes 表
+ * 3. 逐套对比：统计变化数量
+ * 4. 更新 houses.status_changed_date（首次售出日期）
+ * 
+ * 2026-06-22: 已废弃 daily_changes 表写入，仅做统计 + 状态日期更新
  */
 const snapshotService = {
   /**
@@ -68,110 +70,34 @@ const snapshotService = {
 
     console.log(`  发现 ${changes.length} 条状态变化`);
 
-    // 预加载项目日统计，用于计算成交价
-    const statsToday = await db.query(
-      `SELECT * FROM project_daily_stats WHERE stat_date = ?`,
-      [date]
-    );
-    const statsYesterday = await db.query(
-      `SELECT * FROM project_daily_stats WHERE stat_date = ?`,
-      [yesterday]
-    );
-
-    // 计算每个项目的边际成交价
-    const projectPriceMap = {};
-    statsToday.forEach(s => {
-      const y = statsYesterday.find(ys => ys.project_id === s.project_id) || 
-        { signed_count: 0, signed_area: 0, avg_price: 0 };
-      
-      const deltaCount = s.signed_count - (y.signed_count || 0);
-      const deltaArea = s.signed_area - (y.signed_area || 0);
-      
-      let marginalPrice = 0;
-      if (deltaArea > 0) {
-        const todayValue = (s.avg_price || 0) * (s.signed_area || 0);
-        const yesterdayValue = (y.avg_price || 0) * (y.signed_area || 0);
-        marginalPrice = todayValue - yesterdayValue;
-        if (deltaArea > 0) marginalPrice = marginalPrice / deltaArea;
-      }
-      
-      projectPriceMap[s.project_id] = {
-        marginalPrice,
-        isEstimated: deltaCount > 1 ? 1 : 0,
-        deltaCount
-      };
-    });
-
-    console.log(`  已加载 ${Object.keys(projectPriceMap).length} 个项目的日统计`);
-
-    // 分类并写入 daily_changes
-    let insertedCount = 0;
+    // 统计变化（不写入 daily_changes）
+    let newSaleCount = 0;
+    let statusChangeCount = 0;
 
     for (const change of changes) {
       const changeType = classifyChange(change.old_status, change.new_status);
-
-      if (!changeType) continue; // 忽略无关变化
-
-      // 计算成交价（反推）
-      let dealPrice = null;
-      let isEstimated = 0;
+      if (!changeType) continue;
 
       if (changeType === 'new_sale') {
-        const priceInfo = projectPriceMap[change.project_id];
-        if (priceInfo && priceInfo.marginalPrice > 0) {
-          dealPrice = Math.round(priceInfo.marginalPrice);
-          isEstimated = priceInfo.isEstimated;
-        }
-      }
+        newSaleCount++;
 
-      try {
-        await db.insert(
-          `INSERT INTO daily_changes 
-            (change_date, project_id, building_id, house_id, room_no,
-             change_type, old_status, new_status, old_price, new_price,
-             build_area, deal_unit_price, is_estimated)
-           VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)`,
-          [
-            date,
-            change.project_id,
-            change.building_id,
-            change.house_id,
-            change.room_no,
-            changeType,
-            change.old_status,
-            change.new_status,
-            change.old_price,
-            change.new_price,
-            change.build_area,
-            dealPrice,
-            isEstimated
-          ]
-        );
-        insertedCount++;
-
-        // 如果是首次售出，更新 houses.status_changed_date
-        if (changeType === 'new_sale') {
+        // 更新首次售出日期（保留有用信息）
+        try {
           await db.insert(
             `UPDATE houses SET status_changed_date = ? 
              WHERE house_id = ? AND status_changed_date IS NULL`,
             [date, change.house_id]
           );
+        } catch (err) {
+          // 忽略
         }
-      } catch (err) {
-        // 忽略重复键错误
-        if (!err.message.includes('UNIQUE constraint') && !err.message.includes('Duplicate')) {
-          console.error(`  写入变化失败 (${change.house_id}): ${err.message}`);
-        }
+      } else {
+        statusChangeCount++;
       }
     }
 
-    // 统计
-    const newSales = changes.filter(c =>
-      classifyChange(c.old_status, c.new_status) === 'new_sale'
-    ).length;
-
-    console.log(`  新售出: ${newSales} | 状态变更: ${insertedCount - newSales}`);
-    return insertedCount;
+    console.log(`  新售出: ${newSaleCount} | 状态变更: ${statusChangeCount}`);
+    return newSaleCount + statusChangeCount;
   },
 
   /**

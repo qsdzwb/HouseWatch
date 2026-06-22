@@ -10,7 +10,7 @@
 - [Step 2] 爬取每个项目的详情页：楼栋列表 + 项目汇总数据
 - [Step 3] 爬取每个楼栋的楼盘表：房屋状态
 - [Step 4] 生成所有活跃项目的快照（daily_snapshots）
-- [Step 5] 对比快照，生成变化记录（daily_changes），含成交价反推
+- [Step 5] 对比快照，统计变化数量（不写入 daily_changes，已废弃）
 
 活跃定义：有可售房源的项目（动态更新，无需手动维护）
 """
@@ -95,7 +95,7 @@ def main():
     conn.execute("PRAGMA busy_timeout = 60000")
 
     # 建表 + 补字段
-    common.ensure_schema(conn, include_daily_changes=True)
+    common.ensure_schema(conn)
 
     # Step 0: 动态更新项目活跃状态（基于上次爬取的数据）
     print("\n[Step 0] 动态更新项目活跃状态...")

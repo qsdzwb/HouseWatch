@@ -24,13 +24,21 @@ router.get('/:id/history', async (req, res) => {
       [req.params.id]
     );
 
-    const changes = await db.query(
-      `SELECT * FROM daily_changes
-       WHERE house_id = ?
-       ORDER BY change_date DESC
-       LIMIT 30`,
-      [req.params.id]
-    );
+    // 从 snapshots 推导变化事件（替代 daily_changes）
+    const changes = [];
+    for (let i = 0; i < snapshots.length - 1; i++) {
+      const curr = snapshots[i];
+      const prev = snapshots[i + 1];
+      if (curr.status !== prev.status) {
+        changes.push({
+          change_date: curr.snapshot_date,
+          change_type: curr.status.includes('签约') || curr.status.includes('备案') ? 'new_sale' : 'status_change',
+          old_status: prev.status,
+          new_status: curr.status,
+          room_no: house.room_no,
+        });
+      }
+    }
 
     res.json({
       success: true,

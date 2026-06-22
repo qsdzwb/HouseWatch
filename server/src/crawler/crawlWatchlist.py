@@ -2,10 +2,6 @@
 # -*- coding: utf-8 -*-
 """
 关注楼盘优先更新 v8 — 使用 crawler_common 公共模块
-
-新增:
-- 成交价反推逻辑：利用项目级日均价差值，反推每套房成交单价
-- deal_unit_price / is_estimated 字段写入 daily_changes
 """
 
 import sys, os, sqlite3, datetime, urllib.parse, re, time
@@ -60,7 +56,7 @@ def main():
     conn.execute("PRAGMA busy_timeout = 60000")
 
     # 建表 + 补字段
-    common.ensure_schema(conn, include_daily_changes=True)
+    common.ensure_schema(conn)
 
     # Step 1: 关注列表
     print("\n[Step 1] 设置关注列表...")
@@ -174,7 +170,7 @@ def main():
 
     # Step 4: 对比变化（含成交价反推）
     print("\n[Step 4] 对比日变更（含成交价反推）...")
-    change_count = common.compare_and_generate_changes(conn, today_str, calc_price=True)
+    change_count = common.compare_and_generate_changes(conn, today_str, calc_price=False)
 
     conn.close()
 
@@ -190,9 +186,7 @@ def main():
     b = conn2.execute("SELECT COUNT(*) FROM buildings").fetchone()[0]
     h = conn2.execute("SELECT COUNT(*) FROM houses").fetchone()[0]
     s = conn2.execute("SELECT COUNT(*) FROM daily_snapshots WHERE snapshot_date=?", (today_str,)).fetchone()[0]
-    c = conn2.execute("SELECT COUNT(*) FROM daily_changes WHERE change_date=?", (today_str,)).fetchone()[0]
-    dc = conn2.execute("SELECT COUNT(*) FROM daily_changes WHERE change_date=? AND deal_unit_price IS NOT NULL", (today_str,)).fetchone()[0]
-    print("[验证] buildings:{0} houses:{1} snapshots:{2} changes:{3} (有成交价:{4})".format(b, h, s, c, dc))
+    print("[验证] buildings:{0} houses:{1} snapshots:{2}".format(b, h, s))
     for pid, name, _ in CHANGPING_2026:
         row = conn2.execute("SELECT signed_count, signed_area, avg_price FROM projects WHERE project_id=?", (pid,)).fetchone()
         if row and row[0]:

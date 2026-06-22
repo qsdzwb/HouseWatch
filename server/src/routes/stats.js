@@ -3,12 +3,13 @@ const router = express.Router();
 const db = require('../db/pool');
 
 // GET /api/stats/dashboard — 首页仪表盘数据
-// 优先从 project_daily_stats 表获取趋势数据（daily_changes 为空时的 fallback）
+// 数据源：project_daily_stats（项目累计统计）+ daily_snapshots（房屋快照）
+// 已废弃 daily_changes 表依赖
 router.get('/dashboard', async (req, res) => {
   try {
     const today = new Date().toISOString().split('T')[0];
 
-    // ─── 项目总数 / 房源概况（不依赖 daily_changes） ───
+    // ─── 项目总数 / 房源概况 ───
     const [{ projectCount }] = await db.query(
       "SELECT COUNT(*) as projectCount FROM projects WHERE status = 'active'"
     );
@@ -23,7 +24,7 @@ router.get('/dashboard', async (req, res) => {
       ? (soldCount / houseCount * 100).toFixed(1)
       : '0.0';
 
-    // ─── 今日成交 / 均价：优先从 project_daily_stats 计算日增量 ───
+    // ─── 今日成交 / 均价：从 project_daily_stats 计算日增量 ───
     const yesterday = new Date(); yesterday.setDate(yesterday.getDate() - 1);
     const yesterdayStr = yesterday.toISOString().split('T')[0];
 
@@ -47,25 +48,11 @@ router.get('/dashboard', async (req, res) => {
       }
     }
 
-    // fallback：尝试 daily_changes（房屋级变化记录）
-    if (todayNewSales === 0) {
-      const todaySales = await db.query(
-        `SELECT COUNT(*) as count, AVG(deal_unit_price) as avgPrice
-         FROM daily_changes WHERE change_date = ? AND change_type = 'new_sale'`,
-        [today]
-      );
-      if (todaySales[0]?.count > 0) {
-        todayNewSales = todaySales[0].count;
-        todayAvgPrice = todaySales[0].avgPrice ? Math.round(todaySales[0].avgPrice) : 0;
-      }
-    }
-
-    // ─── 近7天趋势：优先 project_daily_stats ───
+    // ─── 近7天趋势：project_daily_stats ───
     const sevenDaysAgo = new Date();
     sevenDaysAgo.setDate(sevenDaysAgo.getDate() - 7);
     const weekStart = sevenDaysAgo.toISOString().split('T')[0];
 
-    // 从 project_daily_stats 获取近7天每日累计已售
     const pds7d = await db.query(
       `SELECT stat_date as date, SUM(signed_count) as signed_count,
               CASE WHEN SUM(signed_count)>0 THEN SUM(signed_count*avg_price)/SUM(signed_count) ELSE 0 END as avg_price
@@ -94,63 +81,33 @@ router.get('/dashboard', async (req, res) => {
       }
     }
 
-    // fallback：daily_changes
-    if (weeklyTrend.length === 0) {
-      weeklyTrend = await db.query(
-        `SELECT change_date as date, COUNT(*) as count FROM daily_changes
-         WHERE change_type='new_sale' AND change_date >= ? GROUP BY change_date ORDER BY change_date ASC`,
-        [weekStart]
-      );
-      weeklyPrice = await db.query(
-        `SELECT change_date as date, AVG(deal_unit_price) as avgPrice FROM daily_changes
-         WHERE change_type='new_sale' AND change_date >= ? GROUP BY change_date ORDER BY change_date ASC`,
-        [weekStart]
-      );
-    }
-
-    // ─── 价格趋势简报 ───
+    // ─── 价格趋势简报：project_daily_stats ───
     const thirtyDaysAgo = new Date();
     thirtyDaysAgo.setDate(thirtyDaysAgo.getDate() - 30);
     const monthStart = thirtyDaysAgo.toISOString().split('T')[0];
 
-    // 从 project_daily_stats 获取均价
-    const price7dRowPds = await db.queryOne(
+    const price7dRow = await db.queryOne(
       `SELECT CASE WHEN SUM(signed_count)>0 THEN SUM(signed_count*avg_price)/SUM(signed_count) ELSE 0 END as avgPrice
        FROM project_daily_stats WHERE stat_date >= ?`,
       [weekStart]
     );
-    const price30dRowPds = await db.queryOne(
+    const price30dRow = await db.queryOne(
       `SELECT CASE WHEN SUM(signed_count)>0 THEN SUM(signed_count*avg_price)/SUM(signed_count) ELSE 0 END as avgPrice
        FROM project_daily_stats WHERE stat_date >= ?`,
       [monthStart]
     );
-    const price7dBeforeRowPds = await db.queryOne(
+
+    const twoWeeksAgo = new Date(); twoWeeksAgo.setDate(twoWeeksAgo.getDate() - 14);
+    const oneWeekAgo = new Date(); oneWeekAgo.setDate(oneWeekAgo.getDate() - 7);
+    const price7dBeforeRow = await db.queryOne(
       `SELECT CASE WHEN SUM(signed_count)>0 THEN SUM(signed_count*avg_price)/SUM(signed_count) ELSE 0 END as avgPrice
        FROM project_daily_stats WHERE stat_date >= ? AND stat_date < ?`,
-      [(function(){const d=new Date();d.setDate(d.getDate()-14);return d.toISOString().split('T')[0];})(),
-       (function(){const d=new Date();d.setDate(d.getDate()-7);return d.toISOString().split('T')[0];})()]
+      [twoWeeksAgo.toISOString().split('T')[0], oneWeekAgo.toISOString().split('T')[0]]
     );
 
-    let price7d = price7dRowPds?.avgPrice ? Math.round(price7dRowPds.avgPrice) : null;
-    let price30d = price30dRowPds?.avgPrice ? Math.round(price30dRowPds.avgPrice) : null;
-    let price7dBefore = price7dBeforeRowPds?.avgPrice ? Math.round(price7dBeforeRowPds.avgPrice) : null;
-
-    // fallback：daily_changes
-    if (!price7d) {
-      const r = await db.queryOne(`SELECT AVG(deal_unit_price) as avgPrice FROM daily_changes WHERE change_type='new_sale' AND change_date >= ?`, [weekStart]);
-      price7d = r?.avgPrice ? Math.round(r.avgPrice) : null;
-    }
-    if (!price30d) {
-      const r = await db.queryOne(`SELECT AVG(deal_unit_price) as avgPrice FROM daily_changes WHERE change_type='new_sale' AND change_date >= ?`, [monthStart]);
-      price30d = r?.avgPrice ? Math.round(r.avgPrice) : null;
-    }
-    if (!price7dBefore) {
-      const d = new Date(); d.setDate(d.getDate()-14);
-      const ps = d.toISOString().split('T')[0]; d.setDate(d.getDate()+7);
-      const pe = d.toISOString().split('T')[0];
-      const r = await db.queryOne(`SELECT AVG(deal_unit_price) as avgPrice FROM daily_changes WHERE change_type='new_sale' AND change_date >= ? AND change_date < ?`, [ps, pe]);
-      price7dBefore = r?.avgPrice ? Math.round(r.avgPrice) : null;
-    }
+    let price7d = price7dRow?.avgPrice ? Math.round(price7dRow.avgPrice) : null;
+    let price30d = price30dRow?.avgPrice ? Math.round(price30dRow.avgPrice) : null;
+    let price7dBefore = price7dBeforeRow?.avgPrice ? Math.round(price7dBeforeRow.avgPrice) : null;
 
     let trend = 'flat';
     let trendText = '近7天均价平稳';
@@ -167,9 +124,9 @@ router.get('/dashboard', async (req, res) => {
       else { trendText = '近7天均价平稳'; }
     }
 
-    // 热盘：从 project_daily_stats 近7天日增量计算
-    const hotProjectsPds = await db.query(
-      `SELECT p.project_id, p.name as project_name,
+    // ─── 热盘：project_daily_stats 近7天日增量 ───
+    const hotProjects = await db.query(
+      `SELECT p.project_id, p.name as project_name, p.display_name,
               SUM(CASE WHEN s1.signed_count IS NOT NULL AND s2.signed_count IS NOT NULL
                        THEN s1.signed_count - s2.signed_count ELSE 0 END) as salesCount,
               ROUND(AVG(s1.avg_price)) as avgPrice
@@ -184,21 +141,6 @@ router.get('/dashboard', async (req, res) => {
        LIMIT 3`,
       [weekStart]
     );
-
-    let hotProjects = hotProjectsPds;
-    if (hotProjects.length === 0) {
-      hotProjects = await db.query(
-        `SELECT p.project_id, p.name as project_name, COUNT(*) as salesCount,
-                ROUND(AVG(dc.deal_unit_price)) as avgPrice
-         FROM daily_changes dc
-         JOIN projects p ON dc.project_id = p.project_id
-         WHERE dc.change_type = 'new_sale' AND dc.change_date >= ?
-         GROUP BY dc.project_id
-         ORDER BY salesCount DESC
-         LIMIT 3`,
-        [weekStart]
-      );
-    }
 
     let summary = '暂无足够成交数据生成趋势简报';
     if (price7d && hotProjects.length) {
@@ -215,31 +157,46 @@ router.get('/dashboard', async (req, res) => {
     }
 
     const priceBrief = {
-      trend: trend,
-      trendText: trendText,
-      trendValue: trendValue,
+      trend,
+      trendText,
+      trendValue,
       avgPrice7d: price7d,
       avgPrice30d: price30d,
-      hotProjects: hotProjects,
-      summary: summary
+      hotProjects,
+      summary
     };
 
-    // ─── 最新变化（房屋级）───
+    // ─── 最新变化：从 daily_snapshots 比对今天 vs 昨天 ───
     const latestChanges = await db.query(
-      `SELECT dc.*, p.name as project_name, b.building_name
-       FROM daily_changes dc
-       JOIN projects p ON dc.project_id = p.project_id
-       JOIN buildings b ON dc.building_id = b.building_id
-       ORDER BY dc.change_date DESC, dc.id DESC
-       LIMIT 10`
+      `WITH today_signed AS (
+         SELECT s.house_id, s.room_no, s.building_id, s.status,
+                COALESCE(b.building_name, b.building_id) as building_name,
+                b.project_id
+         FROM daily_snapshots s
+         JOIN buildings b ON s.building_id = b.building_id
+         WHERE s.snapshot_date = ? AND s.status IN ('已签约', '网上联机备案')
+       ),
+       yesterday_houses AS (
+         SELECT house_id, status FROM daily_snapshots WHERE snapshot_date = ?
+       )
+       SELECT t.house_id, t.room_no, t.building_id, t.building_name,
+              t.project_id, t.status as new_status,
+              COALESCE(p.display_name, p.name) as project_name,
+              p.display_name,
+              COALESCE(y.status, '新增') as old_status
+       FROM today_signed t
+       LEFT JOIN yesterday_houses y ON t.house_id = y.house_id
+       JOIN projects p ON t.project_id = p.project_id
+       WHERE y.house_id IS NULL
+          OR (y.status != '已签约' AND y.status != '网上联机备案')
+       ORDER BY t.project_name, t.building_name, t.room_no
+       LIMIT 10`,
+      [today, yesterdayStr]
     );
 
-    // ─── 最后更新时间：优先 project_daily_stats 最大日期 ───
+    // ─── 最后更新时间 ───
     const latestPdsDate = await db.queryOne(
       `SELECT MAX(stat_date) as latest_date FROM project_daily_stats`
-    );
-    const latestChangeDate = await db.queryOne(
-      `SELECT MAX(change_date) as latest_date FROM daily_changes`
     );
     const lastCrawlLog = await db.queryOne(
       `SELECT crawl_date, created_at FROM crawl_logs ORDER BY created_at DESC LIMIT 1`
@@ -248,7 +205,6 @@ router.get('/dashboard', async (req, res) => {
     let lastCrawlDate = '';
     const dates = [
       latestPdsDate?.latest_date,
-      latestChangeDate?.latest_date,
       lastCrawlLog?.crawl_date,
       lastCrawlLog?.created_at?.split(' ')[0]
     ].filter(Boolean);

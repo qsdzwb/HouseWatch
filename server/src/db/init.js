@@ -51,7 +51,7 @@ async function init() {
 
   console.log(`\n初始化完成！`);
   console.log(`数据库文件: ${dbPath}`);
-  console.log('表: projects, buildings, houses, daily_snapshots, daily_changes, crawl_queue, crawl_logs, watched_projects');
+  console.log('表: projects, buildings, houses, daily_snapshots, crawl_queue, crawl_logs, watched_projects');
 }
 
 init().catch(err => {

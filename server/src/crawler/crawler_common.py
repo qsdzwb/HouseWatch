@@ -357,10 +357,10 @@ def get_unit_table(sale_permit_id, building_id):
 
 # ─── 建表 + 补字段 ───
 
-def ensure_schema(conn, include_daily_changes=True):
+def ensure_schema(conn):
     """
     建表 + 补字段（两爬虫共用）。
-    include_daily_changes: v1 和 v7 都需要 daily_changes 表，设为 True。
+    已废弃 daily_changes 表依赖（2026-06-22）。
     """
     cur = conn.cursor()
 
@@ -415,43 +415,6 @@ def ensure_schema(conn, include_daily_changes=True):
         except:
             pass
 
-    # daily_changes 表
-    if include_daily_changes:
-        cur.execute("""
-            CREATE TABLE IF NOT EXISTS daily_changes (
-                id INTEGER PRIMARY KEY AUTOINCREMENT,
-                change_date TEXT NOT NULL,
-                project_id TEXT NOT NULL,
-                building_id TEXT NOT NULL,
-                building_name TEXT DEFAULT '',
-                house_id TEXT NOT NULL,
-                room_no TEXT NOT NULL,
-                old_status TEXT DEFAULT NULL,
-                new_status TEXT NOT NULL,
-                building_avg_price REAL DEFAULT NULL,
-                change_type TEXT DEFAULT 'status_change',
-                build_area REAL DEFAULT NULL,
-                deal_unit_price REAL DEFAULT NULL,
-                deal_total_price REAL DEFAULT NULL,
-                is_estimated INTEGER DEFAULT 0,
-                created_at TEXT DEFAULT (datetime('now', 'localtime'))
-            )
-        """)
-        cur.execute("CREATE INDEX IF NOT EXISTS idx_changes_date ON daily_changes(change_date)")
-        cur.execute("CREATE INDEX IF NOT EXISTS idx_changes_project_date ON daily_changes(project_id, change_date)")
-        cur.execute("CREATE INDEX IF NOT EXISTS idx_changes_type ON daily_changes(change_type)")
-        for col, ctype in [('building_name', "TEXT DEFAULT ''"),
-                            ('building_avg_price', 'REAL DEFAULT NULL'),
-                            ('change_type', "TEXT DEFAULT 'status_change'"),
-                            ('build_area', 'REAL DEFAULT NULL'),
-                            ('deal_unit_price', 'REAL DEFAULT NULL'),
-                            ('deal_total_price', 'REAL DEFAULT NULL'),
-                            ('is_estimated', 'INTEGER DEFAULT 0')]:
-            try:
-                cur.execute("ALTER TABLE daily_changes ADD COLUMN {0} {1}".format(col, ctype))
-            except:
-                pass
-
     conn.commit()
 
 
@@ -496,8 +459,8 @@ def generate_snapshots(conn, today_str, project_filter_sql=None, project_filter_
 
 def compare_and_generate_changes(conn, today_str, calc_price=False):
     """
-    对比相邻两天快照，生成变化记录写入 daily_changes。
-    calc_price: True 时，同时反推成交单价（需要 project_daily_stats 数据）
+    [已废弃] 对比相邻两天快照，统计变化数量（不再写入 daily_changes）。
+    2026-06-22: daily_changes 表已废弃，此函数仅统计不写入。
     返回: 变化条数
     """
     cur = conn.cursor()
@@ -512,121 +475,20 @@ def compare_and_generate_changes(conn, today_str, calc_price=False):
         return 0
 
     yesterday_str = prev[0]
-    print("  对比: {0} -> {1}".format(yesterday_str, today_str))
+    print("  对比: {0} -> {1} (仅统计，不写入 daily_changes)".format(yesterday_str, today_str))
 
     cur.execute("""
-        SELECT
-            t.house_id, t.building_id, t.room_no,
-            y.status as old_status, t.status as new_status,
-            t.building_avg_price
+        SELECT COUNT(*)
         FROM daily_snapshots t
         JOIN daily_snapshots y ON t.house_id = y.house_id AND y.snapshot_date = ?
         WHERE t.snapshot_date = ?
         AND t.status != y.status
     """, (yesterday_str, today_str))
 
-    changes = cur.fetchall()
-    if not changes:
-        print("  无变化")
-        return 0
-
-    cur.execute("SELECT building_id, project_id, building_name FROM buildings")
-    bld_map = {r[0]: (r[1], r[2]) for r in cur.fetchall()}
-
-    # 如果要反推成交价，先收集每个项目的成交套数，再计算边际均价
-    proj_price_map = {}
-    if calc_price:
-        proj_sale_count = {}
-        for row in changes:
-            house_id, building_id, room_no, old_status, new_status, avg_price = row
-            proj_id = bld_map.get(building_id, ('', ''))[0]
-            is_new_sale = (new_status in ('\u5df2\u7b7e\u7ea6', '\u7f51\u4e0a\u8054\u673a\u5907\u6848')
-                               and old_status not in ('\u5df2\u7b7e\u7ea6', '\u7f51\u4e0a\u8054\u673a\u5907\u6848'))
-            if is_new_sale:
-                proj_sale_count[proj_id] = proj_sale_count.get(proj_id, 0) + 1
-
-        for proj_id in proj_sale_count:
-            row_today = conn.execute(
-                "SELECT signed_count, signed_area, avg_price FROM project_daily_stats WHERE project_id=? AND stat_date=?",
-                (proj_id, today_str)
-            ).fetchone()
-            row_yesterday = conn.execute(
-                "SELECT signed_count, signed_area, avg_price FROM project_daily_stats WHERE project_id=? AND stat_date=?",
-                (proj_id, yesterday_str)
-            ).fetchone()
-
-            if row_today and row_yesterday:
-                delta_count = row_today[0] - row_yesterday[0]
-                delta_area = row_today[1] - row_yesterday[1]
-
-                marginal_avg_price = 0
-                if delta_area > 0:
-                    today_total = (row_today[2] or 0) * (row_today[1] or 0)
-                    yesterday_total = (row_yesterday[2] or 0) * (row_yesterday[1] or 0)
-                    marginal_total = today_total - yesterday_total
-                    if marginal_total > 0 and delta_area > 0:
-                        marginal_avg_price = marginal_total / delta_area
-
-                is_estimated = 1 if delta_count > 1 else 0
-                proj_price_map[proj_id] = {
-                    'marginal_avg_price': marginal_avg_price,
-                    'is_estimated': is_estimated,
-                    'delta_count': delta_count,
-                }
-                print("  [{0}] 边际成交均价: {1:,.0f}/? (delta_count={2}, estimated={3})".format(
-                    proj_id, marginal_avg_price, delta_count, is_estimated))
-            else:
-                proj_price_map[proj_id] = {
-                    'marginal_avg_price': 0,
-                    'is_estimated': 1,
-                    'delta_count': proj_sale_count[proj_id],
-                }
-
-    # 写入 daily_changes
-    cur.execute("DELETE FROM daily_changes WHERE change_date = ?", (today_str,))
-
-    new_sale_count = 0
-    for row in changes:
-        house_id, building_id, room_no, old_status, new_status, avg_price = row
-        proj_id, bld_name = bld_map.get(building_id, ('', building_id))
-        is_new_sale = (new_status in ('已签约', '网上联机备案')
-                       and old_status not in ('已签约', '网上联机备案'))
-        change_type = 'new_sale' if is_new_sale else 'status_change'
-
-        deal_unit_price = None
-        deal_total_price = None
-        build_area = None
-        is_estimated = 0
-
-        if is_new_sale:
-            new_sale_count += 1
-            if calc_price:
-                h_row = conn.execute(
-                    "SELECT build_area, list_price_per_sqm FROM houses WHERE house_id=?",
-                    (house_id,)
-                ).fetchone()
-                if h_row:
-                    build_area = h_row[0]
-                    price_info = proj_price_map.get(proj_id)
-                    if price_info and price_info['marginal_avg_price'] > 0:
-                        deal_unit_price = round(price_info['marginal_avg_price'])
-                        is_estimated = price_info['is_estimated']
-                        if build_area:
-                            deal_total_price = round(deal_unit_price * build_area)
-
-        cur.execute("""
-            INSERT OR IGNORE INTO daily_changes
-            (change_date, project_id, building_id, building_name,
-             house_id, room_no, old_status, new_status,
-             building_avg_price, change_type, build_area,
-             deal_unit_price, deal_total_price, is_estimated)
-            VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
-        """, (today_str, proj_id, building_id, bld_name,
-               house_id, room_no, old_status, new_status,
-               avg_price, change_type, build_area,
-               deal_unit_price, deal_total_price, is_estimated))
-
-    conn.commit()
+    row = cur.fetchone()
+    change_count = row[0] if row else 0
+    print("  变化记录: {0} 条".format(change_count))
+    return change_count
     print("  发现变化: {0} 套房 (新增成交: {1})".format(len(changes), new_sale_count))
 
     for row in changes[:10]:
