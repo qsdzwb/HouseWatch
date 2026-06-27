@@ -3,11 +3,13 @@ const router = express.Router();
 const db = require('../db/pool');
 
 // GET /api/stats/dashboard — 首页仪表盘数据
-// 数据源：project_daily_stats（项目累计统计）+ daily_snapshots（房屋快照）
-// 已废弃 daily_changes 表依赖
+// 全部指标使用 project_daily_stats 按项目逐日差分（快速通道保证数据完整）
+// 最新成交列表使用 daily_snapshots
 router.get('/dashboard', async (req, res) => {
   try {
     const today = new Date().toISOString().split('T')[0];
+    const yesterday = new Date(); yesterday.setDate(yesterday.getDate() - 1);
+    const yesterdayStr = yesterday.toISOString().split('T')[0];
 
     // ─── 项目总数 / 房源概况 ───
     const [{ projectCount }] = await db.query(
@@ -24,57 +26,60 @@ router.get('/dashboard', async (req, res) => {
       ? (soldCount / houseCount * 100).toFixed(1)
       : '0.0';
 
-    // ─── 今日成交 / 均价：从 project_daily_stats 计算日增量 ───
-    const yesterday = new Date(); yesterday.setDate(yesterday.getDate() - 1);
-    const yesterdayStr = yesterday.toISOString().split('T')[0];
-
-    const todayStats = await db.query(
-      `SELECT stat_date, SUM(signed_count) as signed_count,
-              CASE WHEN SUM(signed_count)>0 THEN SUM(signed_count*avg_price)/SUM(signed_count) ELSE 0 END as avg_price
-       FROM project_daily_stats WHERE stat_date=? GROUP BY stat_date`,
-      [today]
+    // ─── 今日成交 + 均价：project_daily_stats 按项目逐日差分 ───
+    // 只取今天和昨天都有数据的项目，自动过滤爬取遗漏
+    const todayRow = await db.queryOne(
+      `SELECT SUM(t1.signed_count - t2.signed_count) as newSales,
+              CASE WHEN SUM(t1.signed_count - t2.signed_count) > 0
+              THEN SUM((t1.signed_count - t2.signed_count) * t1.avg_price) / SUM(t1.signed_count - t2.signed_count)
+              ELSE 0 END as avgPrice
+       FROM project_daily_stats t1
+       JOIN project_daily_stats t2 ON t1.project_id = t2.project_id
+         AND t2.stat_date = ?
+       WHERE t1.stat_date = ?
+         AND t1.signed_count > COALESCE(t2.signed_count, 0)`,
+      [yesterdayStr, today]
     );
-    const prevStats = await db.query(
-      `SELECT stat_date, SUM(signed_count) as signed_count FROM project_daily_stats WHERE stat_date=? GROUP BY stat_date`,
-      [yesterdayStr]
-    );
+    const todayNewSales = todayRow?.newSales || 0;
+    const todayAvgPrice = Math.round(todayRow?.avgPrice || 0);
 
-    let todayNewSales = 0;
-    let todayAvgPrice = 0;
-    if (todayStats.length > 0) {
-      todayAvgPrice = Math.round(todayStats[0].avg_price || 0);
-      if (prevStats.length > 0) {
-        todayNewSales = Math.max(0, (todayStats[0].signed_count || 0) - (prevStats[0].signed_count || 0));
-      }
-    }
-
-    // ─── 近7天趋势：project_daily_stats ───
+    // ─── 近7天趋势：project_daily_stats 按项目逐日差分 ───
     const sevenDaysAgo = new Date();
     sevenDaysAgo.setDate(sevenDaysAgo.getDate() - 7);
     const weekStart = sevenDaysAgo.toISOString().split('T')[0];
 
-    const pds7d = await db.query(
-      `SELECT stat_date as date, SUM(signed_count) as signed_count,
-              CASE WHEN SUM(signed_count)>0 THEN SUM(signed_count*avg_price)/SUM(signed_count) ELSE 0 END as avg_price
-       FROM project_daily_stats WHERE stat_date >= ? GROUP BY stat_date ORDER BY stat_date ASC`,
+    // 取近8天的 project_daily_stats 日期列表
+    const pdsDates = await db.query(
+      `SELECT DISTINCT stat_date as d FROM project_daily_stats
+       WHERE stat_date >= date(?, '-1 day') ORDER BY d ASC`,
       [weekStart]
     );
 
     let weeklyTrend = [];
     let weeklyPrice = [];
 
-    if (pds7d.length > 0) {
-      let prevCount = null;
-      for (const row of pds7d) {
-        let dailyNew = 0;
-        if (prevCount !== null) {
-          dailyNew = Math.max(0, (row.signed_count || 0) - prevCount);
-        }
-        weeklyTrend.push({ date: row.date, count: dailyNew });
-        weeklyPrice.push({ date: row.date, avgPrice: row.avg_price || 0 });
-        prevCount = row.signed_count || 0;
+    if (pdsDates.length > 1) {
+      for (let i = 1; i < pdsDates.length; i++) {
+        const curDate = pdsDates[i].d;
+        const prevDate = pdsDates[i - 1].d;
+
+        const row = await db.queryOne(
+          `SELECT SUM(t1.signed_count - t2.signed_count) as newSales,
+                  CASE WHEN SUM(t1.signed_count - t2.signed_count) > 0
+                  THEN SUM((t1.signed_count - t2.signed_count) * t1.avg_price) / SUM(t1.signed_count - t2.signed_count)
+                  ELSE 0 END as avgPrice
+           FROM project_daily_stats t1
+           JOIN project_daily_stats t2 ON t1.project_id = t2.project_id
+             AND t2.stat_date = ?
+           WHERE t1.stat_date = ?
+             AND t1.signed_count > COALESCE(t2.signed_count, 0)`,
+          [prevDate, curDate]
+        );
+
+        weeklyTrend.push({ date: curDate, count: row?.newSales || 0 });
+        weeklyPrice.push({ date: curDate, avgPrice: row?.avgPrice || 0 });
       }
-      // 去掉开头 count=0 的日期
+
       while (weeklyTrend.length > 0 && weeklyTrend[0].count === 0) {
         weeklyTrend.shift();
         weeklyPrice.shift();

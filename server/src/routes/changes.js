@@ -359,12 +359,105 @@ router.get('/by-date', async (req, res) => {
 });
 
 // ============================================================
+// 工具函数：获取某周的起始日期（周一）
+// ============================================================
+function getWeekStart(dateStr) {
+  const d = new Date(dateStr + 'T00:00:00+08:00');
+  const day = d.getDay();
+  const diff = d.getDate() - day + (day === 0 ? -6 : 1); // 周一
+  d.setDate(diff);
+  return d.toISOString().split('T')[0];
+}
+
+// ============================================================
+// 工具函数：获取某月的起始日期
+// ============================================================
+function getMonthStart(dateStr) {
+  return dateStr.substring(0, 7) + '-01';
+}
+
+// ============================================================
+// 工具函数：按粒度聚合日数据
+// ============================================================
+function aggregateByGranularity(dailySales, granularity) {
+  if (granularity === 'day' || !dailySales.length) return dailySales;
+
+  const groups = {};
+  dailySales.forEach(d => {
+    let key;
+    if (granularity === 'week') {
+      key = getWeekStart(d.date);
+    } else if (granularity === 'month') {
+      key = getMonthStart(d.date);
+    } else {
+      key = d.date;
+    }
+    if (!groups[key]) groups[key] = { totalPrice: 0, totalCount: 0 };
+    groups[key].totalCount += d.count;
+    if (d.avgPrice > 0) {
+      groups[key].totalPrice += d.avgPrice * d.count;
+    }
+  });
+
+  const sorted = Object.keys(groups).sort();
+  return sorted.map(key => ({
+    date: key,
+    count: groups[key].totalCount,
+    avgPrice: groups[key].totalCount > 0 ? Math.round(groups[key].totalPrice / groups[key].totalCount) : 0,
+  }));
+}
+
+// ============================================================
+// 工具函数：计算环比
+// ============================================================
+function calcCompare(allDaily, currentPeriod, lookbackDays) {
+  const periodStart = new Date(currentPeriod + 'T00:00:00+08:00');
+  const prevEnd = new Date(periodStart);
+  prevEnd.setDate(prevEnd.getDate() - 1);
+  const prevStart = new Date(prevEnd);
+  prevStart.setDate(prevStart.getDate() - lookbackDays + 1);
+
+  const prevEndStr = prevEnd.toISOString().split('T')[0];
+  const prevStartStr = prevStart.toISOString().split('T')[0];
+
+  const prevData = allDaily.filter(d => d.date >= prevStartStr && d.date <= prevEndStr);
+  const prevCount = prevData.reduce((s, d) => s + d.count, 0);
+  const prevWeight = prevData.reduce((s, d) => s + (d.avgPrice > 0 ? d.avgPrice * d.count : 0), 0);
+  const prevAvgPrice = prevCount > 0 ? Math.round(prevWeight / prevCount) : 0;
+
+  const currData = allDaily.filter(d => d.date >= currentPeriod);
+  const currCount = currData.reduce((s, d) => s + d.count, 0);
+  const currWeight = currData.reduce((s, d) => s + (d.avgPrice > 0 ? d.avgPrice * d.count : 0), 0);
+  const currAvgPrice = currCount > 0 ? Math.round(currWeight / currCount) : 0;
+
+  function safePct(a, b) {
+    if (!b) return null;
+    return parseFloat((((a - b) / b) * 100).toFixed(1));
+  }
+
+  return {
+    countChange: currCount - prevCount,
+    countChangePct: safePct(currCount, prevCount),
+    priceChange: currAvgPrice - prevAvgPrice,
+    priceChangePct: safePct(currAvgPrice, prevAvgPrice),
+    currentPeriod: { count: currCount, avgPrice: currAvgPrice, start: currentPeriod },
+    previousPeriod: { count: prevCount, avgPrice: prevAvgPrice, start: prevStartStr, end: prevEndStr },
+  };
+}
+
+// ============================================================
 // GET /api/changes/trend — 趋势数据
 // 数据源：project_daily_stats（每日已售累计值 → 计算日新增）
+// 参数：
+//   projectId / district — 楼盘ID或区域
+//   days — 天数，默认30
+//   granularity — day | week | month，默认 day
 // ============================================================
 router.get('/trend', async (req, res) => {
   try {
-    const { projectId, district, days = 30 } = req.query;
+    const { projectId, district, days = 30, granularity = 'day' } = req.query;
+    const daysNum = parseInt(days, 10);
+    const granularityMode = ['day', 'week', 'month'].includes(granularity) ? granularity : 'day';
 
     let effectiveProjectId = projectId;
     if (district) {
@@ -374,21 +467,22 @@ router.get('/trend', async (req, res) => {
       } else {
         return res.json({
           success: true,
-          data: { dailySales: [], projectId: null, district }
+          data: { dailySales: [], granularity: granularityMode, projectId: null, district }
         });
       }
     }
 
-    const daysAgo = new Date();
-    daysAgo.setDate(daysAgo.getDate() - parseInt(days, 10));
-    const trendStart = daysAgo.toISOString().split('T')[0];
+    // 多取一些数据用于环比计算（额外往前取60天）
+    const compareDaysAgo = new Date();
+    compareDaysAgo.setDate(compareDaysAgo.getDate() - Math.max(daysNum, 30) - 60);
+    const compareStart = compareDaysAgo.toISOString().split('T')[0];
 
     let statsSql = `
       SELECT project_id, stat_date as date, signed_count, avg_price as avgPrice
       FROM project_daily_stats
       WHERE stat_date >= ?
     `;
-    const statsParams = [trendStart];
+    const statsParams = [compareStart];
     if (effectiveProjectId) {
       const ids = parseProjectIds(effectiveProjectId);
       statsSql += ` AND project_id IN (${ids.map(() => '?').join(',')})`;
@@ -397,7 +491,7 @@ router.get('/trend', async (req, res) => {
     statsSql += ` ORDER BY stat_date ASC`;
 
     const statsRows = await db.query(statsSql, statsParams);
-    const dailySales = [];
+    const allDailySales = [];
 
     if (statsRows.length > 0) {
       const projectMap = {};
@@ -433,7 +527,7 @@ router.get('/trend', async (req, res) => {
       const sortedDates = Object.keys(dailyNewMap).sort();
       for (const date of sortedDates) {
         const d = dailyNewMap[date];
-        dailySales.push({
+        allDailySales.push({
           date,
           count: d.totalNew,
           avgPrice: d.totalCount > 0 ? Math.round(d.totalPriceWeight / d.totalCount) : 0,
@@ -442,13 +536,49 @@ router.get('/trend', async (req, res) => {
     }
 
     // 去掉开头的零值
-    while (dailySales.length > 0 && dailySales[0].count === 0) {
-      dailySales.shift();
+    while (allDailySales.length > 0 && allDailySales[0].count === 0) {
+      allDailySales.shift();
     }
+
+    // 截取当前时间窗口用于图表数据
+    const windowStart = new Date();
+    windowStart.setDate(windowStart.getDate() - daysNum);
+    const windowStartStr = windowStart.toISOString().split('T')[0];
+    const windowSales = allDailySales.filter(d => d.date >= windowStartStr);
+
+    // 按粒度聚合
+    const dailySales = aggregateByGranularity(windowSales, granularityMode);
+
+    // 计算汇总
+    const totalCount = dailySales.reduce((s, d) => s + d.count, 0);
+    const totalWeight = dailySales.reduce((s, d) => s + (d.avgPrice > 0 ? d.avgPrice * d.count : 0), 0);
+    const summaryAvgPrice = totalCount > 0 ? Math.round(totalWeight / totalCount) : 0;
+
+    // 计算环比
+    const today = new Date().toISOString().split('T')[0];
+    const weekStart = getWeekStart(today);
+    const monthStart = getMonthStart(today);
+
+    const compare = {
+      weekOverWeek: calcCompare(allDailySales, weekStart, 7),
+      monthOverMonth: calcCompare(allDailySales, monthStart, (new Date(today).getDate())),
+    };
 
     res.json({
       success: true,
-      data: { dailySales, projectId: projectId || null, district: district || null },
+      data: {
+        dailySales,
+        granularity: granularityMode,
+        summary: {
+          totalCount,
+          avgPrice: summaryAvgPrice,
+          periodStart: windowStartStr,
+          periodEnd: dailySales.length > 0 ? dailySales[dailySales.length - 1].date : windowStartStr,
+        },
+        compare,
+        projectId: projectId || null,
+        district: district || null,
+      },
     });
   } catch (err) {
     console.error('趋势查询失败:', err.message);

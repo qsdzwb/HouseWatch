@@ -29,7 +29,6 @@
         <view class="stat-label">去化率</view>
       </view>
     </view>
-    <!-- 各预售证均价（分别展示，不合并） -->
     <view wx:if="{{stats.permit_prices.length > 0}}" class="price-rows">
       <view wx:for="{{stats.permit_prices}}" wx:key="project_id" class="price-row">
         <text class="price-label">{{item.display_name || item.permit_no || item.project_id}}</text>
@@ -38,18 +37,67 @@
     </view>
   </view>
 
-  <!-- 价格走势图 -->
+  <!-- 成交趋势图 -->
   <view class="card" wx:if="{{hasTrend}}">
-    <view class="card-title">近30天成交均价走势</view>
-    <view wx:if="{{priceInsight}}" class="insight-box {{priceInsight.indexOf('低位') >= 0 ? 'insight-good' : (priceInsight.indexOf('高位') >= 0 ? 'insight-warn' : 'insight-info')}}">
+    <view class="card-header">
+      <view class="card-title">成交趋势</view>
+      <!-- 粒度切换 -->
+      <view class="granularity-tabs">
+        <view class="g-tab {{trendGranularity === 'day' ? 'g-active' : ''}}"
+              bindtap="switchGranularity" data-granularity="day">日</view>
+        <view class="g-tab {{trendGranularity === 'week' ? 'g-active' : ''}}"
+              bindtap="switchGranularity" data-granularity="week">周</view>
+        <view class="g-tab {{trendGranularity === 'month' ? 'g-active' : ''}}"
+              bindtap="switchGranularity" data-granularity="month">月</view>
+      </view>
+    </view>
+
+    <!-- 环比指标卡片 -->
+    <view class="compare-cards" wx:if="{{weekChange.hasData || monthChange.hasData}}">
+      <view class="compare-item" wx:if="{{weekChange.hasData}}">
+        <view class="compare-label">周环比</view>
+        <view class="compare-values">
+          <text class="compare-count {{weekChange.count > 0 ? 'up' : (weekChange.count < 0 ? 'down' : '')}}">
+            {{weekChange.count >= 0 ? '+' : ''}}{{weekChange.count}}套
+          </text>
+          <text class="compare-pct" wx:if="{{weekChange.show}}">
+            {{weekChange.pct >= 0 ? '+' : ''}}{{weekChange.pct}}%
+          </text>
+        </view>
+      </view>
+      <view class="compare-item" wx:if="{{monthChange.hasData}}">
+        <view class="compare-label">月环比</view>
+        <view class="compare-values">
+          <text class="compare-count {{monthChange.count > 0 ? 'up' : (monthChange.count < 0 ? 'down' : '')}}">
+            {{monthChange.count >= 0 ? '+' : ''}}{{monthChange.count}}套
+          </text>
+          <text class="compare-pct" wx:if="{{monthChange.show}}">
+            {{monthChange.pct >= 0 ? '+' : ''}}{{monthChange.pct}}%
+          </text>
+        </view>
+      </view>
+    </view>
+
+    <!-- 汇总行 -->
+    <view wx:if="{{trendSummaryTotal > 0}}" class="trend-summary">
+      周期内成交<text class="highlight">{{trendSummaryTotal}}</text>套，均价<text class="highlight">{{trendSummaryPrice}}</text>万/㎡
+    </view>
+
+    <!-- 洞察框 -->
+    <view wx:if="{{priceInsight}}" class="insight-box {{insightType}}">
       {{priceInsight}}
     </view>
+
+    <!-- 历史极值提示 -->
     <view wx:if="{{priceTip}}" class="price-tip price-tip-{{priceTipType}}">
       {{priceTip}}
     </view>
-    <canvas canvas-id="priceChart" id="priceChart"
-            style="width:100%;height:200px;"></canvas>
+
+    <!-- 组合图表 Canvas -->
+    <canvas canvas-id="trendChart" id="trendChart"
+            style="width:100%;height:300px;"></canvas>
   </view>
+
   <view class="card" wx:elif="{{!buildings.length}}">
     <view class="empty">暂无价格走势数据</view>
   </view>

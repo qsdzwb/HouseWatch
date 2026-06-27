@@ -147,10 +147,17 @@ def main():
                 bname, len(houses), total_units, status_str))
 
             for h in houses:
+                # 去重：如果同一 building+room_no 已有记录，复用已有 house_id
+                existing = cur.execute(
+                    "SELECT house_id FROM houses WHERE building_id = ? AND room_no = ?",
+                    (bid, h['room_no'])
+                ).fetchone()
+                house_id = existing[0] if existing else h['house_id']
+
                 cur.execute("""INSERT OR REPLACE INTO houses
                     (building_id, house_id, room_no, status, updated_at)
                     VALUES (?, ?, ?, ?, datetime('now','localtime'))
-                """, (bid, h['house_id'], h['room_no'], h['status']))
+                """, (bid, house_id, h['room_no'], h['status']))
 
             conn.commit()
             time.sleep(3)

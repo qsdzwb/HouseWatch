@@ -82,7 +82,7 @@ Page({
         h.room_display = extractSimpleRoomNo(h.room_no);
         // 成交价显示（精确成交记录才显示）
         h.salePrice = (h.sale_date_exact && h.sale_unit_price)
-          ? (h.sale_unit_price / 10000).toFixed(1) + '万/㎡'
+          ? (h.sale_unit_price / 10000).toFixed(2) + '万/㎡'
           : '';
         // 成交日期（精确成交记录才显示）
         h.saleDateShort = (h.sale_date_exact && h.sale_date)
@@ -142,6 +142,9 @@ Page({
       // 格式化建筑面积
       var buildAreaDisplay = house.build_area ? house.build_area.toFixed(2) + '平方米' : '-';
 
+      // 格式化套内面积
+      var innerAreaDisplay = house.inner_area ? house.inner_area.toFixed(2) + '平方米' : '-';
+
       // 格式化总价
       var totalPriceDisplay = '-';
       if (house.list_total_price && house.list_total_price > 0) {
@@ -166,6 +169,7 @@ Page({
           purpose: house.purpose,
           layout: house.layout,
           buildAreaDisplay: buildAreaDisplay,
+          innerAreaDisplay: innerAreaDisplay,
           totalPriceDisplay: totalPriceDisplay,
           pricePerBuildArea: pricePerBuildArea,
           pricePerInnerArea: pricePerInnerArea,

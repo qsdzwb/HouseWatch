@@ -466,6 +466,9 @@ Page({
       // 格式化建筑面积
       var buildAreaDisplay = house.build_area ? house.build_area.toFixed(2) + '平方米' : '-';
 
+      // 格式化套内面积
+      var innerAreaDisplay = house.inner_area ? house.inner_area.toFixed(2) + '平方米' : '-';
+
       // 格式化总价
       var totalPriceDisplay = '-';
       if (house.list_total_price && house.list_total_price > 0) {
@@ -490,6 +493,7 @@ Page({
           purpose: house.purpose,
           layout: house.layout,
           buildAreaDisplay: buildAreaDisplay,
+          innerAreaDisplay: innerAreaDisplay,
           totalPriceDisplay: totalPriceDisplay,
           pricePerBuildArea: pricePerBuildArea,
           pricePerInnerArea: pricePerInnerArea,
@@ -504,6 +508,7 @@ Page({
           purpose: '-',
           layout: '-',
           buildAreaDisplay: '-',
+          innerAreaDisplay: '-',
           totalPriceDisplay: '-',
           pricePerBuildArea: '-',
           pricePerInnerArea: '-',

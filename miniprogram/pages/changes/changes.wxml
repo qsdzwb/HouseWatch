@@ -106,6 +106,7 @@
         <view class="info-row"><text class="info-label">用途</text><text class="info-value">{{houseDetail.purpose || '-'}}</text></view>
         <view class="info-row"><text class="info-label">户型</text><text class="info-value">{{houseDetail.layout || '-'}}</text></view>
         <view class="info-row"><text class="info-label">建筑面积</text><text class="info-value">{{houseDetail.buildAreaDisplay || '-'}}</text></view>
+        <view class="info-row"><text class="info-label">套内面积</text><text class="info-value">{{houseDetail.innerAreaDisplay || '-'}}</text></view>
         <view class="info-row"><text class="info-label">房屋总价</text><text class="info-value price-red">{{houseDetail.totalPriceDisplay || '-'}}</text></view>
         <view class="info-row"><text class="info-label">按建筑面积拟售单价</text><text class="info-value price-orange">{{houseDetail.pricePerBuildArea || '-'}}</text></view>
         <view class="info-row"><text class="info-label">按套内面积拟售单价</text><text class="info-value price-orange">{{houseDetail.pricePerInnerArea || '-'}}</text></view>

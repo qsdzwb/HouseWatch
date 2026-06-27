@@ -1,322 +1,192 @@
 /**
- * 批量爬取房源详情脚本
+ * 批量预爬房屋详情 — 纯 HTTP 版本
  *
- * 功能：
- * 1. 重新爬取楼盘表页面，提取所有可售房源的真实 houseId（纯数字）
- * 2. 批量爬取房源详情页（用途、户型、面积、单价）
- * 3. 存入数据库，避免房源售后无法获取详情
+ * 房屋详情页 (pageId=373432) 不需要 Chrome/Puppeteer，
+ * 纯 HTTP 即可获取完整数据（面积、户型、用途等）。
+ * 本脚本将所有缺数据的房屋提前爬一遍，写入 DB。
  *
  * 用法：
- *   node server/scripts/batchCrawlDetails.js           # 只跑关注楼盘（display_name 非空）
- *   node server/scripts/batchCrawlDetails.js --all     # 跑所有楼盘
- *   node server/scripts/batchCrawlDetails.js --project 9  # 跑指定项目
- *   node server/scripts/batchCrawlDetails.js --building 577199  # 跑指定楼栋
+ *   node scripts/batchCrawlDetails.js --dry-run          预览
+ *   node scripts/batchCrawlDetails.js --max 50           只爬50套
+ *   node scripts/batchCrawlDetails.js --max 0 --delay 5000  全量爬，5秒延迟
  */
-
 const path = require('path');
-const Database = require('better-sqlite3');
 const fs = require('fs');
+const http = require('http');
 
-// ── 加载 .env ───────────────────────────────────────
-function loadEnv() {
-  const envPath = path.resolve(__dirname, '..', '.env');
-  if (!fs.existsSync(envPath)) {
-    // 远端路径：scripts/../.env
-    const altPath = path.resolve(__dirname, '../.env');
-    if (fs.existsSync(altPath)) {
-      loadEnvFromFile(altPath);
+// 加载 .env
+(function loadEnv() {
+  const paths = ['../.env', '../../.env', 'src/.env'].map(p => path.resolve(__dirname, p));
+  for (const p of paths) {
+    if (fs.existsSync(p)) {
+      for (const line of fs.readFileSync(p, 'utf8').split('\n')) {
+        const m = line.trim().match(/^([^#=]+)=(.*)/);
+        if (m) process.env[m[1].trim()] = m[2].trim().replace(/^["']|["']$/g, '');
+      }
+      console.log('[env]', p);
       return;
     }
-    return;
   }
-  loadEnvFromFile(envPath);
+})();
+
+// 参数
+const args = {};
+for (let i = 0; i < process.argv.length; i++) {
+  const a = process.argv[i];
+  if (a === '--dry-run') args.dryRun = true;
+  else if (a === '--force') args.force = true;
+  else if (a === '--max' && process.argv[i + 1]) args.max = parseInt(process.argv[++i], 10);
+  else if (a === '--delay' && process.argv[i + 1]) args.delay = parseInt(process.argv[++i], 10);
+}
+args.max = args.max ?? 200;
+args.delay = args.delay ?? 3000;
+
+// 数据库
+const Database = require('better-sqlite3');
+const dbPath = path.resolve(__dirname, '..', process.env.DB_SQLITE_PATH || './data/bj_realestate.db');
+const db = new Database(dbPath);
+db.pragma('journal_mode = WAL');
+
+const pageUrl = process.env.CRAWL_PAGE_URL || 'http://bjjs.zjw.beijing.gov.cn/eportal/ui';
+
+// 去除全角空格等空白
+function strip(s) {
+  return s.replace(/[\s\u3000\u00A0]+/g, '');
 }
 
-function loadEnvFromFile(envPath) {
-  const content = fs.readFileSync(envPath, 'utf8');
-  for (const line of content.split('\n')) {
-    const trimmed = line.trim();
-    if (!trimmed || trimmed.startsWith('#')) continue;
-    const eqIdx = trimmed.indexOf('=');
-    if (eqIdx === -1) continue;
-    const key = trimmed.substring(0, eqIdx).trim();
-    const val = trimmed.substring(eqIdx + 1).trim().replace(/^["']|["']$/g, '');
-    process.env[key] = val;
+// 从 HTML 提取房屋资料
+function extract(html) {
+  const r = {};
+  const re = /<td[^>]*>([\s\S]*?)<\/td>\s*<td[^>]*>([\s\S]*?)<\/td>/gi;
+  let m;
+  while ((m = re.exec(html)) !== null) {
+    const label = strip(m[1].replace(/<[^>]+>/g, '').trim());
+    const val = m[2].replace(/<[^>]+>/g, '').trim();
+    if (!val) continue;
+    if (label.includes('建筑面积') && !label.includes('套内') && !label.includes('拟售')) r.buildArea = val;
+    else if (label.includes('套内面积') && !label.includes('拟售')) r.innerArea = val;
+    else if (label.includes('用途') && !label.includes('房间') && !label.includes('面积')) r.purpose = r.purpose || val;
+    else if (label.includes('户型')) r.layout = val;
+    else if (label.includes('建筑面积拟售单价')) r.pricePerSqM = val;
   }
+  return r;
 }
 
-loadEnv();
-
-// ── 数据库路径 ──────────────────────────────────────
-function getDbPath() {
-  if (process.env.DB_SQLITE_PATH) {
-    // DB_SQLITE_PATH 是相对于项目根目录的
-    return path.resolve(__dirname, '..', process.env.DB_SQLITE_PATH);
-  }
-  return path.join(__dirname, '../data/bj_realestate.db');
+// 纯 HTTP 请求
+function fetchHtml(url, retries = 3) {
+  return new Promise((resolve, reject) => {
+    const go = (n) => {
+      const u = new URL(url);
+      const req = http.request({
+        hostname: u.hostname, port: u.port || 80, path: u.pathname + u.search, method: 'GET',
+        headers: {
+          'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36',
+          'Accept': 'text/html,application/xhtml+xml',
+          'Accept-Language': 'zh-CN,zh;q=0.9',
+        },
+        timeout: 30000,
+      }, (res) => {
+        if (res.statusCode >= 300 && res.statusCode < 400 && res.headers.location) {
+          return fetchHtml(res.headers.location, 0).then(resolve).catch(reject);
+        }
+        let body = '';
+        res.setEncoding('utf8');
+        res.on('data', c => { body += c; });
+        res.on('end', () => {
+          if (body.length < 1000 && n < retries) setTimeout(() => go(n + 1), 2000);
+          else resolve(body);
+        });
+      });
+      req.on('error', (e) => n < retries ? setTimeout(() => go(n + 1), 2000) : reject(e));
+      req.on('timeout', () => { req.destroy(); n < retries ? setTimeout(() => go(n + 1), 2000) : reject(new Error('timeout')); });
+      req.end();
+    };
+    go(0);
+  });
 }
 
-// ── 数据库连接 ─────────────────────────────────────────
-function getDb() {
-  const dbPath = getDbPath();
-  console.log(`  📁 数据库: ${dbPath}`);
-  const db = new Database(dbPath);
-  return db;
+function parseNum(s) {
+  if (!s) return null;
+  const m = String(s).match(/(\d+\.?\d*)/);
+  return m ? parseFloat(m[1]) : null;
 }
 
-// ── 延迟函数 ──────────────────────────────────────────
 function sleep(ms) {
   return new Promise(r => setTimeout(r, ms));
 }
 
-// ── 爬取楼盘表，提取可售房源真实 houseId ─────────────
-async function crawlBuildingForRealIds(buildingId, salePermitId) {
-  const { newPage } = require('../src/crawler/browser');
-  const pageUrl = (process.env.CRAWL_PAGE_URL || 'http://bjjs.zjw.beijing.gov.cn/eportal/ui').replace(/\/$/, '');
-  const url = `${pageUrl}?pageId=320833&systemId=2&categoryId=1&salePermitId=${salePermitId}&buildingId=${buildingId}`;
-
-  try {
-    console.log(`  📋 爬取楼盘表: buildingId=${buildingId}`);
-    const page = await newPage();
-    await page.goto(url, { waitUntil: 'domcontentloaded', timeout: 60000 });
-    await sleep(8000);
-
-    const result = await page.evaluate(() => {
-      const map = {};  // roomNo -> realHouseId
-
-      // 查找所有含 houseId 的链接（可售房源）
-      const links = document.querySelectorAll('a[href*="houseId"]');
-      links.forEach(link => {
-        const href = link.href || '';
-        const match = href.match(/[?&]houseId=(\d+)/);
-        if (match) {
-          const realHouseId = match[1];
-          const roomNo = (link.innerText || link.textContent || '').trim();
-          if (roomNo && !map[roomNo]) {
-            map[roomNo] = realHouseId;
-          }
-        }
-      });
-
-      return map;
-    });
-
-    const count = Object.keys(result).length;
-    if (count > 0) {
-      console.log(`  ✅ 提取到 ${count} 个真实 houseId`);
-    } else {
-      console.log(`  ⚠️  未提取到真实 houseId（可能该楼栋无可售房源）`);
-    }
-    await page.close();
-    return result;
-  } catch (err) {
-    console.error(`  ❌ 楼盘表爬取失败: ${err.message}`);
-    return {};
-  }
-}
-
-// ── 爬取单个房源详情 ──────────────────────────────────
-async function crawlOneDetail(realHouseId, salePermitId) {
-  const { crawlHouseDetail } = require('../src/crawler/crawlHouseDetail');
-  try {
-    const detail = await crawlHouseDetail(realHouseId, salePermitId);
-    return detail;
-  } catch (err) {
-    return null;
-  }
-}
-
-// ── 主流程 ─────────────────────────────────────────────
 async function main() {
-  const args = process.argv.slice(2);
-  const isAll = args.includes('--all');
-  let projectIds = [];
-  let buildingIds = [];
+  // 查询待爬取房屋：有真实数字 ID 且缺数据
+  const query = args.force
+    ? `SELECT h.house_id, h.room_no, h.building_id, b.sale_permit_id
+       FROM houses h JOIN buildings b ON h.building_id = b.building_id
+       WHERE h.house_id NOT GLOB '*_*' ORDER BY h.id`
+    : `SELECT h.house_id, h.room_no, h.building_id, b.sale_permit_id
+       FROM houses h JOIN buildings b ON h.building_id = b.building_id
+       WHERE h.house_id NOT GLOB '*_*'
+         AND (h.build_area IS NULL OR h.purpose IS NULL) ORDER BY h.id`;
 
-  // 解析参数（支持 --key=value 和 --key value 两种格式）
-  for (let i = 0; i < args.length; i++) {
-    const arg = args[i];
-    if (arg.startsWith('--project=')) {
-      projectIds.push(arg.split('=')[1].trim());
-    } else if (arg === '--project' && i + 1 < args.length) {
-      projectIds.push(args[++i].trim());
-    } else if (arg.startsWith('--building=')) {
-      buildingIds.push(arg.split('=')[1].trim());
-    } else if (arg === '--building' && i + 1 < args.length) {
-      buildingIds.push(args[++i].trim());
-    }
-  }
+  const all = db.prepare(query).all();
+  const count = args.max === 0 ? all.length : Math.min(args.max, all.length);
+  const houses = all.slice(0, count);
 
-  const db = getDb();
+  console.log(`\n🏠 批量爬取房屋详情`);
+  console.log(`   共 ${all.length} 套缺数据，本次处理 ${houses.length} 套`);
+  console.log(`   延迟 ${args.delay}ms/套${args.dryRun ? ' ⚠️ DRY-RUN' : ''}\n`);
 
-  // 查询要处理的楼栋
-  let buildings = [];
+  let ok = 0, fail = 0, skip = 0;
+  const updateStmt = db.prepare(
+    `UPDATE houses SET purpose=?, layout=?, build_area=?, inner_area=?,
+     list_price_per_sqm=?, list_total_price=?,
+     updated_at=datetime('now','localtime')
+     WHERE house_id=?`
+  );
+  const now = Date.now();
 
-  if (buildingIds.length > 0) {
-    const placeholders = buildingIds.map(() => '?').join(',');
-    buildings = db.prepare(
-      `SELECT building_id, sale_permit_id FROM buildings WHERE building_id IN (${placeholders})`
-    ).all(...buildingIds);
-  } else if (projectIds.length > 0) {
-    const placeholders = projectIds.map(() => '?').join(',');
-    buildings = db.prepare(
-      `SELECT building_id, sale_permit_id FROM buildings WHERE project_id IN (${placeholders})`
-    ).all(...projectIds);
-  } else if (isAll) {
-    buildings = db.prepare('SELECT building_id, sale_permit_id FROM buildings').all();
-  } else {
-    // 默认：只跑关注楼盘（display_name 非空）
-    buildings = db.prepare(`
-      SELECT b.building_id, b.sale_permit_id
-      FROM buildings b
-      JOIN projects p ON b.project_id = p.id
-      WHERE p.display_name IS NOT NULL AND p.display_name != ''
-    `).all();
-  }
+  for (let i = 0; i < houses.length; i++) {
+    const h = houses[i];
+    const pct = ((i + 1) / houses.length * 100).toFixed(1);
+    process.stdout.write(`\r[${i + 1}/${houses.length} ${pct}%] ${h.house_id} (${h.room_no}) `);
 
-  if (buildings.length === 0) {
-    console.log('⚠️  未找到匹配的楼栋，请检查参数');
-    db.close();
-    return;
-  }
+    try {
+      const url = `${pageUrl}?pageId=373432&houseId=${h.house_id}&categoryId=1&salePermitId=${h.sale_permit_id}&systemId=2`;
+      const html = await fetchHtml(url, 3);
 
-  console.log(`\n🏗️  共 ${buildings.length} 个楼栋待处理\n`);
-  console.log('（每个楼栋间延迟 5 秒，每套房延迟 3 秒，请耐心等待）\n');
-
-  let totalHouses = 0;
-  let updatedHouses = 0;
-  let errorCount = 0;
-  let start = Date.now();
-
-  for (const [idx, bld] of buildings.entries()) {
-    console.log(`\n[${idx + 1}/${buildings.length}] 楼栋 ${bld.building_id}`);
-
-    // 步骤1：爬取楼盘表，获取真实 houseId
-    const realIdMap = await crawlBuildingForRealIds(bld.building_id, bld.sale_permit_id);
-    await sleep(2000);
-
-    if (Object.keys(realIdMap).length === 0) {
-      console.log(`  ⚠️  无真实 houseId，跳过此楼栋`);
-      if (idx < buildings.length - 1) await sleep(5000);
-      continue;
-    }
-
-    // 步骤2：更新数据库中的 real_house_id（灵活匹配 room_no）
-    const housesInBld = db.prepare(
-      'SELECT house_id, room_no FROM houses WHERE building_id = ?'
-    ).all(bld.building_id);
-
-    const updateRealId = db.prepare(
-      'UPDATE houses SET real_house_id = ? WHERE house_id = ?'
-    );
-    let realIdCount = 0;
-
-    for (const h of housesInBld) {
-      let realHouseId = null;
-
-      // 方式1：精确匹配 room_no
-      if (realIdMap[h.room_no]) {
-        realHouseId = realIdMap[h.room_no];
-      } else {
-        // 方式2：提取 room_no 末尾的数字部分进行匹配
-        const roomNumMatch = h.room_no.match(/(\d+)$/);
-        if (roomNumMatch) {
-          const roomNum = roomNumMatch[1];
-          for (const [pageRoomNo, rid] of Object.entries(realIdMap)) {
-            // pageRoomNo 可能是 "801"，roomNum 是 "801"
-            if (pageRoomNo === roomNum || pageRoomNo.includes(roomNum) || roomNum.includes(pageRoomNo)) {
-              realHouseId = rid;
-              break;
-            }
-          }
-        }
+      if (html.indexOf('房屋资料') < 0) {
+        skip++;
+        process.stdout.write(`→ 无房屋资料区块`);
+        continue;
       }
 
-      if (realHouseId) {
-        const result = updateRealId.run(realHouseId, h.house_id);
-        if (result.changes > 0) realIdCount++;
+      const d = extract(html);
+      if (!d.buildArea && !d.purpose) {
+        skip++;
+        process.stdout.write(`→ 未提取到数据`);
+        continue;
       }
-    }
-    console.log(`  💾 已更新 ${realIdCount} 条 real_house_id`);
 
-    // 步骤3：批量爬取详情（只爬还没有详情数据的）
-    const housesToCrawl = db.prepare(`
-      SELECT house_id, real_house_id
-      FROM houses
-      WHERE building_id = ? AND real_house_id IS NOT NULL
-        AND (purpose IS NULL OR layout IS NULL OR build_area IS NULL)
-    `).all(bld.building_id);
+      const buildArea = parseNum(d.buildArea);
+      const innerArea = parseNum(d.innerArea);
+      const pricePerSqm = parseNum(d.pricePerSqM);
+      const totalPrice = buildArea && pricePerSqm ? (buildArea * pricePerSqm) : null;
 
-    if (housesToCrawl.length === 0) {
-      console.log(`  ✅ 该楼栋所有房源已有详情数据，跳过`);
-      if (idx < buildings.length - 1) await sleep(3000);
-      continue;
-    }
-
-    console.log(`  🔍 需爬取详情: ${housesToCrawl.length} 套`);
-
-    for (const [i, house] of housesToCrawl.entries()) {
-      totalHouses++;
-      const pct = (((i + 1) / housesToCrawl.length) * 100).toFixed(0);
-      process.stdout.write(
-        `\r  [${i + 1}/${housesToCrawl.length}] (${pct}%) houseId=${house.real_house_id}...`
-      );
-
-      const detail = await crawlOneDetail(house.real_house_id, bld.sale_permit_id);
-      await sleep(3000);
-
-      if (detail && (detail.purpose || detail.layout || detail.buildArea)) {
-        const buildAreaMatch = String(detail.buildArea || '').match(/([\d.]+)/);
-        const innerAreaMatch = String(detail.innerArea || '').match(/([\d.]+)/);
-        const pricePerSqmMatch = String(detail.pricePerSqM || '').match(/([\d.]+)/);
-
-        db.prepare(`
-          UPDATE houses SET
-            purpose = COALESCE(?, purpose),
-            layout = COALESCE(?, layout),
-            build_area = COALESCE(?, build_area),
-            inner_area = COALESCE(?, inner_area),
-            list_price_per_sqm = COALESCE(?, list_price_per_sqm),
-            updated_at = datetime('now','localtime')
-          WHERE house_id = ?
-        `).run(
-          detail.purpose || null,
-          detail.layout || null,
-          buildAreaMatch ? parseFloat(buildAreaMatch[1]) : null,
-          innerAreaMatch ? parseFloat(innerAreaMatch[1]) : null,
-          pricePerSqmMatch ? parseFloat(pricePerSqmMatch[1]) : null,
-          house.house_id
-        );
-
-        updatedHouses++;
-        const msg = `用途=${detail.purpose || '-'} 户型=${detail.layout || '-'} ${detail.buildArea || '-'}m²`;
-        process.stdout.write(`\r  [${i + 1}/${housesToCrawl.length}] ✅ ${msg}\n`);
-      } else {
-        errorCount++;
-        process.stdout.write(`\r  [${i + 1}/${housesToCrawl.length}] ❌ 无数据\n`);
+      if (!args.dryRun) {
+        updateStmt.run(d.purpose || null, d.layout || null, buildArea, innerArea, pricePerSqm, totalPrice, h.house_id);
       }
+
+      ok++;
+      process.stdout.write(`→ ✓ ${(d.buildArea || '').trim()}`);
+    } catch (e) {
+      fail++;
+      process.stdout.write(`→ ✗ ${e.message}`);
     }
 
-    if (idx < buildings.length - 1) {
-      console.log(`  ⏳ 等待 5 秒后处理下一个楼栋...`);
-      await sleep(5000);
-    }
+    if (i < houses.length - 1) await sleep(args.delay);
   }
 
+  const elapsed = ((Date.now() - now) / 1000).toFixed(0);
+  console.log(`\n\n✅ 完成! 成功 ${ok} / 失败 ${fail} / 跳过 ${skip}，耗时 ${elapsed}s`);
   db.close();
-  const elapsed = Math.round((Date.now() - start) / 1000);
-
-  console.log(`\n\n${'='.repeat(50)}`);
-  console.log(`✅ 批量爬取完成！用时 ${elapsed} 秒`);
-  console.log(`${'='.repeat(50)}`);
-  console.log(`   处理楼栋: ${buildings.length}`);
-  console.log(`   爬取房源: ${totalHouses} 套`);
-  console.log(`   成功更新: ${updatedHouses} 套`);
-  console.log(`   失败/无数据: ${errorCount} 套`);
-  console.log(`${'='.repeat(50)}\n`);
 }
 
-main().catch(err => {
-  console.error('\n❌ 脚本执行失败:', err);
-  process.exit(1);
-});
+main().catch(e => { console.error(e); db.close(); process.exit(1); });

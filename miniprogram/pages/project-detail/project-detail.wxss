@@ -196,6 +196,87 @@
   font-size: 14px;
 }
 
+/* 卡片头部（标题+粒度切换） */
+.card-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 8px;
+}
+
+/* 粒度切换 tabs */
+.granularity-tabs {
+  display: flex;
+  background: #f5f5f5;
+  border-radius: 14px;
+  padding: 2px;
+}
+.g-tab {
+  font-size: 12px;
+  color: #999;
+  padding: 4px 12px;
+  border-radius: 12px;
+  transition: all 0.2s;
+}
+.g-tab.g-active {
+  background: #1989FA;
+  color: #fff;
+  font-weight: 500;
+}
+
+/* 环比指标卡片 */
+.compare-cards {
+  display: flex;
+  gap: 8px;
+  margin-bottom: 8px;
+}
+.compare-item {
+  flex: 1;
+  background: #f8f9fb;
+  border-radius: 8px;
+  padding: 8px 10px;
+}
+.compare-label {
+  font-size: 11px;
+  color: #999;
+  margin-bottom: 2px;
+}
+.compare-values {
+  display: flex;
+  align-items: baseline;
+  gap: 4px;
+}
+.compare-count {
+  font-size: 15px;
+  font-weight: 600;
+  color: #666;
+}
+.compare-count.up {
+  color: #E74C3C;
+}
+.compare-count.down {
+  color: #27AE60;
+}
+.compare-pct {
+  font-size: 11px;
+  color: #999;
+}
+
+/* 趋势汇总行 */
+.trend-summary {
+  font-size: 12px;
+  color: #888;
+  margin-bottom: 8px;
+  padding: 6px 10px;
+  background: #f8f9fb;
+  border-radius: 6px;
+}
+.trend-summary .highlight {
+  color: #FF6600;
+  font-weight: 600;
+  margin: 0 2px;
+}
+
 /* 洞察盒子 */
 .insight-box {
   font-size: 13px;
